@@ -37,7 +37,9 @@ export default function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  const project = getProjectBySlug(slug);
+  // Декодируем URL-encoded slug (например %D0%BB%D0%B8%D0%B3%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9-29 → лиговский-29)
+  const decodedSlug = decodeURIComponent(slug);
+  const project = getProjectBySlug(decodedSlug);
 
   if (!project) {
     notFound();
