@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { getProjects } from "@/data/stats";
 import {
   filterProjects,
@@ -19,6 +20,8 @@ import { formatCurrency, formatNumber } from "@/lib/utils";
 import { PropertyFormat, RiskLevel, ProjectStatus, formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
 import { Eye, GitCompare, Calculator } from "lucide-react";
+import { FadeIn } from "@/components/ui/fade-in";
+import { AnimatedCard } from "@/components/ui/animated-card";
 
 export default function ProjectsPage() {
   const [mounted, setMounted] = useState(false);
@@ -42,16 +45,19 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto py-12 px-4 space-y-8">
-        <div className="space-y-3 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold">Каталог проектов</h1>
-          <p className="text-lg text-muted-foreground">
-            {filteredProjects.length} проектов доходной недвижимости в СНГ
-          </p>
-        </div>
+        <FadeIn>
+          <div className="space-y-3 text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl font-bold">Каталог проектов</h1>
+            <p className="text-lg text-muted-foreground">
+              {filteredProjects.length} проектов доходной недвижимости в СНГ
+            </p>
+          </div>
+        </FadeIn>
 
         {/* Filters */}
-        <Card>
-          <CardContent className="pt-6">
+        <FadeIn delay={0.1}>
+          <Card>
+            <CardContent className="pt-6">
             <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
               <div className="md:col-span-2">
                 <Input
@@ -136,14 +142,16 @@ export default function ProjectsPage() {
             </div>
           </CardContent>
         </Card>
+        </FadeIn>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => {
+          {filteredProjects.map((project, idx) => {
             const inCompare = isInCompare(project.slug);
 
             return (
-              <Card key={project.slug} className="flex flex-col hover:shadow-lg transition-shadow">
+              <AnimatedCard key={project.slug} delay={idx * 0.05}>
+              <Card className="flex flex-col h-full">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <CardTitle className="text-lg leading-tight">
@@ -255,25 +263,30 @@ export default function ProjectsPage() {
 
                 <CardFooter className="flex gap-2 pt-4">
                   <Link href={`/projects/${project.slug}`} className="flex-1">
-                    <Button variant="outline" className="w-full">
-                      <Eye className="h-4 w-4 mr-2" />
-                      Открыть
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
+                      <Button variant="outline" className="w-full">
+                        <Eye className="h-4 w-4 mr-2" />
+                        Открыть
+                      </Button>
+                    </motion.div>
                   </Link>
                   {mounted && (
-                    <Button
-                      variant={inCompare ? "default" : "outline"}
-                      onClick={() =>
-                        inCompare ? removeProject(project.slug) : addProject(project)
-                      }
-                      disabled={!inCompare && useCompareStore.getState().projects.length >= 5}
-                      className="px-3"
-                    >
-                      <GitCompare className="h-4 w-4" />
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button
+                        variant={inCompare ? "default" : "outline"}
+                        onClick={() =>
+                          inCompare ? removeProject(project.slug) : addProject(project)
+                        }
+                        disabled={!inCompare && useCompareStore.getState().projects.length >= 5}
+                        className="px-3"
+                      >
+                        <GitCompare className="h-4 w-4" />
+                      </Button>
+                    </motion.div>
                   )}
                 </CardFooter>
               </Card>
+              </AnimatedCard>
             );
           })}
         </div>

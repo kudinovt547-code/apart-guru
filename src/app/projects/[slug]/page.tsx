@@ -11,25 +11,9 @@ import { RiskBadge } from "@/components/ui/risk-badge";
 import { AccordionItem } from "@/components/ui/accordion";
 import { formatCurrency, formatNumber, formatPercent, formatDate } from "@/lib/utils";
 import { formatLabels, statusLabels } from "@/types/project";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { useCompareStore } from "@/store/useCompareStore";
 import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink } from "lucide-react";
 import ConstructionForecast from "@/components/projects/ConstructionForecast";
-
-const MONTHS = [
-  "Янв",
-  "Фев",
-  "Мар",
-  "Апр",
-  "Май",
-  "Июн",
-  "Июл",
-  "Авг",
-  "Сен",
-  "Окт",
-  "Ноя",
-  "Дек",
-];
 
 export default function ProjectDetailPage({
   params,
@@ -47,11 +31,6 @@ export default function ProjectDetailPage({
 
   const { addProject, removeProject, isInCompare } = useCompareStore();
   const inCompare = isInCompare(project.slug);
-
-  const seasonalityData = project.seasonality.map((value, index) => ({
-    month: MONTHS[index],
-    value,
-  }));
 
   const suitableFor = [];
   const notSuitableFor = [];
@@ -234,46 +213,6 @@ export default function ProjectDetailPage({
       {/* Construction Forecast Calculator - Only for construction projects */}
       {project.status === "construction" && (
         <ConstructionForecast project={project} />
-      )}
-
-      {/* Seasonality Chart - Only for active projects */}
-      {project.status === "active" && (
-        <Card>
-          <CardHeader>
-            <CardTitle>График сезонности загрузки</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={seasonalityData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis
-                  dataKey="month"
-                  stroke="hsl(var(--muted-foreground))"
-                  fontSize={12}
-                />
-                <YAxis
-                  stroke="hsl(var(--muted-foreground))"
-                  fontSize={12}
-                  domain={[0, 100]}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(var(--background))",
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "0.375rem",
-                  }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth={2}
-                  dot={{ fill: "hsl(var(--primary))" }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
       )}
 
       {/* Two Column Layout */}
