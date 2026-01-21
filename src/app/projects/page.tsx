@@ -15,9 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { RiskBadge } from "@/components/ui/risk-badge";
 import { formatCurrency, formatNumber } from "@/lib/utils";
-import { PropertyFormat, RiskLevel, ProjectStatus, formatLabels, statusLabels } from "@/types/project";
+import { PropertyFormat, ProjectStatus, formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
 import { Eye, GitCompare, Calculator } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
@@ -58,7 +57,7 @@ export default function ProjectsPage() {
         <FadeIn delay={0.1}>
           <Card>
             <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               <div className="md:col-span-2">
                 <Input
                   placeholder="Поиск по названию, городу..."
@@ -121,24 +120,6 @@ export default function ProjectsPage() {
                   </option>
                 ))}
               </Select>
-
-              <Select
-                value={filters.riskLevel || ""}
-                onChange={(e) =>
-                  setFilters({
-                    ...filters,
-                    riskLevel: (e.target.value as any) || undefined,
-                  })
-                }
-                className="h-11"
-              >
-                <option value="">Все риски</option>
-                {Object.values(RiskLevel).map((level) => (
-                  <option key={level} value={level}>
-                    {level === "low" ? "Низкий" : level === "medium" ? "Средний" : "Высокий"}
-                  </option>
-                ))}
-              </Select>
             </div>
           </CardContent>
         </Card>
@@ -164,7 +145,6 @@ export default function ProjectsPage() {
                   <div className="flex items-center gap-2 mt-3">
                     <Badge variant="outline">{formatLabels[project.format]}</Badge>
                     <Badge variant="outline">{statusLabels[project.status]}</Badge>
-                    {project.status === "active" && <RiskBadge level={project.riskLevel} />}
                   </div>
                 </CardHeader>
 

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useCompareStore } from "@/store/useCompareStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { RiskBadge } from "@/components/ui/risk-badge";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -59,7 +58,9 @@ export default function ComparePage() {
   const fastestPayback = projects.reduce((best, p) =>
     p.paybackYears < best.paybackYears ? p : best
   );
-  const lowestRisk = projects.find((p) => p.riskLevel === "low") || projects[0];
+  const bestOccupancy = projects.reduce((best, p) =>
+    p.occupancy > best.occupancy ? p : best
+  );
 
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
@@ -196,15 +197,6 @@ export default function ComparePage() {
                   </td>
                 ))}
               </tr>
-
-              <tr className="border-b hover:bg-muted/30">
-                <td className="px-4 py-3 text-sm font-medium">Уровень риска</td>
-                {projects.map((project) => (
-                  <td key={project.slug} className="px-4 py-3">
-                    <RiskBadge level={project.riskLevel} />
-                  </td>
-                ))}
-              </tr>
             </tbody>
           </table>
         </div>
@@ -221,8 +213,6 @@ export default function ComparePage() {
             <p className="text-sm text-muted-foreground">
               <span className="text-primary font-bold">{bestYield.title}</span>{" "}
               показывает лучшую доходность на м² ({formatCurrency(bestYield.revPerM2Month)}/м²/мес).
-              {bestYield.riskLevel !== "low" &&
-                " Однако, стоит учитывать повышенные риски этого проекта."}
             </p>
           </div>
 
@@ -237,25 +227,19 @@ export default function ComparePage() {
           </div>
 
           <div>
-            <p className="font-medium mb-2">Стабильность:</p>
+            <p className="font-medium mb-2">Максимальная загрузка:</p>
             <p className="text-sm text-muted-foreground">
-              {lowestRisk.riskLevel === "low" ? (
-                <>
-                  <span className="text-primary font-bold">{lowestRisk.title}</span>{" "}
-                  обладает низким уровнем риска, подходит для консервативных
-                  инвесторов и первых инвестиций в недвижимость.
-                </>
-              ) : (
-                "Среди выбранных проектов нет вариантов с низким уровнем риска. Рекомендуем рассмотреть более стабильные альтернативы."
-              )}
+              <span className="text-primary font-bold">{bestOccupancy.title}</span>{" "}
+              показывает наилучшую загрузку ({formatPercent(bestOccupancy.occupancy)}),
+              что говорит о стабильном спросе и высокой ликвидности объекта.
             </p>
           </div>
 
           <div className="pt-4 border-t">
             <p className="text-sm text-muted-foreground">
               Выбор оптимального проекта зависит от ваших инвестиционных целей,
-              бюджета, толерантности к риску и временного горизонта. Рекомендуем
-              получить персональную консультацию для подробного анализа.
+              бюджета и временного горизонта. Рекомендуем получить персональную
+              консультацию для подробного анализа.
             </p>
           </div>
         </CardContent>

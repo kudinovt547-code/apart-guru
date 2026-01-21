@@ -7,7 +7,6 @@ import { getProjectBySlug } from "@/data/stats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { RiskBadge } from "@/components/ui/risk-badge";
 import { AccordionItem } from "@/components/ui/accordion";
 import { formatCurrency, formatNumber, formatPercent, formatDate } from "@/lib/utils";
 import { formatLabels, statusLabels } from "@/types/project";
@@ -34,14 +33,6 @@ export default function ProjectDetailPage({
 
   const suitableFor = [];
   const notSuitableFor = [];
-
-  if (project.riskLevel === "low") {
-    suitableFor.push("Консервативные инвесторы");
-    suitableFor.push("Первая инвестиция в недвижимость");
-  } else if (project.riskLevel === "high") {
-    notSuitableFor.push("Консервативные инвесторы");
-    suitableFor.push("Опытные инвесторы с высокой толерантностью к риску");
-  }
 
   if (project.paybackYears <= 6) {
     suitableFor.push("Инвесторы, ориентированные на быструю окупаемость");
@@ -75,7 +66,6 @@ export default function ProjectDetailPage({
           <div className="flex items-center space-x-2">
             <Badge variant="outline">{formatLabels[project.format]}</Badge>
             <Badge variant="outline">{statusLabels[project.status]}</Badge>
-            <RiskBadge level={project.riskLevel} />
           </div>
         </div>
         <p className="text-muted-foreground">{project.summary}</p>
@@ -192,20 +182,6 @@ export default function ProjectDetailPage({
               {formatCurrency(project.adr)}
             </p>
             <p className="text-xs text-muted-foreground mt-1">средний чек</p>
-          </Card>
-
-          <Card className="p-6 md:col-span-2">
-            <p className="text-sm text-muted-foreground mb-2">Уровень риска</p>
-            <div className="mt-2">
-              <RiskBadge level={project.riskLevel} />
-            </div>
-            <p className="text-xs text-muted-foreground mt-2">
-              {project.riskLevel === "low"
-                ? "Стабильный рынок, низкая волатильность"
-                : project.riskLevel === "medium"
-                ? "Умеренные риски, требуется опыт"
-                : "Высокие риски, только для опытных инвесторов"}
-            </p>
           </Card>
         </div>
       )}
