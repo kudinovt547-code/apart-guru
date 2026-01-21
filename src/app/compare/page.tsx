@@ -38,18 +38,40 @@ export default function ComparePage() {
     );
   }
 
-  const handleSubmitReport = (e: React.FormEvent) => {
+  const handleSubmitReport = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Report request:", {
-      ...formData,
-      projects: projects.map((p) => p.slug),
-    });
-    setFormSubmitted(true);
-    setTimeout(() => {
+
+    try {
+      const response = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'report',
+          data: {
+            ...formData,
+            projects: projects.map((p) => p.slug),
+          },
+        }),
+      });
+
+      if (response.ok) {
+        setFormSubmitted(true);
+        setTimeout(() => {
+          setShowReportModal(false);
+          setFormSubmitted(false);
+          setFormData({ name: "", contact: "" });
+        }, 2000);
+      } else {
+        alert('Ошибка отправки. Попробуйте позже или свяжитесь через Telegram.');
+        setShowReportModal(false);
+      }
+    } catch (error) {
+      console.error('Error submitting report request:', error);
+      alert('Ошибка отправки. Попробуйте позже или свяжитесь через Telegram.');
       setShowReportModal(false);
-      setFormSubmitted(false);
-      setFormData({ name: "", contact: "" });
-    }, 2000);
+    }
   };
 
   const bestYield = projects.reduce((best, p) =>

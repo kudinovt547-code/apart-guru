@@ -18,22 +18,46 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        contact: "",
-        budget: "",
-        city: "",
-        riskProfile: "",
-        message: "",
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'contact',
+          data: formData,
+        }),
       });
-    }, 3000);
+
+      if (response.ok) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            name: "",
+            contact: "",
+            budget: "",
+            city: "",
+            riskProfile: "",
+            message: "",
+          });
+        }, 3000);
+      } else {
+        alert('Ошибка отправки. Попробуйте позже или свяжитесь через Telegram.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Ошибка отправки. Попробуйте позже или свяжитесь через Telegram.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -159,8 +183,8 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <Button type="submit" size="lg" className="w-full">
-                Отправить заявку
+              <Button type="submit" size="lg" className="w-full" disabled={loading}>
+                {loading ? "Отправка..." : "Отправить заявку"}
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
