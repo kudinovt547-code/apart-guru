@@ -2,7 +2,7 @@
   "objects": [
     {
       "slug": "лиговский-29",
-      "title": "Лиговский 29",
+      "title": "Inreit Ligovskiy",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -36,7 +36,7 @@
     },
     {
       "slug": "садовая-53",
-      "title": "Садовая 53",
+      "title": "Inreit Sadovaya",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -70,7 +70,7 @@
     },
     {
       "slug": "садовая-28",
-      "title": "Садовая 28",
+      "title": "Inreit Sadovaya",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -104,7 +104,7 @@
     },
     {
       "slug": "александра-невского",
-      "title": "Александра Невского",
+      "title": "Inreit Aleksandra Nevskogo",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -138,7 +138,7 @@
     },
     {
       "slug": "подьяческая",
-      "title": "Подьяческая",
+      "title": "Inreit Podyacheskaya",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -172,7 +172,7 @@
     },
     {
       "slug": "блохина-петроградка",
-      "title": "Блохина (Петроградка)",
+      "title": "Inreit Blokhina",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -206,7 +206,7 @@
     },
     {
       "slug": "блохина-нева",
-      "title": "Блохина (Нева)",
+      "title": "Inreit Blokhina",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -240,7 +240,7 @@
     },
     {
       "slug": "москва",
-      "title": "Москва",
+      "title": "Inreit Moskva",
       "city": "Unknown",
       "country": "Россия",
       "format": "apart-hotel",
@@ -274,7 +274,7 @@
     },
     {
       "slug": "revolution-towers-революшн-тауэрс",
-      "title": "Revolution Towers (Революшн Тауэрс)",
+      "title": "Inreit Revolution Towers",
       "city": "Екатеринбург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -315,7 +315,7 @@
     },
     {
       "slug": "дом-на-набережной-insider-инсайдер",
-      "title": "Дом на набережной INSIDER (Инсайдер)",
+      "title": "Inreit Dom na naberezhnoy INSIDER",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -356,7 +356,7 @@
     },
     {
       "slug": "саввинская-27-от-level",
-      "title": "Саввинская 27 от Level",
+      "title": "Inreit Savvinskaya ot Level",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -397,7 +397,7 @@
     },
     {
       "slug": "d-oro-mille-доро-милле",
-      "title": "D'ORO MILLE (Доро Милле)",
+      "title": "Inreit D'ORO MILLE",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -438,7 +438,7 @@
     },
     {
       "slug": "evopark-сокольники-эвопарк",
-      "title": "EvoPark Сокольники (ЭвоПарк)",
+      "title": "Inreit EvoPark Sokolniki",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -479,7 +479,7 @@
     },
     {
       "slug": "nametkin-tower-наметкин-тауэр",
-      "title": "Nametkin Tower (Наметкин Тауэр)",
+      "title": "Inreit Nametkin Tower",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -520,7 +520,7 @@
     },
     {
       "slug": "мфк-варшавские-ворота",
-      "title": "МФК Варшавские ворота",
+      "title": "Inreit MFK Varshavskie vorota",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -561,7 +561,7 @@
     },
     {
       "slug": "emotion-эмоушен",
-      "title": "Emotion (Эмоушен)",
+      "title": "Inreit Emotion",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -602,7 +602,7 @@
     },
     {
       "slug": "ahead",
-      "title": "AHEAD",
+      "title": "Inreit AHEAD",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -643,7 +643,7 @@
     },
     {
       "slug": "voxhall-воксхолл",
-      "title": "Voxhall (Воксхолл)",
+      "title": "Inreit Voxhall",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -684,7 +684,7 @@
     },
     {
       "slug": "большая-академическая-85",
-      "title": "Большая Академическая 85",
+      "title": "Inreit Bolshaya Akademicheskaya",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -725,7 +725,7 @@
     },
     {
       "slug": "комплекс-апартаментов-aist-residence-аист-резиденс",
-      "title": "Комплекс апартаментов AIST RESIDENCE (Аист Резиденс)",
+      "title": "Inreit Kompleks apartamentov AIST RESIDENCE",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -766,7 +766,7 @@
     },
     {
       "slug": "мфк-citimix-новокосино",
-      "title": "МФК CITIMIX Новокосино",
+      "title": "Inreit MFK CITIMIX Novokosino",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -807,7 +807,7 @@
     },
     {
       "slug": "малевич-malevich",
-      "title": "Малевич (Malevich)",
+      "title": "Inreit Malevich",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -848,7 +848,7 @@
     },
     {
       "slug": "сервисные-резиденции-в-клубных-особняках-ильинка-3-8",
-      "title": "Сервисные резиденции в клубных особняках Ильинка 3/8",
+      "title": "Inreit Servisnye rezidentsii v klubnykh osobnyakakh Ilinka",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -889,7 +889,7 @@
     },
     {
       "slug": "мираполис",
-      "title": "МИРАПОЛИС",
+      "title": "Inreit MIRAPOLIS",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -930,7 +930,7 @@
     },
     {
       "slug": "level-южнопортовая",
-      "title": "Level Южнопортовая",
+      "title": "Inreit Level Yuzhnoportovaya",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -971,7 +971,7 @@
     },
     {
       "slug": "evopark-измайлово-эвопарк",
-      "title": "EvoPark Измайлово (ЭвоПарк)",
+      "title": "Inreit EvoPark Izmaylovo",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1012,7 +1012,7 @@
     },
     {
       "slug": "камергер",
-      "title": "Камергер",
+      "title": "Inreit Kamerger",
       "city": "Москва",
       "country": "Россия",
       "format": "apartment",
@@ -1053,7 +1053,7 @@
     },
     {
       "slug": "мфк-citimix-ситимикс",
-      "title": "МФК CITIMIX (Ситимикс)",
+      "title": "Inreit MFK CITIMIX",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1094,7 +1094,7 @@
     },
     {
       "slug": "тропарево-парк",
-      "title": "Тропарево Парк",
+      "title": "Inreit Troparevo Park",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1135,7 +1135,7 @@
     },
     {
       "slug": "клубный-дом-левенсон",
-      "title": "Клубный дом Левенсон",
+      "title": "Inreit Klubnyy dom Levenson",
       "city": "Москва",
       "country": "Россия",
       "format": "apartment",
@@ -1176,7 +1176,7 @@
     },
     {
       "slug": "апарт-комплекс-akvilon-signal-аквилон-сигнал",
-      "title": "Апарт-комплекс Akvilon Signal (Аквилон Сигнал)",
+      "title": "Inreit Apart-kompleks Akvilon Signal",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1217,7 +1217,7 @@
     },
     {
       "slug": "мфк-dius-диус",
-      "title": "МФК DIUS (Диус)",
+      "title": "Inreit MFK DIUS",
       "city": "Москва",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1258,7 +1258,7 @@
     },
     {
       "slug": "апарт-отель-мега-апартс",
-      "title": "Апарт-отель Мега апартс",
+      "title": "Inreit Apart-otel Mega aparts",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1299,7 +1299,7 @@
     },
     {
       "slug": "апартаменты-apartville-на-кошурникова-апартвиль-на-кошурникова",
-      "title": "Апартаменты Apartville на Кошурникова (Апартвиль на Кошурникова)",
+      "title": "Inreit Apartamenty Apartville na Koshurnikova",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1340,7 +1340,7 @@
     },
     {
       "slug": "апартаменты-аэрон",
-      "title": "Апартаменты АЭРОН",
+      "title": "Inreit Apartamenty AERON",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1381,7 +1381,7 @@
     },
     {
       "slug": "апартаменты-land-lord-апартаменты-лэнд-лорд",
-      "title": "Апартаменты Land Lord (Апартаменты Лэнд Лорд)",
+      "title": "Inreit Apartamenty Land Lord",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1422,7 +1422,7 @@
     },
     {
       "slug": "апартаменты-voroshilov-апартаменты-ворошилов",
-      "title": "Апартаменты VOROSHILOV (Апартаменты Ворошилов)",
+      "title": "Inreit Apartamenty VOROSHILOV",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1463,7 +1463,7 @@
     },
     {
       "slug": "freedom-фридом",
-      "title": "Freedom (Фридом)",
+      "title": "Inreit Freedom",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1504,7 +1504,7 @@
     },
     {
       "slug": "инские-холмы",
-      "title": "Инские Холмы",
+      "title": "Inreit Inskie Kholmy",
       "city": "Новосибирск",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1545,7 +1545,7 @@
     },
     {
       "slug": "моско",
-      "title": "МОСКО",
+      "title": "Inreit MOSKO",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1586,7 +1586,7 @@
     },
     {
       "slug": "мфк-saan",
-      "title": "МФК SAAN",
+      "title": "Inreit MFK SAAN",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1627,7 +1627,7 @@
     },
     {
       "slug": "нигилист",
-      "title": "НИГИЛИСТ",
+      "title": "Inreit NIGILIST",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1668,7 +1668,7 @@
     },
     {
       "slug": "life-apart-октябрьская-лайф-апарт-октябрьская",
-      "title": "Life Apart Октябрьская (Лайф Апарт Октябрьская)",
+      "title": "Inreit Life Apart Oktyabrskaya",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1709,7 +1709,7 @@
     },
     {
       "slug": "ye-s-leader",
-      "title": "YE'S Leader",
+      "title": "Inreit YE'S Leader",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1750,7 +1750,7 @@
     },
     {
       "slug": "id-polytech-айди-политех",
-      "title": "iD Polytech (АйДи Политех)",
+      "title": "Inreit iD Polytech",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1791,7 +1791,7 @@
     },
     {
       "slug": "апартотель-про-молодость-апартаменты-про-молодость",
-      "title": "АпАртОтель ПРО. Молодость (Апартаменты Про.Молодость)",
+      "title": "Inreit ApArtOtel PRO. Molodost",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1832,7 +1832,7 @@
     },
     {
       "slug": "апарт-комплекс-zoom-на-неве-зум-на-неве",
-      "title": "Апарт-комплекс Zoom на Неве (Зум на Неве)",
+      "title": "Inreit Apart-kompleks Zoom na Neve",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1873,7 +1873,7 @@
     },
     {
       "slug": "апарт-отель-лиговский-127",
-      "title": "Апарт-отель Лиговский, 127",
+      "title": "Inreit Apart-otel Ligovskiy",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1914,7 +1914,7 @@
     },
     {
       "slug": "вольта",
-      "title": "Вольта",
+      "title": "Inreit Volta",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1955,7 +1955,7 @@
     },
     {
       "slug": "апарт-комплекс-zoom-черная-речка-зум-черная-речка",
-      "title": "Апарт-комплекс Zoom Черная Речка (Зум Черная Речка)",
+      "title": "Inreit Apart-kompleks Zoom Chernaya Rechka",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -1996,7 +1996,7 @@
     },
     {
       "slug": "апарт-отель-well-московский",
-      "title": "Апарт-отель Well Московский",
+      "title": "Inreit Apart-otel Well Moskovskiy",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2037,7 +2037,7 @@
     },
     {
       "slug": "imperial-club",
-      "title": "Imperial Club",
+      "title": "Inreit Imperial Club",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apartment",
@@ -2078,7 +2078,7 @@
     },
     {
       "slug": "industrial-avenir",
-      "title": "Industrial AVENIR",
+      "title": "Inreit Industrial AVENIR",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2119,7 +2119,7 @@
     },
     {
       "slug": "апартаменты-avenue-apart-пулково-авеню-апарт-пулково",
-      "title": "Апартаменты AVENUE-APART ПУЛКОВО (Авеню-Апарт Пулково)",
+      "title": "Inreit Apartamenty AVENUE-APART PULKOVO",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2160,7 +2160,7 @@
     },
     {
       "slug": "ye-s-primorsky-комплекс-апартаментов-йес-приморский",
-      "title": "YE'S Primorsky Комплекс Апартаментов (Йес Приморский)",
+      "title": "Inreit YE'S Primorsky Kompleks Apartamentov",
       "city": "Санкт-Петербург",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2201,7 +2201,7 @@
     },
     {
       "slug": "flavium-luciano-флавиум-лучиано",
-      "title": "Flavium - Luciano (Флавиум Лучиано)",
+      "title": "Inreit Flavium - Luciano",
       "city": "Сочи",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2242,7 +2242,7 @@
     },
     {
       "slug": "гостиничный-комплекс-нескучный-сад",
-      "title": "Гостиничный комплекс Нескучный сад",
+      "title": "Inreit Gostinichnyy kompleks Neskuchnyy sad",
       "city": "Сочи",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2283,7 +2283,7 @@
     },
     {
       "slug": "белые-ночи",
-      "title": "Белые Ночи",
+      "title": "Inreit Belye Nochi",
       "city": "Сочи",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2324,7 +2324,7 @@
     },
     {
       "slug": "гостиничный-комплекс-royal-beach",
-      "title": "Гостиничный комплекс ROYAL BEACH",
+      "title": "Inreit Gostinichnyy kompleks ROYAL BEACH",
       "city": "Сочи",
       "country": "Россия",
       "format": "apart-hotel",
@@ -2365,7 +2365,7 @@
     },
     {
       "slug": "marine-garden-sochi-маринэ-гарден-сочи",
-      "title": "Marine Garden Sochi (Маринэ Гарден Сочи)",
+      "title": "Inreit Marine Garden Sochi",
       "city": "Сочи",
       "country": "Россия",
       "format": "apart-hotel",
