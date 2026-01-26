@@ -8,12 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="relative w-8 h-8">
+              <div className="relative w-8 h-8 opacity-95">
                 <Image
                   src="/logo.jpg"
                   alt="Apart Guru"
                   fill
                   className="object-contain"
+                  style={{ filter: 'hue-rotate(8deg) saturate(0.75) brightness(1.08)' }}
                 />
               </div>
               <h3 className="font-semibold text-lg">Apart Guru</h3>
