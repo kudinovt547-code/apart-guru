@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="relative w-8 h-8">
+              <div className="relative w-10 h-10">
                 <Image
                   src="/logo.png"
                   alt="Apart Guru"

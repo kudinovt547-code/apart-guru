@@ -9,7 +9,7 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center px-4 justify-between">
         <Link href="/" className="flex items-center space-x-3">
-          <div className="relative w-10 h-10">
+          <div className="relative w-12 h-12">
             <Image
               src="/logo.png"
               alt="Apart Guru"
