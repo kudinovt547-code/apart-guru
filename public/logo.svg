@@ -1,17 +1,22 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Buildings in primary color: hsl(38, 70%, 55%) = #D6921E -->
-  <g stroke="#D6921E" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" fill="none">
-    <!-- Left building (smallest) - outline only -->
-    <path d="M 35 160 L 35 100 L 50 85 L 65 100 L 65 160"/>
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Original APART GURU logo design with primary color #D6921E -->
+  <g stroke="#D6921E" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter" fill="none">
 
-    <!-- Middle building (tallest) - outline only -->
-    <path d="M 75 160 L 75 60 L 90 45 L 105 60 L 105 160"/>
+    <!-- Left building (shortest) - roof slants left -->
+    <polyline points="90,230 90,150 120,125 145,150 145,230"/>
 
-    <!-- Right building (medium) - outline only -->
-    <path d="M 115 160 L 115 85 L 130 70 L 145 85 L 145 160"/>
+    <!-- Middle building (medium height, narrow) - roof more symmetric -->
+    <polyline points="155,230 155,115 175,100 195,115 195,230"/>
 
-    <!-- Base line -->
-    <line x1="25" y1="165" x2="155" y2="165" stroke-width="5"/>
-    <line x1="15" y1="170" x2="165" y2="170" stroke-width="3"/>
+    <!-- Right building (tallest) - roof slants right -->
+    <polyline points="205,230 205,80 245,50 290,85 290,230"/>
+
+    <!-- Base foundation -->
+    <line x1="75" y1="240" x2="305" y2="240" stroke-width="16"/>
+
+    <!-- Support legs on sides -->
+    <line x1="60" y1="252" x2="75" y2="240" stroke-width="14"/>
+    <line x1="305" y1="240" x2="320" y2="252" stroke-width="14"/>
+
   </g>
 </svg>
