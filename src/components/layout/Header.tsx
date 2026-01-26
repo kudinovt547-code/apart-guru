@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center px-4 justify-between">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-3">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -18,7 +18,7 @@ export default function Header() {
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
-            className="relative w-6 h-6"
+            className="relative w-14 h-14"
           >
             <Image
               src="/logo.png"
