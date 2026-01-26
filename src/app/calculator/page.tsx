@@ -138,7 +138,7 @@ export default function CalculatorPage() {
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
       <div>
-        <h1 className="text-4xl font-bold mb-2">Калькулятор NOI</h1>
+        <h1 className="text-4xl font-bold mb-2">Калькулятор доходности</h1>
         <p className="text-muted-foreground">
           Рассчитайте чистый операционный доход и окупаемость проекта
         </p>
@@ -315,21 +315,21 @@ export default function CalculatorPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-sm text-muted-foreground">NOI в месяц</p>
+                <p className="text-sm text-muted-foreground">Доходность в месяц</p>
                 <p className="text-2xl font-bold font-mono tabular-nums text-primary">
                   {formatCurrency(baseResult.noiMonth)}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-muted-foreground">NOI в год</p>
+                <p className="text-sm text-muted-foreground">Доходность в год</p>
                 <p className="text-xl font-bold font-mono tabular-nums">
                   {formatCurrency(baseResult.noiYear)}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-muted-foreground">Маржа NOI</p>
+                <p className="text-sm text-muted-foreground">Маржа доходности</p>
                 <p className="text-xl font-bold font-mono tabular-nums">
                   {formatPercent(baseResult.noiMargin)}
                 </p>
@@ -369,7 +369,7 @@ export default function CalculatorPage() {
                 </span>
               </div>
               <div className="border-t pt-2 flex justify-between font-bold">
-                <span>NOI</span>
+                <span>Доходность</span>
                 <span className="font-mono tabular-nums text-primary">
                   {formatCurrency(baseResult.noiMonth)}
                 </span>
@@ -392,7 +392,7 @@ export default function CalculatorPage() {
               </h3>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">NOI/мес</span>
+                  <span className="text-muted-foreground">Доходность/мес</span>
                   <span className="font-mono tabular-nums">
                     {formatCurrency(conservativeResult.noiMonth)}
                   </span>
@@ -416,7 +416,7 @@ export default function CalculatorPage() {
               <h3 className="font-semibold text-primary">База</h3>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">NOI/мес</span>
+                  <span className="text-muted-foreground">Доходность/мес</span>
                   <span className="font-mono tabular-nums">
                     {formatCurrency(baseResult.noiMonth)}
                   </span>
@@ -442,7 +442,7 @@ export default function CalculatorPage() {
               </h3>
               <div className="space-y-1 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">NOI/мес</span>
+                  <span className="text-muted-foreground">Доходность/мес</span>
                   <span className="font-mono tabular-nums">
                     {formatCurrency(optimisticResult.noiMonth)}
                   </span>
@@ -483,7 +483,7 @@ export default function CalculatorPage() {
                   <h4 className="font-semibold mb-2">ADR -10%</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">NOI/год</span>
+                      <span className="text-muted-foreground">Доходность/год</span>
                       <span className="font-mono tabular-nums">
                         {formatCurrency(sensitivityADR.minus10.noiYear)}
                       </span>
@@ -503,7 +503,7 @@ export default function CalculatorPage() {
                   <h4 className="font-semibold mb-2">ADR +10%</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">NOI/год</span>
+                      <span className="text-muted-foreground">Доходность/год</span>
                       <span className="font-mono tabular-nums">
                         {formatCurrency(sensitivityADR.plus10.noiYear)}
                       </span>
@@ -527,7 +527,7 @@ export default function CalculatorPage() {
                   <h4 className="font-semibold mb-2">Загрузка -10%</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">NOI/год</span>
+                      <span className="text-muted-foreground">Доходность/год</span>
                       <span className="font-mono tabular-nums">
                         {formatCurrency(sensitivityOccupancy.minus10.noiYear)}
                       </span>
@@ -548,7 +548,7 @@ export default function CalculatorPage() {
                   <h4 className="font-semibold mb-2">Загрузка +10%</h4>
                   <div className="space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">NOI/год</span>
+                      <span className="text-muted-foreground">Доходность/год</span>
                       <span className="font-mono tabular-nums">
                         {formatCurrency(sensitivityOccupancy.plus10.noiYear)}
                       </span>

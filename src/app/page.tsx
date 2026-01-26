@@ -55,12 +55,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <FadeIn delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Доходность апартаментов в СНГ — по фактическим данным
+              Подбор апартаментов с реальной доходностью
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Сравниваем 2–5 объектов, показываем доходность, расходы и риски без обещаний.
+              Сравниваем 2–5 объектов по фактическим данным, показываем реальную доходность, операционные расходы и риски. Сопровождаем сделку и помогаем контролировать выплаты первые 6 месяцев.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
@@ -309,7 +309,7 @@ export default function HomePage() {
             <FadeIn direction="left" delay={0.2}>
               <div>
                 <h2 className="text-3xl font-semibold mb-4">
-                  Калькулятор NOI
+                  Калькулятор доходности
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Рассчитайте чистый операционный доход с учётом всех расходов.

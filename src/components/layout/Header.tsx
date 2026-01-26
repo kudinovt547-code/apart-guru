@@ -1,15 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { Building2 } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center px-4 justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <Building2 className="h-6 w-6 text-primary" />
+        <Link href="/" className="flex items-center space-x-3">
+          <Image
+            src="/logo.jpg"
+            alt="Apart Guru"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
           <span className="font-semibold text-xl">Apart Guru</span>
         </Link>
 
@@ -19,6 +25,12 @@ export default function Header() {
             className="transition-colors hover:text-primary text-foreground/70"
           >
             Проекты
+          </Link>
+          <Link
+            href="/services"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Услуги
           </Link>
           <Link
             href="/compare"
