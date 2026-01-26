@@ -18,7 +18,7 @@ export default function Header() {
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
-            className="relative w-20 h-20 flex-shrink-0"
+            className="relative w-20 h-20 flex-shrink-0 -mt-1"
           >
             <Image
               src="/logo.png"
