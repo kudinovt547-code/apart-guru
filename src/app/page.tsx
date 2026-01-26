@@ -344,7 +344,6 @@ export default function HomePage() {
                 alt="Apart Guru"
                 fill
                 className="object-contain"
-                style={{ filter: 'hue-rotate(112deg) brightness(1.2) contrast(1.3)' }}
               />
             </motion.div>
           </FadeIn>

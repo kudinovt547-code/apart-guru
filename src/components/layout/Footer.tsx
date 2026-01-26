@@ -14,7 +14,6 @@ export default function Footer() {
                   alt="Apart Guru"
                   fill
                   className="object-contain"
-                  style={{ filter: 'hue-rotate(112deg) brightness(1.1) contrast(1.25)' }}
                 />
               </div>
               <h3 className="font-semibold text-lg">Apart Guru</h3>

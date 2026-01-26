@@ -14,8 +14,7 @@ export default function Header() {
               src="/logo.jpg"
               alt="Apart Guru"
               fill
-              className="object-contain brightness-110 contrast-125"
-              style={{ filter: 'hue-rotate(112deg) brightness(1.1) contrast(1.25)' }}
+              className="object-contain"
             />
           </div>
           <span className="font-semibold text-xl">Apart Guru</span>
