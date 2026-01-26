@@ -337,14 +337,13 @@ export default function HomePage() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="mx-auto mb-6 w-24 h-24 relative opacity-95"
+              className="mx-auto mb-6 w-24 h-24 relative"
             >
               <Image
-                src="/logo.jpg"
+                src="/logo.svg"
                 alt="Apart Guru"
                 fill
                 className="object-contain"
-                style={{ filter: 'hue-rotate(8deg) saturate(0.75) brightness(1.08)' }}
               />
             </motion.div>
           </FadeIn>
