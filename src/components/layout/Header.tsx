@@ -11,7 +11,7 @@ export default function Header() {
         <Link href="/" className="flex items-center space-x-3">
           <div className="relative w-10 h-10">
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               alt="Apart Guru"
               fill
               className="object-contain"

@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-3">
               <div className="relative w-8 h-8">
                 <Image
-                  src="/logo.svg"
+                  src="/logo.png"
                   alt="Apart Guru"
                   fill
                   className="object-contain"

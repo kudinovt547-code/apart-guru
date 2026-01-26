@@ -340,7 +340,7 @@ export default function HomePage() {
               className="mx-auto mb-6 w-24 h-24 relative"
             >
               <Image
-                src="/logo.svg"
+                src="/logo.png"
                 alt="Apart Guru"
                 fill
                 className="object-contain"
