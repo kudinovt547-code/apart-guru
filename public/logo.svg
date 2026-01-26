@@ -1,24 +1,17 @@
 <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="200" height="200" fill="hsl(40, 20%, 97%)"/>
+  <!-- Buildings in primary color: hsl(38, 70%, 55%) = #D6921E -->
+  <g stroke="#D6921E" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" fill="none">
+    <!-- Left building (smallest) - outline only -->
+    <path d="M 35 160 L 35 100 L 50 85 L 65 100 L 65 160"/>
 
-  <!-- Buildings in primary color: hsl(38, 70%, 55%) which is #D6921E -->
-  <g stroke="#D6921E" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- Left building (smallest) -->
-    <path d="M 45 140 L 45 90 L 70 70 L 70 140 Z"/>
+    <!-- Middle building (tallest) - outline only -->
+    <path d="M 75 160 L 75 60 L 90 45 L 105 60 L 105 160"/>
 
-    <!-- Middle building (tallest) -->
-    <path d="M 75 140 L 75 50 L 100 30 L 100 140 Z"/>
-
-    <!-- Right building (medium) -->
-    <path d="M 105 140 L 105 70 L 130 50 L 130 140 Z"/>
+    <!-- Right building (medium) - outline only -->
+    <path d="M 115 160 L 115 85 L 130 70 L 145 85 L 145 160"/>
 
     <!-- Base line -->
-    <line x1="35" y1="145" x2="140" y2="145" stroke-width="6"/>
+    <line x1="25" y1="165" x2="155" y2="165" stroke-width="5"/>
+    <line x1="15" y1="170" x2="165" y2="170" stroke-width="3"/>
   </g>
-
-  <!-- Text -->
-  <text x="100" y="175" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="hsl(240, 10%, 20%)" text-anchor="middle" letter-spacing="2">
-    APART GURU
-  </text>
 </svg>
