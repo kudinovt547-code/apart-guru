@@ -9,19 +9,16 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center px-4 justify-between">
-        <Link href="/" className="flex items-center space-x-3">
+        <Link href="/" className="flex items-center space-x-2">
           <motion.div
-            initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
-              duration: 0.6,
-              ease: "easeOut",
-              type: "spring",
-              stiffness: 200
+              duration: 1,
+              ease: "easeInOut"
             }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative w-16 h-16"
+            whileHover={{ scale: 1.05 }}
+            className="relative w-6 h-6"
           >
             <Image
               src="/logo.png"
@@ -31,9 +28,9 @@ export default function Header() {
             />
           </motion.div>
           <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
             className="font-semibold text-xl"
           >
             Apart Guru
