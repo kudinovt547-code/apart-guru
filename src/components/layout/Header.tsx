@@ -9,13 +9,15 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto flex h-16 items-center px-4 justify-between">
         <Link href="/" className="flex items-center space-x-3">
-          <Image
-            src="/logo.jpg"
-            alt="Apart Guru"
-            width={40}
-            height={40}
-            className="object-contain"
-          />
+          <div className="relative w-10 h-10">
+            <Image
+              src="/logo.jpg"
+              alt="Apart Guru"
+              fill
+              className="object-contain brightness-110 contrast-125"
+              style={{ filter: 'hue-rotate(112deg) brightness(1.1) contrast(1.25)' }}
+            />
+          </div>
           <span className="font-semibold text-xl">Apart Guru</span>
         </Link>
 

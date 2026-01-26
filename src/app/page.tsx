@@ -12,7 +12,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
-import { Building2, TrendingUp, Shield, Calculator, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { TrendingUp, Shield, Calculator, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
@@ -336,8 +337,15 @@ export default function HomePage() {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
+              className="mx-auto mb-6 w-24 h-24 relative"
             >
-              <Building2 className="h-16 w-16 text-primary mx-auto mb-6" />
+              <Image
+                src="/logo.jpg"
+                alt="Apart Guru"
+                fill
+                className="object-contain"
+                style={{ filter: 'hue-rotate(112deg) brightness(1.2) contrast(1.3)' }}
+              />
             </motion.div>
           </FadeIn>
           <FadeIn delay={0.1}>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,9 +7,20 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="font-semibold text-lg mb-3">Apart Guru</h3>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative w-8 h-8">
+                <Image
+                  src="/logo.jpg"
+                  alt="Apart Guru"
+                  fill
+                  className="object-contain"
+                  style={{ filter: 'hue-rotate(112deg) brightness(1.1) contrast(1.25)' }}
+                />
+              </div>
+              <h3 className="font-semibold text-lg">Apart Guru</h3>
+            </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Доходность апартаментов в СНГ по фактическим данным. Сравниваем проекты, показываем реальные цифры.
+              Подбор апартаментов с реальной доходностью. Сопровождаем сделки и защищаем инвестиции.
             </p>
           </div>
 
@@ -21,8 +33,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/services" className="hover:text-primary transition-colors">
+                  Услуги
+                </Link>
+              </li>
+              <li>
                 <Link href="/calculator" className="hover:text-primary transition-colors">
-                  Калькулятор NOI
+                  Калькулятор доходности
                 </Link>
               </li>
               <li>
