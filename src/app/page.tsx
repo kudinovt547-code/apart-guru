@@ -335,15 +335,28 @@ export default function HomePage() {
         <div className="container mx-auto px-4 text-center max-w-3xl">
           <FadeIn>
             <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="mx-auto mb-6 w-32 h-32 relative"
+              initial={{ opacity: 0, scale: 0.3, y: 50 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{
+                scale: 1.15,
+                rotate: [0, -5, 5, -5, 0],
+                transition: { duration: 0.5 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="mx-auto mb-6 w-48 h-48 relative"
             >
               <Image
                 src="/logo.png"
                 alt="Apart Guru"
                 fill
-                className="object-contain"
+                className="object-contain drop-shadow-2xl"
               />
             </motion.div>
           </FadeIn>
