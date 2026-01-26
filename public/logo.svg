@@ -1,22 +1,22 @@
 <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- APART GURU exact replica with #D6921E -->
-  <g stroke="#D6921E" stroke-width="22" stroke-linecap="square" stroke-linejoin="miter" fill="none">
+  <!-- APART GURU logo - exact copy with #D6921E -->
+  <g stroke="#D6921E" stroke-width="24" stroke-linecap="square" stroke-linejoin="miter" fill="none">
 
-    <!-- Left building (shortest, roof slopes right) -->
-    <path d="M 70,230 L 70,145 L 115,115 L 145,145 L 145,230"/>
+    <!-- Left building: shortest, roof leans right -->
+    <path d="M 65,235 L 65,150 L 110,122 L 145,150 L 145,235"/>
 
-    <!-- Middle building (narrow, medium height, pointed roof) -->
-    <path d="M 155,230 L 155,105 L 175,90 L 195,105 L 195,230"/>
+    <!-- Middle building: narrow and taller, symmetric peaked roof -->
+    <path d="M 152,235 L 152,110 L 173,95 L 194,110 L 194,235"/>
 
-    <!-- Right building (tallest, widest, roof slopes right) -->
-    <path d="M 205,230 L 205,70 L 260,35 L 315,85 L 315,230"/>
+    <!-- Right building: tallest and widest, roof leans right -->
+    <path d="M 201,235 L 201,72 L 258,40 L 315,87 L 315,235"/>
 
-    <!-- Base foundation line -->
-    <line x1="50" y1="240" x2="335" y2="240" stroke-width="20"/>
+    <!-- Base foundation -->
+    <line x1="48" y1="245" x2="332" y2="245" stroke-width="22"/>
 
-    <!-- Diagonal support legs on sides -->
-    <line x1="35" y1="255" x2="50" y2="240" stroke-width="18"/>
-    <line x1="335" y1="240" x2="350" y2="255" stroke-width="18"/>
+    <!-- Side support legs -->
+    <line x1="32" y1="260" x2="48" y2="245" stroke-width="20"/>
+    <line x1="332" y1="245" x2="348" y2="260" stroke-width="20"/>
 
   </g>
 </svg>
