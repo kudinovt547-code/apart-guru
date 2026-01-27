@@ -79,7 +79,7 @@ export default function HomePage() {
                     <TrendingUp className="h-8 w-8 text-primary" />
                   </div>
                   <div className="font-mono text-3xl font-bold tabular-nums mb-1">
-                    <AnimatedCounter end={marketRevPerM2} duration={2000} />
+                    <AnimatedCounter value={marketRevPerM2} duration={2} />
                     <span className="text-lg text-muted-foreground ml-1">₽</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
@@ -96,7 +96,7 @@ export default function HomePage() {
                     <Percent className="h-8 w-8 text-primary" />
                   </div>
                   <div className="font-mono text-3xl font-bold tabular-nums mb-1">
-                    <AnimatedCounter end={avgOccupancy} duration={2000} />
+                    <AnimatedCounter value={avgOccupancy} duration={2} />
                     <span className="text-lg text-muted-foreground ml-1">%</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
@@ -113,7 +113,7 @@ export default function HomePage() {
                     <Clock className="h-8 w-8 text-primary" />
                   </div>
                   <div className="font-mono text-3xl font-bold tabular-nums mb-1">
-                    <AnimatedCounter end={avgPayback} decimals={1} duration={2000} />
+                    <AnimatedCounter value={avgPayback} decimals={1} duration={2} />
                     <span className="text-lg text-muted-foreground ml-1">лет</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
@@ -130,7 +130,7 @@ export default function HomePage() {
                     <Building2 className="h-8 w-8 text-primary" />
                   </div>
                   <div className="font-mono text-3xl font-bold tabular-nums mb-1">
-                    <AnimatedCounter end={apartmentsCount} duration={2000} />
+                    <AnimatedCounter value={apartmentsCount} duration={2} />
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Объектов в базе
