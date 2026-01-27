@@ -114,9 +114,10 @@ const APARTMENTS_DB = [
   { id: 506, city_code: 5, city: "Казань", name: "Clover House", class: "Business", price_m2: 280000, adr_low: 4600, adr_high: 8000, occ_avg: 0.80, uk_fee: 0.20, model: "Hybrid", loc_class: "Center" }
 ];
 
-// Уникальные города и классы
+// Уникальные города, классы и локации
 const CITIES = Array.from(new Set(APARTMENTS_DB.map(a => a.city)));
 const CLASSES = ["Comfort", "Business"];
+const LOCATIONS = ["Prime", "Center", "Hub"];
 
 // Константа: эксплуатационные расходы (₽/м² в месяц)
 const EXPLOITATION_COST_PER_M2 = 200;
@@ -124,6 +125,7 @@ const EXPLOITATION_COST_PER_M2 = 200;
 interface CalculatorInputs {
   city: string;
   propertyClass: string;
+  location: string;
   area: number;
   budget: number;
 }
@@ -146,12 +148,14 @@ interface CompSetInfo {
   avgOccupancy: number;
   avgUkFee: number;
   usedNeighborClass: boolean;
+  usedNeighborLocation: boolean;
 }
 
 export default function CalculatorPage() {
   const [inputs, setInputs] = useState<CalculatorInputs>({
     city: "Санкт-Петербург",
     propertyClass: "Business",
+    location: "Center",
     area: 40,
     budget: 5000000,
   });
@@ -167,27 +171,38 @@ export default function CalculatorPage() {
     let filteredApartments = cityApartments.filter(a => a.class === inputs.propertyClass);
     let usedNeighborClass = false;
 
-    // 3. Если не нашли - берем все классы в городе
+    // 3. Если не нашли по классу - берем все классы в городе
     if (filteredApartments.length === 0) {
       filteredApartments = cityApartments;
       usedNeighborClass = true;
     }
 
-    // 4. Считаем средние значения
-    const avgAdrLow = filteredApartments.reduce((sum, a) => sum + a.adr_low, 0) / filteredApartments.length || 0;
-    const avgAdrHigh = filteredApartments.reduce((sum, a) => sum + a.adr_high, 0) / filteredApartments.length || 0;
-    const avgOccupancy = filteredApartments.reduce((sum, a) => sum + a.occ_avg, 0) / filteredApartments.length || 0;
-    const avgUkFee = filteredApartments.reduce((sum, a) => sum + a.uk_fee, 0) / filteredApartments.length || 0;
+    // 4. Фильтруем по локации
+    let locationFiltered = filteredApartments.filter(a => a.loc_class === inputs.location);
+    let usedNeighborLocation = false;
+
+    // 5. Если не нашли по локации - берем все локации
+    if (locationFiltered.length === 0) {
+      locationFiltered = filteredApartments;
+      usedNeighborLocation = true;
+    }
+
+    // 6. Считаем средние значения
+    const avgAdrLow = locationFiltered.reduce((sum, a) => sum + a.adr_low, 0) / locationFiltered.length || 0;
+    const avgAdrHigh = locationFiltered.reduce((sum, a) => sum + a.adr_high, 0) / locationFiltered.length || 0;
+    const avgOccupancy = locationFiltered.reduce((sum, a) => sum + a.occ_avg, 0) / locationFiltered.length || 0;
+    const avgUkFee = locationFiltered.reduce((sum, a) => sum + a.uk_fee, 0) / locationFiltered.length || 0;
 
     return {
-      apartments: filteredApartments,
+      apartments: locationFiltered,
       avgAdrLow,
       avgAdrHigh,
       avgOccupancy,
       avgUkFee,
       usedNeighborClass,
+      usedNeighborLocation,
     };
-  }, [inputs.city, inputs.propertyClass]);
+  }, [inputs.city, inputs.propertyClass, inputs.location]);
 
   // ============================================
   // РАСЧЕТ СЦЕНАРИЕВ
@@ -317,6 +332,21 @@ export default function CalculatorPage() {
                 </div>
 
                 <div>
+                  <Label htmlFor="location">Локация</Label>
+                  <Select
+                    id="location"
+                    value={inputs.location}
+                    onChange={(e) => handleInputChange("location", e.target.value)}
+                  >
+                    {LOCATIONS.map((loc) => (
+                      <option key={loc} value={loc}>
+                        {loc === "Prime" ? "Топ-локация" : loc === "Center" ? "Центр" : "Район"}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+
+                <div>
                   <Label htmlFor="area">Площадь, м²</Label>
                   <Input
                     id="area"
@@ -368,6 +398,16 @@ export default function CalculatorPage() {
                         <p className="text-xs text-yellow-700 dark:text-yellow-500">
                           В выбранном городе нет объектов класса &quot;{inputs.propertyClass}&quot;.
                           Используем данные по всем классам в городе.
+                        </p>
+                      </div>
+                    )}
+
+                    {compSet.usedNeighborLocation && (
+                      <div className="flex items-start gap-2 mt-3 p-2 bg-yellow-500/10 border border-yellow-500/20 rounded">
+                        <AlertCircle className="h-4 w-4 mt-0.5 text-yellow-600 flex-shrink-0" />
+                        <p className="text-xs text-yellow-700 dark:text-yellow-500">
+                          Нет объектов в локации &quot;{inputs.location === "Prime" ? "Топ-локация" : inputs.location === "Center" ? "Центр" : "Район"}&quot;.
+                          Используем данные по всем локациям.
                         </p>
                       </div>
                     )}
