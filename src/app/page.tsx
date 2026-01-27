@@ -4,19 +4,6 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getProjects } from "@/data/stats";
-import { getTopUnderConstruction } from "@/data/under-construction";
-import {
-  calculateMarketIndex as calculateMarketIndexOld,
-  getTopByYield,
-  getTopByStability,
-} from "@/utils/projectUtils";
-import {
-  calculateMarketIndex,
-  calculateAverageOccupancy,
-  calculateAveragePayback,
-  getMarketObjectsCount,
-  getTopMarketApartments,
-} from "@/utils/marketStats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
@@ -27,23 +14,8 @@ import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 
 export default function HomePage() {
+  // Пока без данных - будут загружены позже
   const allProjects = getProjects();
-
-  // Filter to only active projects for top list (готовые объекты)
-  const activeProjects = useMemo(
-    () => allProjects.filter((p) => p.status === "active"),
-    [allProjects]
-  );
-
-  // Статистика рынка из 86 объектов калькулятора
-  const marketIndex = useMemo(() => calculateMarketIndex(), []);
-  const avgOccupancy = useMemo(() => calculateAverageOccupancy(), []);
-  const avgPayback = useMemo(() => calculateAveragePayback(), []);
-  const marketObjectsCount = useMemo(() => getMarketObjectsCount(), []);
-
-  // Топы для таблиц
-  const topMarketApartments = useMemo(() => getTopMarketApartments(5), []);
-  const topUnderConstruction = useMemo(() => getTopUnderConstruction(5), []);
 
   return (
     <div className="min-h-screen">
@@ -82,186 +54,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Market Stats */}
+      {/* Coming Soon - Data */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <h2 className="text-3xl font-semibold text-center mb-12">
-              Рынок в цифрах
-            </h2>
+            <Card className="max-w-2xl mx-auto text-center py-12">
+              <CardContent>
+                <Calculator className="h-16 w-16 mx-auto mb-6 text-primary" />
+                <h2 className="text-3xl font-semibold mb-4">
+                  База данных в разработке
+                </h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Мы собираем и верифицируем данные по апарт-отелям России.
+                  Статистика по рынку и каталог проектов появятся совсем скоро.
+                </p>
+                <Link href="/calculator">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button size="lg">
+                      Попробовать калькулятор
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </motion.div>
+                </Link>
+              </CardContent>
+            </Card>
           </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <AnimatedCard delay={0.1}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm text-muted-foreground font-normal">
-                    Средняя доходность
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold text-primary font-mono tabular-nums">
-                    <AnimatedCounter value={marketIndex} decimals={0} /> ₽
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">₽/м²/мес</p>
-                </CardContent>
-              </Card>
-            </AnimatedCard>
-
-            <AnimatedCard delay={0.2}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm text-muted-foreground font-normal">
-                    Средняя окупаемость
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold font-mono tabular-nums">
-                    <AnimatedCounter value={avgPayback} decimals={1} />
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">лет</p>
-                </CardContent>
-              </Card>
-            </AnimatedCard>
-
-            <AnimatedCard delay={0.3}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm text-muted-foreground font-normal">
-                    Средняя загрузка
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold font-mono tabular-nums">
-                    <AnimatedCounter value={avgOccupancy} decimals={0} />%
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">по рынку</p>
-                </CardContent>
-              </Card>
-            </AnimatedCard>
-
-            <AnimatedCard delay={0.4}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-sm text-muted-foreground font-normal">
-                    Объектов в базе
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold font-mono tabular-nums">
-                    <AnimatedCounter value={marketObjectsCount} decimals={0} />
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    обновлено 01.2026
-                  </p>
-                </CardContent>
-              </Card>
-            </AnimatedCard>
-          </div>
-
-          {/* Top Projects - Two Tables Side by Side */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            {/* Рыночные объекты */}
-            <FadeIn>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <TrendingUp className="h-5 w-5 text-primary" />
-                    Топ-5 по доходности
-                  </CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Рыночные данные по {getMarketObjectsCount()} объектам
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {topMarketApartments.map((apartment, idx) => (
-                      <motion.div
-                        key={`${apartment.city}-${idx}`}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        whileHover={{ x: 4 }}
-                      >
-                        <div className="flex items-center justify-between p-3 rounded-lg bg-accent/30 transition-colors border border-primary/10">
-                          <div className="flex items-center space-x-3 flex-1">
-                            <span className="text-xl font-bold text-primary w-6 flex-shrink-0">
-                              {idx + 1}
-                            </span>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-semibold truncate">{apartment.city}</p>
-                              <p className="text-xs text-muted-foreground">
-                                {apartment.class} • {formatCurrency(apartment.price_m2)}/м²
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-right flex-shrink-0 ml-3">
-                            <p className="font-bold font-mono tabular-nums">
-                              {formatCurrency(apartment.revPerM2Month)}
-                            </p>
-                            <p className="text-xs text-muted-foreground">₽/м²/мес</p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </FadeIn>
-
-            {/* Строящиеся объекты */}
-            <FadeIn delay={0.2}>
-              <Card className="h-full border-dashed border-2 border-primary/30 bg-primary/5">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calculator className="h-5 w-5 text-primary" />
-                    Прогнозы по новостройкам
-                  </CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    Расчёты на основе рыночных данных
-                  </p>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {topUnderConstruction.map((project, idx) => (
-                      <motion.div
-                        key={project.id}
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        whileHover={{ x: -4 }}
-                      >
-                        <div className="flex items-center justify-between p-3 rounded-lg bg-background/50 border border-primary/20 hover:bg-background transition-colors">
-                          <div className="flex items-center space-x-3 flex-1">
-                            <span className="text-xl font-bold text-primary w-6 flex-shrink-0">
-                              {idx + 1}
-                            </span>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-semibold truncate">{project.title}</p>
-                              <p className="text-xs text-muted-foreground">
-                                {project.city} • {project.completionDate}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="text-right flex-shrink-0 ml-3">
-                            <p className="font-bold font-mono tabular-nums">
-                              {formatCurrency(project.projectedRevPerM2Month)}
-                            </p>
-                            <p className="text-xs text-muted-foreground">₽/м²/мес*</p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-4 italic">
-                    * Прогнозные значения на основе калькулятора
-                  </p>
-                </CardContent>
-              </Card>
-            </FadeIn>
-          </div>
         </div>
       </section>
 
