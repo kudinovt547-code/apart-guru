@@ -12,7 +12,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
-import { Building2, TrendingUp, Shield, Calculator, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { TrendingUp, Shield, Calculator, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
@@ -55,12 +56,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <FadeIn delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Доходность апартаментов в СНГ — по фактическим данным
+              Подбор апартаментов с реальной доходностью
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Сравниваем 2–5 объектов, показываем доходность, расходы и риски без обещаний.
+              Сравниваем 2–5 объектов по фактическим данным, показываем реальную доходность, операционные расходы и риски. Сопровождаем сделку и помогаем контролировать выплаты первые 6 месяцев.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
@@ -309,7 +310,7 @@ export default function HomePage() {
             <FadeIn direction="left" delay={0.2}>
               <div>
                 <h2 className="text-3xl font-semibold mb-4">
-                  Калькулятор NOI
+                  Калькулятор доходности
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Рассчитайте чистый операционный доход с учётом всех расходов.
@@ -334,10 +335,29 @@ export default function HomePage() {
         <div className="container mx-auto px-4 text-center max-w-3xl">
           <FadeIn>
             <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              initial={{ opacity: 0, scale: 0.3, y: 50 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{
+                scale: 1.15,
+                rotate: [0, -5, 5, -5, 0],
+                transition: { duration: 0.5 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="mx-auto mb-6 w-48 h-48 relative"
             >
-              <Building2 className="h-16 w-16 text-primary mx-auto mb-6" />
+              <Image
+                src="/logo.png"
+                alt="Apart Guru"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
             </motion.div>
           </FadeIn>
           <FadeIn delay={0.1}>

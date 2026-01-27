@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
@@ -6,9 +10,43 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="font-semibold text-lg mb-3">Apart Guru</h3>
+            <div className="flex items-center gap-2 mb-3">
+              <motion.div
+                initial={{ opacity: 0, rotate: -180, scale: 0 }}
+                whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  type: "spring",
+                  stiffness: 150
+                }}
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 360,
+                  transition: { duration: 0.6 }
+                }}
+                className="relative w-14 h-14"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="Apart Guru"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+              <motion.h3
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="font-semibold text-lg"
+              >
+                Apart Guru
+              </motion.h3>
+            </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Доходность апартаментов в СНГ по фактическим данным. Сравниваем проекты, показываем реальные цифры.
+              Подбор апартаментов с реальной доходностью. Сопровождаем сделки и защищаем инвестиции.
             </p>
           </div>
 
@@ -21,8 +59,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/services" className="hover:text-primary transition-colors">
+                  Услуги
+                </Link>
+              </li>
+              <li>
                 <Link href="/calculator" className="hover:text-primary transition-colors">
-                  Калькулятор NOI
+                  Калькулятор доходности
                 </Link>
               </li>
               <li>

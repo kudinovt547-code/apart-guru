@@ -1,0 +1,22 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- APART GURU logo - exact copy with #D6921E -->
+  <g stroke="#D6921E" stroke-width="24" stroke-linecap="square" stroke-linejoin="miter" fill="none">
+
+    <!-- Left building: shortest, roof leans right -->
+    <path d="M 65,235 L 65,150 L 110,122 L 145,150 L 145,235"/>
+
+    <!-- Middle building: narrow and taller, symmetric peaked roof -->
+    <path d="M 152,235 L 152,110 L 173,95 L 194,110 L 194,235"/>
+
+    <!-- Right building: tallest and widest, roof leans right -->
+    <path d="M 201,235 L 201,72 L 258,40 L 315,87 L 315,235"/>
+
+    <!-- Base foundation -->
+    <line x1="48" y1="245" x2="332" y2="245" stroke-width="22"/>
+
+    <!-- Side support legs -->
+    <line x1="32" y1="260" x2="48" y2="245" stroke-width="20"/>
+    <line x1="332" y1="245" x2="348" y2="260" stroke-width="20"/>
+
+  </g>
+</svg>
