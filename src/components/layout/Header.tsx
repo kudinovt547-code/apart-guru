@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
       <div className="container mx-auto flex h-20 items-center px-4 justify-between">
-        <Link href="/" className="flex flex-col items-center">
+        <Link href="/" className="flex flex-col items-center -mt-2">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -18,7 +18,7 @@ export default function Header() {
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
-            className="relative w-16 h-16 flex-shrink-0"
+            className="relative w-14 h-14 flex-shrink-0"
           >
             <Image
               src="/logo.png"
@@ -31,7 +31,7 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
-            className="font-semibold text-sm leading-none mt-1"
+            className="font-semibold text-xs leading-none -mt-1"
           >
             Apart Guru
           </motion.span>

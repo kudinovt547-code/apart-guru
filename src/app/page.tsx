@@ -6,10 +6,16 @@ import { motion } from "framer-motion";
 import { getProjects } from "@/data/stats";
 import { getTopUnderConstruction } from "@/data/under-construction";
 import {
-  calculateMarketIndex,
+  calculateMarketIndex as calculateMarketIndexOld,
   getTopByYield,
   getTopByStability,
 } from "@/utils/projectUtils";
+import {
+  calculateMarketIndex,
+  calculateAverageOccupancy,
+  calculateAveragePayback,
+  getMarketObjectsCount,
+} from "@/utils/marketStats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
@@ -22,35 +28,21 @@ import { AnimatedCounter } from "@/components/ui/animated-counter";
 export default function HomePage() {
   const allProjects = getProjects();
 
-  // Filter to only active projects for stats (exclude construction)
+  // Filter to only active projects for top list (готовые объекты)
   const activeProjects = useMemo(
     () => allProjects.filter((p) => p.status === "active"),
     [allProjects]
   );
 
-  const marketIndex = useMemo(
-    () => calculateMarketIndex(activeProjects),
-    [activeProjects]
-  );
+  // Статистика рынка из 86 объектов калькулятора
+  const marketIndex = useMemo(() => calculateMarketIndex(), []);
+  const avgOccupancy = useMemo(() => calculateAverageOccupancy(), []);
+  const avgPayback = useMemo(() => calculateAveragePayback(), []);
+  const marketObjectsCount = useMemo(() => getMarketObjectsCount(), []);
 
+  // Топы для таблиц
   const topByYield = useMemo(() => getTopByYield(activeProjects, 5), [activeProjects]);
-
-  const topByStability = useMemo(
-    () => getTopByStability(activeProjects, 3),
-    [activeProjects]
-  );
-
   const topUnderConstruction = useMemo(() => getTopUnderConstruction(5), []);
-
-  const avgPayback = useMemo(() => {
-    const sum = activeProjects.reduce((acc, p) => acc + p.paybackYears, 0);
-    return sum / activeProjects.length;
-  }, [activeProjects]);
-
-  const avgOccupancy = useMemo(() => {
-    const sum = activeProjects.reduce((acc, p) => acc + p.occupancy, 0);
-    return sum / activeProjects.length;
-  }, [activeProjects]);
 
   return (
     <div className="min-h-screen">
@@ -156,7 +148,7 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-3xl font-bold font-mono tabular-nums">
-                    <AnimatedCounter value={allProjects.length} decimals={0} />
+                    <AnimatedCounter value={marketObjectsCount} decimals={0} />
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">
                     обновлено 01.2026

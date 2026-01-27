@@ -1,44 +1,39 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
-import Link from "next/link";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { getProjects } from "@/data/stats";
-import {
-  filterProjects,
-  getUniqueCountries,
-  getUniqueCities,
-} from "@/utils/projectUtils";
-import type { ProjectFilters } from "@/utils/projectUtils";
+import { underConstructionProjects } from "@/data/under-construction";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { formatCurrency, formatNumber } from "@/lib/utils";
-import { PropertyFormat, ProjectStatus, formatLabels, statusLabels } from "@/types/project";
-import { useCompareStore } from "@/store/useCompareStore";
-import { Eye, GitCompare, Calculator } from "lucide-react";
+import { Calculator, TrendingUp, AlertCircle, MapPin, Calendar } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 
 export default function ProjectsPage() {
-  const [mounted, setMounted] = useState(false);
-  const allProjects = getProjects();
-  const [filters, setFilters] = useState<ProjectFilters>({});
+  const [search, setSearch] = useState("");
+  const [selectedCity, setSelectedCity] = useState<string>("");
 
-  const filteredProjects = useMemo(
-    () => filterProjects(allProjects, filters),
-    [allProjects, filters]
-  );
+  // Фильтрация
+  const filteredProjects = useMemo(() => {
+    return underConstructionProjects.filter((project) => {
+      const matchesSearch =
+        !search ||
+        project.title.toLowerCase().includes(search.toLowerCase()) ||
+        project.city.toLowerCase().includes(search.toLowerCase()) ||
+        project.developer.toLowerCase().includes(search.toLowerCase());
 
-  const countries = getUniqueCountries(allProjects);
-  const cities = getUniqueCities(allProjects);
+      const matchesCity = !selectedCity || project.city === selectedCity;
 
-  const { addProject, removeProject, isInCompare } = useCompareStore();
+      return matchesSearch && matchesCity;
+    });
+  }, [search, selectedCity]);
 
-  useEffect(() => {
-    setMounted(true);
+  const cities = useMemo(() => {
+    return Array.from(new Set(underConstructionProjects.map((p) => p.city))).sort();
   }, []);
 
   return (
@@ -46,9 +41,9 @@ export default function ProjectsPage() {
       <div className="container mx-auto py-12 px-4 space-y-8">
         <FadeIn>
           <div className="space-y-3 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold">Каталог проектов</h1>
+            <h1 className="text-4xl md:text-5xl font-bold">Каталог новостроек</h1>
             <p className="text-lg text-muted-foreground">
-              {filteredProjects.length} проектов доходной недвижимости в СНГ
+              {filteredProjects.length} строящихся проектов с прогнозными расчётами
             </p>
           </div>
         </FadeIn>
@@ -57,227 +52,167 @@ export default function ProjectsPage() {
         <FadeIn delay={0.1}>
           <Card>
             <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div className="md:col-span-2">
-                <Input
-                  placeholder="Поиск по названию, городу..."
-                  value={filters.search || ""}
-                  onChange={(e) =>
-                    setFilters({ ...filters, search: e.target.value })
-                  }
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2">
+                  <Input
+                    placeholder="Поиск по названию, городу, девелоперу..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="h-11"
+                  />
+                </div>
+
+                <Select
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
                   className="h-11"
-                />
+                >
+                  <option value="">Все города</option>
+                  {cities.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </Select>
               </div>
-
-              <Select
-                value={filters.status || ""}
-                onChange={(e) =>
-                  setFilters({
-                    ...filters,
-                    status: (e.target.value as any) || undefined,
-                  })
-                }
-                className="h-11"
-              >
-                <option value="">Все статусы</option>
-                <option value={ProjectStatus.ACTIVE}>Готовые апартаменты</option>
-                <option value={ProjectStatus.CONSTRUCTION}>В строительстве</option>
-              </Select>
-
-              <Select
-                value={filters.country || ""}
-                onChange={(e) =>
-                  setFilters({
-                    ...filters,
-                    country: e.target.value || undefined,
-                    city: undefined,
-                  })
-                }
-                className="h-11"
-              >
-                <option value="">Все страны</option>
-                {countries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </Select>
-
-              <Select
-                value={filters.format || ""}
-                onChange={(e) =>
-                  setFilters({
-                    ...filters,
-                    format: (e.target.value as any) || undefined,
-                  })
-                }
-                className="h-11"
-              >
-                <option value="">Все форматы</option>
-                {Object.values(PropertyFormat).map((format) => (
-                  <option key={format} value={format}>
-                    {formatLabels[format]}
-                  </option>
-                ))}
-              </Select>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
         </FadeIn>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, idx) => {
-            const inCompare = isInCompare(project.slug);
+        {/* Info Banner */}
+        <FadeIn delay={0.15}>
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <p className="font-semibold">Прогнозные данные</p>
+                  <p className="text-sm text-muted-foreground">
+                    Все показатели рассчитаны на основе нашего калькулятора и рыночных данных по
+                    аналогичным объектам. Фактическая доходность может отличаться.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </FadeIn>
 
-            return (
-              <AnimatedCard key={project.slug} delay={idx * 0.05}>
-              <Card className="flex flex-col h-full">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-2 mb-3">
-                    <CardTitle className="text-lg leading-tight">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, idx) => (
+            <AnimatedCard key={project.id} delay={0.05 * idx}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full border-dashed border-2 hover:border-primary/50 transition-colors">
+                  <CardHeader>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <Badge variant="outline" className="text-xs">
+                        {project.completionDate}
+                      </Badge>
+                      <Badge
+                        variant="secondary"
+                        className="text-xs bg-primary/10 text-primary"
+                      >
+                        Строится
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl leading-tight">
                       {project.title}
                     </CardTitle>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {project.city}, {project.country}
-                  </p>
-                  <div className="flex items-center gap-2 mt-3">
-                    <Badge variant="outline">{formatLabels[project.format]}</Badge>
-                    <Badge variant="outline">{statusLabels[project.status]}</Badge>
-                  </div>
-                </CardHeader>
+                    <div className="flex flex-col gap-1 text-sm text-muted-foreground pt-2">
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        <span>{project.city}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        <span>{project.developer}</span>
+                      </div>
+                    </div>
+                  </CardHeader>
 
-                <CardContent className="flex-1 space-y-4">
-                  {project.status === "construction" ? (
-                    /* Construction Project Card */
-                    <>
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Стоимость</p>
-                        <p className="text-2xl font-bold text-primary">
-                          {formatCurrency(project.price)}
+                  <CardContent className="space-y-4">
+                    {/* Main Metrics */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <p className="text-xs text-muted-foreground">Цена за м²</p>
+                        <p className="font-bold font-mono tabular-nums text-sm">
+                          {formatCurrency(project.pricePerM2)}
                         </p>
                       </div>
-
-                      <div className="grid grid-cols-2 gap-3 pt-3 border-t text-sm">
-                        <div>
-                          <p className="text-muted-foreground mb-1">Площадь</p>
-                          <p className="font-semibold">
-                            {formatNumber(project.area, 1)} м²
-                          </p>
-                        </div>
-                        {project.pricePerM2 && (
-                          <div>
-                            <p className="text-muted-foreground mb-1">₽/м²</p>
-                            <p className="font-semibold">
-                              {formatCurrency(project.pricePerM2)}
-                            </p>
-                          </div>
-                        )}
-                        {project.completionDate && (
-                          <div className="col-span-2">
-                            <p className="text-muted-foreground mb-1">Срок сдачи</p>
-                            <p className="font-semibold">
-                              {project.completionDate}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="pt-2 border-t flex items-center gap-2">
-                        <Badge variant="secondary" className="text-xs flex-shrink-0">
-                          🏗️ Требуется прогноз доходности
-                        </Badge>
-                        <Link href="/calculator" className="ml-auto">
-                          <Button variant="outline" size="sm" className="h-7 text-xs">
-                            <Calculator className="h-3 w-3 mr-1" />
-                            Калькулятор
-                          </Button>
-                        </Link>
-                      </div>
-                    </>
-                  ) : (
-                    /* Active Project Card */
-                    <>
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-1">Доходность</p>
-                        <p className="text-2xl font-bold text-primary">
-                          {formatCurrency(project.revPerM2Month)}
-                          <span className="text-sm font-normal text-muted-foreground ml-1">
-                            /м²/мес
-                          </span>
+                      <div className="space-y-1">
+                        <p className="text-xs text-muted-foreground">Прогноз ₽/м²/мес</p>
+                        <p className="font-bold font-mono tabular-nums text-primary text-sm">
+                          {formatCurrency(project.projectedRevPerM2Month)}
                         </p>
                       </div>
+                    </div>
 
-                      <div className="grid grid-cols-2 gap-3 pt-3 border-t text-sm">
-                        <div>
-                          <p className="text-muted-foreground mb-1">NOI/год</p>
-                          <p className="font-semibold">
-                            {formatCurrency(project.noiYear)}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground mb-1">Окупаемость</p>
-                          <p className="font-semibold">
-                            {formatNumber(project.paybackYears, 1)} лет
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground mb-1">Загрузка</p>
-                          <p className="font-semibold">{project.occupancy}%</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground mb-1">ADR</p>
-                          <p className="font-semibold">
-                            {formatCurrency(project.adr)}
-                          </p>
-                        </div>
+                    {/* Projected Stats */}
+                    <div className="grid grid-cols-3 gap-2 pt-3 border-t">
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">ADR</p>
+                        <p className="font-mono tabular-nums text-xs font-semibold">
+                          {formatCurrency(project.projectedADR)}
+                        </p>
                       </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">Загрузка</p>
+                        <p className="font-mono tabular-nums text-xs font-semibold">
+                          {Math.round(project.projectedOccupancy * 100)}%
+                        </p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs text-muted-foreground mb-1">Окупаемость</p>
+                        <p className="font-mono tabular-nums text-xs font-semibold">
+                          {formatNumber(project.projectedPaybackYears, 1)} лет
+                        </p>
+                      </div>
+                    </div>
 
-                      <p className="text-sm text-muted-foreground line-clamp-2 pt-2">
-                        {project.summary}
-                      </p>
-                    </>
-                  )}
-                </CardContent>
+                    <div className="pt-3 border-t">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">Процент годовых</span>
+                        <span className="font-bold font-mono tabular-nums text-primary">
+                          {formatNumber(project.projectedROI, 1)}%
+                        </span>
+                      </div>
+                    </div>
 
-                <CardFooter className="flex gap-2 pt-4">
-                  <Link href={`/projects/${project.slug}`} className="flex-1">
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
-                      <Button variant="outline" className="w-full">
-                        <Eye className="h-4 w-4 mr-2" />
-                        Открыть
-                      </Button>
-                    </motion.div>
-                  </Link>
-                  {mounted && (
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button
-                        variant={inCompare ? "default" : "outline"}
-                        onClick={() =>
-                          inCompare ? removeProject(project.slug) : addProject(project)
-                        }
-                        disabled={!inCompare && useCompareStore.getState().projects.length >= 5}
-                        className="px-3"
-                      >
-                        <GitCompare className="h-4 w-4" />
-                      </Button>
-                    </motion.div>
-                  )}
-                </CardFooter>
-              </Card>
-              </AnimatedCard>
-            );
-          })}
+                    {/* Risk Note */}
+                    {project.riskNote && (
+                      <div className="pt-3 border-t">
+                        <p className="text-xs text-muted-foreground italic">
+                          {project.riskNote}
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+
+                  <CardFooter className="flex gap-2">
+                    <Button className="flex-1" size="sm">
+                      <Calculator className="h-4 w-4 mr-2" />
+                      Рассчитать
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            </AnimatedCard>
+          ))}
         </div>
 
         {filteredProjects.length === 0 && (
-          <div className="py-16 text-center">
-            <p className="text-muted-foreground text-lg">Проекты не найдены</p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Попробуйте изменить параметры поиска
-            </p>
-          </div>
+          <FadeIn>
+            <Card>
+              <CardContent className="py-12 text-center">
+                <p className="text-muted-foreground">
+                  Проекты не найдены. Попробуйте изменить параметры поиска.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
         )}
       </div>
     </div>
