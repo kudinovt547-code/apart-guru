@@ -119,9 +119,19 @@ const CITIES = Array.from(new Set(APARTMENTS_DB.map(a => a.city)));
 const CLASSES = ["Comfort", "Business"];
 const LOCATIONS = ["Prime", "Center", "Hub"];
 
-// Константы расходов
-const EXPLOITATION_COST_PER_M2 = 350; // Эксплуатация (₽/м²/мес): ЖКХ, интернет, клининг
-const REPAIR_RESERVE_PER_M2 = 50; // Резерв на ремонт/страховку (₽/м²/мес)
+// Константы расходов (зависят от локации)
+const EXPLOITATION_COSTS = {
+  Hub: 350,    // Район: базовая эксплуатация
+  Center: 480, // Центр: повышенные стандарты обслуживания
+  Prime: 650,  // Топ: премиум сервис, консьерж, дорогой клининг
+};
+
+const REPAIR_RESERVES = {
+  Hub: 50,     // Район: стандартная мебель/техника
+  Center: 85,  // Центр: качественная мебель/техника
+  Prime: 180,  // Топ: премиальная мебель/техника, дорогой ремонт
+};
+
 const TAX_RATE = 0.06; // Налог УСН "Доходы" 6% от валового дохода
 
 interface CalculatorInputs {
@@ -221,11 +231,13 @@ export default function CalculatorPage() {
     // UK Fee (комиссия УК от валового дохода)
     const ukFee = grossRevenue * compSet.avgUkFee;
 
-    // Эксплуатация: ЖКХ, интернет, клининг (₽/м²/мес × 12)
-    const exploitationCost = EXPLOITATION_COST_PER_M2 * inputs.area * 12;
+    // Эксплуатация: зависит от локации (₽/м²/мес × 12)
+    const exploitationCostPerM2 = EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS];
+    const exploitationCost = exploitationCostPerM2 * inputs.area * 12;
 
-    // Резерв на ремонт/страховку (₽/м²/мес × 12)
-    const repairReserve = REPAIR_RESERVE_PER_M2 * inputs.area * 12;
+    // Резерв на ремонт: зависит от локации (₽/м²/мес × 12)
+    const repairReservePerM2 = REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES];
+    const repairReserve = repairReservePerM2 * inputs.area * 12;
 
     // Налог УСН "Доходы" 6% от валового дохода
     const tax = grossRevenue * TAX_RATE;
@@ -506,13 +518,13 @@ export default function CalculatorPage() {
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Эксплуатация ({EXPLOITATION_COST_PER_M2}₽/м²/мес)</span>
+                <span className="text-muted-foreground">Эксплуатация ({EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS]}₽/м²/мес)</span>
                 <span className="font-mono tabular-nums text-destructive">
                   -{formatCurrency(realisticResult.exploitationCost)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Резерв на ремонт ({REPAIR_RESERVE_PER_M2}₽/м²/мес)</span>
+                <span className="text-muted-foreground">Резерв на ремонт ({REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES]}₽/м²/мес)</span>
                 <span className="font-mono tabular-nums text-destructive">
                   -{formatCurrency(realisticResult.repairReserve)}
                 </span>
