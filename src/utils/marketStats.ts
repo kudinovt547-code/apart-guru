@@ -105,11 +105,16 @@ const MARKET_DATA = [
 /**
  * Расчёт средней доходности рынка (₽/м²/мес)
  * Формула: (ADR × Загрузка × 365) / 12 / площадь условного объекта (40м²)
+ * Убираем экстремальные объекты (ADR > 15000₽) чтобы не искажать среднее
  */
 export function calculateMarketIndex(): number {
   const AVERAGE_AREA = 40; // Условная площадь для расчёта
+  const MAX_ADR = 15000; // Максимальный ADR для "нормальных" объектов
 
-  const revPerM2Month = MARKET_DATA.map((obj) => {
+  // Фильтруем только массовый сегмент (без элитных объектов)
+  const normalMarket = MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR);
+
+  const revPerM2Month = normalMarket.map((obj) => {
     const yearlyRevenue = obj.adr_avg * obj.occ_avg * 365;
     const monthlyRevenue = yearlyRevenue / 12;
     return monthlyRevenue / AVERAGE_AREA;
@@ -121,20 +126,27 @@ export function calculateMarketIndex(): number {
 
 /**
  * Расчёт средней загрузки по рынку (%)
+ * Считаем только по массовому сегменту (без элитных объектов)
  */
 export function calculateAverageOccupancy(): number {
-  const sum = MARKET_DATA.reduce((acc, obj) => acc + obj.occ_avg, 0);
-  return Math.round((sum / MARKET_DATA.length) * 100);
+  const MAX_ADR = 15000;
+  const normalMarket = MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR);
+
+  const sum = normalMarket.reduce((acc, obj) => acc + obj.occ_avg, 0);
+  return Math.round((sum / normalMarket.length) * 100);
 }
 
 /**
  * Расчёт средней окупаемости по рынку (лет)
  * Упрощённая формула: Стоимость / Годовой доход
+ * Считаем только по массовому сегменту (без элитных объектов)
  */
 export function calculateAveragePayback(): number {
   const AVERAGE_AREA = 40;
+  const MAX_ADR = 15000;
+  const normalMarket = MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR);
 
-  const paybacks = MARKET_DATA.map((obj) => {
+  const paybacks = normalMarket.map((obj) => {
     const totalPrice = obj.price_m2 * AVERAGE_AREA;
     const yearlyRevenue = obj.adr_avg * obj.occ_avg * 365;
     // Вычитаем примерно 40% на расходы (упрощённо)
@@ -147,10 +159,12 @@ export function calculateAveragePayback(): number {
 }
 
 /**
- * Количество объектов в базе данных рынка
+ * Количество объектов в базе данных рынка (массовый сегмент)
+ * Считаем только объекты с ADR <= 15000₽
  */
 export function getMarketObjectsCount(): number {
-  return MARKET_DATA.length;
+  const MAX_ADR = 15000;
+  return MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR).length;
 }
 
 /**
