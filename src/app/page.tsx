@@ -3,19 +3,28 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { getProjects } from "@/data/stats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import Image from "next/image";
-import { TrendingUp, Shield, Calculator, ArrowRight } from "lucide-react";
+import { TrendingUp, Shield, Calculator, ArrowRight, Building2, Percent, Clock } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
+import {
+  calculateMarketRevPerM2,
+  calculateAverageOccupancy,
+  calculateAveragePayback,
+  getApartmentsCount,
+  getTopApartmentsByRevenue
+} from "@/utils/apartmentStats";
 
 export default function HomePage() {
-  // Пока без данных - будут загружены позже
-  const allProjects = getProjects();
+  const marketRevPerM2 = calculateMarketRevPerM2();
+  const avgOccupancy = calculateAverageOccupancy();
+  const avgPayback = calculateAveragePayback();
+  const apartmentsCount = getApartmentsCount();
+  const topApartments = getTopApartmentsByRevenue(5);
 
   return (
     <div className="min-h-screen">
@@ -54,28 +63,154 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Coming Soon - Data */}
+      {/* Market Statistics */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <Card className="max-w-2xl mx-auto text-center py-12">
+            <h2 className="text-3xl font-semibold text-center mb-12">
+              Статистика рынка
+            </h2>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
+            <AnimatedCard delay={0.1}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <TrendingUp className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-3xl font-bold tabular-nums mb-1">
+                    <AnimatedCounter end={marketRevPerM2} duration={2000} />
+                    <span className="text-lg text-muted-foreground ml-1">₽</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Доходность ₽/м²/мес
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.2}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <Percent className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-3xl font-bold tabular-nums mb-1">
+                    <AnimatedCounter end={avgOccupancy} duration={2000} />
+                    <span className="text-lg text-muted-foreground ml-1">%</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Средняя загрузка
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.3}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <Clock className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-3xl font-bold tabular-nums mb-1">
+                    <AnimatedCounter end={avgPayback} decimals={1} duration={2000} />
+                    <span className="text-lg text-muted-foreground ml-1">лет</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Средняя окупаемость
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.4}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <Building2 className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-3xl font-bold tabular-nums mb-1">
+                    <AnimatedCounter end={apartmentsCount} duration={2000} />
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Объектов в базе
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+          </div>
+
+          {/* Top 5 Table */}
+          <FadeIn delay={0.5}>
+            <Card className="max-w-5xl mx-auto">
+              <CardHeader>
+                <CardTitle>Топ-5 по доходности</CardTitle>
+              </CardHeader>
               <CardContent>
-                <Calculator className="h-16 w-16 mx-auto mb-6 text-primary" />
-                <h2 className="text-3xl font-semibold mb-4">
-                  База данных в разработке
-                </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Мы собираем и верифицируем данные по апарт-отелям России.
-                  Статистика по рынку и каталог проектов появятся совсем скоро.
-                </p>
-                <Link href="/calculator">
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button size="lg">
-                      Попробовать калькулятор
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </motion.div>
-                </Link>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Название
+                        </th>
+                        <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Город
+                        </th>
+                        <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Класс
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          ADR
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Загрузка
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          ₽/м²/мес
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {topApartments.map((apt, idx) => (
+                        <motion.tr
+                          key={apt.id}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.6 + idx * 0.1 }}
+                          className="border-b border-border/50 hover:bg-accent/30 transition-colors"
+                        >
+                          <td className="py-3 px-4 text-sm">{apt.name}</td>
+                          <td className="py-3 px-4 text-sm text-muted-foreground">
+                            {apt.city}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-muted-foreground">
+                            {apt.class}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums">
+                            {formatCurrency(apt.adr_avg)}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums">
+                            {Math.round(apt.occ_avg * 100)}%
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums font-semibold text-primary">
+                            {formatNumber(apt.revPerM2Month, 0)}
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-6 text-center">
+                  <Link href="/projects">
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button variant="outline">
+                        Смотреть все проекты
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </motion.div>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </FadeIn>
@@ -105,7 +240,7 @@ export default function HomePage() {
                     Выбираете объекты
                   </h3>
                   <p className="text-muted-foreground">
-                    Просматриваете каталог из {allProjects.length} проектов с реальными показателями доходности
+                    Просматриваете каталог из {apartmentsCount} проектов с реальными показателями доходности
                   </p>
                 </CardContent>
               </Card>
