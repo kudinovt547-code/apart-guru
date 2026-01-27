@@ -119,6 +119,9 @@ const CITIES = Array.from(new Set(APARTMENTS_DB.map(a => a.city)));
 const CLASSES = ["Comfort", "Business"];
 const LOCATIONS = ["Prime", "Center", "Hub"];
 
+// Курортные города с повышенными расходами
+const RESORT_CITIES = ["Сочи", "Калининград"];
+
 // Константы расходов (зависят от локации)
 const EXPLOITATION_COSTS = {
   Hub: 350,    // Район: базовая эксплуатация
@@ -131,6 +134,9 @@ const REPAIR_RESERVES = {
   Center: 85,  // Центр: качественная мебель/техника
   Prime: 180,  // Топ: премиальная мебель/техника, дорогой ремонт
 };
+
+// Коэффициенты для курортов (повышенный износ, страховка, клининг)
+const RESORT_MULTIPLIER = 1.85; // +85% к расходам для курортов
 
 const TAX_RATE = 0.06; // Налог УСН "Доходы" 6% от валового дохода
 
@@ -150,7 +156,7 @@ interface NOIResult {
   tax: number; // Налог УСН 6% (год)
   netIncome: number; // Чистый доход (год)
   paybackYears: number; // Окупаемость (лет)
-  roi: number; // ROI (%)
+  roi: number; // Процент годовых (%)
   adr: number; // ADR использованный
   occupancy: number; // Загрузка использованная
 }
@@ -231,12 +237,17 @@ export default function CalculatorPage() {
     // UK Fee (комиссия УК от валового дохода)
     const ukFee = grossRevenue * compSet.avgUkFee;
 
+    // Проверка на курортный город
+    const isResort = RESORT_CITIES.includes(inputs.city);
+
     // Эксплуатация: зависит от локации (₽/м²/мес × 12)
-    const exploitationCostPerM2 = EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS];
+    let exploitationCostPerM2 = EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS];
+    if (isResort) exploitationCostPerM2 *= RESORT_MULTIPLIER;
     const exploitationCost = exploitationCostPerM2 * inputs.area * 12;
 
     // Резерв на ремонт: зависит от локации (₽/м²/мес × 12)
-    const repairReservePerM2 = REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES];
+    let repairReservePerM2 = REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES];
+    if (isResort) repairReservePerM2 *= RESORT_MULTIPLIER;
     const repairReserve = repairReservePerM2 * inputs.area * 12;
 
     // Налог УСН "Доходы" 6% от валового дохода
@@ -248,7 +259,7 @@ export default function CalculatorPage() {
     // Окупаемость (лет) = Бюджет / Чистый доход
     const paybackYears = inputs.budget / netIncome;
 
-    // ROI (%) = Чистый доход / Бюджет * 100
+    // Процент годовых (%) = Чистый доход / Бюджет * 100
     const roi = (netIncome / inputs.budget) * 100;
 
     return {
@@ -484,7 +495,7 @@ export default function CalculatorPage() {
               </div>
 
               <div>
-                <p className="text-sm text-muted-foreground">ROI</p>
+                <p className="text-sm text-muted-foreground">Процент годовых</p>
                 <p className="text-xl font-bold font-mono tabular-nums">
                   {formatPercent(realisticResult.roi)}
                 </p>
@@ -518,13 +529,17 @@ export default function CalculatorPage() {
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Эксплуатация ({EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS]}₽/м²/мес)</span>
+                <span className="text-muted-foreground">
+                  Эксплуатация ({Math.round(EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS] * (RESORT_CITIES.includes(inputs.city) ? RESORT_MULTIPLIER : 1))}₽/м²/мес{RESORT_CITIES.includes(inputs.city) ? ", курорт" : ""})
+                </span>
                 <span className="font-mono tabular-nums text-destructive">
                   -{formatCurrency(realisticResult.exploitationCost)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Резерв на ремонт ({REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES]}₽/м²/мес)</span>
+                <span className="text-muted-foreground">
+                  Резерв на ремонт ({Math.round(REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES] * (RESORT_CITIES.includes(inputs.city) ? RESORT_MULTIPLIER : 1))}₽/м²/мес{RESORT_CITIES.includes(inputs.city) ? ", курорт" : ""})
+                </span>
                 <span className="font-mono tabular-nums text-destructive">
                   -{formatCurrency(realisticResult.repairReserve)}
                 </span>
@@ -584,7 +599,7 @@ export default function CalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">ROI</p>
+                  <p className="text-xs text-muted-foreground">Процент годовых</p>
                   <p className="font-mono tabular-nums font-semibold">
                     {formatPercent(pessimisticResult.roi)}
                   </p>
@@ -623,7 +638,7 @@ export default function CalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">ROI</p>
+                  <p className="text-xs text-muted-foreground">Процент годовых</p>
                   <p className="font-mono tabular-nums font-semibold">
                     {formatPercent(realisticResult.roi)}
                   </p>
@@ -662,7 +677,7 @@ export default function CalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">ROI</p>
+                  <p className="text-xs text-muted-foreground">Процент годовых</p>
                   <p className="font-mono tabular-nums font-semibold">
                     {formatPercent(optimisticResult.roi)}
                   </p>
