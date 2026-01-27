@@ -119,26 +119,35 @@ const CITIES = Array.from(new Set(APARTMENTS_DB.map(a => a.city)));
 const CLASSES = ["Comfort", "Business"];
 const LOCATIONS = ["Prime", "Center", "Hub"];
 
-// Курортные города с повышенными расходами
-const RESORT_CITIES = ["Сочи", "Калининград"];
+// ============================================
+// РЕАЛИСТИЧНАЯ МОДЕЛЬ РАСХОДОВ
+// ============================================
 
-// Константы расходов (зависят от локации)
-const EXPLOITATION_COSTS = {
-  Hub: 350,    // Район: базовая эксплуатация
-  Center: 480, // Центр: повышенные стандарты обслуживания
-  Prime: 650,  // Топ: премиум сервис, консьерж, дорогой клининг
+// Коэффициенты по городам для ЖКХ (₽/м²/мес)
+const UTILITIES_BY_CITY: Record<string, number> = {
+  "Москва": 200,
+  "Санкт-Петербург": 180,
+  "Сочи": 160,
+  "Калининград": 150,
+  "Казань": 140,
 };
 
-const REPAIR_RESERVES = {
-  Hub: 50,     // Район: стандартная мебель/техника
-  Center: 85,  // Центр: качественная мебель/техника
-  Prime: 180,  // Топ: премиальная мебель/техника, дорогой ремонт
-};
+// Интернет + ТВ (₽/мес)
+const INTERNET_TV_MONTHLY = 1500;
 
-// Коэффициенты для курортов (повышенный износ, страховка, клининг)
-const RESORT_MULTIPLIER = 1.85; // +85% к расходам для курортов
+// Клининг + расходники (% от валового дохода)
+// Покрывает: уборки между гостями, постельное, расходники, бытовую химию
+const CLEANING_RATE = 0.10; // 10% от валового
 
-const TAX_RATE = 0.06; // Налог УСН "Доходы" 6% от валового дохода
+// Текущий ремонт + замена мебели/техники (% от валового дохода)
+// Покрывает: косметический ремонт, замена мебели, техники, сантехники
+const MAINTENANCE_RATE = 0.025; // 2.5% от валового
+
+// Страховка имущества (% от бюджета в год)
+const INSURANCE_RATE = 0.003; // 0.3% от бюджета
+
+// Налог УСН "Доходы" (% от валового дохода)
+const TAX_RATE = 0.06; // 6%
 
 interface CalculatorInputs {
   city: string;
@@ -151,9 +160,13 @@ interface CalculatorInputs {
 interface NOIResult {
   grossRevenue: number; // Валовый доход (год)
   ukFee: number; // Комиссия УК (год)
-  exploitationCost: number; // Эксплуатация (год)
-  repairReserve: number; // Резерв на ремонт (год)
+  utilities: number; // ЖКХ (год)
+  internetTv: number; // Интернет + ТВ (год)
+  cleaning: number; // Клининг + расходники (год)
+  maintenance: number; // Текущий ремонт (год)
+  insurance: number; // Страховка (год)
   tax: number; // Налог УСН 6% (год)
+  totalExpenses: number; // Итого расходов (год)
   netIncome: number; // Чистый доход (год)
   paybackYears: number; // Окупаемость (лет)
   roi: number; // Процент годовых (%)
@@ -231,43 +244,67 @@ export default function CalculatorPage() {
     adr: number,
     occupancy: number
   ): NOIResult => {
-    // Gross Revenue = ADR * Occupancy * 365
+    // ========================================
+    // ДОХОДЫ
+    // ========================================
+    // Валовой доход = ADR × Загрузка × 365 дней
     const grossRevenue = adr * occupancy * 365;
 
-    // UK Fee (комиссия УК от валового дохода)
+    // ========================================
+    // РАСХОДЫ
+    // ========================================
+
+    // 1. Комиссия УК (% от валового дохода, из базы данных)
     const ukFee = grossRevenue * compSet.avgUkFee;
 
-    // Проверка на курортный город
-    const isResort = RESORT_CITIES.includes(inputs.city);
+    // 2. ЖКХ (коммунальные платежи: ₽/м²/мес × 12)
+    const utilitiesRate = UTILITIES_BY_CITY[inputs.city] || 150;
+    const utilities = utilitiesRate * inputs.area * 12;
 
-    // Эксплуатация: зависит от локации (₽/м²/мес × 12)
-    let exploitationCostPerM2 = EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS];
-    if (isResort) exploitationCostPerM2 *= RESORT_MULTIPLIER;
-    const exploitationCost = exploitationCostPerM2 * inputs.area * 12;
+    // 3. Интернет + ТВ (фиксированная сумма в месяц)
+    const internetTv = INTERNET_TV_MONTHLY * 12;
 
-    // Резерв на ремонт: зависит от локации (₽/м²/мес × 12)
-    let repairReservePerM2 = REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES];
-    if (isResort) repairReservePerM2 *= RESORT_MULTIPLIER;
-    const repairReserve = repairReservePerM2 * inputs.area * 12;
+    // 4. Клининг + расходники (% от валового дохода)
+    // Покрывает: уборки между гостями, постельное, бытовая химия, расходники
+    const cleaning = grossRevenue * CLEANING_RATE;
 
-    // Налог УСН "Доходы" 6% от валового дохода
+    // 5. Текущий ремонт + замена мебели/техники (% от валового дохода)
+    // Покрывает: косметический ремонт, замена мебели, техники, сантехники
+    const maintenance = grossRevenue * MAINTENANCE_RATE;
+
+    // 6. Страховка имущества (% от бюджета в год)
+    const insurance = inputs.budget * INSURANCE_RATE;
+
+    // 7. Налог УСН "Доходы" (6% от валового дохода)
     const tax = grossRevenue * TAX_RATE;
 
-    // Net Income = Gross Revenue - все расходы
-    const netIncome = grossRevenue - ukFee - exploitationCost - repairReserve - tax;
+    // Итого расходов
+    const totalExpenses = ukFee + utilities + internetTv + cleaning + maintenance + insurance + tax;
 
+    // ========================================
+    // ЧИСТЫЙ ДОХОД
+    // ========================================
+    const netIncome = grossRevenue - totalExpenses;
+
+    // ========================================
+    // ПОКАЗАТЕЛИ ЭФФЕКТИВНОСТИ
+    // ========================================
     // Окупаемость (лет) = Бюджет / Чистый доход
-    const paybackYears = inputs.budget / netIncome;
+    const paybackYears = netIncome > 0 ? inputs.budget / netIncome : 999;
 
-    // Процент годовых (%) = Чистый доход / Бюджет * 100
+    // Процент годовых (%) = Чистый доход / Бюджет × 100
     const roi = (netIncome / inputs.budget) * 100;
 
     return {
       grossRevenue,
       ukFee,
-      exploitationCost,
-      repairReserve,
+      utilities,
+      internetTv,
+      cleaning,
+      maintenance,
+      insurance,
       tax,
+      totalExpenses,
       netIncome,
       paybackYears,
       roi,
@@ -512,47 +549,88 @@ export default function CalculatorPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Разбивка расходов</CardTitle>
+              <CardTitle>Разбивка доходов и расходов</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Валовый доход</span>
-                <span className="font-mono tabular-nums font-semibold">
-                  {formatCurrency(realisticResult.grossRevenue)}
-                </span>
+            <CardContent className="space-y-3 text-sm">
+              {/* Доходы */}
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-muted-foreground font-semibold">Валовый доход</span>
+                  <span className="font-mono tabular-nums font-bold text-primary">
+                    {formatCurrency(realisticResult.grossRevenue)}
+                  </span>
+                </div>
+                <div className="text-xs text-muted-foreground">
+                  ADR {formatCurrency(realisticResult.adr)} × {formatPercent(realisticResult.occupancy * 100)} × 365 дней
+                </div>
               </div>
-              <div className="border-t my-2"></div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Комиссия УК ({formatPercent(compSet.avgUkFee * 100)})</span>
-                <span className="font-mono tabular-nums text-destructive">
-                  -{formatCurrency(realisticResult.ukFee)}
-                </span>
+
+              <div className="border-t my-3"></div>
+
+              {/* Расходы */}
+              <div className="space-y-2">
+                <div className="text-muted-foreground font-semibold mb-2">Расходы:</div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Комиссия УК ({formatPercent(compSet.avgUkFee * 100)})</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.ukFee)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">ЖКХ ({UTILITIES_BY_CITY[inputs.city] || 150}₽/м²/мес)</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.utilities)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Интернет + ТВ</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.internetTv)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Клининг + расходники ({formatPercent(CLEANING_RATE * 100)})</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.cleaning)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Текущий ремонт ({formatPercent(MAINTENANCE_RATE * 100)})</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.maintenance)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Страховка ({formatPercent(INSURANCE_RATE * 100)})</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.insurance)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Налог УСН ({formatPercent(TAX_RATE * 100)})</span>
+                  <span className="font-mono tabular-nums text-red-600">
+                    -{formatCurrency(realisticResult.tax)}
+                  </span>
+                </div>
+
+                <div className="border-t pt-2 flex justify-between">
+                  <span className="font-semibold">Итого расходов</span>
+                  <span className="font-mono tabular-nums font-semibold text-red-600">
+                    -{formatCurrency(realisticResult.totalExpenses)}
+                  </span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">
-                  Эксплуатация ({Math.round(EXPLOITATION_COSTS[inputs.location as keyof typeof EXPLOITATION_COSTS] * (RESORT_CITIES.includes(inputs.city) ? RESORT_MULTIPLIER : 1))}₽/м²/мес{RESORT_CITIES.includes(inputs.city) ? ", курорт" : ""})
-                </span>
-                <span className="font-mono tabular-nums text-destructive">
-                  -{formatCurrency(realisticResult.exploitationCost)}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">
-                  Резерв на ремонт ({Math.round(REPAIR_RESERVES[inputs.location as keyof typeof REPAIR_RESERVES] * (RESORT_CITIES.includes(inputs.city) ? RESORT_MULTIPLIER : 1))}₽/м²/мес{RESORT_CITIES.includes(inputs.city) ? ", курорт" : ""})
-                </span>
-                <span className="font-mono tabular-nums text-destructive">
-                  -{formatCurrency(realisticResult.repairReserve)}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Налог УСН ({formatPercent(TAX_RATE * 100)})</span>
-                <span className="font-mono tabular-nums text-destructive">
-                  -{formatCurrency(realisticResult.tax)}
-                </span>
-              </div>
-              <div className="border-t pt-2 flex justify-between font-bold">
-                <span>Чистый доход</span>
-                <span className="font-mono tabular-nums text-primary">
+
+              <div className="border-t pt-3 flex justify-between">
+                <span className="font-bold text-base">Чистый доход (год)</span>
+                <span className="font-mono tabular-nums font-bold text-primary text-base">
                   {formatCurrency(realisticResult.netIncome)}
                 </span>
               </div>
