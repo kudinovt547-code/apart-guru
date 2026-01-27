@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-      <div className="container mx-auto flex h-16 items-center px-4 justify-between">
-        <Link href="/" className="flex items-center space-x-4">
+      <div className="container mx-auto flex h-20 items-center px-4 justify-between">
+        <Link href="/" className="flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -18,7 +18,7 @@ export default function Header() {
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
-            className="relative w-20 h-20 flex-shrink-0 -mt-1"
+            className="relative w-16 h-16 flex-shrink-0"
           >
             <Image
               src="/logo.png"
@@ -31,24 +31,24 @@ export default function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
-            className="font-semibold text-2xl leading-none"
+            className="font-semibold text-sm leading-none mt-1"
           >
             Apart Guru
           </motion.span>
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-8 text-sm">
+        <nav className="hidden lg:flex items-center space-x-6 text-sm">
+          <Link
+            href="/"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Главная
+          </Link>
           <Link
             href="/projects"
             className="transition-colors hover:text-primary text-foreground/70"
           >
-            Проекты
-          </Link>
-          <Link
-            href="/services"
-            className="transition-colors hover:text-primary text-foreground/70"
-          >
-            Услуги
+            Каталог
           </Link>
           <Link
             href="/compare"
@@ -61,6 +61,24 @@ export default function Header() {
             className="transition-colors hover:text-primary text-foreground/70"
           >
             Калькулятор
+          </Link>
+          <Link
+            href="/services"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Услуги
+          </Link>
+          <Link
+            href="/methodology"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Методология
+          </Link>
+          <Link
+            href="/legal"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Правовая информация
           </Link>
           <Link href="/contact">
             <Button size="sm">Получить подбор</Button>

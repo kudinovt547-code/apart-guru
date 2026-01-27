@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { getProjects } from "@/data/stats";
+import { getTopUnderConstruction } from "@/data/under-construction";
 import {
   calculateMarketIndex,
   getTopByYield,
@@ -38,6 +39,8 @@ export default function HomePage() {
     () => getTopByStability(activeProjects, 3),
     [activeProjects]
   );
+
+  const topUnderConstruction = useMemo(() => getTopUnderConstruction(5), []);
 
   const avgPayback = useMemo(() => {
     const sum = activeProjects.reduce((acc, p) => acc + p.paybackYears, 0);
@@ -163,51 +166,112 @@ export default function HomePage() {
             </AnimatedCard>
           </div>
 
-          {/* Top Projects */}
-          <FadeIn>
-            <Card className="mb-12">
-              <CardHeader>
-                <CardTitle>Топ-5 по доходности</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {topByYield.map((project, idx) => (
-                    <motion.div
-                      key={project.slug}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.1 }}
-                      whileHover={{ x: 4 }}
-                    >
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="flex items-center justify-between p-4 rounded-lg hover:bg-accent/50 transition-colors"
+          {/* Top Projects - Two Tables Side by Side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+            {/* Готовые объекты */}
+            <FadeIn>
+              <Card className="h-full">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5 text-primary" />
+                    Топ-5 готовых объектов
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    Актуальная доходность по рынку
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {topByYield.map((project, idx) => (
+                      <motion.div
+                        key={project.slug}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        whileHover={{ x: 4 }}
                       >
-                        <div className="flex items-center space-x-4 flex-1">
-                          <span className="text-2xl font-bold text-primary w-8">
-                            {idx + 1}
-                          </span>
-                          <div className="flex-1">
-                            <p className="font-semibold">{project.title}</p>
-                            <p className="text-sm text-muted-foreground">
-                              {project.city}, {project.country}
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/50 transition-colors border border-transparent hover:border-primary/20"
+                        >
+                          <div className="flex items-center space-x-3 flex-1">
+                            <span className="text-xl font-bold text-primary w-6 flex-shrink-0">
+                              {idx + 1}
+                            </span>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold truncate">{project.title}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {project.city}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="text-right flex-shrink-0 ml-3">
+                            <p className="font-bold font-mono tabular-nums">
+                              {formatCurrency(project.revPerM2Month)}
                             </p>
+                            <p className="text-xs text-muted-foreground">₽/м²/мес</p>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </FadeIn>
+
+            {/* Строящиеся объекты */}
+            <FadeIn delay={0.2}>
+              <Card className="h-full border-dashed border-2 border-primary/30 bg-primary/5">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calculator className="h-5 w-5 text-primary" />
+                    Прогнозы по новостройкам
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    Расчёты на основе рыночных данных
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {topUnderConstruction.map((project, idx) => (
+                      <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        whileHover={{ x: -4 }}
+                      >
+                        <div className="flex items-center justify-between p-3 rounded-lg bg-background/50 border border-primary/20 hover:bg-background transition-colors">
+                          <div className="flex items-center space-x-3 flex-1">
+                            <span className="text-xl font-bold text-primary w-6 flex-shrink-0">
+                              {idx + 1}
+                            </span>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold truncate">{project.title}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {project.city} • {project.completionDate}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="text-right flex-shrink-0 ml-3">
+                            <p className="font-bold font-mono tabular-nums">
+                              {formatCurrency(project.projectedRevPerM2Month)}
+                            </p>
+                            <p className="text-xs text-muted-foreground">₽/м²/мес*</p>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <p className="font-bold text-lg">
-                            {formatCurrency(project.revPerM2Month)}
-                          </p>
-                          <p className="text-sm text-muted-foreground">₽/м²/мес</p>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </FadeIn>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-4 italic">
+                    * Прогнозные значения на основе калькулятора
+                  </p>
+                </CardContent>
+              </Card>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
