@@ -105,14 +105,17 @@ const MARKET_DATA = [
 /**
  * Расчёт средней доходности рынка (₽/м²/мес)
  * Формула: (ADR × Загрузка × 365) / 12 / площадь условного объекта (40м²)
- * Убираем экстремальные объекты (ADR > 15000₽) чтобы не искажать среднее
+ * Только Comfort и Business классы, без экстремальных объектов
  */
 export function calculateMarketIndex(): number {
   const AVERAGE_AREA = 40; // Условная площадь для расчёта
   const MAX_ADR = 15000; // Максимальный ADR для "нормальных" объектов
 
-  // Фильтруем только массовый сегмент (без элитных объектов)
-  const normalMarket = MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR);
+  // Фильтруем только Comfort и Business, без элитных объектов
+  const normalMarket = MARKET_DATA.filter((obj) =>
+    (obj.class === "Comfort" || obj.class === "Business") &&
+    obj.adr_avg <= MAX_ADR
+  );
 
   const revPerM2Month = normalMarket.map((obj) => {
     const yearlyRevenue = obj.adr_avg * obj.occ_avg * 365;
@@ -126,11 +129,14 @@ export function calculateMarketIndex(): number {
 
 /**
  * Расчёт средней загрузки по рынку (%)
- * Считаем только по массовому сегменту (без элитных объектов)
+ * Только Comfort и Business классы
  */
 export function calculateAverageOccupancy(): number {
   const MAX_ADR = 15000;
-  const normalMarket = MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR);
+  const normalMarket = MARKET_DATA.filter((obj) =>
+    (obj.class === "Comfort" || obj.class === "Business") &&
+    obj.adr_avg <= MAX_ADR
+  );
 
   const sum = normalMarket.reduce((acc, obj) => acc + obj.occ_avg, 0);
   return Math.round((sum / normalMarket.length) * 100);
@@ -139,12 +145,15 @@ export function calculateAverageOccupancy(): number {
 /**
  * Расчёт средней окупаемости по рынку (лет)
  * Упрощённая формула: Стоимость / Годовой доход
- * Считаем только по массовому сегменту (без элитных объектов)
+ * Только Comfort и Business классы
  */
 export function calculateAveragePayback(): number {
   const AVERAGE_AREA = 40;
   const MAX_ADR = 15000;
-  const normalMarket = MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR);
+  const normalMarket = MARKET_DATA.filter((obj) =>
+    (obj.class === "Comfort" || obj.class === "Business") &&
+    obj.adr_avg <= MAX_ADR
+  );
 
   const paybacks = normalMarket.map((obj) => {
     const totalPrice = obj.price_m2 * AVERAGE_AREA;
@@ -160,11 +169,14 @@ export function calculateAveragePayback(): number {
 
 /**
  * Количество объектов в базе данных рынка (массовый сегмент)
- * Считаем только объекты с ADR <= 15000₽
+ * Только Comfort и Business с ADR <= 15000₽
  */
 export function getMarketObjectsCount(): number {
   const MAX_ADR = 15000;
-  return MARKET_DATA.filter((obj) => obj.adr_avg <= MAX_ADR).length;
+  return MARKET_DATA.filter((obj) =>
+    (obj.class === "Comfort" || obj.class === "Business") &&
+    obj.adr_avg <= MAX_ADR
+  ).length;
 }
 
 /**
@@ -179,3 +191,52 @@ export function getCitiesDistribution(): Record<string, number> {
 
   return distribution;
 }
+
+/**
+ * Интерфейс для объекта из рыночной базы с расчётной доходностью
+ */
+export interface MarketApartment {
+  city: string;
+  name: string;
+  class: string;
+  adr_avg: number;
+  occ_avg: number;
+  price_m2: number;
+  revPerM2Month: number; // Расчётная доходность
+}
+
+/**
+ * Получить топ объектов по доходности
+ * Только Comfort и Business классы, без элитных объектов
+ */
+export function getTopMarketApartments(limit: number = 5): MarketApartment[] {
+  const AVERAGE_AREA = 40;
+  const MAX_ADR = 15000;
+
+  // Фильтруем и рассчитываем доходность
+  const apartments = MARKET_DATA
+    .filter((obj) =>
+      (obj.class === "Comfort" || obj.class === "Business") &&
+      obj.adr_avg <= MAX_ADR
+    )
+    .map((obj) => {
+      const yearlyRevenue = obj.adr_avg * obj.occ_avg * 365;
+      const monthlyRevenue = yearlyRevenue / 12;
+      const revPerM2Month = Math.round(monthlyRevenue / AVERAGE_AREA);
+
+      return {
+        city: obj.city,
+        name: `${obj.city} ${obj.class}`, // Временное имя
+        class: obj.class,
+        adr_avg: obj.adr_avg,
+        occ_avg: obj.occ_avg,
+        price_m2: obj.price_m2,
+        revPerM2Month,
+      };
+    })
+    .sort((a, b) => b.revPerM2Month - a.revPerM2Month)
+    .slice(0, limit);
+
+  return apartments;
+}
+

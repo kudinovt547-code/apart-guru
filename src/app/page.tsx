@@ -15,6 +15,7 @@ import {
   calculateAverageOccupancy,
   calculateAveragePayback,
   getMarketObjectsCount,
+  getTopMarketApartments,
 } from "@/utils/marketStats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -41,7 +42,7 @@ export default function HomePage() {
   const marketObjectsCount = useMemo(() => getMarketObjectsCount(), []);
 
   // Топы для таблиц
-  const topByYield = useMemo(() => getTopByYield(activeProjects, 5), [activeProjects]);
+  const topMarketApartments = useMemo(() => getTopMarketApartments(5), []);
   const topUnderConstruction = useMemo(() => getTopUnderConstruction(5), []);
 
   return (
@@ -160,51 +161,48 @@ export default function HomePage() {
 
           {/* Top Projects - Two Tables Side by Side */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-            {/* Готовые объекты */}
+            {/* Рыночные объекты */}
             <FadeIn>
               <Card className="h-full">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <TrendingUp className="h-5 w-5 text-primary" />
-                    Топ-5 готовых объектов
+                    Топ-5 по доходности
                   </CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    Актуальная доходность по рынку
+                    Рыночные данные по {getMarketObjectsCount()} объектам
                   </p>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {topByYield.map((project, idx) => (
+                    {topMarketApartments.map((apartment, idx) => (
                       <motion.div
-                        key={project.slug}
+                        key={`${apartment.city}-${idx}`}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: idx * 0.1 }}
                         whileHover={{ x: 4 }}
                       >
-                        <Link
-                          href={`/projects/${project.slug}`}
-                          className="flex items-center justify-between p-3 rounded-lg hover:bg-accent/50 transition-colors border border-transparent hover:border-primary/20"
-                        >
+                        <div className="flex items-center justify-between p-3 rounded-lg bg-accent/30 transition-colors border border-primary/10">
                           <div className="flex items-center space-x-3 flex-1">
                             <span className="text-xl font-bold text-primary w-6 flex-shrink-0">
                               {idx + 1}
                             </span>
                             <div className="flex-1 min-w-0">
-                              <p className="font-semibold truncate">{project.title}</p>
+                              <p className="font-semibold truncate">{apartment.city}</p>
                               <p className="text-xs text-muted-foreground">
-                                {project.city}
+                                {apartment.class} • {formatCurrency(apartment.price_m2)}/м²
                               </p>
                             </div>
                           </div>
                           <div className="text-right flex-shrink-0 ml-3">
                             <p className="font-bold font-mono tabular-nums">
-                              {formatCurrency(project.revPerM2Month)}
+                              {formatCurrency(apartment.revPerM2Month)}
                             </p>
                             <p className="text-xs text-muted-foreground">₽/м²/мес</p>
                           </div>
-                        </Link>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
