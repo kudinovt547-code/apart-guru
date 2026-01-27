@@ -119,8 +119,10 @@ const CITIES = Array.from(new Set(APARTMENTS_DB.map(a => a.city)));
 const CLASSES = ["Comfort", "Business"];
 const LOCATIONS = ["Prime", "Center", "Hub"];
 
-// Константа: эксплуатационные расходы (₽/м² в месяц)
-const EXPLOITATION_COST_PER_M2 = 200;
+// Константы расходов
+const EXPLOITATION_COST_PER_M2 = 350; // Эксплуатация (₽/м²/мес): ЖКХ, интернет, клининг
+const REPAIR_RESERVE_PER_M2 = 50; // Резерв на ремонт/страховку (₽/м²/мес)
+const TAX_RATE = 0.06; // Налог УСН "Доходы" 6% от валового дохода
 
 interface CalculatorInputs {
   city: string;
@@ -134,6 +136,8 @@ interface NOIResult {
   grossRevenue: number; // Валовый доход (год)
   ukFee: number; // Комиссия УК (год)
   exploitationCost: number; // Эксплуатация (год)
+  repairReserve: number; // Резерв на ремонт (год)
+  tax: number; // Налог УСН 6% (год)
   netIncome: number; // Чистый доход (год)
   paybackYears: number; // Окупаемость (лет)
   roi: number; // ROI (%)
@@ -214,14 +218,20 @@ export default function CalculatorPage() {
     // Gross Revenue = ADR * Occupancy * 365
     const grossRevenue = adr * occupancy * 365;
 
-    // UK Fee (комиссия УК)
+    // UK Fee (комиссия УК от валового дохода)
     const ukFee = grossRevenue * compSet.avgUkFee;
 
-    // Эксплуатация: 200₽/м² в месяц * 12 месяцев
+    // Эксплуатация: ЖКХ, интернет, клининг (₽/м²/мес × 12)
     const exploitationCost = EXPLOITATION_COST_PER_M2 * inputs.area * 12;
 
-    // Net Income = Gross Revenue - UK Fee - Эксплуатация
-    const netIncome = grossRevenue - ukFee - exploitationCost;
+    // Резерв на ремонт/страховку (₽/м²/мес × 12)
+    const repairReserve = REPAIR_RESERVE_PER_M2 * inputs.area * 12;
+
+    // Налог УСН "Доходы" 6% от валового дохода
+    const tax = grossRevenue * TAX_RATE;
+
+    // Net Income = Gross Revenue - все расходы
+    const netIncome = grossRevenue - ukFee - exploitationCost - repairReserve - tax;
 
     // Окупаемость (лет) = Бюджет / Чистый доход
     const paybackYears = inputs.budget / netIncome;
@@ -233,6 +243,8 @@ export default function CalculatorPage() {
       grossRevenue,
       ukFee,
       exploitationCost,
+      repairReserve,
+      tax,
       netIncome,
       paybackYears,
       roi,
@@ -482,10 +494,11 @@ export default function CalculatorPage() {
             <CardContent className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Валовый доход</span>
-                <span className="font-mono tabular-nums">
+                <span className="font-mono tabular-nums font-semibold">
                   {formatCurrency(realisticResult.grossRevenue)}
                 </span>
               </div>
+              <div className="border-t my-2"></div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Комиссия УК ({formatPercent(compSet.avgUkFee * 100)})</span>
                 <span className="font-mono tabular-nums text-destructive">
@@ -496,6 +509,18 @@ export default function CalculatorPage() {
                 <span className="text-muted-foreground">Эксплуатация ({EXPLOITATION_COST_PER_M2}₽/м²/мес)</span>
                 <span className="font-mono tabular-nums text-destructive">
                   -{formatCurrency(realisticResult.exploitationCost)}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Резерв на ремонт ({REPAIR_RESERVE_PER_M2}₽/м²/мес)</span>
+                <span className="font-mono tabular-nums text-destructive">
+                  -{formatCurrency(realisticResult.repairReserve)}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Налог УСН ({formatPercent(TAX_RATE * 100)})</span>
+                <span className="font-mono tabular-nums text-destructive">
+                  -{formatCurrency(realisticResult.tax)}
                 </span>
               </div>
               <div className="border-t pt-2 flex justify-between font-bold">
