@@ -1,85 +1,81 @@
-import { APARTMENTS_DB, type Apartment } from "@/data/apartments";
+import { getProjects } from "@/data/stats";
+import type { Project } from "@/types/project";
 
 /**
- * Константы для расчётов
+ * Интерфейс для апартамента с расчётной доходностью для таблицы
  */
-const AVERAGE_AREA = 40; // Условная площадь апартамента для расчётов (м²)
-
-/**
- * Интерфейс для апартамента с расчётной доходностью
- */
-export interface ApartmentWithStats extends Apartment {
-  adr_avg: number; // Средний ADR
-  revPerM2Month: number; // Доходность ₽/м²/мес
+export interface ApartmentWithStats {
+  id: string;
+  city: string;
+  name: string;
+  class: string;
+  adr_avg: number;
+  occ_avg: number;
+  revPerM2Month: number;
 }
 
 /**
  * Рассчитать среднюю доходность по рынку (₽/м²/мес)
+ * Используем данные из новой базы (getProjects)
  */
 export function calculateMarketRevPerM2(): number {
-  const apartments = APARTMENTS_DB.map((apt) => {
-    const adr_avg = (apt.adr_low + apt.adr_high) / 2;
-    const yearlyRevenue = adr_avg * apt.occ_avg * 365;
-    const monthlyRevenue = yearlyRevenue / 12;
-    return monthlyRevenue / AVERAGE_AREA;
-  });
+  const projects = getProjects().filter(p => p.status === "active" && p.revPerM2Month > 0);
 
-  const sum = apartments.reduce((acc, val) => acc + val, 0);
-  return Math.round(sum / apartments.length);
+  if (projects.length === 0) return 0;
+
+  const sum = projects.reduce((acc, p) => acc + p.revPerM2Month, 0);
+  return Math.round(sum / projects.length);
 }
 
 /**
  * Рассчитать среднюю загрузку по рынку (%)
  */
 export function calculateAverageOccupancy(): number {
-  const sum = APARTMENTS_DB.reduce((acc, apt) => acc + apt.occ_avg, 0);
-  return Math.round((sum / APARTMENTS_DB.length) * 100);
+  const projects = getProjects().filter(p => p.status === "active" && p.occupancy > 0);
+
+  if (projects.length === 0) return 0;
+
+  const sum = projects.reduce((acc, p) => acc + p.occupancy, 0);
+  return Math.round(sum / projects.length);
 }
 
 /**
  * Рассчитать среднюю окупаемость по рынку (лет)
- * Упрощённая формула: (Цена за м² × площадь) / (Годовой доход × 0.55)
- * 0.55 = примерно 45% расходов (УК, ЖКХ, клининг, ремонт, налоги)
  */
 export function calculateAveragePayback(): number {
-  const paybacks = APARTMENTS_DB.map((apt) => {
-    const adr_avg = (apt.adr_low + apt.adr_high) / 2;
-    const totalPrice = apt.price_m2 * AVERAGE_AREA;
-    const yearlyRevenue = adr_avg * apt.occ_avg * 365;
-    const netIncome = yearlyRevenue * 0.55; // 55% чистого после расходов
-    return totalPrice / netIncome;
-  });
+  const projects = getProjects().filter(p => p.status === "active" && p.paybackYears > 0 && p.paybackYears < 100);
 
-  const sum = paybacks.reduce((acc, val) => acc + val, 0);
-  return parseFloat((sum / paybacks.length).toFixed(1));
+  if (projects.length === 0) return 0;
+
+  const sum = projects.reduce((acc, p) => acc + p.paybackYears, 0);
+  return parseFloat((sum / projects.length).toFixed(1));
 }
 
 /**
  * Получить количество объектов в базе
  */
 export function getApartmentsCount(): number {
-  return APARTMENTS_DB.length;
+  return getProjects().length;
 }
 
 /**
  * Получить топ апартаментов по доходности
  */
 export function getTopApartmentsByRevenue(limit: number = 5): ApartmentWithStats[] {
-  return APARTMENTS_DB
-    .map((apt) => {
-      const adr_avg = (apt.adr_low + apt.adr_high) / 2;
-      const yearlyRevenue = adr_avg * apt.occ_avg * 365;
-      const monthlyRevenue = yearlyRevenue / 12;
-      const revPerM2Month = Math.round(monthlyRevenue / AVERAGE_AREA);
-
-      return {
-        ...apt,
-        adr_avg,
-        revPerM2Month,
-      };
-    })
+  const projects = getProjects()
+    .filter(p => p.status === "active" && p.revPerM2Month > 0)
     .sort((a, b) => b.revPerM2Month - a.revPerM2Month)
     .slice(0, limit);
+
+  return projects.map((p) => ({
+    id: p.slug,
+    city: p.city,
+    name: p.title,
+    class: p.format === "apart-hotel" ? "Business" : "Comfort",
+    adr_avg: p.adr,
+    occ_avg: p.occupancy / 100, // Convert from percentage to decimal
+    revPerM2Month: Math.round(p.revPerM2Month),
+  }));
 }
 
 /**
@@ -87,22 +83,25 @@ export function getTopApartmentsByRevenue(limit: number = 5): ApartmentWithStats
  */
 export function getCitiesDistribution(): Record<string, number> {
   const distribution: Record<string, number> = {};
+  const projects = getProjects();
 
-  APARTMENTS_DB.forEach((apt) => {
-    distribution[apt.city] = (distribution[apt.city] || 0) + 1;
+  projects.forEach((p) => {
+    distribution[p.city] = (distribution[p.city] || 0) + 1;
   });
 
   return distribution;
 }
 
 /**
- * Получить распределение по классам
+ * Получить распределение по форматам (классам)
  */
 export function getClassesDistribution(): Record<string, number> {
   const distribution: Record<string, number> = {};
+  const projects = getProjects();
 
-  APARTMENTS_DB.forEach((apt) => {
-    distribution[apt.class] = (distribution[apt.class] || 0) + 1;
+  projects.forEach((p) => {
+    const className = p.format === "apart-hotel" ? "Business" : "Comfort";
+    distribution[className] = (distribution[className] || 0) + 1;
   });
 
   return distribution;
