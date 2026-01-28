@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "import:stats": "tsx scripts/import-stats.ts"
+    "import:stats": "tsx scripts/import-stats.ts",
+    "convert:data": "tsx scripts/convert-new-data.ts",
+    "check:db": "bash scripts/check-database-stats.sh"
   },
   "dependencies": {
     "@tanstack/react-table": "^8.20.5",
