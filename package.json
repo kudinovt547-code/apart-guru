@@ -9,6 +9,7 @@
     "lint": "next lint",
     "import:stats": "tsx scripts/import-stats.ts",
     "convert:data": "tsx scripts/convert-new-data.ts",
+    "update:projects": "tsx scripts/update-projects-ts.ts",
     "check:db": "bash scripts/check-database-stats.sh"
   },
   "dependencies": {
