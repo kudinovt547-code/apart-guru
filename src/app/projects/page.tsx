@@ -7,41 +7,56 @@ import { Button } from "@/components/ui/button";
 import { Building2, MapPin, TrendingUp } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
-import { APARTMENTS_DB } from "@/data/apartments";
+import { getProjects } from "@/data/stats";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 
 export default function ProjectsPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
 
+  // Get all projects
+  const allProjects = getProjects();
+
   // Get unique cities
   const cities = useMemo(() => {
-    const uniqueCities = Array.from(new Set(APARTMENTS_DB.map(apt => apt.city)));
+    const uniqueCities = Array.from(new Set(allProjects.map(p => p.city)));
     return ["Все города", ...uniqueCities.sort()];
-  }, []);
+  }, [allProjects]);
 
-  // Filter apartments by city
-  const filteredApartments = useMemo(() => {
+  // Filter projects by city
+  const filteredProjects = useMemo(() => {
     if (selectedCity === "Все города") {
-      return APARTMENTS_DB;
+      return allProjects;
     }
-    return APARTMENTS_DB.filter(apt => apt.city === selectedCity);
-  }, [selectedCity]);
+    return allProjects.filter(p => p.city === selectedCity);
+  }, [selectedCity, allProjects]);
 
-  // Calculate stats for each apartment
+  // Transform projects to apartment format for display
   const apartmentsWithStats = useMemo(() => {
-    return filteredApartments.map(apt => {
-      const adr_avg = (apt.adr_low + apt.adr_high) / 2;
-      const yearlyRevenue = adr_avg * apt.occ_avg * 365;
-      const monthlyRevenue = yearlyRevenue / 12;
-      const revPerM2Month = Math.round(monthlyRevenue / 40); // Assuming 40m² average
+    return filteredProjects.map(project => {
+      const price_m2 = Math.round(project.price / project.area);
+      const adr_avg = project.adr;
+      const occ_avg = project.occupancy / 100; // Convert from percentage to decimal
+
+      // Calculate ADR range (±15% from average)
+      const adr_low = Math.round(adr_avg * 0.85);
+      const adr_high = Math.round(adr_avg * 1.15);
 
       return {
-        ...apt,
+        id: project.slug,
+        name: project.title,
+        city: project.city,
+        class: project.format === "apart-hotel" ? "Business" : "Comfort",
+        price_m2,
+        adr_low,
+        adr_high,
         adr_avg,
-        revPerM2Month
+        occ_avg,
+        revPerM2Month: Math.round(project.revPerM2Month),
+        loc_class: "Center", // Default value
+        model: "Short", // Default value
       };
     });
-  }, [filteredApartments]);
+  }, [filteredProjects]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -53,7 +68,7 @@ export default function ProjectsPage() {
               Каталог апарт-отелей
             </h1>
             <p className="text-xl text-muted-foreground">
-              {APARTMENTS_DB.length} объектов с реальными показателями доходности
+              {allProjects.length} объектов с реальными показателями доходности
             </p>
           </div>
         </FadeIn>
@@ -82,7 +97,7 @@ export default function ProjectsPage() {
         {/* Results Count */}
         <FadeIn delay={0.2}>
           <p className="text-center text-muted-foreground mb-8">
-            Найдено объектов: {filteredApartments.length}
+            Найдено объектов: {apartmentsWithStats.length}
           </p>
         </FadeIn>
 
@@ -164,7 +179,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Empty State */}
-        {filteredApartments.length === 0 && (
+        {apartmentsWithStats.length === 0 && (
           <FadeIn>
             <Card className="max-w-md mx-auto text-center py-12">
               <CardContent>
