@@ -55,7 +55,12 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/projects" className="hover:text-primary transition-colors">
-                  Каталог проектов
+                  База данных
+                </Link>
+              </li>
+              <li>
+                <Link href="/invest" className="hover:text-primary transition-colors">
+                  Инвестировать
                 </Link>
               </li>
               <li>

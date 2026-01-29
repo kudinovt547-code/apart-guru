@@ -48,7 +48,13 @@ export default function Header() {
             href="/projects"
             className="transition-colors hover:text-primary text-foreground/70"
           >
-            Каталог
+            База
+          </Link>
+          <Link
+            href="/invest"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Инвестировать
           </Link>
           <Link
             href="/compare"

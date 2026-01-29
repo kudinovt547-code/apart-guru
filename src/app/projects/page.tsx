@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Building2, MapPin, TrendingUp } from "lucide-react";
@@ -65,7 +66,7 @@ export default function ProjectsPage() {
         <FadeIn>
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Каталог апарт-отелей
+              База данных апартаментов
             </h1>
             <p className="text-xl text-muted-foreground">
               {allProjects.length} объектов с реальными показателями доходности
@@ -105,8 +106,9 @@ export default function ProjectsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {apartmentsWithStats.map((apt, idx) => (
             <AnimatedCard key={apt.id} delay={0.3 + idx * 0.05}>
-              <Card className="h-full hover:border-primary/50 transition-colors">
-                <CardHeader>
+              <Link href={`/projects/${apt.id}`}>
+                <Card className="h-full hover:border-primary/50 transition-colors cursor-pointer group">
+                  <CardHeader>
                   <div className="flex items-start justify-between mb-2">
                     <Building2 className="h-6 w-6 text-primary flex-shrink-0" />
                     <span className={`text-xs px-2 py-1 rounded-full ${
@@ -117,7 +119,7 @@ export default function ProjectsPage() {
                       {apt.class}
                     </span>
                   </div>
-                  <CardTitle className="text-lg line-clamp-2">
+                  <CardTitle className="text-lg line-clamp-2 group-hover:text-primary transition-colors">
                     {apt.name}
                   </CardTitle>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -174,6 +176,7 @@ export default function ProjectsPage() {
                   </div>
                 </CardContent>
               </Card>
+              </Link>
             </AnimatedCard>
           ))}
         </div>

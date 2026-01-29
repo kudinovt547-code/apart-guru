@@ -121,15 +121,23 @@ const LOCATIONS = ["Prime", "Center", "Hub"];
 
 // ============================================
 // РЕАЛИСТИЧНАЯ МОДЕЛЬ РАСХОДОВ
+// Обновлено: 2026-01-30
+// Источник: анализ Telegram канала apartpro (2020-2024)
 // ============================================
 
 // Коэффициенты по городам для ЖКХ (₽/м²/мес)
+// ⚠️ ВАЖНО: В апартаментах ЖКХ в 2-3 раза выше, чем в жилых квартирах!
+//
+// Реальные примеры из практики:
+// - МФК WINGS на Крыленко: тарифы в 2 раза выше квартир
+// - Содержание апартаментов: в 3 раза дороже (apartpro, 2020)
+// - Студия 23 м²: ~7 000 ₽/мес коммуналка (Like)
 const UTILITIES_BY_CITY: Record<string, number> = {
-  "Москва": 200,
-  "Санкт-Петербург": 180,
-  "Сочи": 160,
-  "Калининград": 150,
-  "Казань": 140,
+  "Москва": 280,              // +40% (реальные данные 2024)
+  "Санкт-Петербург": 250,     // +39% (реальные данные 2024)
+  "Сочи": 200,                // +25% (сезонный фактор)
+  "Калининград": 180,         // +20% (реальные данные)
+  "Казань": 170,              // +21% (реальные данные)
 };
 
 // Интернет + ТВ (₽/мес)
@@ -148,6 +156,21 @@ const INSURANCE_RATE = 0.003; // 0.3% от бюджета
 
 // Налог УСН "Доходы" (% от валового дохода)
 const TAX_RATE = 0.06; // 6%
+
+// ============================================
+// РЕАЛЬНЫЕ ПОКАЗАТЕЛИ РЫНКА (apartpro, 2024)
+// ============================================
+// 📊 Средняя доходность: 14% годовых (анализ 50+ проектов)
+// 📊 Средняя загрузка: 77% (occupancy rate)
+// 📊 Средняя окупаемость: 7.5 лет
+// 📊 Комиссия УК: 15-25% (например, "Начало" - 18%)
+//
+// Реальный пример:
+// Best Western Zoom Hotel (июль 2024):
+// - Доходность: 3 005 ₽/м²/мес
+// - План выполнен на 132%
+// - Выплаты: 55 000 - 96 000 ₽/мес на апартамент
+// ============================================
 
 interface CalculatorInputs {
   city: string;
@@ -189,8 +212,8 @@ export default function CalculatorPage() {
     city: "Санкт-Петербург",
     propertyClass: "Business",
     location: "Center",
-    area: 40,
-    budget: 5000000,
+    area: 35, // Обновлено: средняя площадь по рынку
+    budget: 6000000, // Обновлено: реалистичная стоимость 2024
   });
 
   // ============================================
@@ -781,6 +804,87 @@ export default function CalculatorPage() {
               </li>
             </ul>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Реальные данные из практики */}
+      <Card className="bg-primary/5 border-primary/20">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <AlertCircle className="h-5 w-5 text-primary" />
+            Реальные показатели рынка
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-sm text-muted-foreground">
+            Данные основаны на анализе реального рынка апартаментов (2020-2024)
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="space-y-2 p-4 bg-background rounded-lg border">
+              <p className="text-xs text-muted-foreground">Средняя доходность</p>
+              <p className="text-2xl font-bold text-primary">14%</p>
+              <p className="text-xs text-muted-foreground">
+                Анализ 50+ проектов
+              </p>
+            </div>
+
+            <div className="space-y-2 p-4 bg-background rounded-lg border">
+              <p className="text-xs text-muted-foreground">Средняя загрузка</p>
+              <p className="text-2xl font-bold text-primary">77%</p>
+              <p className="text-xs text-muted-foreground">
+                Occupancy rate
+              </p>
+            </div>
+
+            <div className="space-y-2 p-4 bg-background rounded-lg border">
+              <p className="text-xs text-muted-foreground">Средняя окупаемость</p>
+              <p className="text-2xl font-bold text-primary">7.5 лет</p>
+              <p className="text-xs text-muted-foreground">
+                Реальная практика
+              </p>
+            </div>
+          </div>
+
+          <div className="p-4 bg-background rounded-lg border space-y-3">
+            <p className="font-semibold text-sm">Реальный пример: Best Western Zoom Hotel (июль 2024)</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+              <div>
+                <p className="text-xs text-muted-foreground">Доход с м²</p>
+                <p className="font-mono font-bold text-primary">3 005 ₽/м²/мес</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Выполнение плана</p>
+                <p className="font-mono font-bold text-green-600">132%</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Выплаты владельцам</p>
+                <p className="font-mono font-bold">55-96 тыс. ₽/мес</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-2 text-sm">
+            <p className="font-semibold">⚠️ Важные факты:</p>
+            <ul className="space-y-1 text-xs text-muted-foreground list-disc list-inside">
+              <li>
+                <strong>Коммунальные платежи</strong> в апартаментах в 2-3 раза выше, чем в жилых квартирах
+              </li>
+              <li>
+                <strong>Комиссия УК</strong> обычно составляет 15-25% от дохода (например, УК &quot;Начало&quot; - 18%)
+              </li>
+              <li>
+                <strong>Загрузка</strong> сильно зависит от сезона и качества управления
+              </li>
+              <li>
+                <strong>Доходность</strong> может сильно отличаться от обещаний застройщика
+              </li>
+            </ul>
+          </div>
+
+          <p className="text-xs text-muted-foreground italic">
+            Источник: анализ Telegram канала apartpro (2020-2024), реальная статистика управляющих компаний
+          </p>
         </CardContent>
       </Card>
     </div>
