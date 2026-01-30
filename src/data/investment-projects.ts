@@ -10,7 +10,7 @@ import { Project, PropertyFormat, ProjectStatus, RiskLevel } from "@/types/proje
  * - Контакты застройщиков
  *
  * Обновлено: 2026-01-30
- * Всего объектов: 8
+ * Всего объектов: 11
  */
 
 export const investmentProjects: Project[] = [
@@ -343,5 +343,117 @@ export const investmentProjects: Project[] = [
       email: "apart@baden-baden.ru"
     },
     url: "https://baden-apart.ru/projects/turgoyak/"
+  },
+  {
+    slug: "krymsky-kvartal-katsiveli",
+    title: "Крымский Квартал",
+    country: "Россия",
+    city: "Ялта",
+    format: PropertyFormat.RECREATION,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 6358000,
+    area: 27.2,
+    revPerM2Month: 1838,
+    noiYear: 600000,
+    paybackYears: 10.6,
+    occupancy: 75,
+    adr: 6680,
+    riskLevel: RiskLevel.HIGH,
+    summary: "Кацивели | 234 апартамента | 350м от моря | Сдача Q3 2026",
+    why: [
+      "234 апартамента в комплексе",
+      "350 метров от моря",
+      "Кацивели - развивающаяся локация",
+      "Срок сдачи Q3 2026"
+    ],
+    risks: [
+      "Геополитические риски Крыма",
+      "Объект в строительстве",
+      "Высокая сезонность",
+      "Валютные риски"
+    ],
+    seasonality: [48,46,53,63,78,93,100,98,83,68,56,50],
+    pricePerM2: 233750,
+    totalUnits: 234,
+    completionDate: "Q3 2026",
+    developer: "MG Group",
+    contacts: {
+      phone: "+7 (978) 60-66-537"
+    }
+  },
+  {
+    slug: "sky-plaza-yalta",
+    title: "Sky Plaza",
+    country: "Россия",
+    city: "Ялта",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 7200000,
+    area: 25,
+    revPerM2Month: 2160,
+    noiYear: 648000,
+    paybackYears: 11.1,
+    occupancy: 75,
+    adr: 7200,
+    riskLevel: RiskLevel.HIGH,
+    summary: "Ялта | Дражинского 48В | 80м от моря | Эскроу-счета ФЗ-214",
+    why: [
+      "80 метров от моря",
+      "Эскроу-счета по ФЗ-214",
+      "Центр Ялты",
+      "Несколько очередей строительства"
+    ],
+    risks: [
+      "Геополитические риски Крыма",
+      "Объект в строительстве",
+      "Высокая сезонность",
+      "Валютные риски"
+    ],
+    seasonality: [50,48,55,65,80,95,100,98,85,70,58,52],
+    pricePerM2: 288000,
+    completionDate: "Поэтапно 2026-2027",
+    developer: "Yalta Panorama Invest",
+    contacts: {
+      phone: "+7 978 922 90 90"
+    }
+  },
+  {
+    slug: "yes-gorki-kazan",
+    title: "YE'S Gorki",
+    country: "Россия",
+    city: "Казань",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 5800000,
+    area: 26,
+    revPerM2Month: 1859,
+    noiYear: 580000,
+    paybackYears: 10,
+    occupancy: 80,
+    adr: 6050,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "25 этажей | 585 номеров | Первый YES в Казани | Сдача 2027",
+    why: [
+      "Первый отель сети YES в Казани",
+      "Крупный проект - 25 этажей, 585 номеров",
+      "Проверенная сеть с 2011 года",
+      "Улица Рихарда Зорге"
+    ],
+    risks: [
+      "Объект в строительстве",
+      "Срок сдачи 2027",
+      "Региональный рынок"
+    ],
+    seasonality: [76,74,78,80,83,86,88,87,84,81,78,76],
+    pricePerM2: 223077,
+    totalUnits: 585,
+    completionDate: "2027",
+    developer: "Unistroy",
+    contacts: {
+      phone: "8 (800) 222-65-95"
+    }
   }
 ];

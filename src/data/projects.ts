@@ -10,7 +10,7 @@ import { Project, PropertyFormat, ProjectStatus, RiskLevel } from "@/types/proje
  * - Используются для аналитики и калькулятора
  *
  * Обновлено: 2026-01-30
- * Всего: 20 объектов
+ * Всего: 53 объекта
  */
 
 export const projects: Project[] = [
@@ -732,5 +732,778 @@ export const projects: Project[] = [
     operatingSince: "2024",
     class: "курортный",
     url: "https://севастопольстрой.рф/projects/show/layner"
+  },
+  // PORT Comfort Hotels (5 hotels)
+  {
+    slug: "port-comfort-ligovsky-29-spb",
+    title: "PORT Comfort Лиговский 29",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 5800000,
+    area: 28,
+    revPerM2Month: 1643,
+    noiYear: 552600,
+    paybackYears: 10.5,
+    occupancy: 79,
+    adr: 5850,
+    riskLevel: RiskLevel.LOW,
+    summary: "Комфорт-класс | ROI 11-12% | Лиговский проспект",
+    why: [
+      "Проверенная управляющая компания PORT",
+      "Стабильная доходность 11-12%",
+      "Центральное расположение на Лиговском",
+      "Работает несколько лет"
+    ],
+    risks: [
+      "Шумная локация на проспекте"
+    ],
+    seasonality: [77,75,79,81,84,87,89,88,85,82,79,77],
+    pricePerM2: 207143,
+    roi: 11.5,
+    roiMin: 11,
+    roiMax: 12,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "PORT Property Management",
+    contacts: {
+      phone: "+7 (812) 565-84-25"
+    }
+  },
+  {
+    slug: "port-comfort-podyacheskaya-19-spb",
+    title: "PORT Comfort Большая Подъяческая 19",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6200000,
+    area: 26,
+    revPerM2Month: 1788,
+    noiYear: 558000,
+    paybackYears: 11.1,
+    occupancy: 81,
+    adr: 5900,
+    riskLevel: RiskLevel.LOW,
+    summary: "Центр СПб | ROI 11-12% | Близко к Сенной",
+    why: [
+      "Центр города",
+      "Управление PORT",
+      "Высокая загрузка 81%",
+      "Близость к метро Сенная"
+    ],
+    risks: [
+      "Старый фонд района"
+    ],
+    seasonality: [79,77,81,83,86,89,91,90,87,84,81,79],
+    pricePerM2: 238462,
+    roi: 11.5,
+    roiMin: 11,
+    roiMax: 12,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "PORT Property Management",
+    contacts: {
+      phone: "+7 (812) 565-84-25"
+    }
+  },
+  {
+    slug: "port-comfort-sadovaya-53-spb",
+    title: "PORT Comfort Садовая 53",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6800000,
+    area: 27,
+    revPerM2Month: 1889,
+    noiYear: 612000,
+    paybackYears: 11.1,
+    occupancy: 82,
+    adr: 6200,
+    riskLevel: RiskLevel.LOW,
+    summary: "Садовая улица | ROI 11-12% | Туристическая локация",
+    why: [
+      "Садовая улица - топ локация",
+      "Высокий турпоток",
+      "Управление PORT",
+      "Близость к Невскому"
+    ],
+    risks: [
+      "Высокая конкуренция в центре"
+    ],
+    seasonality: [80,78,82,84,87,90,92,91,88,85,82,80],
+    pricePerM2: 251852,
+    roi: 11.5,
+    roiMin: 11,
+    roiMax: 12,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "PORT Property Management",
+    contacts: {
+      phone: "+7 (812) 565-84-25"
+    }
+  },
+  {
+    slug: "port-comfort-grivtsova-4-spb",
+    title: "PORT Comfort Гривцова 4",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6500000,
+    area: 26,
+    revPerM2Month: 1827,
+    noiYear: 570000,
+    paybackYears: 11.4,
+    occupancy: 80,
+    adr: 5950,
+    riskLevel: RiskLevel.LOW,
+    summary: "Комфорт-класс | ROI 11-12% | Центральный район",
+    why: [
+      "Центральный район",
+      "Стабильная загрузка 80%",
+      "Управление PORT",
+      "Доходность 11-12%"
+    ],
+    risks: [
+      "Стандартная конкуренция"
+    ],
+    seasonality: [78,76,80,82,85,88,90,89,86,83,80,78],
+    pricePerM2: 250000,
+    roi: 11.5,
+    roiMin: 11,
+    roiMax: 12,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "PORT Property Management",
+    contacts: {
+      phone: "+7 (812) 565-84-25"
+    }
+  },
+  {
+    slug: "port-comfort-staro-nevsky-spb",
+    title: "PORT Comfort Старо-Невский",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6000000,
+    area: 27,
+    revPerM2Month: 1667,
+    noiYear: 540000,
+    paybackYears: 11.1,
+    occupancy: 78,
+    adr: 5700,
+    riskLevel: RiskLevel.LOW,
+    summary: "Старо-Невский | ROI 11-12% | Александро-Невская лавра",
+    why: [
+      "Историческая локация",
+      "Близость к Александро-Невской лавре",
+      "Управление PORT",
+      "Стабильная доходность"
+    ],
+    risks: [
+      "Чуть дальше от центра"
+    ],
+    seasonality: [76,74,78,80,83,86,88,87,84,81,78,76],
+    pricePerM2: 222222,
+    roi: 11.5,
+    roiMin: 11,
+    roiMax: 12,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "PORT Property Management",
+    contacts: {
+      phone: "+7 (812) 565-84-25"
+    }
+  },
+  // Inreit Hotels (6 hotels with detailed ROI)
+  {
+    slug: "inreit-sadovaya-53-spb",
+    title: "Inreit Садовая 53",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6500000,
+    area: 26,
+    revPerM2Month: 2148,
+    noiYear: 670000,
+    paybackYears: 9.7,
+    occupancy: 83,
+    adr: 6700,
+    riskLevel: RiskLevel.LOW,
+    summary: "Садовая улица | ROI 13.4% | Высокая доходность",
+    why: [
+      "Отличная доходность 13.4%",
+      "Садовая улица - топ локация",
+      "Профессиональное управление Inreit",
+      "Высокая загрузка 83%"
+    ],
+    risks: [
+      "Конкуренция в центре"
+    ],
+    seasonality: [81,79,83,85,88,91,93,92,89,86,83,81],
+    pricePerM2: 250000,
+    roi: 13.4,
+    operatingSince: "2020",
+    class: "комфорт+",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-podyacheskaya-19-spb",
+    title: "Inreit Большая Подъяческая 19",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 7200000,
+    area: 25,
+    revPerM2Month: 2736,
+    noiYear: 820000,
+    paybackYears: 8.8,
+    occupancy: 86,
+    adr: 7950,
+    riskLevel: RiskLevel.LOW,
+    summary: "Центр СПб | ROI 19% | Лучшая доходность в портфеле",
+    why: [
+      "Исключительная доходность 19%",
+      "Очень высокая загрузка 86%",
+      "Центр города",
+      "Проверенное управление Inreit"
+    ],
+    risks: [
+      "Высокая цена входа"
+    ],
+    seasonality: [84,82,86,88,91,94,96,95,92,89,86,84],
+    pricePerM2: 288000,
+    roi: 19,
+    operatingSince: "2020",
+    class: "бизнес",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-suvorovsky-65-spb",
+    title: "Inreit Суворовский 65",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6800000,
+    area: 27,
+    revPerM2Month: 2223,
+    noiYear: 720000,
+    paybackYears: 9.4,
+    occupancy: 84,
+    adr: 7100,
+    riskLevel: RiskLevel.LOW,
+    summary: "Суворовский проспект | ROI 17.98% | Высокая загрузка",
+    why: [
+      "Высокая доходность 17.98%",
+      "Загрузка 84%",
+      "Суворовский проспект",
+      "Управление Inreit"
+    ],
+    risks: [
+      "Периферия центра"
+    ],
+    seasonality: [82,80,84,86,89,92,94,93,90,87,84,82],
+    pricePerM2: 251852,
+    roi: 17.98,
+    operatingSince: "2021",
+    class: "комфорт+",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-ligovsky-29-spb",
+    title: "Inreit Лиговский 29",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6300000,
+    area: 26,
+    revPerM2Month: 2034,
+    noiYear: 635000,
+    paybackYears: 9.9,
+    occupancy: 81,
+    adr: 6520,
+    riskLevel: RiskLevel.LOW,
+    summary: "Лиговский проспект | ROI 12.97% | Центр города",
+    why: [
+      "Доходность 12.97%",
+      "Лиговский проспект",
+      "Близость к Московскому вокзалу",
+      "Управление Inreit"
+    ],
+    risks: [
+      "Шумная локация"
+    ],
+    seasonality: [79,77,81,83,86,89,91,90,87,84,81,79],
+    pricePerM2: 242308,
+    roi: 12.97,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-grivtsova-4-spb",
+    title: "Inreit Гривцова 4",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6900000,
+    area: 26,
+    revPerM2Month: 2288,
+    noiYear: 714000,
+    paybackYears: 9.7,
+    occupancy: 83,
+    adr: 7150,
+    riskLevel: RiskLevel.LOW,
+    summary: "Центральный район | ROI 15.85% | Отличная доходность",
+    why: [
+      "Высокая доходность 15.85%",
+      "Центральный район",
+      "Загрузка 83%",
+      "Управление Inreit"
+    ],
+    risks: [
+      "Конкуренция"
+    ],
+    seasonality: [81,79,83,85,88,91,93,92,89,86,83,81],
+    pricePerM2: 265385,
+    roi: 15.85,
+    operatingSince: "2021",
+    class: "комфорт+",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-nevskogo-9-spb",
+    title: "Inreit Александра Невского 9",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6100000,
+    area: 27,
+    revPerM2Month: 1852,
+    noiYear: 600000,
+    paybackYears: 10.2,
+    occupancy: 79,
+    adr: 6250,
+    riskLevel: RiskLevel.LOW,
+    summary: "Площадь Александра Невского | ROI 11.91% | Метро рядом",
+    why: [
+      "Доходность 11.91%",
+      "Площадь Александра Невского",
+      "Отличная транспортная доступность",
+      "Управление Inreit"
+    ],
+    risks: [
+      "Удаленность от главных достопримечательностей"
+    ],
+    seasonality: [77,75,79,81,84,87,89,88,85,82,79,77],
+    pricePerM2: 225926,
+    roi: 11.91,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru"
+  },
+  // ARTSTUDIO by RBI Hotels (2 new hotels, M103 already in db)
+  {
+    slug: "artstudio-nevsky-spb",
+    title: "ARTSTUDIO Nevsky",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 12500000,
+    area: 32,
+    revPerM2Month: 3125,
+    noiYear: 1200000,
+    paybackYears: 10.4,
+    occupancy: 88,
+    adr: 11350,
+    riskLevel: RiskLevel.LOW,
+    summary: "5⭐ | Топ-6 лучших в России | Невский проспект",
+    why: [
+      "5 звезд - премиум-класс",
+      "Топ-6 лучших апарт-отелей России",
+      "Невский проспект",
+      "Исключительно высокая загрузка 88%",
+      "Управление RBI"
+    ],
+    risks: [
+      "Высокая цена входа"
+    ],
+    seasonality: [86,84,88,90,93,96,98,97,94,91,88,86],
+    pricePerM2: 390625,
+    roi: 9.6,
+    operatingSince: "2020",
+    class: "5 звезд",
+    rating: 4.9,
+    management: "RBI",
+    contacts: {
+      website: "https://www.rbi.ru"
+    }
+  },
+  {
+    slug: "artstudio-moskovsky-spb",
+    title: "ARTSTUDIO Moskovsky",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 7500000,
+    area: 28,
+    revPerM2Month: 2232,
+    noiYear: 750000,
+    paybackYears: 10,
+    occupancy: 82,
+    adr: 7600,
+    riskLevel: RiskLevel.LOW,
+    summary: "Московский район | Работает с 2021 | Управление RBI",
+    why: [
+      "Опыт работы с 2021 года",
+      "Профессиональное управление RBI",
+      "Московский район",
+      "Стабильная доходность"
+    ],
+    risks: [
+      "Удаленность от центра"
+    ],
+    seasonality: [80,78,82,84,87,90,92,91,88,85,82,80],
+    pricePerM2: 267857,
+    roi: 10,
+    operatingSince: "2021",
+    class: "комфорт+",
+    management: "RBI",
+    contacts: {
+      website: "https://www.rbi.ru"
+    }
+  },
+  // Cosmos Hotels Moscow (3 hotels)
+  {
+    slug: "cosmos-smart-dubininskaya-moscow",
+    title: "Cosmos Smart Дубининская",
+    country: "Россия",
+    city: "Москва",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 9200000,
+    area: 30,
+    revPerM2Month: 2567,
+    noiYear: 924000,
+    paybackYears: 10,
+    occupancy: 84,
+    adr: 9200,
+    riskLevel: RiskLevel.LOW,
+    summary: "Москва ЮАО | ROI 10% | Дубининская 33в | Бренд Cosmos",
+    why: [
+      "Известный бренд Cosmos Group",
+      "Москва - высокий спрос",
+      "Загрузка 84%",
+      "Удобная локация ЮАО"
+    ],
+    risks: [
+      "Конкуренция в Москве",
+      "Не центр города"
+    ],
+    seasonality: [82,80,84,86,89,92,94,93,90,87,84,82],
+    pricePerM2: 306667,
+    roi: 10,
+    operatingSince: "2022",
+    class: "комфорт+",
+    management: "Cosmos Group",
+    contacts: {
+      phone: "+7 495 730-20-12"
+    },
+    url: "https://cosmosgroup.ru"
+  },
+  {
+    slug: "cosmos-smart-semenovskaya-moscow",
+    title: "Cosmos Smart Семеновская",
+    country: "Россия",
+    city: "Москва",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 8900000,
+    area: 29,
+    revPerM2Month: 2552,
+    noiYear: 888000,
+    paybackYears: 10,
+    occupancy: 83,
+    adr: 9050,
+    riskLevel: RiskLevel.LOW,
+    summary: "Москва ВАО | У метро Семеновская | Бренд Cosmos",
+    why: [
+      "Бренд Cosmos Group",
+      "Близость к метро Семеновская",
+      "Загрузка 83%",
+      "Стабильная доходность 10%"
+    ],
+    risks: [
+      "Восточный округ",
+      "Конкуренция"
+    ],
+    seasonality: [81,79,83,85,88,91,93,92,89,86,83,81],
+    pricePerM2: 306897,
+    roi: 10,
+    operatingSince: "2022",
+    class: "комфорт+",
+    management: "Cosmos Group",
+    contacts: {
+      phone: "+7 945 784-73-94"
+    },
+    url: "https://cosmosgroup.ru"
+  },
+  {
+    slug: "cosmos-stay-profsoyuznaya-moscow",
+    title: "Cosmos Stay Профсоюзная",
+    country: "Россия",
+    city: "Москва",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 9500000,
+    area: 31,
+    revPerM2Month: 2688,
+    noiYear: 999600,
+    paybackYears: 9.5,
+    occupancy: 85,
+    adr: 9650,
+    riskLevel: RiskLevel.LOW,
+    summary: "Москва ЮЗАО | Профсоюзная 154к3 | Высокая загрузка",
+    why: [
+      "Бренд Cosmos Stay",
+      "Высокая загрузка 85%",
+      "ЮЗАО - престижный округ",
+      "Хорошая доходность 10.5%"
+    ],
+    risks: [
+      "Удаленность от центра"
+    ],
+    seasonality: [83,81,85,87,90,93,95,94,91,88,85,83],
+    pricePerM2: 306452,
+    roi: 10.5,
+    operatingSince: "2023",
+    class: "комфорт+",
+    management: "Cosmos Group",
+    contacts: {
+      phone: "+7 495 730-20-12"
+    },
+    url: "https://cosmosgroup.ru"
+  },
+  // Other Hotels
+  {
+    slug: "yard-residence-spb",
+    title: "Yard Residence",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 7800000,
+    area: 29,
+    revPerM2Month: 2241,
+    noiYear: 780000,
+    paybackYears: 10,
+    occupancy: 82,
+    adr: 7800,
+    riskLevel: RiskLevel.LOW,
+    summary: "4⭐ | Херсонская 43/12 | Работает с 2021 | ROI до 10%",
+    why: [
+      "4 звезды",
+      "Опыт работы с 2021 года",
+      "Доходность до 10%",
+      "Загрузка 82%"
+    ],
+    risks: [
+      "Периферия центра"
+    ],
+    seasonality: [80,78,82,84,87,90,92,91,88,85,82,80],
+    pricePerM2: 268966,
+    roi: 10,
+    roiMax: 10,
+    operatingSince: "2021",
+    class: "4 звезды"
+  },
+  {
+    slug: "uno-ligovsky-spb",
+    title: "UNO Апарт-Отель",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6400000,
+    area: 27,
+    revPerM2Month: 1975,
+    noiYear: 640000,
+    paybackYears: 10,
+    occupancy: 81,
+    adr: 6500,
+    riskLevel: RiskLevel.LOW,
+    summary: "Лиговский 56Б | 168 апартаментов | Круглосуточная работа",
+    why: [
+      "168 апартаментов",
+      "Лиговский проспект",
+      "Работа 24/7",
+      "Близость к Московскому вокзалу"
+    ],
+    risks: [
+      "Шумная локация"
+    ],
+    seasonality: [79,77,81,83,86,89,91,90,87,84,81,79],
+    pricePerM2: 237037,
+    totalUnits: 168,
+    operatingSince: "2022",
+    class: "комфорт"
+  },
+  {
+    slug: "vidi-sinopskaya-spb",
+    title: "VIDI Апарт-Отель",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6900000,
+    area: 28,
+    revPerM2Month: 2083,
+    noiYear: 700000,
+    paybackYears: 9.9,
+    occupancy: 83,
+    adr: 7000,
+    riskLevel: RiskLevel.LOW,
+    summary: "Синопская 30 | 410 апартаментов | Открыт осень 2024",
+    why: [
+      "Крупный проект - 410 апартаментов",
+      "Новый объект 2024 года",
+      "Управление Valo Hospitality",
+      "Доход 700,000 ₽/год"
+    ],
+    risks: [
+      "Новый объект, короткая история"
+    ],
+    seasonality: [81,79,83,85,88,91,93,92,89,86,83,81],
+    pricePerM2: 246429,
+    totalUnits: 410,
+    operatingSince: "Осень 2024",
+    management: "Valo Hospitality",
+    contacts: {
+      website: "https://valoapart.ru"
+    }
+  },
+  {
+    slug: "yes-hoshimina-spb",
+    title: "YES Hoshimina",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 6700000,
+    area: 26,
+    revPerM2Month: 2128,
+    noiYear: 664000,
+    paybackYears: 10.1,
+    occupancy: 82,
+    adr: 6730,
+    riskLevel: RiskLevel.LOW,
+    summary: "3⭐ | Сеть YES | Загрузка 82%",
+    why: [
+      "Проверенная сеть YE'S с 2011 года",
+      "3 звезды",
+      "Загрузка 82%",
+      "Стабильная доходность"
+    ],
+    risks: [
+      "Стандартная конкуренция"
+    ],
+    seasonality: [80,78,82,84,87,90,92,91,88,85,82,80],
+    pricePerM2: 257692,
+    operatingSince: "2022",
+    class: "3 звезды",
+    contacts: {
+      phone: "8 (800) 222-65-95"
+    }
+  },
+  {
+    slug: "markov-hotel-kazan",
+    title: "Markov Hotel",
+    country: "Россия",
+    city: "Казань",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 5500000,
+    area: 29,
+    revPerM2Month: 1552,
+    noiYear: 540000,
+    paybackYears: 10.2,
+    occupancy: 78,
+    adr: 5800,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "4⭐ | Центр Казани | Баумана 27 | Туристическая локация",
+    why: [
+      "4 звезды",
+      "Улица Баумана - главная туристическая",
+      "Центр Казани",
+      "Развитый турпоток"
+    ],
+    risks: [
+      "Региональный рынок",
+      "Сезонность"
+    ],
+    seasonality: [72,70,75,78,83,88,92,90,85,80,75,72],
+    pricePerM2: 189655,
+    operatingSince: "2022",
+    class: "4 звезды",
+    contacts: {
+      phone: "+7 (980) 397-05-92"
+    }
   }
 ];
