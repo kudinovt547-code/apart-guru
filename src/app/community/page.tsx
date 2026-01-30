@@ -23,13 +23,13 @@ export default function CommunityPage() {
       icon: Users,
       title: "Сообщество инвесторов",
       description: "Общайтесь с опытными инвесторами в недвижимость, делитесь опытом и получайте советы",
-      link: "https://t.me/Timofeykudinov"
+      link: "https://t.me/apartgurus"
     },
     {
       icon: MessageCircle,
-      title: "Чат поддержки",
-      description: "Получайте быстрые ответы на вопросы об инвестициях в апарт-отели",
-      link: "https://t.me/apartguru_support"
+      title: "Новостной канал",
+      description: "Актуальные новости рынка апарт-отелей, аналитика и инвестиционные возможности",
+      link: "https://t.me/apartdotpro"
     },
     {
       icon: BookOpen,
@@ -148,15 +148,16 @@ export default function CommunityPage() {
                 аналитике и поддержке опытных экспертов
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="https://t.me/Timofeykudinov" target="_blank">
+                <Link href="https://t.me/apartgurus" target="_blank">
                   <Button size="lg" className="min-w-[200px]">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Связаться в Telegram
+                    <Users className="mr-2 h-5 w-5" />
+                    Группа сообщества
                   </Button>
                 </Link>
-                <Link href="/contact">
+                <Link href="https://t.me/apartdotpro" target="_blank">
                   <Button size="lg" variant="outline" className="min-w-[200px]">
-                    Связаться с нами
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Новостной канал
                   </Button>
                 </Link>
               </div>
