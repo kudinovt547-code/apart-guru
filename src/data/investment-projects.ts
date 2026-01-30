@@ -48,7 +48,9 @@ export const investmentProjects: Project[] = [
     contacts: {
       phone: "+7 812 336 03 36"
     },
-    url: "https://www.yesleader.ru"
+    url: "https://www.yesleader.ru",
+    image: "/images/projects/yes-leader.svg",
+    images: ["/images/projects/yes-leader-1.svg", "/images/projects/yes-leader-2.svg"]
   },
   {
     slug: "inreit-hersonskaya-39",

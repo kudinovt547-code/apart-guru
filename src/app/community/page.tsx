@@ -23,7 +23,7 @@ export default function CommunityPage() {
       icon: Users,
       title: "Сообщество инвесторов",
       description: "Общайтесь с опытными инвесторами в недвижимость, делитесь опытом и получайте советы",
-      link: "https://t.me/apartguru_community"
+      link: "https://t.me/Timofeykudinov"
     },
     {
       icon: MessageCircle,
@@ -148,10 +148,10 @@ export default function CommunityPage() {
                 аналитике и поддержке опытных экспертов
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="https://t.me/apartguru_community" target="_blank">
+                <Link href="https://t.me/Timofeykudinov" target="_blank">
                   <Button size="lg" className="min-w-[200px]">
                     <MessageCircle className="mr-2 h-5 w-5" />
-                    Telegram-сообщество
+                    Связаться в Telegram
                   </Button>
                 </Link>
                 <Link href="/contact">

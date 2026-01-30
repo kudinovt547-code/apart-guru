@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Building2, MapPin, TrendingUp, ExternalLink, Star, Award, Construction, CheckCircle2 } from "lucide-react";
@@ -112,7 +113,18 @@ export default function InvestPage() {
           {investmentsWithStats.map((apt, idx) => (
             <AnimatedCard key={apt.id} delay={0.3 + idx * 0.05}>
               <Link href={`/projects/${apt.id}`}>
-                <Card className="h-full hover:border-primary/50 transition-colors cursor-pointer group">
+                <Card className="h-full hover:border-primary/50 transition-colors cursor-pointer group overflow-hidden">
+                  {filteredProjects.find(p => p.slug === apt.id)?.image && (
+                    <div className="relative w-full h-48 overflow-hidden">
+                      <Image
+                        src={filteredProjects.find(p => p.slug === apt.id)?.image || ''}
+                        alt={apt.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <Building2 className="h-6 w-6 text-primary flex-shrink-0" />

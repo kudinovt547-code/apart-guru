@@ -208,7 +208,9 @@ export default function ContactPage() {
 
             <div>
               <p className="font-semibold mb-1">Telegram</p>
-              <p className="text-sm text-muted-foreground">@apartguru_support</p>
+              <a href="https://t.me/Timofeykudinov" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                @Timofeykudinov
+              </a>
             </div>
 
             <div>

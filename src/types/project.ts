@@ -64,6 +64,8 @@ export const ProjectSchema = z.object({
   completionDate: z.string().optional(),
   pricePerM2: z.number().optional(),
   link: z.string().optional(),
+  image: z.string().optional(),
+  images: z.array(z.string()).optional(),
 
   // Optional fields for operational projects
   class: z.string().optional(),
