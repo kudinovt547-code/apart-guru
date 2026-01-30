@@ -1,5 +1,6 @@
 import { Project } from "@/types/project";
 import { projects as fallbackProjects } from "./projects";
+import { investmentProjects } from "./investment-projects";
 
 export interface StatsData {
   objects: Project[];
@@ -49,9 +50,17 @@ export function getProjects(): Project[] {
 
 /**
  * Get project by slug
+ * Searches in both operational projects and investment projects
  */
 export function getProjectBySlug(slug: string): Project | undefined {
-  return getProjects().find((p) => p.slug === slug);
+  // First search in operational projects
+  const operationalProject = getProjects().find((p) => p.slug === slug);
+  if (operationalProject) {
+    return operationalProject;
+  }
+
+  // If not found, search in investment projects
+  return investmentProjects.find((p) => p.slug === slug);
 }
 
 /**

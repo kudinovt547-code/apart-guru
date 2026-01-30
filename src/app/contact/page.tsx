@@ -200,13 +200,15 @@ export default function ContactPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <p className="font-semibold mb-1">Telegram</p>
-              <p className="text-sm text-muted-foreground">@apartguru_support</p>
+              <p className="font-semibold mb-1">WhatsApp</p>
+              <a href="https://wa.me/79817389197" target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                +7 981 738-91-97
+              </a>
             </div>
 
             <div>
-              <p className="font-semibold mb-1">Email</p>
-              <p className="text-sm text-muted-foreground">info@apartguru.ru</p>
+              <p className="font-semibold mb-1">Telegram</p>
+              <p className="text-sm text-muted-foreground">@apartguru_support</p>
             </div>
 
             <div>

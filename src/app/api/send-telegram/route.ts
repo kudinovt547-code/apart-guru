@@ -1,16 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { type, data } = body;
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
-
-    if (!botToken || !chatId) {
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      console.error('Telegram configuration missing');
       return NextResponse.json(
-        { error: 'Telegram credentials not configured' },
+        { error: 'Telegram configuration missing' },
         { status: 500 }
       );
     }
@@ -18,76 +19,49 @@ export async function POST(request: NextRequest) {
     let message = '';
 
     if (type === 'contact') {
-      // Contact form lead
-      message = `🎯 <b>Новая заявка на подбор</b>\n\n`;
-      message += `👤 <b>Имя:</b> ${data.name}\n`;
-      message += `📱 <b>Контакт:</b> ${data.contact}\n`;
+      message = `🔔 *Новая заявка на подбор*
 
-      if (data.budget) {
-        message += `💰 <b>Бюджет:</b> ${data.budget} млн ₽\n`;
-      }
+👤 *Имя:* ${data.name}
+📱 *Контакт:* ${data.contact}
+💰 *Бюджет:* ${data.budget || 'Не указан'}
+🏙️ *Города:* ${data.city || 'Не указано'}
+📊 *Риск-профиль:* ${data.riskProfile || 'Не указан'}
+💬 *Сообщение:* ${data.message || 'Нет'}
 
-      if (data.city) {
-        message += `🏙 <b>Города:</b> ${data.city}\n`;
-      }
-
-      if (data.riskProfile) {
-        const riskLabels: Record<string, string> = {
-          'low': 'Консервативный',
-          'medium': 'Умеренный',
-          'high': 'Агрессивный'
-        };
-        message += `📊 <b>Риск-профиль:</b> ${riskLabels[data.riskProfile] || data.riskProfile}\n`;
-      }
-
-      if (data.message) {
-        message += `\n💬 <b>Сообщение:</b>\n${data.message}`;
-      }
-    } else if (type === 'report') {
-      // PDF report request
-      message = `📄 <b>Запрос PDF-отчета сравнения</b>\n\n`;
-      message += `👤 <b>Имя:</b> ${data.name}\n`;
-      message += `📱 <b>Контакт:</b> ${data.contact}\n`;
-
-      if (data.projects && data.projects.length > 0) {
-        message += `\n🏢 <b>Проекты для сравнения:</b>\n`;
-        data.projects.forEach((slug: string, idx: number) => {
-          message += `  ${idx + 1}. ${slug}\n`;
-        });
-      }
+Свяжитесь с клиентом как можно скорее! ⚡`;
+    } else {
+      message = JSON.stringify(data, null, 2);
     }
 
-    message += `\n⏰ ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}`;
+    const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-    // Send to Telegram
-    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     const response = await fetch(telegramUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        chat_id: chatId,
+        chat_id: TELEGRAM_CHAT_ID,
         text: message,
-        parse_mode: 'HTML',
+        parse_mode: 'Markdown',
       }),
     });
 
-    const result = await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-      console.error('Telegram API error:', result);
+      console.error('Telegram API error:', responseData);
       return NextResponse.json(
-        { error: 'Failed to send message to Telegram' },
+        { error: 'Failed to send message to Telegram', details: responseData },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, data: responseData });
   } catch (error) {
-    console.error('Error sending to Telegram:', error);
+    console.error('Error in send-telegram API:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
