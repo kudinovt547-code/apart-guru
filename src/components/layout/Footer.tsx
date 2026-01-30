@@ -69,6 +69,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/community" className="hover:text-primary transition-colors">
+                  Сообщество
+                </Link>
+              </li>
+              <li>
                 <Link href="/calculator" className="hover:text-primary transition-colors">
                   Калькулятор доходности
                 </Link>

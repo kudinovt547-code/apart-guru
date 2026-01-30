@@ -75,6 +75,12 @@ export default function Header() {
             Услуги
           </Link>
           <Link
+            href="/community"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Сообщество
+          </Link>
+          <Link
             href="/methodology"
             className="transition-colors hover:text-primary text-foreground/70"
           >

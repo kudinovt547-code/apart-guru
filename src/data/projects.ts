@@ -10,7 +10,7 @@ import { Project, PropertyFormat, ProjectStatus, RiskLevel } from "@/types/proje
  * - Используются для аналитики и калькулятора
  *
  * Обновлено: 2026-01-30
- * Всего: 53 объекта
+ * Всего: 45 объектов
  */
 
 export const projects: Project[] = [
@@ -933,32 +933,35 @@ export const projects: Project[] = [
     format: PropertyFormat.HOTEL,
     status: ProjectStatus.ACTIVE,
     updatedAt: "2026-01-30",
-    price: 6500000,
-    area: 26,
-    revPerM2Month: 2148,
-    noiYear: 670000,
-    paybackYears: 9.7,
-    occupancy: 83,
-    adr: 6700,
+    price: 610788475 / 116,
+    area: 2100 / 116,
+    revPerM2Month: 2851,
+    noiYear: (2851 * 12 * (2100 / 116)),
+    paybackYears: (610788475 / 116) / ((2851 * 12 * (2100 / 116))),
+    occupancy: 90,
+    adr: 4572,
     riskLevel: RiskLevel.LOW,
-    summary: "Садовая улица | ROI 13.4% | Высокая доходность",
+    summary: "4⭐ | 116 номеров | ROI 11.76% | Доход 2,851 ₽/м²/мес | Садовая 53",
     why: [
-      "Отличная доходность 13.4%",
-      "Садовая улица - топ локация",
-      "Профессиональное управление Inreit",
-      "Высокая загрузка 83%"
+      "Отличная доходность 11.76% годовых",
+      "Садовая улица - топ локация в центре",
+      "Профессиональное управление Inreit (8 лет опыта)",
+      "Высокая загрузка 90.2%",
+      "Реальные проверенные данные 2024 года"
     ],
     risks: [
       "Конкуренция в центре"
     ],
-    seasonality: [81,79,83,85,88,91,93,92,89,86,83,81],
-    pricePerM2: 250000,
-    roi: 13.4,
+    seasonality: [79,77,81,83,86,89,91,90,87,84,81,79],
+    pricePerM2: 610788475 / 2100,
+    totalUnits: 116,
+    roi: 11.76,
     operatingSince: "2020",
-    class: "комфорт+",
+    class: "4 звезды",
     management: "Inreit",
     contacts: {
-      phone: "+7 (800) 101-05-48"
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
     },
     url: "https://inreit.ru"
   },
@@ -970,32 +973,35 @@ export const projects: Project[] = [
     format: PropertyFormat.HOTEL,
     status: ProjectStatus.ACTIVE,
     updatedAt: "2026-01-30",
-    price: 7200000,
-    area: 25,
-    revPerM2Month: 2736,
-    noiYear: 820000,
-    paybackYears: 8.8,
-    occupancy: 86,
-    adr: 7950,
+    price: 99840440 / 31,
+    area: 434.1 / 31,
+    revPerM2Month: 3642,
+    noiYear: (3642 * 12 * (434.1 / 31)),
+    paybackYears: (99840440 / 31) / ((3642 * 12 * (434.1 / 31))),
+    occupancy: 90,
+    adr: 3495,
     riskLevel: RiskLevel.LOW,
-    summary: "Центр СПб | ROI 19% | Лучшая доходность в портфеле",
+    summary: "3⭐ | 31 номер | ROI 19% | Доход 3,642 ₽/м²/мес | Лучшая доходность!",
     why: [
-      "Исключительная доходность 19%",
-      "Очень высокая загрузка 86%",
-      "Центр города",
-      "Проверенное управление Inreit"
+      "Исключительная доходность 19% годовых",
+      "Очень высокая загрузка 90.2%",
+      "Центр города, Большая Подъяческая",
+      "Проверенное управление Inreit",
+      "Реальные данные 2024: выплачено 18.97 млн ₽"
     ],
     risks: [
       "Высокая цена входа"
     ],
     seasonality: [84,82,86,88,91,94,96,95,92,89,86,84],
-    pricePerM2: 288000,
+    pricePerM2: 99840440 / 434.1,
+    totalUnits: 31,
     roi: 19,
     operatingSince: "2020",
-    class: "бизнес",
+    class: "3 звезды",
     management: "Inreit",
     contacts: {
-      phone: "+7 (800) 101-05-48"
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
     },
     url: "https://inreit.ru"
   },
@@ -1505,5 +1511,166 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (980) 397-05-92"
     }
+  },
+  // Additional Inreit Hotels with exact data from Excel
+  {
+    slug: "inreit-sadovaya-28-spb",
+    title: "Inreit Садовая 28",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 3272000,
+    area: 14.3,
+    revPerM2Month: 3350,
+    noiYear: 575000,
+    paybackYears: 5.7,
+    occupancy: 89,
+    adr: 3556,
+    riskLevel: RiskLevel.LOW,
+    summary: "3⭐ | 39 номеров | ROI 17.58% | Доход 3,350 ₽/м²/мес | Садовая 28",
+    why: [
+      "Высокая доходность 17.58% годовых",
+      "Отличная загрузка 88.7%",
+      "Садовая улица - центр города",
+      "Управление Inreit",
+      "Выплачено в 2024: 22.43 млн ₽"
+    ],
+    risks: [
+      "Конкуренция в центре"
+    ],
+    seasonality: [83,78,82,85,88,91,93,92,89,86,83,81],
+    pricePerM2: 228741,
+    totalUnits: 39,
+    roi: 17.58,
+    operatingSince: "2021",
+    class: "3 звезды",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-blokhina-petrogradka-spb",
+    title: "Inreit Блохина (Петроградка)",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 3157602,
+    area: 17.1,
+    revPerM2Month: 1971,
+    noiYear: 404000,
+    paybackYears: 7.8,
+    occupancy: 87,
+    adr: 2952,
+    riskLevel: RiskLevel.LOW,
+    summary: "3⭐ | 16 номеров | ROI 12.78% | Петроградская сторона",
+    why: [
+      "Доходность 12.78% годовых",
+      "Загрузка 87.4%",
+      "Петроградская сторона",
+      "Управление Inreit",
+      "Компактный объект"
+    ],
+    risks: [
+      "Небольшой объект"
+    ],
+    seasonality: [82,79,81,84,87,90,92,91,88,85,82,80],
+    pricePerM2: 184702,
+    totalUnits: 16,
+    roi: 12.78,
+    operatingSince: "2021",
+    class: "3 звезды",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-blokhina-neva-spb",
+    title: "Inreit Блохина (Нева)",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 4230033,
+    area: 20.7,
+    revPerM2Month: 2156,
+    noiYear: 535500,
+    paybackYears: 7.9,
+    occupancy: 87,
+    adr: 3219,
+    riskLevel: RiskLevel.LOW,
+    summary: "34 номера | ROI 12.66% | Доход 2,156 ₽/м²/мес | Набережная Невы",
+    why: [
+      "Доходность 12.66% годовых",
+      "Загрузка 86.9%",
+      "Набережная Невы",
+      "Управление Inreit",
+      "Выплачено в 2024: 18.2 млн ₽"
+    ],
+    risks: [
+      "Стандартные риски"
+    ],
+    seasonality: [81,79,82,84,87,90,92,91,88,85,82,80],
+    pricePerM2: 204350,
+    totalUnits: 34,
+    roi: 12.66,
+    operatingSince: "2021",
+    class: "комфорт",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
+    },
+    url: "https://inreit.ru"
+  },
+  {
+    slug: "inreit-moscow",
+    title: "Inreit Москва",
+    country: "Россия",
+    city: "Москва",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 8277864,
+    area: 17.3,
+    revPerM2Month: 4084,
+    noiYear: 848000,
+    paybackYears: 9.8,
+    occupancy: 89,
+    adr: 5205,
+    riskLevel: RiskLevel.LOW,
+    summary: "20 номеров | ROI 10.23% | Доход 4,084 ₽/м²/мес | Москва",
+    why: [
+      "Москва - высокий спрос",
+      "Доходность 10.23% годовых",
+      "Загрузка 88.9%",
+      "Управление Inreit",
+      "Выплачено в 2024: 16.93 млн ₽"
+    ],
+    risks: [
+      "Высокая конкуренция в Москве"
+    ],
+    seasonality: [85,83,86,88,91,94,96,95,92,89,86,84],
+    pricePerM2: 478494,
+    totalUnits: 20,
+    roi: 10.23,
+    operatingSince: "2022",
+    class: "комфорт+",
+    management: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
+    },
+    url: "https://inreit.ru"
   }
 ];
