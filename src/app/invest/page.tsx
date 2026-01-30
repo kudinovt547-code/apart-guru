@@ -5,23 +5,17 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Building2, MapPin, TrendingUp, ExternalLink } from "lucide-react";
+import { Building2, MapPin, TrendingUp, ExternalLink, Star, Award } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
-import { getProjects } from "@/data/stats";
+import { operationalProjects, operationalStats } from "@/data/operational-projects";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 
 export default function InvestPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
 
-  // Get all projects
-  const allProjects = getProjects();
-
-  // Filter: показываем только объекты в продаже (for_sale)
-  // Для демо используем все active проекты
-  const forSaleProjects = useMemo(() => {
-    return allProjects.filter(p => p.status === "active");
-  }, [allProjects]);
+  // Все объекты уже построены и работают
+  const forSaleProjects = operationalProjects;
 
   // Get unique cities
   const cities = useMemo(() => {
@@ -41,30 +35,24 @@ export default function InvestPage() {
   const investmentsWithStats = useMemo(() => {
     return filteredProjects.map(project => {
       const price_m2 = Math.round(project.price / project.area);
-      const adr_avg = project.adr;
-      const occ_avg = project.occupancy / 100;
-
-      // Calculate ADR range (±15% from average)
-      const adr_low = Math.round(adr_avg * 0.85);
-      const adr_high = Math.round(adr_avg * 1.15);
 
       return {
         id: project.slug,
         name: project.title,
         city: project.city,
-        class: project.format === "apart-hotel" ? "Business" : "Comfort",
+        class: project.class || "комфорт",
         price_m2,
         price: project.price,
         area: project.area,
-        adr_low,
-        adr_high,
-        adr_avg,
-        occ_avg,
+        areaMax: project.areaMax,
         revPerM2Month: Math.round(project.revPerM2Month),
-        roi: project.noiYear > 0 ? ((project.noiYear / project.price) * 100).toFixed(1) : "N/A",
+        roi: project.roi || (project.noiYear > 0 ? ((project.noiYear / project.price) * 100).toFixed(1) : "N/A"),
         paybackYears: project.paybackYears,
-        loc_class: "Center",
-        model: "Short",
+        occupancy: project.occupancy,
+        rating: project.rating,
+        management: project.management,
+        operatingSince: project.operatingSince,
+        totalUnits: project.totalUnits,
       };
     });
   }, [filteredProjects]);
@@ -75,14 +63,18 @@ export default function InvestPage() {
         {/* Header */}
         <FadeIn>
           <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+              <Award className="h-5 w-5" />
+              <span className="text-sm font-semibold">ТОЛЬКО ПОСТРОЕННЫЕ И РАБОТАЮЩИЕ ОБЪЕКТЫ</span>
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Инвестиции в апартаменты
+              Инвестиции в апарт-отели
             </h1>
             <p className="text-xl text-muted-foreground">
-              {forSaleProjects.length} объектов доступны для покупки
+              {forSaleProjects.length} объектов сданы в эксплуатацию и работают
             </p>
             <p className="text-sm text-muted-foreground mt-2">
-              Реальная доходность • Проверенные застройщики • Юридическая поддержка
+              Реальная операционная доходность • Проверенные управляющие компании • Гарантированный доход
             </p>
           </div>
         </FadeIn>
@@ -124,20 +116,31 @@ export default function InvestPage() {
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <Building2 className="h-6 w-6 text-primary flex-shrink-0" />
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        apt.class === "Business"
-                          ? "bg-primary/20 text-primary"
-                          : "bg-muted text-muted-foreground"
-                      }`}>
-                        {apt.class}
-                      </span>
+                      <div className="flex gap-2">
+                        {apt.rating && (
+                          <span className="text-xs px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 flex items-center gap-1">
+                            <Star className="h-3 w-3 fill-current" />
+                            {apt.rating}
+                          </span>
+                        )}
+                        <span className="text-xs px-2 py-1 rounded-full bg-primary/20 text-primary">
+                          {apt.class}
+                        </span>
+                      </div>
                     </div>
                     <CardTitle className="text-lg line-clamp-2 group-hover:text-primary transition-colors">
                       {apt.name}
                     </CardTitle>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
-                      <span>{apt.city}</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4" />
+                        <span>{apt.city}</span>
+                      </div>
+                      {apt.operatingSince && (
+                        <span className="text-xs text-green-600 dark:text-green-400 font-semibold">
+                          С {apt.operatingSince}
+                        </span>
+                      )}
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -162,7 +165,7 @@ export default function InvestPage() {
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Площадь</span>
                         <span className="font-mono text-sm tabular-nums">
-                          {apt.area} м²
+                          {apt.area} м² {apt.areaMax && `- ${apt.areaMax} м²`}
                         </span>
                       </div>
 
@@ -172,6 +175,16 @@ export default function InvestPage() {
                           <span className="text-sm text-muted-foreground">Годовая доходность</span>
                           <span className="font-mono text-sm font-bold text-primary tabular-nums">
                             {apt.roi}%
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Occupancy */}
+                      {apt.occupancy && (
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-muted-foreground">Загрузка</span>
+                          <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400 tabular-nums">
+                            {apt.occupancy}%
                           </span>
                         </div>
                       )}
@@ -194,6 +207,24 @@ export default function InvestPage() {
                           <span className="font-mono text-sm tabular-nums">
                             {apt.paybackYears.toFixed(1)} лет
                           </span>
+                        </div>
+                      )}
+
+                      {/* Management & Units */}
+                      {(apt.management || apt.totalUnits) && (
+                        <div className="pt-3 border-t border-border/50 space-y-2">
+                          {apt.management && (
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs text-muted-foreground">Управление</span>
+                              <span className="text-xs font-medium">{apt.management}</span>
+                            </div>
+                          )}
+                          {apt.totalUnits && (
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs text-muted-foreground">Всего номеров</span>
+                              <span className="text-xs font-medium tabular-nums">{apt.totalUnits}</span>
+                            </div>
+                          )}
                         </div>
                       )}
 
@@ -230,9 +261,58 @@ export default function InvestPage() {
           </FadeIn>
         )}
 
-        {/* Info Section */}
+        {/* Statistics Section */}
         <FadeIn delay={0.4}>
-          <div className="mt-16 max-w-4xl mx-auto">
+          <div className="mt-16 max-w-6xl mx-auto">
+            <Card className="bg-muted/30">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-6 text-center">
+                  Статистика по операционным проектам
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary mb-1 tabular-nums">
+                      {operationalStats.totalProjects}
+                    </div>
+                    <p className="text-sm text-muted-foreground">Проектов работает</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary mb-1 tabular-nums">
+                      {operationalStats.totalUnits.toLocaleString()}+
+                    </div>
+                    <p className="text-sm text-muted-foreground">Номеров в эксплуатации</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary mb-1 tabular-nums">
+                      {operationalStats.averageROI}%
+                    </div>
+                    <p className="text-sm text-muted-foreground">Средняя доходность</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary mb-1 tabular-nums">
+                      {operationalStats.averageOccupancy}%
+                    </div>
+                    <p className="text-sm text-muted-foreground">Средняя загрузка</p>
+                  </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-border/50">
+                  <h3 className="text-sm font-semibold mb-3 text-center">Распределение по городам</h3>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    {Object.entries(operationalStats.cities).map(([city, count]) => (
+                      <div key={city} className="text-xs bg-background px-3 py-1.5 rounded-full">
+                        <span className="font-semibold">{city}:</span> <span className="text-muted-foreground">{count}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </FadeIn>
+
+        {/* Info Section */}
+        <FadeIn delay={0.5}>
+          <div className="mt-12 max-w-4xl mx-auto">
             <Card className="bg-primary/5 border-primary/20">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-4 text-center">
