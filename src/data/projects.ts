@@ -46,7 +46,9 @@ export const projects: Project[] = [
     roi: 9.9,
     completionDate: "2023",
     operatingSince: "2023",
-    class: "комфорт"
+    class: "комфорт",
+    image: "/images/projects/start-parnas-spb.svg",
+    images: ["/images/projects/start-parnas-spb-1.svg", "/images/projects/start-parnas-spb-2.svg"]
   },
   {
     slug: "valo-hotel-city-spb",
@@ -83,7 +85,9 @@ export const projects: Project[] = [
     class: "комфорт",
     contacts: {
       website: "https://valoapart.ru"
-    }
+    },
+    image: "/images/projects/valo-hotel-city-spb.svg",
+    images: ["/images/projects/valo-hotel-city-spb-1.svg", "/images/projects/valo-hotel-city-spb-2.svg"]
   },
   {
     slug: "yes-marata-spb",
@@ -124,7 +128,9 @@ export const projects: Project[] = [
     amenities: ["фитнес-зал", "круглосуточный доступ"],
     contacts: {
       phone: "8 (800) 222-65-95"
-    }
+    },
+    image: "/images/projects/yes-marata-spb.svg",
+    images: ["/images/projects/yes-marata-spb-1.svg", "/images/projects/yes-marata-spb-2.svg"]
   },
   {
     slug: "best-western-zoom-hotel-spb",
@@ -158,7 +164,9 @@ export const projects: Project[] = [
     roi: 13.5,
     completionDate: "Апрель 2022",
     operatingSince: "Апрель 2022",
-    class: "бизнес"
+    class: "бизнес",
+    image: "/images/projects/best-western-zoom-hotel-spb.svg",
+    images: ["/images/projects/best-western-zoom-hotel-spb-1.svg", "/images/projects/best-western-zoom-hotel-spb-2.svg"]
   },
   {
     slug: "vertical-moskovsky-spb",
@@ -196,7 +204,9 @@ export const projects: Project[] = [
     class: "комфорт",
     contacts: {
       website: "https://vertical-hotel.ru"
-    }
+    },
+    image: "/images/projects/vertical-moskovsky-spb.svg",
+    images: ["/images/projects/vertical-moskovsky-spb-1.svg", "/images/projects/vertical-moskovsky-spb-2.svg"]
   },
   {
     slug: "wings-krylenki-spb",
@@ -227,7 +237,9 @@ export const projects: Project[] = [
     pricePerM2: 188462,
     completionDate: "Ноябрь 2023",
     operatingSince: "2020",
-    class: "комфорт"
+    class: "комфорт",
+    image: "/images/projects/wings-krylenki-spb.svg",
+    images: ["/images/projects/wings-krylenki-spb-1.svg", "/images/projects/wings-krylenki-spb-2.svg"]
   },
   {
     slug: "avenue-apart-dybenko-spb",
@@ -262,7 +274,9 @@ export const projects: Project[] = [
     roiMax: 12,
     completionDate: "2023",
     operatingSince: "2023",
-    class: "комфорт"
+    class: "комфорт",
+    image: "/images/projects/avenue-apart-dybenko-spb.svg",
+    images: ["/images/projects/avenue-apart-dybenko-spb-1.svg", "/images/projects/avenue-apart-dybenko-spb-2.svg"]
   },
   {
     slug: "in2it-kupchino-spb",
@@ -297,7 +311,9 @@ export const projects: Project[] = [
     management: "PLG",
     contacts: {
       website: "https://plg.group/complex/in2it/"
-    }
+    },
+    image: "/images/projects/in2it-kupchino-spb.svg",
+    images: ["/images/projects/in2it-kupchino-spb-1.svg", "/images/projects/in2it-kupchino-spb-2.svg"]
   },
   {
     slug: "docklands-spb",
@@ -334,7 +350,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (812) 565-84-25",
       website: "https://docklands.rent/"
-    }
+    },
+    image: "/images/projects/docklands-spb.svg",
+    images: ["/images/projects/docklands-spb-1.svg", "/images/projects/docklands-spb-2.svg"]
   },
   {
     slug: "artstudio-m103-spb",
@@ -371,7 +389,9 @@ export const projects: Project[] = [
     amenities: ["сертификат BREEAM very good"],
     contacts: {
       website: "https://www.rbi.ru"
-    }
+    },
+    image: "/images/projects/artstudio-m103-spb.svg",
+    images: ["/images/projects/artstudio-m103-spb-1.svg", "/images/projects/artstudio-m103-spb-2.svg"]
   },
   {
     slug: "putilov-avenir-spb",
@@ -411,7 +431,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (812) 565-84-25",
       website: "https://avenirspb.ru"
-    }
+    },
+    image: "/images/projects/putilov-avenir-spb.svg",
+    images: ["/images/projects/putilov-avenir-spb-1.svg", "/images/projects/putilov-avenir-spb-2.svg"]
   },
   {
     slug: "kirovsky-avenir-spb",
@@ -450,7 +472,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (812) 565-84-25",
       website: "https://avenirspb.ru"
-    }
+    },
+    image: "/images/projects/kirovsky-avenir-spb.svg",
+    images: ["/images/projects/kirovsky-avenir-spb-1.svg", "/images/projects/kirovsky-avenir-spb-2.svg"]
   },
   {
     slug: "moskovsky-avenir-spb",
@@ -488,7 +512,9 @@ export const projects: Project[] = [
     management: "PSK Invest",
     contacts: {
       website: "https://avenirspb.ru"
-    }
+    },
+    image: "/images/projects/moskovsky-avenir-spb.svg",
+    images: ["/images/projects/moskovsky-avenir-spb-1.svg", "/images/projects/moskovsky-avenir-spb-2.svg"]
   },
   {
     slug: "ekoport-otradnoe-db",
@@ -527,7 +553,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru/baza"
+    url: "https://inreit.ru/baza",
+    image: "/images/projects/ekoport-otradnoe-db.svg",
+    images: ["/images/projects/ekoport-otradnoe-db-1.svg", "/images/projects/ekoport-otradnoe-db-2.svg"]
   },
   {
     slug: "nice-loft-life-moscow-db",
@@ -566,7 +594,9 @@ export const projects: Project[] = [
       phone: "+7 (495) 510-16-98",
       email: "callcenter@coldy.ru"
     },
-    url: "https://life.nice-loft.ru"
+    url: "https://life.nice-loft.ru",
+    image: "/images/projects/nice-loft-life-moscow-db.svg",
+    images: ["/images/projects/nice-loft-life-moscow-db-1.svg", "/images/projects/nice-loft-life-moscow-db-2.svg"]
   },
   {
     slug: "vertical-boutique-kazan",
@@ -598,7 +628,9 @@ export const projects: Project[] = [
     pricePerM2: 185714,
     roi: 10,
     operatingSince: "2023",
-    class: "бутик"
+    class: "бутик",
+    image: "/images/projects/vertical-boutique-kazan.svg",
+    images: ["/images/projects/vertical-boutique-kazan-1.svg", "/images/projects/vertical-boutique-kazan-2.svg"]
   },
   {
     slug: "hotel-premiere-ekb",
@@ -630,7 +662,9 @@ export const projects: Project[] = [
     priceGrowth: 16.4,
     operatingSince: "2023",
     class: "комфорт",
-    url: "https://ustadevelopment.ru/premier"
+    url: "https://ustadevelopment.ru/premier",
+    image: "/images/projects/hotel-premiere-ekb.svg",
+    images: ["/images/projects/hotel-premiere-ekb-1.svg", "/images/projects/hotel-premiere-ekb-2.svg"]
   },
   {
     slug: "marine-garden-sochi",
@@ -664,7 +698,9 @@ export const projects: Project[] = [
     pricePerM2: 1053565,
     completionDate: "2024",
     operatingSince: "2024",
-    class: "5 звезд"
+    class: "5 звезд",
+    image: "/images/projects/marine-garden-sochi.svg",
+    images: ["/images/projects/marine-garden-sochi-1.svg", "/images/projects/marine-garden-sochi-2.svg"]
   },
   {
     slug: "luchezarny-resort-sochi",
@@ -697,7 +733,9 @@ export const projects: Project[] = [
     pricePerM2: 660714,
     completionDate: "2024",
     operatingSince: "2024",
-    class: "4 звезды, премиум"
+    class: "4 звезды, премиум",
+    image: "/images/projects/luchezarny-resort-sochi.svg",
+    images: ["/images/projects/luchezarny-resort-sochi-1.svg", "/images/projects/luchezarny-resort-sochi-2.svg"]
   },
   {
     slug: "lainer-crimea",
@@ -731,7 +769,9 @@ export const projects: Project[] = [
     pricePerM2: 426667,
     operatingSince: "2024",
     class: "курортный",
-    url: "https://севастопольстрой.рф/projects/show/layner"
+    url: "https://севастопольстрой.рф/projects/show/layner",
+    image: "/images/projects/lainer-crimea.svg",
+    images: ["/images/projects/lainer-crimea-1.svg", "/images/projects/lainer-crimea-2.svg"]
   },
   // PORT Comfort Hotels (5 hotels)
   {
@@ -770,7 +810,9 @@ export const projects: Project[] = [
     management: "PORT Property Management",
     contacts: {
       phone: "+7 (812) 565-84-25"
-    }
+    },
+    image: "/images/projects/port-comfort-ligovsky-29-spb.svg",
+    images: ["/images/projects/port-comfort-ligovsky-29-spb-1.svg", "/images/projects/port-comfort-ligovsky-29-spb-2.svg"]
   },
   {
     slug: "port-comfort-podyacheskaya-19-spb",
@@ -808,7 +850,9 @@ export const projects: Project[] = [
     management: "PORT Property Management",
     contacts: {
       phone: "+7 (812) 565-84-25"
-    }
+    },
+    image: "/images/projects/port-comfort-podyacheskaya-19-spb.svg",
+    images: ["/images/projects/port-comfort-podyacheskaya-19-spb-1.svg", "/images/projects/port-comfort-podyacheskaya-19-spb-2.svg"]
   },
   {
     slug: "port-comfort-sadovaya-53-spb",
@@ -846,7 +890,9 @@ export const projects: Project[] = [
     management: "PORT Property Management",
     contacts: {
       phone: "+7 (812) 565-84-25"
-    }
+    },
+    image: "/images/projects/port-comfort-sadovaya-53-spb.svg",
+    images: ["/images/projects/port-comfort-sadovaya-53-spb-1.svg", "/images/projects/port-comfort-sadovaya-53-spb-2.svg"]
   },
   {
     slug: "port-comfort-grivtsova-4-spb",
@@ -884,7 +930,9 @@ export const projects: Project[] = [
     management: "PORT Property Management",
     contacts: {
       phone: "+7 (812) 565-84-25"
-    }
+    },
+    image: "/images/projects/port-comfort-grivtsova-4-spb.svg",
+    images: ["/images/projects/port-comfort-grivtsova-4-spb-1.svg", "/images/projects/port-comfort-grivtsova-4-spb-2.svg"]
   },
   {
     slug: "port-comfort-staro-nevsky-spb",
@@ -922,7 +970,9 @@ export const projects: Project[] = [
     management: "PORT Property Management",
     contacts: {
       phone: "+7 (812) 565-84-25"
-    }
+    },
+    image: "/images/projects/port-comfort-staro-nevsky-spb.svg",
+    images: ["/images/projects/port-comfort-staro-nevsky-spb-1.svg", "/images/projects/port-comfort-staro-nevsky-spb-2.svg"]
   },
   // Inreit Hotels (6 hotels with detailed ROI)
   {
@@ -963,7 +1013,9 @@ export const projects: Project[] = [
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-sadovaya-53-spb.svg",
+    images: ["/images/projects/inreit-sadovaya-53-spb-1.svg", "/images/projects/inreit-sadovaya-53-spb-2.svg"]
   },
   {
     slug: "inreit-podyacheskaya-19-spb",
@@ -1003,7 +1055,9 @@ export const projects: Project[] = [
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-podyacheskaya-19-spb.svg",
+    images: ["/images/projects/inreit-podyacheskaya-19-spb-1.svg", "/images/projects/inreit-podyacheskaya-19-spb-2.svg"]
   },
   {
     slug: "inreit-suvorovsky-65-spb",
@@ -1040,7 +1094,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-suvorovsky-65-spb.svg",
+    images: ["/images/projects/inreit-suvorovsky-65-spb-1.svg", "/images/projects/inreit-suvorovsky-65-spb-2.svg"]
   },
   {
     slug: "inreit-ligovsky-29-spb",
@@ -1077,7 +1133,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-ligovsky-29-spb.svg",
+    images: ["/images/projects/inreit-ligovsky-29-spb-1.svg", "/images/projects/inreit-ligovsky-29-spb-2.svg"]
   },
   {
     slug: "inreit-grivtsova-4-spb",
@@ -1114,7 +1172,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-grivtsova-4-spb.svg",
+    images: ["/images/projects/inreit-grivtsova-4-spb-1.svg", "/images/projects/inreit-grivtsova-4-spb-2.svg"]
   },
   {
     slug: "inreit-nevskogo-9-spb",
@@ -1151,7 +1211,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-nevskogo-9-spb.svg",
+    images: ["/images/projects/inreit-nevskogo-9-spb-1.svg", "/images/projects/inreit-nevskogo-9-spb-2.svg"]
   },
   // ARTSTUDIO by RBI Hotels (2 new hotels, M103 already in db)
   {
@@ -1190,7 +1252,9 @@ export const projects: Project[] = [
     management: "RBI",
     contacts: {
       website: "https://www.rbi.ru"
-    }
+    },
+    image: "/images/projects/artstudio-nevsky-spb.svg",
+    images: ["/images/projects/artstudio-nevsky-spb-1.svg", "/images/projects/artstudio-nevsky-spb-2.svg"]
   },
   {
     slug: "artstudio-moskovsky-spb",
@@ -1226,7 +1290,9 @@ export const projects: Project[] = [
     management: "RBI",
     contacts: {
       website: "https://www.rbi.ru"
-    }
+    },
+    image: "/images/projects/artstudio-moskovsky-spb.svg",
+    images: ["/images/projects/artstudio-moskovsky-spb-1.svg", "/images/projects/artstudio-moskovsky-spb-2.svg"]
   },
   // Cosmos Hotels Moscow (3 hotels)
   {
@@ -1265,7 +1331,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 495 730-20-12"
     },
-    url: "https://cosmosgroup.ru"
+    url: "https://cosmosgroup.ru",
+    image: "/images/projects/cosmos-smart-dubininskaya-moscow.svg",
+    images: ["/images/projects/cosmos-smart-dubininskaya-moscow-1.svg", "/images/projects/cosmos-smart-dubininskaya-moscow-2.svg"]
   },
   {
     slug: "cosmos-smart-semenovskaya-moscow",
@@ -1303,7 +1371,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 945 784-73-94"
     },
-    url: "https://cosmosgroup.ru"
+    url: "https://cosmosgroup.ru",
+    image: "/images/projects/cosmos-smart-semenovskaya-moscow.svg",
+    images: ["/images/projects/cosmos-smart-semenovskaya-moscow-1.svg", "/images/projects/cosmos-smart-semenovskaya-moscow-2.svg"]
   },
   {
     slug: "cosmos-stay-profsoyuznaya-moscow",
@@ -1340,7 +1410,9 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 495 730-20-12"
     },
-    url: "https://cosmosgroup.ru"
+    url: "https://cosmosgroup.ru",
+    image: "/images/projects/cosmos-stay-profsoyuznaya-moscow.svg",
+    images: ["/images/projects/cosmos-stay-profsoyuznaya-moscow-1.svg", "/images/projects/cosmos-stay-profsoyuznaya-moscow-2.svg"]
   },
   // Other Hotels
   {
@@ -1374,7 +1446,9 @@ export const projects: Project[] = [
     roi: 10,
     roiMax: 10,
     operatingSince: "2021",
-    class: "4 звезды"
+    class: "4 звезды",
+    image: "/images/projects/yard-residence-spb.svg",
+    images: ["/images/projects/yard-residence-spb-1.svg", "/images/projects/yard-residence-spb-2.svg"]
   },
   {
     slug: "uno-ligovsky-spb",
@@ -1406,7 +1480,9 @@ export const projects: Project[] = [
     pricePerM2: 237037,
     totalUnits: 168,
     operatingSince: "2022",
-    class: "комфорт"
+    class: "комфорт",
+    image: "/images/projects/uno-ligovsky-spb.svg",
+    images: ["/images/projects/uno-ligovsky-spb-1.svg", "/images/projects/uno-ligovsky-spb-2.svg"]
   },
   {
     slug: "vidi-sinopskaya-spb",
@@ -1441,7 +1517,9 @@ export const projects: Project[] = [
     management: "Valo Hospitality",
     contacts: {
       website: "https://valoapart.ru"
-    }
+    },
+    image: "/images/projects/vidi-sinopskaya-spb.svg",
+    images: ["/images/projects/vidi-sinopskaya-spb-1.svg", "/images/projects/vidi-sinopskaya-spb-2.svg"]
   },
   {
     slug: "yes-hoshimina-spb",
@@ -1475,7 +1553,9 @@ export const projects: Project[] = [
     class: "3 звезды",
     contacts: {
       phone: "8 (800) 222-65-95"
-    }
+    },
+    image: "/images/projects/yes-hoshimina-spb.svg",
+    images: ["/images/projects/yes-hoshimina-spb-1.svg", "/images/projects/yes-hoshimina-spb-2.svg"]
   },
   {
     slug: "markov-hotel-kazan",
@@ -1510,7 +1590,9 @@ export const projects: Project[] = [
     class: "4 звезды",
     contacts: {
       phone: "+7 (980) 397-05-92"
-    }
+    },
+    image: "/images/projects/markov-hotel-kazan.svg",
+    images: ["/images/projects/markov-hotel-kazan-1.svg", "/images/projects/markov-hotel-kazan-2.svg"]
   },
   // Additional Inreit Hotels with exact data from Excel
   {
@@ -1551,7 +1633,9 @@ export const projects: Project[] = [
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-sadovaya-28-spb.svg",
+    images: ["/images/projects/inreit-sadovaya-28-spb-1.svg", "/images/projects/inreit-sadovaya-28-spb-2.svg"]
   },
   {
     slug: "inreit-blokhina-petrogradka-spb",
@@ -1591,7 +1675,9 @@ export const projects: Project[] = [
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-blokhina-petrogradka-spb.svg",
+    images: ["/images/projects/inreit-blokhina-petrogradka-spb-1.svg", "/images/projects/inreit-blokhina-petrogradka-spb-2.svg"]
   },
   {
     slug: "inreit-blokhina-neva-spb",
@@ -1631,7 +1717,9 @@ export const projects: Project[] = [
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru"
+    url: "https://inreit.ru",
+    image: "/images/projects/inreit-blokhina-neva-spb.svg",
+    images: ["/images/projects/inreit-blokhina-neva-spb-1.svg", "/images/projects/inreit-blokhina-neva-spb-2.svg"]
   },
   {
     slug: "inreit-moscow",
