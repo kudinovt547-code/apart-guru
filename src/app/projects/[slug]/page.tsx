@@ -3,12 +3,12 @@
 import { use } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { getProjectBySlug } from "@/data/stats";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AccordionItem } from "@/components/ui/accordion";
+import { ImageCarousel } from "@/components/ui/image-carousel";
 import { formatCurrency, formatNumber, formatPercent, formatDate } from "@/lib/utils";
 import { formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
@@ -55,35 +55,12 @@ export default function ProjectDetailPage({
         </Button>
       </Link>
 
-      {/* Project Image Gallery */}
+      {/* Project Image Carousel */}
       {project.image && (
-        <div className="w-full">
-          <div className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-            />
-          </div>
-          {project.images && project.images.length > 0 && (
-            <div className="grid grid-cols-3 gap-4 mt-4">
-              {project.images.slice(0, 3).map((img, idx) => (
-                <div key={idx} className="relative h-32 md:h-40 rounded-lg overflow-hidden">
-                  <Image
-                    src={img}
-                    alt={`${project.title} - фото ${idx + 1}`}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
-                    sizes="(max-width: 768px) 33vw, 300px"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <ImageCarousel
+          images={[project.image, ...(project.images || [])]}
+          alt={project.title}
+        />
       )}
 
       {/* Header */}

@@ -93,7 +93,9 @@ export const investmentProjects: Project[] = [
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru/hers39"
+    url: "https://inreit.ru/hers39",
+    image: "/images/projects/inreit-hersonskaya-39.svg",
+    images: ["/images/projects/inreit-hersonskaya-39-1.svg", "/images/projects/inreit-hersonskaya-39-2.svg"]
   },
   {
     slug: "ekoport-otradnoe",
@@ -134,7 +136,9 @@ export const investmentProjects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru/baza"
+    url: "https://inreit.ru/baza",
+    image: "/images/projects/ekoport-otradnoe.svg",
+    images: ["/images/projects/ekoport-otradnoe-1.svg", "/images/projects/ekoport-otradnoe-2.svg"]
   },
   {
     slug: "pro-molodost",
@@ -175,7 +179,9 @@ export const investmentProjects: Project[] = [
       phone: "+7 (812) 777-72-72",
       email: "info@plg.group"
     },
-    url: "https://plg.group/complex/promolodost/"
+    url: "https://plg.group/complex/promolodost/",
+    image: "/images/projects/pro-molodost.svg",
+    images: ["/images/projects/pro-molodost-1.svg", "/images/projects/pro-molodost-2.svg"]
   },
   {
     slug: "more-yalta",
@@ -211,7 +217,9 @@ export const investmentProjects: Project[] = [
       phone: "+7 365 277 71 64",
       telegram: "@more_yalta"
     },
-    url: "https://moreyalta.ru/plans/search"
+    url: "https://moreyalta.ru/plans/search",
+    image: "/images/projects/more-yalta.svg",
+    images: ["/images/projects/more-yalta-1.svg", "/images/projects/more-yalta-2.svg"]
   },
   {
     slug: "nice-loft-life",
@@ -252,7 +260,9 @@ export const investmentProjects: Project[] = [
       phone: "+7 (495) 510-16-98",
       email: "callcenter@coldy.ru"
     },
-    url: "https://life.nice-loft.ru"
+    url: "https://life.nice-loft.ru",
+    image: "/images/projects/nice-loft-life.svg",
+    images: ["/images/projects/nice-loft-life-1.svg", "/images/projects/nice-loft-life-2.svg"]
   },
   {
     slug: "baden-fabrika-otdyha",
@@ -299,7 +309,9 @@ export const investmentProjects: Project[] = [
       email: "apart@baden-baden.ru",
       telegram: "@baden_apartments"
     },
-    url: "https://baden-apart.ru/projects/fabrika/"
+    url: "https://baden-apart.ru/projects/fabrika/",
+    image: "/images/projects/baden-fabrika-otdyha.svg",
+    images: ["/images/projects/baden-fabrika-otdyha-1.svg", "/images/projects/baden-fabrika-otdyha-2.svg"]
   },
   {
     slug: "baden-turgoyak",
@@ -344,7 +356,9 @@ export const investmentProjects: Project[] = [
       phone: "8 800 10-11-888",
       email: "apart@baden-baden.ru"
     },
-    url: "https://baden-apart.ru/projects/turgoyak/"
+    url: "https://baden-apart.ru/projects/turgoyak/",
+    image: "/images/projects/baden-turgoyak.svg",
+    images: ["/images/projects/baden-turgoyak-1.svg", "/images/projects/baden-turgoyak-2.svg"]
   },
   {
     slug: "krymsky-kvartal-katsiveli",
@@ -382,7 +396,9 @@ export const investmentProjects: Project[] = [
     developer: "MG Group",
     contacts: {
       phone: "+7 (978) 60-66-537"
-    }
+    },
+    image: "/images/projects/krymsky-kvartal-katsiveli.svg",
+    images: ["/images/projects/krymsky-kvartal-katsiveli-1.svg", "/images/projects/krymsky-kvartal-katsiveli-2.svg"]
   },
   {
     slug: "sky-plaza-yalta",
@@ -419,7 +435,9 @@ export const investmentProjects: Project[] = [
     developer: "Yalta Panorama Invest",
     contacts: {
       phone: "+7 978 922 90 90"
-    }
+    },
+    image: "/images/projects/sky-plaza-yalta.svg",
+    images: ["/images/projects/sky-plaza-yalta-1.svg", "/images/projects/sky-plaza-yalta-2.svg"]
   },
   {
     slug: "yes-gorki-kazan",
@@ -456,6 +474,8 @@ export const investmentProjects: Project[] = [
     developer: "Unistroy",
     contacts: {
       phone: "8 (800) 222-65-95"
-    }
+    },
+    image: "/images/projects/yes-gorki-kazan.svg",
+    images: ["/images/projects/yes-gorki-kazan-1.svg", "/images/projects/yes-gorki-kazan-2.svg"]
   }
 ];
