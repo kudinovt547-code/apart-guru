@@ -156,7 +156,6 @@ export const operationalProjects: Project[] = [
     pricePerM2: 300000,
     totalUnits: 847,
     roi: 13.5,
-    revPerM2Month: 3005,
     completionDate: "Апрель 2022",
     operatingSince: "Апрель 2022",
     class: "бизнес"
@@ -559,7 +558,6 @@ export const operationalProjects: Project[] = [
     seasonality: [83,81,85,87,90,92,94,93,91,88,85,83],
     pricePerM2: 265625,
     roi: 30,
-    paybackYears: 7,
     monthlyIncome: 135000,
     completionDate: "2023",
     operatingSince: "2023",

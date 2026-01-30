@@ -1,0 +1,347 @@
+import { Project, PropertyFormat, ProjectStatus, RiskLevel } from "@/types/project";
+
+/**
+ * Инвестиционные проекты от застройщиков
+ * Источник: investment-projects-full.json
+ *
+ * Это проекты для продажи инвесторам:
+ * - Могут быть в строительстве или готовые
+ * - Имеют инвестиционные программы
+ * - Контакты застройщиков
+ *
+ * Обновлено: 2026-01-30
+ * Всего объектов: 8
+ */
+
+export const investmentProjects: Project[] = [
+  {
+    slug: "yes-leader-moskovsky",
+    title: "YES LEADER",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 5900000,
+    area: 30,
+    revPerM2Month: 1635,
+    noiYear: 590000,
+    paybackYears: 10,
+    occupancy: 75,
+    adr: 6540,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "Апарт-отель с полной отделкой | 0% рассрочка до окончания | Скидка 20%",
+    why: [
+      "0% рассрочка до окончания строительства",
+      "Скидка 20%",
+      "Московский район, у метро Московская",
+      "Полная отделка"
+    ],
+    risks: [
+      "Объект в строительстве",
+      "Срок сдачи 2026"
+    ],
+    seasonality: [73,71,75,78,82,85,88,87,84,80,76,73],
+    pricePerM2: 196667,
+    completionDate: "2026",
+    developer: "YE'S",
+    contacts: {
+      phone: "+7 812 336 03 36"
+    },
+    url: "https://www.yesleader.ru"
+  },
+  {
+    slug: "inreit-hersonskaya-39",
+    title: "Апарт-отель 4* на Херсонской 39",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 5000000,
+    area: 22.7,
+    areaMax: 38.1,
+    revPerM2Month: 1764,
+    noiYear: 480000,
+    paybackYears: 10.4,
+    occupancy: 78,
+    adr: 5120,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "4* бизнес-класс | Bleisure-отель | 165 номеров | Рост +23% в год",
+    why: [
+      "4 звезды бизнес-класса",
+      "Bleisure-отель (бизнес + отдых)",
+      "ROI 10%",
+      "Средний рост стоимости +23% в год",
+      "500м от метро Площадь Александра Невского"
+    ],
+    risks: [
+      "Объект в строительстве",
+      "Срок сдачи II кв 2026"
+    ],
+    seasonality: [76,74,78,80,83,86,88,87,85,82,79,76],
+    pricePerM2: 220264,
+    roi: 10,
+    priceGrowth: 23,
+    totalUnits: 165,
+    completionDate: "II квартал 2026",
+    class: "4* бизнес",
+    developer: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48",
+      whatsapp: "+7 911 716-41-74"
+    },
+    url: "https://inreit.ru/hers39"
+  },
+  {
+    slug: "ekoport-otradnoe",
+    title: "ЭКОPort.Отрадное",
+    country: "Россия",
+    city: "Ленинградская область",
+    format: PropertyFormat.RECREATION,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 5400000,
+    area: 30.1,
+    revPerM2Month: 1970,
+    noiYear: 711000,
+    paybackYears: 7.6,
+    occupancy: 93,
+    adr: 6350,
+    riskLevel: RiskLevel.LOW,
+    summary: "База отдыха на озере | ROI 13% | Загрузка 93% | Работает с декабря 2024",
+    why: [
+      "Высокая загрузка 93%",
+      "Отличная доходность 13%",
+      "Профессиональное управление PORT Property Management",
+      "Уникальная локация на озере Отрадное",
+      "24 номера + 23 доходных дома"
+    ],
+    risks: [
+      "Сезонность загрузки",
+      "Удаленность от города"
+    ],
+    seasonality: [75,73,78,85,95,98,100,98,92,85,78,75],
+    pricePerM2: 179402,
+    totalUnits: 47,
+    roi: 13,
+    completionDate: "Q3 2026",
+    operatingSince: "декабрь 2024",
+    management: "PORT Property Management",
+    developer: "Inreit",
+    contacts: {
+      phone: "+7 (800) 101-05-48"
+    },
+    url: "https://inreit.ru/baza"
+  },
+  {
+    slug: "pro-molodost",
+    title: "ПРО.Молодость",
+    country: "Россия",
+    city: "Санкт-Петербург",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 4100000,
+    area: 22.15,
+    areaMax: 61.35,
+    revPerM2Month: 1543,
+    noiYear: 410000,
+    paybackYears: 10,
+    occupancy: 76,
+    adr: 4500,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "Премиум-класс | Развитая инфраструктура | 3 мин до КАДа | 20 мин до центра",
+    why: [
+      "Премиум-класс",
+      "Консьерж, медцентр, детский клуб, киберарена",
+      "Ресторан, кофейня, паркинг, автомойка",
+      "3 минуты до КАДа",
+      "20 минут до центра"
+    ],
+    risks: [
+      "Объект в строительстве",
+      "Срок сдачи II кв 2026"
+    ],
+    seasonality: [74,72,76,79,82,85,87,86,84,80,77,74],
+    pricePerM2: 185203,
+    completionDate: "II кв 2026",
+    class: "премиум",
+    developer: "Plaza Lotus Group",
+    amenities: ["консьерж", "медцентр", "детский клуб", "киберарена", "ресторан", "кофейня", "паркинг", "автомойка"],
+    contacts: {
+      phone: "+7 (812) 777-72-72",
+      email: "info@plg.group"
+    },
+    url: "https://plg.group/complex/promolodost/"
+  },
+  {
+    slug: "more-yalta",
+    title: "More.Yalta",
+    country: "Россия",
+    city: "Ялта",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 8500000,
+    area: 28,
+    revPerM2Month: 2143,
+    noiYear: 720000,
+    paybackYears: 11.8,
+    occupancy: 70,
+    adr: 8600,
+    riskLevel: RiskLevel.HIGH,
+    summary: "Апартаменты с видом на море в Ялте | Виртуальный тур",
+    why: [
+      "Вид на море",
+      "Ялта - курортный город",
+      "Высокий сезонный спрос"
+    ],
+    risks: [
+      "Геополитические риски Крыма",
+      "Высокая сезонность",
+      "Валютные риски"
+    ],
+    seasonality: [50,48,55,65,80,95,100,98,85,70,58,52],
+    pricePerM2: 303571,
+    developer: "More.Yalta",
+    contacts: {
+      phone: "+7 365 277 71 64",
+      telegram: "@more_yalta"
+    },
+    url: "https://moreyalta.ru/plans/search"
+  },
+  {
+    slug: "nice-loft-life",
+    title: "N'ICE LOFT - LIFE",
+    country: "Россия",
+    city: "Москва",
+    format: PropertyFormat.HOTEL,
+    status: ProjectStatus.ACTIVE,
+    updatedAt: "2026-01-30",
+    price: 8500000,
+    area: 32,
+    revPerM2Month: 3516,
+    noiYear: 1350000,
+    paybackYears: 6.3,
+    occupancy: 85,
+    adr: 13200,
+    riskLevel: RiskLevel.LOW,
+    summary: "Москва ЦАО | ROI 30% | Доход до 135,000 ₽/мес | ДОМ СДАН!",
+    why: [
+      "Исключительная доходность 30%",
+      "Граница ЦАО, 5км от Кремля",
+      "Дом сдан, работает",
+      "Ежемесячный доход до 135,000 ₽",
+      "Бизнес-класс"
+    ],
+    risks: [
+      "Высокая конкуренция в Москве",
+      "Высокая цена входа"
+    ],
+    seasonality: [83,81,85,87,90,92,94,93,91,88,85,83],
+    pricePerM2: 265625,
+    roi: 30,
+    monthlyIncome: 135000,
+    operatingSince: "2023",
+    class: "бизнес",
+    developer: "Nice Loft",
+    contacts: {
+      phone: "+7 (495) 510-16-98",
+      email: "callcenter@coldy.ru"
+    },
+    url: "https://life.nice-loft.ru"
+  },
+  {
+    slug: "baden-fabrika-otdyha",
+    title: "Фабрика отдыха",
+    country: "Россия",
+    city: "Екатеринбург",
+    format: PropertyFormat.RECREATION,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 12000000,
+    priceMax: 18084960,
+    area: 22.8,
+    areaMax: 66.6,
+    revPerM2Month: 3289,
+    noiYear: 900000,
+    paybackYears: 13.3,
+    occupancy: 75,
+    occupancyWeekend: 95,
+    adr: 10000,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "Термальный курорт | Бассейн 530м² | ROI 15.6% | Загрузка 95% в выходные",
+    why: [
+      "Термальный курортный проект",
+      "Бассейн 530 м²",
+      "Спа-центр, банный комплекс, ресторан",
+      "Загрузка 75% будни, 95% выходные",
+      "ROI 15.6%"
+    ],
+    risks: [
+      "Объект в строительстве",
+      "Региональный рынок",
+      "Сезонность"
+    ],
+    seasonality: [70,68,72,75,82,88,92,90,85,78,73,70],
+    pricePerM2: 526316,
+    totalUnits: 8,
+    roi: 15.6,
+    roiClaimed: 40,
+    completionDate: "1 корпус - март 2025, 2 корпус - июнь 2026",
+    developer: "Baden Apart",
+    amenities: ["бассейн 530м²", "спа-центр", "банный комплекс", "ресторан", "детская площадка"],
+    contacts: {
+      phone: "8 800 10-11-888",
+      email: "apart@baden-baden.ru",
+      telegram: "@baden_apartments"
+    },
+    url: "https://baden-apart.ru/projects/fabrika/"
+  },
+  {
+    slug: "baden-turgoyak",
+    title: "Тургояк Резорт",
+    country: "Россия",
+    city: "Екатеринбург",
+    format: PropertyFormat.RECREATION,
+    status: ProjectStatus.PLANNING,
+    updatedAt: "2026-01-30",
+    price: 10325070,
+    priceMax: 40380001,
+    area: 18.2,
+    areaMax: 80.3,
+    revPerM2Month: 2860,
+    noiYear: 625000,
+    paybackYears: 16.5,
+    occupancy: 77,
+    adr: 6740,
+    riskLevel: RiskLevel.MEDIUM,
+    summary: "Озеро Тургояк | Термальные бассейны | СПА | ROI 15.6%",
+    why: [
+      "Уникальная локация на озере Тургояк",
+      "Термальные бассейны",
+      "СПА-центр, теннисные корты",
+      "ROI 15.6%",
+      "138 номеров"
+    ],
+    risks: [
+      "Объект в строительстве",
+      "Региональный рынок",
+      "Сезонность",
+      "Долгая окупаемость"
+    ],
+    seasonality: [68,66,70,73,80,86,90,88,83,76,71,68],
+    pricePerM2: 567586,
+    totalUnits: 138,
+    roi: 15.6,
+    completionDate: "Корпус 3 - июнь 2026, Корпус 2 - сентябрь 2026, Корпус 1 - январь 2027",
+    developer: "Baden Apart",
+    amenities: ["термальные бассейны", "спа-центр", "теннисные корты", "детские площадки", "пляж"],
+    contacts: {
+      phone: "8 800 10-11-888",
+      email: "apart@baden-baden.ru"
+    },
+    url: "https://baden-apart.ru/projects/turgoyak/"
+  }
+];

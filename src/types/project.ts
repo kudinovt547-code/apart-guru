@@ -19,6 +19,7 @@ export const PropertyFormat = {
   HOSTEL: "hostel",
   APART_HOTEL: "apart-hotel",
   GUESTHOUSE: "guesthouse",
+  RECREATION: "recreation-complex",
 } as const;
 
 export type RiskLevelType = (typeof RiskLevel)[keyof typeof RiskLevel];
@@ -36,6 +37,7 @@ export const ProjectSchema = z.object({
     PropertyFormat.HOSTEL,
     PropertyFormat.APART_HOTEL,
     PropertyFormat.GUESTHOUSE,
+    PropertyFormat.RECREATION,
   ]),
   status: z.enum([
     ProjectStatus.ACTIVE,
@@ -62,6 +64,33 @@ export const ProjectSchema = z.object({
   completionDate: z.string().optional(),
   pricePerM2: z.number().optional(),
   link: z.string().optional(),
+
+  // Optional fields for operational projects
+  class: z.string().optional(),
+  rating: z.number().optional(),
+  management: z.string().optional(),
+  totalUnits: z.number().optional(),
+  operatingSince: z.string().optional(),
+  amenities: z.array(z.string()).optional(),
+  contacts: z.object({
+    phone: z.string().optional(),
+    email: z.string().optional(),
+    website: z.string().optional(),
+    whatsapp: z.string().optional(),
+    telegram: z.string().optional(),
+  }).optional(),
+  url: z.string().optional(),
+
+  // Optional fields for investment projects
+  roi: z.number().optional(),
+  roiMin: z.number().optional(),
+  roiMax: z.number().optional(),
+  roiClaimed: z.number().optional(),
+  priceGrowth: z.number().optional(),
+  monthlyIncome: z.number().optional(),
+  areaMax: z.number().optional(),
+  priceMax: z.number().optional(),
+  occupancyWeekend: z.number().optional(),
 });
 
 export type Project = z.infer<typeof ProjectSchema>;
@@ -72,6 +101,7 @@ export const formatLabels: Record<PropertyFormatType, string> = {
   [PropertyFormat.HOSTEL]: "Хостел",
   [PropertyFormat.APART_HOTEL]: "Апарт-отель",
   [PropertyFormat.GUESTHOUSE]: "Гостевой дом",
+  [PropertyFormat.RECREATION]: "База отдыха",
 };
 
 export const statusLabels: Record<ProjectStatusType, string> = {
