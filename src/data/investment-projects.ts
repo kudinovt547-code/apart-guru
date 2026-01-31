@@ -95,7 +95,7 @@ export const investmentProjects: Project[] = [
     },
     url: "https://inreit.ru/hers39",
     image: "/images/projects/inreit-hersonskaya-39.jpg",
-    images: ["/images/projects/inreit-hersonskaya-39.jpg"]
+    images: ["/images/projects/inreit-hersonskaya-39-1.jpg", "/images/projects/inreit-hersonskaya-39-2.jpg"]
   },
   {
     slug: "ekoport-otradnoe",
@@ -138,7 +138,7 @@ export const investmentProjects: Project[] = [
     },
     url: "https://inreit.ru/baza",
     image: "/images/projects/ekoport-otradnoe.jpg",
-    images: ["/images/projects/ekoport-otradnoe.jpg"]
+    images: ["/images/projects/ekoport-otradnoe-1.jpg", "/images/projects/ekoport-otradnoe-2.jpg"]
   },
   {
     slug: "pro-molodost",
