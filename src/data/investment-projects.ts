@@ -311,7 +311,7 @@ export const investmentProjects: Project[] = [
     },
     url: "https://baden-apart.ru/projects/fabrika/",
     image: "/images/projects/baden-fabrika-otdyha.webp",
-    images: ["/images/projects/baden-fabrika-otdyha.webp"]
+    images: ["/images/projects/baden-fabrika-otdyha-1.webp", "/images/projects/baden-fabrika-otdyha-2.webp"]
   },
   {
     slug: "baden-turgoyak",
@@ -358,7 +358,7 @@ export const investmentProjects: Project[] = [
     },
     url: "https://baden-apart.ru/projects/turgoyak/",
     image: "/images/projects/baden-turgoyak.webp",
-    images: ["/images/projects/baden-turgoyak.webp"]
+    images: ["/images/projects/baden-turgoyak-1.webp", "/images/projects/baden-turgoyak-2.webp"]
   },
   {
     slug: "krymsky-kvartal-katsiveli",
