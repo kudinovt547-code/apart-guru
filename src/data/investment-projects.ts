@@ -49,8 +49,8 @@ export const investmentProjects: Project[] = [
       phone: "+7 812 336 03 36"
     },
     url: "https://www.yesleader.ru",
-    image: "/images/projects/yes-leader-moskovsky.jpg",
-    images: ["/images/projects/yes-leader-moskovsky-1.jpg", "/images/projects/yes-leader-moskovsky-2.jpg"]
+    image: "/images/projects/yes-leader-moskovsky.webp",
+    images: ["/images/projects/yes-leader-moskovsky-1.webp", "/images/projects/yes-leader-moskovsky-2.webp"]
   },
   {
     slug: "inreit-hersonskaya-39",
@@ -94,8 +94,8 @@ export const investmentProjects: Project[] = [
       whatsapp: "+7 911 716-41-74"
     },
     url: "https://inreit.ru/hers39",
-    image: "/images/projects/inreit-hersonskaya-39.jpg",
-    images: ["/images/projects/inreit-hersonskaya-39-1.jpg", "/images/projects/inreit-hersonskaya-39-2.jpg"]
+    image: "/images/projects/inreit-hersonskaya-39.webp",
+    images: ["/images/projects/inreit-hersonskaya-39-1.webp", "/images/projects/inreit-hersonskaya-39-2.webp"]
   },
   {
     slug: "ekoport-otradnoe",
@@ -137,8 +137,8 @@ export const investmentProjects: Project[] = [
       phone: "+7 (800) 101-05-48"
     },
     url: "https://inreit.ru/baza",
-    image: "/images/projects/ekoport-otradnoe.jpg",
-    images: ["/images/projects/ekoport-otradnoe-1.jpg", "/images/projects/ekoport-otradnoe-2.jpg"]
+    image: "/images/projects/ekoport-otradnoe.webp",
+    images: ["/images/projects/ekoport-otradnoe-1.webp", "/images/projects/ekoport-otradnoe-2.webp"]
   },
   {
     slug: "pro-molodost",
@@ -180,8 +180,8 @@ export const investmentProjects: Project[] = [
       email: "info@plg.group"
     },
     url: "https://plg.group/complex/promolodost/",
-    image: "/images/projects/pro-molodost.jpg",
-    images: ["/images/projects/pro-molodost-1.jpg"]
+    image: "/images/projects/pro-molodost.webp",
+    images: ["/images/projects/pro-molodost-1.webp"]
   },
   {
     slug: "more-yalta",
@@ -218,8 +218,8 @@ export const investmentProjects: Project[] = [
       telegram: "@more_yalta"
     },
     url: "https://moreyalta.ru/plans/search",
-    image: "/images/projects/more-yalta.jpg",
-    images: ["/images/projects/more-yalta-1.jpg", "/images/projects/more-yalta-2.jpg"]
+    image: "/images/projects/more-yalta.webp",
+    images: ["/images/projects/more-yalta-1.webp", "/images/projects/more-yalta-2.webp"]
   },
   {
     slug: "nice-loft-life",
@@ -261,8 +261,8 @@ export const investmentProjects: Project[] = [
       email: "callcenter@coldy.ru"
     },
     url: "https://life.nice-loft.ru",
-    image: "/images/projects/nice-loft-life.jpg",
-    images: ["/images/projects/nice-loft-life-1.jpg", "/images/projects/nice-loft-life-2.jpg"]
+    image: "/images/projects/nice-loft-life.webp",
+    images: ["/images/projects/nice-loft-life-1.webp", "/images/projects/nice-loft-life-2.webp"]
   },
   {
     slug: "baden-fabrika-otdyha",
@@ -310,8 +310,8 @@ export const investmentProjects: Project[] = [
       telegram: "@baden_apartments"
     },
     url: "https://baden-apart.ru/projects/fabrika/",
-    image: "/images/projects/baden-fabrika-otdyha.jpg",
-    images: ["/images/projects/baden-fabrika-otdyha.jpg"]
+    image: "/images/projects/baden-fabrika-otdyha.webp",
+    images: ["/images/projects/baden-fabrika-otdyha.webp"]
   },
   {
     slug: "baden-turgoyak",
@@ -357,8 +357,8 @@ export const investmentProjects: Project[] = [
       email: "apart@baden-baden.ru"
     },
     url: "https://baden-apart.ru/projects/turgoyak/",
-    image: "/images/projects/baden-turgoyak.jpg",
-    images: ["/images/projects/baden-turgoyak.jpg"]
+    image: "/images/projects/baden-turgoyak.webp",
+    images: ["/images/projects/baden-turgoyak.webp"]
   },
   {
     slug: "krymsky-kvartal-katsiveli",
@@ -397,8 +397,8 @@ export const investmentProjects: Project[] = [
     contacts: {
       phone: "+7 (978) 60-66-537"
     },
-    image: "/images/projects/krymsky-kvartal-katsiveli.jpg",
-    images: ["/images/projects/krymsky-kvartal-katsiveli-1.jpg", "/images/projects/krymsky-kvartal-katsiveli-2.jpg"]
+    image: "/images/projects/krymsky-kvartal-katsiveli.webp",
+    images: ["/images/projects/krymsky-kvartal-katsiveli-1.webp", "/images/projects/krymsky-kvartal-katsiveli-2.webp"]
   },
   {
     slug: "sky-plaza-yalta",
@@ -436,8 +436,8 @@ export const investmentProjects: Project[] = [
     contacts: {
       phone: "+7 978 922 90 90"
     },
-    image: "/images/projects/sky-plaza-yalta.jpg",
-    images: ["/images/projects/sky-plaza-yalta-1.jpg", "/images/projects/sky-plaza-yalta-2.jpg"]
+    image: "/images/projects/sky-plaza-yalta.webp",
+    images: ["/images/projects/sky-plaza-yalta-1.webp", "/images/projects/sky-plaza-yalta-2.webp"]
   },
   {
     slug: "yes-gorki-kazan",
@@ -475,7 +475,7 @@ export const investmentProjects: Project[] = [
     contacts: {
       phone: "8 (800) 222-65-95"
     },
-    image: "/images/projects/yes-gorki-kazan.jpg",
-    images: ["/images/projects/yes-gorki-kazan-1.jpg", "/images/projects/yes-gorki-kazan-2.jpg"]
+    image: "/images/projects/yes-gorki-kazan.webp",
+    images: ["/images/projects/yes-gorki-kazan-1.webp", "/images/projects/yes-gorki-kazan-2.webp"]
   }
 ];
