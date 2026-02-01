@@ -38,7 +38,7 @@ export function ImageCarousel({ images, alt, className }: ImageCarouselProps) {
   return (
     <div className={cn("relative w-full", className)}>
       {/* Main Image */}
-      <div className="relative w-full h-[400px] md:h-[500px] rounded-lg overflow-hidden bg-muted">
+      <div className="relative w-full h-[280px] md:h-[380px] rounded-lg overflow-hidden bg-muted">
         <Image
           src={images[currentIndex]}
           alt={`${alt} - изображение ${currentIndex + 1}`}
