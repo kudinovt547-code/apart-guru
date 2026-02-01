@@ -10,6 +10,7 @@ import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { getProjects } from "@/data/stats";
 import { formatCurrency, formatNumber } from "@/lib/utils";
+import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export default function ProjectsPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
@@ -195,6 +196,14 @@ export default function ProjectsPage() {
           </FadeIn>
         )}
       </div>
+
+      {/* SEO Structured Data */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Главная", url: "https://apart-guru.vercel.app" },
+          { name: "Проекты", url: "https://apart-guru.vercel.app/projects" }
+        ]}
+      />
     </div>
   );
 }

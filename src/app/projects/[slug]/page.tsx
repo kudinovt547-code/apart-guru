@@ -14,6 +14,7 @@ import { formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
 import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink } from "lucide-react";
 import ConstructionForecast from "@/components/projects/ConstructionForecast";
+import { RealEstateListingSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export default function ProjectDetailPage({
   params,
@@ -401,6 +402,19 @@ export default function ProjectDetailPage({
           </Link>
         </div>
       </Card>
+
+      {/* SEO Structured Data */}
+      <RealEstateListingSchema
+        project={project}
+        url="https://apart-guru.vercel.app"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Главная", url: "https://apart-guru.vercel.app" },
+          { name: "Проекты", url: "https://apart-guru.vercel.app/projects" },
+          { name: project.title, url: `https://apart-guru.vercel.app/projects/${project.slug}` }
+        ]}
+      />
     </div>
   );
 }

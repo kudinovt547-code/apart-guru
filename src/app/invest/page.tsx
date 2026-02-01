@@ -11,6 +11,7 @@ import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { investmentProjects } from "@/data/investment-projects";
 import { formatCurrency, formatNumber } from "@/lib/utils";
+import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export default function InvestPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
@@ -323,6 +324,14 @@ export default function InvestPage() {
           </div>
         </FadeIn>
       </div>
+
+      {/* SEO Structured Data */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Главная", url: "https://apart-guru.vercel.app" },
+          { name: "Инвестиции", url: "https://apart-guru.vercel.app/invest" }
+        ]}
+      />
     </div>
   );
 }

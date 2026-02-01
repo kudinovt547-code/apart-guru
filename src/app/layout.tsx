@@ -18,8 +18,62 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Apart Guru - Биржа доходной недвижимости СНГ",
-  description: "Аналитическая платформа для инвестиций в доходную недвижимость СНГ",
+  title: {
+    default: "Apart Guru - Инвестиции в апарт-отели и доходную недвижимость СНГ",
+    template: "%s | Apart Guru"
+  },
+  description: "Аналитическая платформа для инвестиций в апарт-отели России. Сравнивайте доходность, ROI, окупаемость 50+ проектов. Калькулятор NOI, методология анализа, готовые инвестиционные решения.",
+  keywords: ["апарт-отели", "инвестиции в недвижимость", "доходная недвижимость", "апартаменты для инвестиций", "ROI", "пассивный доход", "недвижимость России", "apart-hotel", "инвестиции СПБ", "инвестиции Москва", "окупаемость недвижимости", "база отдыха", "термальные курорты"],
+  authors: [{ name: "Apart Guru" }],
+  creator: "Apart Guru",
+  publisher: "Apart Guru",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://apart-guru.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    url: 'https://apart-guru.vercel.app',
+    siteName: 'Apart Guru',
+    title: 'Apart Guru - Инвестиции в апарт-отели и доходную недвижимость',
+    description: 'Аналитическая платформа для инвестиций в апарт-отели России. Сравнивайте 50+ проектов, калькулятор доходности, проверенные объекты.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Apart Guru - Биржа доходной недвижимости',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Apart Guru - Инвестиции в апарт-отели',
+    description: 'Сравнивайте доходность 50+ апарт-отелей России. Калькулятор NOI, готовые инвестрешения.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Добавьте сюда коды верификации когда получите
+    // google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
+  },
 };
 
 export default function RootLayout({
