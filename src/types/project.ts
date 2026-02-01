@@ -55,6 +55,7 @@ export const ProjectSchema = z.object({
   adr: z.number(),
   riskLevel: z.enum([RiskLevel.LOW, RiskLevel.MEDIUM, RiskLevel.HIGH]),
   summary: z.string(),
+  description: z.string().optional(),
   why: z.array(z.string()),
   risks: z.array(z.string()),
   seasonality: z.array(z.number()).length(12),
