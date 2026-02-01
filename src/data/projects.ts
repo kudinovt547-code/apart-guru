@@ -51,45 +51,6 @@ export const projects: Project[] = [
     images: ["/images/projects/start-parnas-spb-1.svg", "/images/projects/start-parnas-spb-2.svg"]
   },
   {
-    slug: "valo-hotel-city-spb",
-    title: "VALO Hotel City",
-    country: "Россия",
-    city: "Санкт-Петербург",
-    format: PropertyFormat.HOTEL,
-    status: ProjectStatus.ACTIVE,
-    updatedAt: "2026-01-30",
-    price: 5500000,
-    area: 28,
-    revPerM2Month: 1487,
-    noiYear: 500000,
-    paybackYears: 11,
-    occupancy: 87,
-    adr: 4800,
-    riskLevel: RiskLevel.LOW,
-    summary: "Высокая загрузка 87% | ROI до 15% | Напротив метро Бухарестская",
-    why: [
-      "Отличное расположение у метро",
-      "Высокая загрузка 87%",
-      "Доходность до 15%"
-    ],
-    risks: [
-      "Высокая конкуренция в районе"
-    ],
-    seasonality: [85,83,87,88,90,92,95,93,90,88,86,84],
-    pricePerM2: 196429,
-    roi: 15,
-    roiMin: 7.91,
-    roiMax: 15,
-    completionDate: "2023",
-    operatingSince: "2023",
-    class: "комфорт",
-    contacts: {
-      website: "https://valoapart.ru"
-    },
-    image: "/images/projects/valo-hotel-city-spb.svg",
-    images: ["/images/projects/valo-hotel-city-spb-1.svg", "/images/projects/valo-hotel-city-spb-2.svg"]
-  },
-  {
     slug: "yes-marata-spb",
     title: "YES Marata",
     country: "Россия",
