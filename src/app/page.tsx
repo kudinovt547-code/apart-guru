@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import Image from "next/image";
-import { TrendingUp, Shield, Calculator, ArrowRight, Building2, Percent, Clock } from "lucide-react";
+import { TrendingUp, Shield, Calculator, ArrowRight, Building2, Percent, Clock, CheckCircle2 } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
@@ -333,6 +333,113 @@ export default function HomePage() {
                 </Link>
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Methodology Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <h2 className="text-3xl font-semibold text-center mb-4">
+              Что делает Apart Guru уникальным?
+            </h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+              Первый в России специализированный аналитический сервис для инвесторов в апарт-отели.
+              Объединяем данные, технологии и экспертизу для принятия взвешенных решений.
+            </p>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <AnimatedCard delay={0.1}>
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Полная база апарт-отелей
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    От Москвы до Сочи, от Санкт-Петербурга до Казани — собираем и верифицируем
+                    информацию по каждому значимому проекту. База постоянно пополняется.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.2}>
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Реальные метрики эффективности
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    ADR, RevPAR, загрузка, чистая доходность, рейтинги на Yandex и Ostrovok —
+                    всё в одном месте. Никаких обещаний, только факты.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.3}>
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Прогнозная аналитика
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Наши модели учитывают локацию, концепцию отеля, репутацию УК,
+                    конкурентную среду и дают обоснованный прогноз доходности.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.4}>
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Данные от инвесторов
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Не полагаемся только на маркетинг застройщиков. Реальные цифры приходят
+                    от владельцев апартаментов — тех, кто уже получает доход.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.5}>
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Прозрачные отзывы гостей
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Агрегированные отзывы позволяют оценить качество управления, сервис
+                    и соответствие заявленной концепции реальности.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.6}>
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-8 w-8 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Персональный подбор
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    Учитываем ваш бюджет, цели и предпочтения. Подбираем 2–5 оптимальных
+                    вариантов с детальным анализом каждого проекта.
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
           </div>
         </div>
       </section>

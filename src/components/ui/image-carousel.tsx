@@ -45,6 +45,8 @@ export function ImageCarousel({ images, alt, className }: ImageCarouselProps) {
           fill
           className="object-cover"
           priority={currentIndex === 0}
+          quality={95}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
         />
 
         {/* Navigation Buttons */}
@@ -96,6 +98,8 @@ export function ImageCarousel({ images, alt, className }: ImageCarouselProps) {
                 alt={`${alt} - миниатюра ${index + 1}`}
                 fill
                 className="object-cover"
+                quality={90}
+                sizes="80px"
               />
             </button>
           ))}

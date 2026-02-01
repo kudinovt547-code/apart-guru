@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-      <div className="container mx-auto flex h-20 items-center px-4 justify-between">
-        <Link href="/" className="flex flex-col items-center -mt-2">
+      <div className="container mx-auto flex h-40 items-center px-4 justify-between">
+        <Link href="/" className="flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -18,20 +18,22 @@ export default function Header() {
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
-            className="relative w-14 h-14 flex-shrink-0"
+            className="relative w-56 h-56 flex-shrink-0"
           >
             <Image
               src="/logo.png"
               alt="Apart Guru"
               fill
               className="object-contain"
+              quality={95}
+              priority
             />
           </motion.div>
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
-            className="font-semibold text-xs leading-none -mt-1"
+            className="font-semibold text-base leading-none -mt-2"
           >
             Apart Guru
           </motion.span>
@@ -79,12 +81,6 @@ export default function Header() {
             className="transition-colors hover:text-primary text-foreground/70"
           >
             Сообщество
-          </Link>
-          <Link
-            href="/methodology"
-            className="transition-colors hover:text-primary text-foreground/70"
-          >
-            Методология
           </Link>
           <Link
             href="/legal"

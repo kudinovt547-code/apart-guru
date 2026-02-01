@@ -1,6 +1,7 @@
 import { Project } from "@/types/project";
 import { projects as fallbackProjects } from "./projects";
 import { investmentProjects } from "./investment-projects";
+import { realisticProjects } from "./realistic-stats";
 
 export interface StatsData {
   objects: Project[];
@@ -23,7 +24,7 @@ try {
 }
 
 /**
- * Get stats data from generated JSON file or fallback to hardcoded projects
+ * Get stats data from generated JSON file or fallback to realistic stats from Telegram
  */
 export function getStatsData(): StatsData {
   // Use generated data if available
@@ -31,12 +32,12 @@ export function getStatsData(): StatsData {
     return generatedStatsData;
   }
 
-  // Fallback to hardcoded projects
+  // Fallback to realistic Telegram data (2024-2025 statistics)
   return {
-    objects: fallbackProjects,
+    objects: realisticProjects,
     sources: {
-      updatedAt: new Date().toISOString().split("T")[0],
-      source: "Fallback (hardcoded projects.ts)",
+      updatedAt: "2025-12-31",
+      source: "Real Telegram data from management companies 2024-2025",
     },
   };
 }

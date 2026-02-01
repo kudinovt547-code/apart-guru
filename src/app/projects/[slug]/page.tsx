@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AccordionItem } from "@/components/ui/accordion";
-import { ImageCarousel } from "@/components/ui/image-carousel";
 import { formatCurrency, formatNumber, formatPercent, formatDate } from "@/lib/utils";
 import { formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
@@ -55,14 +54,6 @@ export default function ProjectDetailPage({
           Назад к каталогу
         </Button>
       </Link>
-
-      {/* Project Image Carousel */}
-      {project.image && (
-        <ImageCarousel
-          images={[project.image, ...(project.images || [])]}
-          alt={project.title}
-        />
-      )}
 
       {/* Header */}
       <div className="space-y-4">
