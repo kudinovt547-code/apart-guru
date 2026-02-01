@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Building2, MapPin, TrendingUp } from "lucide-react";
+import { Building2, MapPin, TrendingUp, Database, BarChart3, CheckCircle2, Star } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { getProjects } from "@/data/stats";
@@ -72,6 +72,149 @@ export default function ProjectsPage() {
             <p className="text-xl text-muted-foreground">
               {allProjects.length} объектов с реальными показателями доходности
             </p>
+          </div>
+        </FadeIn>
+
+        {/* Database Information Section */}
+        <FadeIn delay={0.15}>
+          <div className="max-w-5xl mx-auto mb-12 space-y-6">
+            <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-background">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                  <Database className="h-6 w-6 text-primary" />
+                  Самая полная база апарт-отелей в России
+                </h2>
+                <div className="space-y-4 text-muted-foreground">
+                  <p className="leading-relaxed">
+                    <strong className="text-foreground">Apart Guru</strong> собирает и верифицирует данные по всем значимым
+                    апарт-отелям от Москвы до Сочи, от Санкт-Петербурга до Казани. В нашей базе {allProjects.length} объектов
+                    с реальными показателями загрузки, доходности и отзывами гостей. Мы не полагаемся на маркетинг застройщиков —
+                    все цифры проверены и актуализируются ежемесячно.
+                  </p>
+                  <p className="leading-relaxed">
+                    <strong className="text-foreground">Что отличает нашу базу:</strong> мы показываем не только обещания
+                    застройщика, но и <strong className="text-foreground">фактические результаты</strong> работающих объектов.
+                    ADR (средний чек), загрузка, сезонность, рейтинги на Яндекс Путешествиях и Ostrovok — всё в одном месте.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card>
+                <CardContent className="pt-6">
+                  <BarChart3 className="h-10 w-10 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Реальные метрики
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    ADR, RevPAR, загрузка, чистая доходность — все показатели основаны на фактических данных,
+                    а не на прогнозах застройщика.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <CheckCircle2 className="h-10 w-10 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Проверенные данные
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Каждый объект проходит верификацию: мы сверяем данные с площадками бронирования,
+                    отзывами гостей и отчётами управляющих компаний.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="pt-6">
+                  <Star className="h-10 w-10 text-primary mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">
+                    Отзывы гостей
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Агрегируем отзывы с Яндекс, Остров ок и Booking, чтобы вы могли оценить качество
+                    управления и соответствие заявленной концепции.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-muted/30">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Как мы собираем данные?</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <strong className="text-foreground block mb-1">1. Парсинг площадок бронирования</strong>
+                      <p className="text-muted-foreground">
+                        Автоматически отслеживаем цены, загрузку и отзывы на Яндекс Путешествиях, Ostrovok, Booking.com.
+                      </p>
+                    </div>
+                    <div>
+                      <strong className="text-foreground block mb-1">2. Данные от инвесторов</strong>
+                      <p className="text-muted-foreground">
+                        Владельцы апартаментов делятся с нами реальными выплатами, операционными расходами, проблемами УК.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-3 text-sm">
+                    <div>
+                      <strong className="text-foreground block mb-1">3. Анализ конкурентов</strong>
+                      <p className="text-muted-foreground">
+                        Оцениваем локацию, конкурентную среду, туристическую привлекательность района.
+                      </p>
+                    </div>
+                    <div>
+                      <strong className="text-foreground block mb-1">4. Ручная верификация</strong>
+                      <p className="text-muted-foreground">
+                        Наша команда проверяет каждый объект: звоним в УК, запрашиваем отчёты, ездим на объекты лично.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-blue-500/30 bg-blue-500/5">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  Что можно найти в базе?
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Работающие объекты</strong> с историей выплат инвесторам</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Строящиеся проекты</strong> с прогнозами доходности</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Объекты от застройщиков</strong> доступные для инвестирования</span>
+                    </li>
+                  </ul>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Апартаменты на вторичке</strong> с действующими договорами УК</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Все классы отелей</strong> от эконома до премиума</span>
+                    </li>
+                    <li className="flex gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                      <span><strong className="text-foreground">Все города</strong> от Москвы до Владивостока</span>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </FadeIn>
 

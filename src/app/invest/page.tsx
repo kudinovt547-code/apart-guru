@@ -81,6 +81,186 @@ export default function InvestPage() {
           </div>
         </FadeIn>
 
+        {/* Detailed Information Section */}
+        <FadeIn delay={0.15}>
+          <div className="max-w-5xl mx-auto mb-12 space-y-6">
+            <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-background">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                  <Building2 className="h-6 w-6 text-primary" />
+                  Что такое инвестиционные апартаменты?
+                </h2>
+                <div className="space-y-4 text-muted-foreground">
+                  <p className="leading-relaxed">
+                    <strong className="text-foreground">Инвестиционные апартаменты</strong> — это апартаменты в апарт-отелях,
+                    которые вы покупаете у застройщика для получения пассивного дохода от аренды. Застройщик или управляющая
+                    компания берёт на себя всю операционную работу: размещение объявлений, работу с гостями, уборку, ремонт.
+                    Вы получаете ежемесячные выплаты без участия в процессе.
+                  </p>
+                  <p className="leading-relaxed">
+                    <strong className="text-foreground">Ключевое отличие от обычной квартиры:</strong> вы не можете жить в
+                    апартаментах сами — они предназначены только для коммерческого использования (сдача в посуточную аренду).
+                    Зато доходность, как правило, выше: от 8% до 15% годовых в зависимости от локации и концепции.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                    <CheckCircle2 className="h-5 w-5" />
+                    Преимущества
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm">
+                  <div className="flex gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Пассивный доход</strong>
+                      <p className="text-muted-foreground">
+                        Не нужно искать арендаторов, убирать, решать бытовые вопросы. Всё делает УК.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Высокая доходность</strong>
+                      <p className="text-muted-foreground">
+                        8-15% годовых против 4-6% от долгосрочной аренды обычной квартиры.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Профессиональное управление</strong>
+                      <p className="text-muted-foreground">
+                        Опытные отельеры максимизируют загрузку и доход через динамическое ценообразование.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Ликвидность</strong>
+                      <p className="text-muted-foreground">
+                        Апартаменты можно продать другому инвестору, часто с наценкой за счёт доказанной доходности.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Налоговые преимущества</strong>
+                      <p className="text-muted-foreground">
+                        Возможность работы по УСН 6%, что снижает налоговую нагрузку по сравнению с НДФЛ 13%.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="border-orange-500/30">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
+                    <Award className="h-5 w-5" />
+                    На что обратить внимание
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm">
+                  <div className="flex gap-3">
+                    <Star className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Локация</strong>
+                      <p className="text-muted-foreground">
+                        Туристические города (Сочи, Казань, Калининград) приносят больше дохода, но имеют сезонность.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <Star className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Управляющая компания</strong>
+                      <p className="text-muted-foreground">
+                        От неё зависит 80% успеха. Проверьте репутацию, отзывы гостей, опыт работы с похожими объектами.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <Star className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Операционные расходы</strong>
+                      <p className="text-muted-foreground">
+                        УК обычно берёт 20-30% от выручки. Уточните, что входит: коммуналка, ремонт, маркетинг, страхование.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <Star className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Реальная vs. обещанная доходность</strong>
+                      <p className="text-muted-foreground">
+                        Застройщики часто завышают прогнозы. Мы показываем фактические цифры от работающих объектов.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <Star className="h-5 w-5 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong>Этап строительства</strong>
+                      <p className="text-muted-foreground">
+                        Покупка на стадии котлована дешевле, но рискованнее. Готовые объекты дороже, зато доход идёт сразу.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="bg-muted/30">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-4">Как работает модель доходности?</h3>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                  <p><strong className="text-foreground">Выручка:</strong> Гости бронируют номера через Яндекс Путешествия, Ostrovok, Booking.com и платят за проживание. Управляющая компания собирает выручку.</p>
+                  <p><strong className="text-foreground">Расходы УК:</strong> Из выручки вычитаются комиссии площадок (10-15%), операционные расходы (уборка, стирка, ремонт), коммунальные платежи, зарплата персонала.</p>
+                  <p><strong className="text-foreground">Ваш доход:</strong> Оставшаяся сумма (обычно 70-80% от выручки) распределяется между всеми владельцами пропорционально площади их апартаментов. Вы получаете выплаты ежемесячно на счёт.</p>
+                  <p><strong className="text-foreground">Прозрачность:</strong> Хорошие УК предоставляют личный кабинет, где видна статистика: сколько ночей сдано, по какой цене, какие расходы, итоговый доход.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-blue-500/30 bg-blue-500/5">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  Почему стоит инвестировать через Apart Guru?
+                </h3>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <span>Мы проверяем <strong className="text-foreground">фактическую доходность</strong> работающих объектов, а не верим маркетингу застройщиков.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <span>Анализируем <strong className="text-foreground">репутацию УК</strong>: отзывы гостей, качество сервиса, историю выплат инвесторам.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <span>Сопровождаем сделку от подбора до получения ключей, помогаем <strong className="text-foreground">контролировать выплаты первые 6 месяцев</strong>.</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <span>Подбираем <strong className="text-foreground">2-5 оптимальных вариантов</strong> под ваш бюджет и цели, чтобы вы сравнили и выбрали лучший.</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </FadeIn>
+
         {/* City Filter */}
         <FadeIn delay={0.1}>
           <div className="mb-8 flex flex-wrap gap-3 justify-center">

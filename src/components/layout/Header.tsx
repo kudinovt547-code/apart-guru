@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-      <div className="container mx-auto flex h-40 items-center px-4 justify-between">
+      <div className="container mx-auto flex h-20 items-center px-4 justify-between">
         <Link href="/" className="flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -18,7 +18,7 @@ export default function Header() {
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
-            className="relative w-56 h-56 flex-shrink-0"
+            className="relative w-28 h-28 flex-shrink-0"
           >
             <Image
               src="/logo.png"
