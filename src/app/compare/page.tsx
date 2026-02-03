@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { formatCurrency, formatNumber, formatPercent } from "@/lib/utils";
 import { formatLabels } from "@/types/project";
 import { X, FileText, Send } from "lucide-react";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export default function ComparePage() {
   const { projects, removeProject, clearAll } = useCompareStore();
@@ -25,6 +26,13 @@ export default function ComparePage() {
   if (projects.length === 0) {
     return (
       <div className="container mx-auto py-8 px-4">
+        <Breadcrumbs
+          items={[
+            { label: "Главная", href: "/" },
+            { label: "Сравнение" },
+          ]}
+          className="mb-8"
+        />
         <div className="max-w-2xl mx-auto text-center space-y-4">
           <h1 className="text-4xl font-bold">Сравнение проектов</h1>
           <p className="text-muted-foreground">
@@ -86,6 +94,12 @@ export default function ComparePage() {
 
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
+      <Breadcrumbs
+        items={[
+          { label: "Главная", href: "/" },
+          { label: "Сравнение" },
+        ]}
+      />
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold">Сравнение проектов</h1>

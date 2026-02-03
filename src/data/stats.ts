@@ -2,6 +2,8 @@ import { Project } from "@/types/project";
 import { projects as fallbackProjects } from "./projects";
 import { investmentProjects } from "./investment-projects";
 import { realisticProjects } from "./realistic-stats";
+// Import generated stats with ES6 import for better Next.js bundling
+import generatedStatsJson from "./stats.generated.json";
 
 export interface StatsData {
   objects: Project[];
@@ -11,16 +13,14 @@ export interface StatsData {
   };
 }
 
-// Try to load generated stats - this will be set by dynamic import
-let generatedStatsData: StatsData | null = null;
+// Convert imported JSON to StatsData type
+const generatedStatsData: StatsData | null = generatedStatsJson as StatsData;
 
-// Load generated stats at module initialization
-try {
-  // Import from src/data where Next.js can find it
-  generatedStatsData = require("./stats.generated.json") as StatsData;
+// Log loading status
+if (generatedStatsData?.objects?.length > 0) {
   console.log(`[stats] ✓ Loaded ${generatedStatsData.objects.length} objects from stats.generated.json`);
-} catch (error) {
-  console.log("[stats] Using fallback data (stats.generated.json not found)");
+} else {
+  console.log("[stats] Using fallback data (stats.generated.json not available)");
 }
 
 /**

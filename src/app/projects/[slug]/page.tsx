@@ -14,6 +14,7 @@ import { useCompareStore } from "@/store/useCompareStore";
 import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink } from "lucide-react";
 import ConstructionForecast from "@/components/projects/ConstructionForecast";
 import { RealEstateListingSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export default function ProjectDetailPage({
   params,
@@ -47,6 +48,15 @@ export default function ProjectDetailPage({
 
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[
+          { label: "Главная", href: "/" },
+          { label: "База данных", href: "/projects" },
+          { label: project.title },
+        ]}
+      />
+
       {/* Back Button */}
       <Link href="/projects">
         <Button variant="ghost">

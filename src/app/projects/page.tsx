@@ -11,9 +11,11 @@ import { AnimatedCard } from "@/components/ui/animated-card";
 import { getProjects } from "@/data/stats";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
+import { SearchBar } from "@/components/projects/SearchBar";
 
 export default function ProjectsPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   // Get all projects
   const allProjects = getProjects();
@@ -24,13 +26,28 @@ export default function ProjectsPage() {
     return ["Все города", ...uniqueCities.sort()];
   }, [allProjects]);
 
-  // Filter projects by city
+  // Filter projects by city and search query
   const filteredProjects = useMemo(() => {
-    if (selectedCity === "Все города") {
-      return allProjects;
+    let projects = allProjects;
+
+    // Filter by city
+    if (selectedCity !== "Все города") {
+      projects = projects.filter(p => p.city === selectedCity);
     }
-    return allProjects.filter(p => p.city === selectedCity);
-  }, [selectedCity, allProjects]);
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      projects = projects.filter(p =>
+        p.title.toLowerCase().includes(query) ||
+        p.city.toLowerCase().includes(query) ||
+        p.country.toLowerCase().includes(query) ||
+        p.summary?.toLowerCase().includes(query)
+      );
+    }
+
+    return projects;
+  }, [selectedCity, searchQuery, allProjects]);
 
   // Transform projects to apartment format for display
   const apartmentsWithStats = useMemo(() => {
@@ -218,8 +235,18 @@ export default function ProjectsPage() {
           </div>
         </FadeIn>
 
-        {/* City Filter */}
+        {/* Search Bar */}
         <FadeIn delay={0.1}>
+          <div className="mb-6 max-w-2xl mx-auto">
+            <SearchBar
+              onSearch={setSearchQuery}
+              placeholder="Поиск по названию, городу, стране..."
+            />
+          </div>
+        </FadeIn>
+
+        {/* City Filter */}
+        <FadeIn delay={0.15}>
           <div className="mb-8 flex flex-wrap gap-3 justify-center">
             {cities.map((city, idx) => (
               <motion.div

@@ -1849,54 +1849,6 @@
       "class": "комфорт"
     },
     {
-      "slug": "vidi-sinopskaya-spb",
-      "title": "VIDI Апарт-Отель",
-      "country": "Россия",
-      "city": "Санкт-Петербург",
-      "format": "hotel",
-      "status": "active",
-      "updatedAt": "2026-01-30",
-      "price": 6900000,
-      "area": 28,
-      "revPerM2Month": 2083,
-      "noiYear": 700000,
-      "paybackYears": 9.9,
-      "occupancy": 83,
-      "adr": 7000,
-      "riskLevel": "low",
-      "summary": "Синопская 30 | 410 апартаментов | Открыт осень 2024",
-      "why": [
-        "Крупный проект - 410 апартаментов",
-        "Новый объект 2024 года",
-        "Управление Valo Hospitality",
-        "Доход 700,000 ₽/год"
-      ],
-      "risks": [
-        "Новый объект, короткая история"
-      ],
-      "seasonality": [
-        81,
-        79,
-        83,
-        85,
-        88,
-        91,
-        93,
-        92,
-        89,
-        86,
-        83,
-        81
-      ],
-      "pricePerM2": 246429,
-      "totalUnits": 410,
-      "operatingSince": "Осень 2024",
-      "management": "Valo Hospitality",
-      "contacts": {
-        "website": "https://valoapart.ru"
-      }
-    },
-    {
       "slug": "yes-hoshimina-spb",
       "title": "YES Hoshimina",
       "country": "Россия",
