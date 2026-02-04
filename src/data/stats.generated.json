@@ -50,7 +50,53 @@
       "managementFee": 0.45,
       "investorShare": 0.55,
       "operatingExpenses": 0.3,
-      "currentYield2025": 3212
+      "currentYield2025": 3212,
+      "rating": 9,
+      "reviewsCount": "502+ на Booking",
+      "coordinates": {
+        "lat": 59.9311,
+        "lng": 30.3609
+      },
+      "nearbyAttractions": [
+        "Пл. Восстания (241-300м)",
+        "Московский вокзал (500м)",
+        "Невский проспект (300м)",
+        "ТЦ Галерея",
+        "Казанский собор (1.9км)"
+      ],
+      "photoLinks": [
+        "https://2gis.ru/spb/firm/70000001033554988",
+        "https://port-comfort.pro/hotels/spb/ligovskiy/"
+      ],
+      "managementContacts": {
+        "phone": "+7 (921) 951-82-06",
+        "email": "info@inreit.ru",
+        "telegram": "@kudinov_inreit",
+        "website": "https://inreit.ru/"
+      },
+      "awards": [
+        "Лучший апарт-отель России 2023 (CRE Federal Awards)"
+      ],
+      "yearOpened": 2016,
+      "totalRooms": 126,
+      "infrastructure": [
+        "Ресторан \"Хачо и Пури\"",
+        "Wi-Fi",
+        "Завтраки",
+        "Стойка 24/7"
+      ],
+      "positiveReviews": [
+        "Расположение и чистота номеров отличные",
+        "Номера красиво оформлены и чистые",
+        "Дружелюбный персонал",
+        "Хороший ресторан в здании"
+      ],
+      "negativeReviews": [],
+      "bookingLinks": {
+        "booking": "https://www.booking.com/hotel/ru/ligovskii-29.en-gb.html",
+        "ostrovok": "https://ostrovok.ru/hotel/russia/st._petersburg/mid9291780/vox_hotel_2/",
+        "tripadvisor": "https://www.tripadvisor.com/Hotel_Review-g298507-d15052392"
+      }
     },
     {
       "slug": "port-comfort-moyka",
@@ -2255,7 +2301,55 @@
       "managementFee": 0.4,
       "investorShare": 0.6,
       "operatingExpenses": 0.25,
-      "currentYield2025": 3600
+      "currentYield2025": 3600,
+      "rating": 8.9,
+      "reviewsCount": "66 на Ostrovok",
+      "coordinates": {
+        "lat": 55.0415,
+        "lng": 82.9346
+      },
+      "nearbyAttractions": [
+        "М. Октябрьская (5-10 мин)",
+        "М. Речной вокзал (793м)",
+        "ГПНТБ",
+        "НГАСУ",
+        "100+ ресторанов в радиусе 15 мин"
+      ],
+      "photoLinks": [
+        "https://2gis.ru/novosibirsk/firm/70000001087616127",
+        "https://iqaparts.ru/"
+      ],
+      "managementContacts": {
+        "phone": "+7 921 950-87-21",
+        "email": "best@bestgroup.ru",
+        "website": "https://mtlapart.ru/"
+      },
+      "awards": [
+        "Urban Awards 2023"
+      ],
+      "yearOpened": 2024,
+      "totalRooms": 200,
+      "infrastructure": [
+        "Лобби с ресепшен 24/7",
+        "Кофейня",
+        "6 скоростных лифтов",
+        "2-уровневый паркинг",
+        "Консьерж",
+        "Охрана"
+      ],
+      "positiveReviews": [
+        "Все новое и чистое",
+        "Удобное расположение",
+        "Отличные виды",
+        "Вежливый персонал"
+      ],
+      "negativeReviews": [
+        "Интернет работает с перебоями"
+      ],
+      "bookingLinks": {
+        "ostrovok": "https://ostrovok.ru/hotel/russia/novosibirsk/mid11290861/apartotel_iq_aparts/",
+        "yandex": "https://travel.yandex.ru/hotels/novosibirsk/iq-aparts/"
+      }
     },
     {
       "slug": "gorki-gorod-540",
@@ -2308,7 +2402,55 @@
       "managementFee": 0.38,
       "investorShare": 0.62,
       "operatingExpenses": 0.28,
-      "currentYield2025": 4200
+      "currentYield2025": 4200,
+      "rating": 8,
+      "reviewsCount": "502 на Booking",
+      "coordinates": {
+        "lat": 43.682363,
+        "lng": 40.262725
+      },
+      "nearbyAttractions": [
+        "Канатная дорога Горная Карусель",
+        "ТРЦ Горки Город",
+        "Marriott 5*",
+        "Горнолыжные трассы",
+        "Казино Сочи",
+        "Аквапарк"
+      ],
+      "photoLinks": [
+        "https://www.tripadvisor.com/Hotel_Review-g3206479-d5213306",
+        "https://gorki-apartamenty.ru/"
+      ],
+      "managementContacts": {
+        "phone": "+7 (800) 550-20-20",
+        "email": "infocenter@kpresort.ru",
+        "website": "https://krasnayapolyanaresort.ru/"
+      },
+      "yearOpened": 2013,
+      "totalRooms": 1338,
+      "infrastructure": [
+        "Прокат лыж",
+        "Ресторан",
+        "Детская комната",
+        "Канатные дороги",
+        "Прямой доступ к склонам"
+      ],
+      "positiveReviews": [
+        "Отличная локация рядом с подъемниками",
+        "Просторные апартаменты",
+        "Все рядом - ТЦ, рестораны",
+        "Теплые и уютные номера"
+      ],
+      "negativeReviews": [
+        "Качество уборки снизилось",
+        "Мебель \"уставшая\"",
+        "Проблемы с персоналом на ресепшен"
+      ],
+      "bookingLinks": {
+        "booking": "https://www.booking.com/reviews/ru/hotel/apartamenty-gorki-gorod-540.ru.html",
+        "ostrovok": "https://ostrovok.ru/hotel/russia/esto-sadok/mid9259895/premium_apartments_gorki_gorod_540/",
+        "tripadvisor": "https://www.tripadvisor.com/Hotel_Review-g3206479-d5213306"
+      }
     },
     {
       "slug": "polyana-peak-hilton",
@@ -2783,7 +2925,7 @@
     }
   ],
   "sources": {
-    "updatedAt": "2026-02-03",
-    "source": "Real data from inREIT, web sources, and market research 2025-2026 (54 projects across 9 cities)"
+    "updatedAt": "2026-02-04",
+    "source": "Real data from inREIT, web sources, and market research 2025-2026 (54 projects across 9 cities) | Enriched with deep research data for 3 hotels (ratings, coords, reviews, contacts)"
   }
 }

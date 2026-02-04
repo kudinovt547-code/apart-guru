@@ -12,10 +12,12 @@ import { getProjects } from "@/data/stats";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { SearchBar } from "@/components/projects/SearchBar";
+import { AdvancedFilters, FilterState, defaultFilters, applyFilters } from "@/components/projects/AdvancedFilters";
 
 export default function ProjectsPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filters, setFilters] = useState<FilterState>(defaultFilters);
 
   // Get all projects
   const allProjects = getProjects();
@@ -26,7 +28,24 @@ export default function ProjectsPage() {
     return ["Все города", ...uniqueCities.sort()];
   }, [allProjects]);
 
-  // Filter projects by city and search query
+  // Calculate min/max for filters
+  const priceMin = useMemo(() => Math.min(...allProjects.map(p => p.price)), [allProjects]);
+  const priceMax = useMemo(() => Math.max(...allProjects.map(p => p.price)), [allProjects]);
+  const paybackMin = useMemo(() => Math.min(...allProjects.map(p => p.paybackYears)), [allProjects]);
+  const paybackMax = useMemo(() => Math.max(...allProjects.map(p => p.paybackYears)), [allProjects]);
+
+  // Initialize filters with actual min/max values
+  useMemo(() => {
+    if (filters.priceRange[0] === 0 && filters.priceRange[1] === 100000000) {
+      setFilters(prev => ({
+        ...prev,
+        priceRange: [priceMin, priceMax],
+        paybackRange: [paybackMin, paybackMax],
+      }));
+    }
+  }, [priceMin, priceMax, paybackMin, paybackMax, filters.priceRange]);
+
+  // Filter projects by city, search query, and advanced filters
   const filteredProjects = useMemo(() => {
     let projects = allProjects;
 
@@ -46,8 +65,11 @@ export default function ProjectsPage() {
       );
     }
 
+    // Apply advanced filters
+    projects = applyFilters(projects, filters);
+
     return projects;
-  }, [selectedCity, searchQuery, allProjects]);
+  }, [selectedCity, searchQuery, allProjects, filters]);
 
   // Transform projects to apartment format for display
   const apartmentsWithStats = useMemo(() => {
@@ -243,6 +265,20 @@ export default function ProjectsPage() {
               placeholder="Поиск по названию, городу, стране..."
             />
           </div>
+        </FadeIn>
+
+        {/* Advanced Filters */}
+        <FadeIn delay={0.15}>
+          <AdvancedFilters
+            projects={allProjects}
+            filters={filters}
+            onFiltersChange={setFilters}
+            onReset={() => setFilters({
+              ...defaultFilters,
+              priceRange: [priceMin, priceMax],
+              paybackRange: [paybackMin, paybackMax],
+            })}
+          />
         </FadeIn>
 
         {/* City Filter */}
