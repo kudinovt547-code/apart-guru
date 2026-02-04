@@ -2,71 +2,21 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Users,
   MessageCircle,
-  BookOpen,
-  TrendingUp,
-  Award,
-  Target,
-  Sparkles,
-  ExternalLink
+  HeadphonesIcon,
+  Handshake,
+  Sparkles
 } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
-import { AnimatedCard } from "@/components/ui/animated-card";
 
 export default function CommunityPage() {
-  const features = [
-    {
-      icon: Users,
-      title: "Сообщество инвесторов",
-      description: "Общайтесь с опытными инвесторами в недвижимость, делитесь опытом и получайте советы",
-      link: "https://t.me/apartgurus"
-    },
-    {
-      icon: MessageCircle,
-      title: "Новостной канал",
-      description: "Актуальные новости рынка апарт-отелей, аналитика и инвестиционные возможности",
-      link: "https://t.me/apartdotpro"
-    },
-    {
-      icon: BookOpen,
-      title: "База знаний",
-      description: "Обучающие материалы, гайды и чек-листы для инвесторов",
-      link: "/methodology"
-    },
-    {
-      icon: TrendingUp,
-      title: "Аналитика рынка",
-      description: "Еженедельные обзоры рынка апарт-отелей и инвестиционных возможностей",
-      link: "#analytics"
-    },
-    {
-      icon: Award,
-      title: "Успешные кейсы",
-      description: "Реальные истории инвесторов и их результаты",
-      link: "#cases"
-    },
-    {
-      icon: Target,
-      title: "Инвестиционные стратегии",
-      description: "Разбор различных подходов к инвестированию в доходную недвижимость",
-      link: "#strategies"
-    }
-  ];
-
-  const stats = [
-    { value: "1000+", label: "Участников сообщества" },
-    { value: "50+", label: "Проверенных объектов" },
-    { value: "15%", label: "Средняя доходность" },
-    { value: "24/7", label: "Поддержка инвесторов" }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-12 px-4">
+      <div className="container mx-auto py-12 px-4 max-w-4xl">
         {/* Header */}
         <FadeIn>
           <div className="text-center mb-12">
@@ -75,159 +25,166 @@ export default function CommunityPage() {
               <span className="text-sm font-semibold">ПРИСОЕДИНЯЙТЕСЬ К СООБЩЕСТВУ</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Сообщество инвесторов
+              Сообщество инвесторов Apart Guru
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Общайтесь с единомышленниками, получайте экспертные советы и растите вместе с нами
+            <p className="text-xl text-muted-foreground">
+              Общайтесь с единомышленниками, делитесь опытом и принимайте решения на основе реальных данных
             </p>
           </div>
         </FadeIn>
 
-        {/* Stats */}
-        <FadeIn delay={0.1}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + idx * 0.05 }}
-              >
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                      {stat.value}
+        {/* Main Actions - Simplified */}
+        <div className="grid gap-6 mb-12">
+          {/* Telegram Group for Investors */}
+          <FadeIn delay={0.1}>
+            <Link href="https://t.me/apartgurus" target="_blank">
+              <Card className="hover:border-primary/50 transition-all cursor-pointer group hover:shadow-lg">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                      <Users className="h-8 w-8 text-primary" />
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      {stat.label}
+                    <div>
+                      <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors">
+                        Группа для инвесторов
+                      </CardTitle>
+                      <p className="text-muted-foreground">
+                        Обсуждение объектов, обмен опытом, реальные кейсы от участников сообщества
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </FadeIn>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Button size="lg" className="w-full">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Присоединиться к Telegram
+                  </Button>
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <p className="text-sm text-muted-foreground font-semibold mb-2">Что внутри:</p>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        <span>Реальные истории инвесторов и их доходность</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        <span>Обсуждение управляющих компаний (кому доверять, кого избегать)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        <span>Ранний доступ к новым объектам в базе</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        <span>Помощь с анализом инвестиций от опытных участников</span>
+                      </li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </FadeIn>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {features.map((feature, idx) => (
-            <AnimatedCard key={idx} delay={0.2 + idx * 0.05}>
-              <Link href={feature.link} target={feature.link.startsWith('http') ? "_blank" : undefined}>
-                <Card className="h-full hover:border-primary/50 transition-colors cursor-pointer group">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <feature.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          {/* Support */}
+          <FadeIn delay={0.2}>
+            <Link href="/contact">
+              <Card className="hover:border-primary/50 transition-all cursor-pointer group hover:shadow-lg">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-success/10 rounded-xl group-hover:bg-success/20 transition-colors">
+                      <HeadphonesIcon className="h-8 w-8 text-success" />
                     </div>
-                    <CardTitle className="group-hover:text-primary transition-colors">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
-            </AnimatedCard>
-          ))}
+                    <div>
+                      <CardTitle className="text-2xl mb-2 group-hover:text-success transition-colors">
+                        Поддержка
+                      </CardTitle>
+                      <p className="text-muted-foreground">
+                        Нужна помощь с подбором, анализом или проверкой объекта? Мы на связи
+                      </p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Button size="lg" variant="outline" className="w-full group-hover:border-success group-hover:text-success">
+                    <HeadphonesIcon className="mr-2 h-5 w-5" />
+                    Связаться с поддержкой
+                  </Button>
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <p className="text-sm text-muted-foreground font-semibold mb-2">Мы поможем:</p>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start">
+                        <span className="text-success mr-2">•</span>
+                        <span>Подобрать 2-5 объектов под ваш бюджет и риск-профиль</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-success mr-2">•</span>
+                        <span>Проверить управляющую компанию и реальность показателей</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-success mr-2">•</span>
+                        <span>Сопровождение сделки и контроль выплат первые 6 месяцев</span>
+                      </li>
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </FadeIn>
+
+          {/* Collaboration */}
+          <FadeIn delay={0.3}>
+            <Link href="/partnership">
+              <Card className="hover:border-accent/50 transition-all cursor-pointer group hover:shadow-lg">
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-accent/10 rounded-xl group-hover:bg-accent/20 transition-colors">
+                      <Handshake className="h-8 w-8 text-accent" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl mb-2 group-hover:text-accent transition-colors">
+                        Сотрудничество
+                      </CardTitle>
+                      <p className="text-muted-foreground">
+                        Застройщик, УК или площадка? Давайте работать вместе
+                      </p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Button size="lg" variant="outline" className="w-full group-hover:border-accent group-hover:text-accent">
+                    <Handshake className="mr-2 h-5 w-5" />
+                    Предложить сотрудничество
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+          </FadeIn>
         </div>
 
-        {/* CTA Section */}
+        {/* Community Stats */}
         <FadeIn delay={0.4}>
-          <Card className="bg-primary/5 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-3xl font-bold mb-4">
-                Готовы присоединиться?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Вступайте в наше сообщество инвесторов и получите доступ ко всем материалам,
-                аналитике и поддержке опытных экспертов
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="https://t.me/apartgurus" target="_blank">
-                  <Button size="lg" className="min-w-[200px]">
-                    <Users className="mr-2 h-5 w-5" />
-                    Группа сообщества
-                  </Button>
-                </Link>
-                <Link href="https://t.me/apartdotpro" target="_blank">
-                  <Button size="lg" variant="outline" className="min-w-[200px]">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Новостной канал
-                  </Button>
-                </Link>
+          <Card className="bg-muted/30">
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-1">54</div>
+                  <div className="text-sm text-muted-foreground">Объектов в базе</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-1">9</div>
+                  <div className="text-sm text-muted-foreground">Городов</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-1">2.7к</div>
+                  <div className="text-sm text-muted-foreground">₽/м² средняя доходность</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-1">24/7</div>
+                  <div className="text-sm text-muted-foreground">Поддержка</div>
+                </div>
               </div>
             </CardContent>
           </Card>
-        </FadeIn>
-
-        {/* Additional Info */}
-        <FadeIn delay={0.5}>
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Что вы получите</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">✓</span>
-                    <span>Доступ к закрытой аналитике рынка</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">✓</span>
-                    <span>Консультации от опытных инвесторов</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">✓</span>
-                    <span>Ранний доступ к новым объектам</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">✓</span>
-                    <span>Обучающие вебинары и мастер-классы</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">✓</span>
-                    <span>Networking с другими инвесторами</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Правила сообщества</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">•</span>
-                    <span>Уважительное общение</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">•</span>
-                    <span>Делитесь реальным опытом</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">•</span>
-                    <span>Запрещена реклама без согласования</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">•</span>
-                    <span>Проверяйте информацию перед инвестициями</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary mr-2">•</span>
-                    <span>Помогайте новичкам</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
         </FadeIn>
       </div>
     </div>

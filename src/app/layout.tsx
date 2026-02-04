@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CompareBar from "@/components/layout/CompareBar";
+import { BuildingsBackground } from "@/components/ui/buildings-background";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -86,6 +87,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <BuildingsBackground />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
