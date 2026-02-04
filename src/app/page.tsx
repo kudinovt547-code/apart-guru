@@ -17,7 +17,10 @@ import {
   calculateAverageOccupancy,
   calculateAveragePayback,
   getApartmentsCount,
-  getTopApartmentsByRevenue
+  getTopApartmentsByRevenue,
+  getCitiesStats,
+  getMarketMetrics,
+  getRevenueDistribution
 } from "@/utils/apartmentStats";
 
 export default function HomePage() {
@@ -26,6 +29,9 @@ export default function HomePage() {
   const avgPayback = calculateAveragePayback();
   const apartmentsCount = getApartmentsCount();
   const topApartments = getTopApartmentsByRevenue(5);
+  const citiesStats = useMemo(() => getCitiesStats(), []);
+  const marketMetrics = useMemo(() => getMarketMetrics(), []);
+  const revenueDistribution = useMemo(() => getRevenueDistribution(), []);
 
   return (
     <div className="min-h-screen">
@@ -211,6 +217,191 @@ export default function HomePage() {
                       </Button>
                     </motion.div>
                   </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Additional Market Metrics */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <FadeIn>
+            <h2 className="text-3xl font-semibold text-center mb-12">
+              Расширенная аналитика рынка
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
+            <AnimatedCard delay={0.1}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <Building2 className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-2xl font-bold tabular-nums mb-1">
+                    {formatCurrency(marketMetrics.avgPrice)}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Средняя цена объекта
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.2}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <TrendingUp className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-2xl font-bold tabular-nums mb-1">
+                    {formatCurrency(marketMetrics.avgNoi)}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Средний NOI в год
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.3}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <ArrowRight className="h-8 w-8 text-muted-foreground rotate-180" />
+                  </div>
+                  <div className="font-mono text-2xl font-bold tabular-nums mb-1">
+                    {formatCurrency(marketMetrics.minPrice)}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Минимальная цена входа
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+
+            <AnimatedCard delay={0.4}>
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <ArrowRight className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="font-mono text-2xl font-bold tabular-nums mb-1">
+                    {formatCurrency(marketMetrics.maxPrice)}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Максимальная цена
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+          </div>
+
+          {/* Cities Stats Table */}
+          <FadeIn delay={0.5}>
+            <Card className="max-w-6xl mx-auto">
+              <CardHeader>
+                <CardTitle>Статистика по городам</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Город
+                        </th>
+                        <th className="text-center py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Объектов
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Средняя доходность
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Средняя цена
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Окупаемость
+                        </th>
+                        <th className="text-right py-3 px-4 text-sm font-medium text-muted-foreground">
+                          Диапазон цен
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {citiesStats.slice(0, 10).map((city, idx) => (
+                        <motion.tr
+                          key={city.city}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.6 + idx * 0.05 }}
+                          className="border-b border-border/50 hover:bg-accent/30 transition-colors"
+                        >
+                          <td className="py-3 px-4 text-sm font-medium">{city.city}</td>
+                          <td className="py-3 px-4 text-sm text-center font-mono tabular-nums">
+                            {city.count}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums text-primary font-semibold">
+                            {formatNumber(city.avgRevPerM2, 0)} ₽/м²
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums">
+                            {formatCurrency(city.avgPrice)}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums">
+                            {city.avgPayback > 0 ? `${city.avgPayback} лет` : '—'}
+                          </td>
+                          <td className="py-3 px-4 text-sm text-right font-mono tabular-nums text-muted-foreground">
+                            {formatNumber(city.minPrice / 1000000, 1)}М - {formatNumber(city.maxPrice / 1000000, 1)}М
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          {/* Revenue Distribution */}
+          <FadeIn delay={0.7}>
+            <Card className="max-w-4xl mx-auto mt-8">
+              <CardHeader>
+                <CardTitle>Распределение по доходности (₽/м²/мес)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {revenueDistribution.map((item, idx) => {
+                    const maxCount = Math.max(...revenueDistribution.map(r => r.count));
+                    const widthPercent = maxCount > 0 ? (item.count / maxCount) * 100 : 0;
+
+                    return (
+                      <motion.div
+                        key={item.range}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.8 + idx * 0.1 }}
+                        className="flex items-center gap-4"
+                      >
+                        <div className="w-32 text-sm font-medium">{item.range} ₽</div>
+                        <div className="flex-1 bg-muted rounded-full h-8 overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${widthPercent}%` }}
+                            transition={{ delay: 0.8 + idx * 0.1, duration: 0.8 }}
+                            className="h-full bg-primary flex items-center justify-end pr-3"
+                          >
+                            {item.count > 0 && (
+                              <span className="text-sm font-mono tabular-nums text-primary-foreground">
+                                {item.count}
+                              </span>
+                            )}
+                          </motion.div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
