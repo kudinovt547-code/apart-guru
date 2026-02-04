@@ -1,0 +1,24 @@
+# apart-guru.vercel.app robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://apart-guru.vercel.app/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 0
+
+# Disallow admin/internal pages (if any in future)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Allow important pages
+Allow: /projects
+Allow: /calculator
+Allow: /compare
+Allow: /contact
+Allow: /community
+Allow: /partnership
+Allow: /methodology
+Allow: /services
