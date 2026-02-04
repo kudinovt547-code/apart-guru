@@ -421,24 +421,6 @@ export default function ProjectsPage() {
                               <span className="font-medium text-right">{project.managementCompany}</span>
                             </div>
                           )}
-                          <div className="grid grid-cols-2 gap-2">
-                            {project.managementFee && (
-                              <div className="flex flex-col">
-                                <span className="text-muted-foreground">Комиссия УК</span>
-                                <span className="font-semibold text-red-600 dark:text-red-400">
-                                  {formatNumber(project.managementFee * 100, 0)}%
-                                </span>
-                              </div>
-                            )}
-                            {project.investorShare && (
-                              <div className="flex flex-col">
-                                <span className="text-muted-foreground">Вам остаётся</span>
-                                <span className="font-semibold text-green-600 dark:text-green-400">
-                                  {formatNumber(project.investorShare * 100, 0)}%
-                                </span>
-                              </div>
-                            )}
-                          </div>
                           <div className="flex justify-between items-center pt-1 border-t border-border/50">
                             <span className="text-muted-foreground">Загрузка</span>
                             <span className="font-medium">

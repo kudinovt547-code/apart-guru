@@ -47,9 +47,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 3212,
       "rating": 9,
       "reviewsCount": "502+ на Booking",
@@ -145,9 +142,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 3864
     },
     {
@@ -197,9 +191,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 3422
     },
     {
@@ -249,9 +240,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 3366
     },
     {
@@ -301,9 +289,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 2993
     },
     {
@@ -353,9 +338,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 3100
     },
     {
@@ -405,9 +387,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 2800
     },
     {
@@ -457,9 +436,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 2950
     },
     {
@@ -509,9 +485,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 2900
     },
     {
@@ -561,9 +534,6 @@
         1900
       ],
       "managementCompany": "inREIT",
-      "managementFee": 0.45,
-      "investorShare": 0.55,
-      "operatingExpenses": 0.3,
       "currentYield2025": 2750
     },
     {
@@ -613,10 +583,7 @@
         1900,
         1800
       ],
-      "managementCompany": "VALO Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "VALO Hospitality"
     },
     {
       "slug": "valo-moskovskaya",
@@ -665,10 +632,7 @@
         1900,
         1800
       ],
-      "managementCompany": "VALO Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "VALO Hospitality"
     },
     {
       "slug": "valo-nevsky",
@@ -717,10 +681,7 @@
         1900,
         1800
       ],
-      "managementCompany": "VALO Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "VALO Hospitality"
     },
     {
       "slug": "valo-petrogradskaya",
@@ -769,10 +730,7 @@
         1900,
         1800
       ],
-      "managementCompany": "VALO Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "VALO Hospitality"
     },
     {
       "slug": "valo-admiralteyskaya",
@@ -821,10 +779,7 @@
         1900,
         1800
       ],
-      "managementCompany": "VALO Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "VALO Hospitality"
     },
     {
       "slug": "yes-primorsky",
@@ -872,10 +827,7 @@
         1800,
         1700
       ],
-      "managementCompany": "YES Hotels",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.29
+      "managementCompany": "YES Hotels"
     },
     {
       "slug": "yes-pushkinskaya",
@@ -923,10 +875,7 @@
         1800,
         1700
       ],
-      "managementCompany": "YES Hotels",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.29
+      "managementCompany": "YES Hotels"
     },
     {
       "slug": "yes-ligovsky",
@@ -974,10 +923,7 @@
         1800,
         1700
       ],
-      "managementCompany": "YES Hotels",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.29
+      "managementCompany": "YES Hotels"
     },
     {
       "slug": "moscow-city-premium",
@@ -1025,10 +971,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "arbat-boutique",
@@ -1076,10 +1019,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "tverskaya-residence",
@@ -1127,10 +1067,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "red-square-apart",
@@ -1178,10 +1115,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "patriarshiye-luxury",
@@ -1229,10 +1163,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "basmanny-apart",
@@ -1280,10 +1211,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "zamoskvorechye-suites",
@@ -1331,10 +1259,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "khamovniki-business",
@@ -1382,10 +1307,7 @@
         2500,
         2300
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.26
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "sochi-paradise",
@@ -1433,10 +1355,7 @@
         2500,
         3500
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.35,
-      "investorShare": 0.65,
-      "operatingExpenses": 0.25
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "olympic-park-apart",
@@ -1484,10 +1403,7 @@
         2500,
         3500
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.35,
-      "investorShare": 0.65,
-      "operatingExpenses": 0.25
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "krasnaya-polyana-suites",
@@ -1535,10 +1451,7 @@
         2500,
         3500
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.35,
-      "investorShare": 0.65,
-      "operatingExpenses": 0.25
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "sochi-center-residence",
@@ -1586,10 +1499,7 @@
         2500,
         3500
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.35,
-      "investorShare": 0.65,
-      "operatingExpenses": 0.25
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "rosa-khutor-apart",
@@ -1637,10 +1547,7 @@
         2500,
         3500
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.35,
-      "investorShare": 0.65,
-      "operatingExpenses": 0.25
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "black-sea-view",
@@ -1688,10 +1595,7 @@
         2500,
         3500
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.35,
-      "investorShare": 0.65,
-      "operatingExpenses": 0.25
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "kazan-kremlin-view",
@@ -1739,10 +1643,7 @@
         1800,
         1700
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "universiade-apart",
@@ -1790,10 +1691,7 @@
         1800,
         1700
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "kol-sharif-residence",
@@ -1841,10 +1739,7 @@
         1800,
         1700
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.28
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "ekb-city-apart",
@@ -1890,10 +1785,7 @@
         2100,
         1900
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.29
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "ploshchad-1905",
@@ -1939,10 +1831,7 @@
         2100,
         1900
       ],
-      "managementCompany": "Различные УК",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.29
+      "managementCompany": "Различные УК"
     },
     {
       "slug": "nino-apart-nn",
@@ -1991,9 +1880,6 @@
         2300
       ],
       "managementCompany": "NINO APART Management",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.25,
       "currentYield2025": 2800
     },
     {
@@ -2043,9 +1929,6 @@
         2100
       ],
       "managementCompany": "9 Ночей Management",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.28,
       "currentYield2025": 2600
     },
     {
@@ -2096,9 +1979,6 @@
         1500
       ],
       "managementCompany": "Возможен выбор УК",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.3,
       "currentYield2025": 3200
     },
     {
@@ -2148,7 +2028,6 @@
         2500,
         2400
       ],
-      "operatingExpenses": 0.2,
       "currentYield2025": 2900
     },
     {
@@ -2198,7 +2077,6 @@
         1400,
         1200
       ],
-      "operatingExpenses": 0.32,
       "currentYield2025": 2400
     },
     {
@@ -2247,7 +2125,6 @@
         2200,
         2200
       ],
-      "operatingExpenses": 0.18,
       "currentYield2025": 2200
     },
     {
@@ -2298,9 +2175,6 @@
         3200
       ],
       "managementCompany": "MTL-Apart Property Management",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.25,
       "currentYield2025": 3600,
       "rating": 8.9,
       "reviewsCount": "66 на Ostrovok",
@@ -2399,9 +2273,6 @@
         5500
       ],
       "managementCompany": "НАО \"Красная Поляна\"",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.28,
       "currentYield2025": 4200,
       "rating": 8,
       "reviewsCount": "502 на Booking",
@@ -2502,9 +2373,6 @@
         10500
       ],
       "managementCompany": "DoubleTree by Hilton",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.32,
       "currentYield2025": 9800
     },
     {
@@ -2554,9 +2422,6 @@
         2500
       ],
       "managementCompany": "Nevsky Management",
-      "managementFee": 0.43,
-      "investorShare": 0.57,
-      "operatingExpenses": 0.28,
       "currentYield2025": 3100
     },
     {
@@ -2606,9 +2471,6 @@
         3100
       ],
       "managementCompany": "Petro Palace Management",
-      "managementFee": 0.44,
-      "investorShare": 0.56,
-      "operatingExpenses": 0.3,
       "currentYield2025": 4100
     },
     {
@@ -2658,9 +2520,6 @@
         5900
       ],
       "managementCompany": "Arbat Management Group",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.32,
       "currentYield2025": 6800
     },
     {
@@ -2710,9 +2569,6 @@
         5100
       ],
       "managementCompany": "Loft Management Moscow",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.3,
       "currentYield2025": 5900
     },
     {
@@ -2762,9 +2618,6 @@
         2400
       ],
       "managementCompany": "Ural Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.26,
       "currentYield2025": 2800
     },
     {
@@ -2814,9 +2667,6 @@
         2200
       ],
       "managementCompany": "Vision Management",
-      "managementFee": 0.38,
-      "investorShare": 0.62,
-      "operatingExpenses": 0.24,
       "currentYield2025": 2600
     },
     {
@@ -2866,9 +2716,6 @@
         2700
       ],
       "managementCompany": "Kazan Apart Management",
-      "managementFee": 0.42,
-      "investorShare": 0.58,
-      "operatingExpenses": 0.28,
       "currentYield2025": 3400
     },
     {
@@ -2918,14 +2765,11 @@
         2500
       ],
       "managementCompany": "Tatarstan Hospitality",
-      "managementFee": 0.4,
-      "investorShare": 0.6,
-      "operatingExpenses": 0.26,
       "currentYield2025": 3100
     }
   ],
   "sources": {
     "updatedAt": "2026-02-04",
-    "source": "Real data from inREIT, web sources, and market research 2025-2026 (54 projects across 9 cities) | Enriched with deep research data for 3 hotels (ratings, coords, reviews, contacts)"
+    "source": "Real data from inREIT, web sources, and market research 2025-2026 (54 projects across 9 cities) | Enriched with deep research data for 3 hotels (ratings, coords, reviews, contacts) | Removed fake management fee data - showing only verified facts"
   }
 }
