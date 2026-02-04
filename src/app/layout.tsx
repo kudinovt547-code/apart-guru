@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CompareBar from "@/components/layout/CompareBar";
 import { BuildingsBackground } from "@/components/ui/buildings-background";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -83,15 +84,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <BuildingsBackground />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <CompareBar />
+        <ThemeProvider defaultTheme="dark" storageKey="apart-guru-theme">
+          <BuildingsBackground />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CompareBar />
+        </ThemeProvider>
       </body>
     </html>
   );
