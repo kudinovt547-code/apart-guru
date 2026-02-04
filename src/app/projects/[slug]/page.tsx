@@ -33,19 +33,6 @@ export default function ProjectDetailPage({
   const { addProject, removeProject, isInCompare } = useCompareStore();
   const inCompare = isInCompare(project.slug);
 
-  const suitableFor = [];
-  const notSuitableFor = [];
-
-  if (project.paybackYears <= 6) {
-    suitableFor.push("Инвесторы, ориентированные на быструю окупаемость");
-  } else if (project.paybackYears > 9) {
-    notSuitableFor.push("Краткосрочные инвестиции");
-  }
-
-  if (project.occupancy >= 80) {
-    suitableFor.push("Те, кто ценит стабильный денежный поток");
-  }
-
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
       {/* Breadcrumbs */}
@@ -202,43 +189,112 @@ export default function ProjectDetailPage({
         <ConstructionForecast project={project} />
       )}
 
-      {/* Two Column Layout */}
+      {/* Management & Economics - Two Column Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Suitable For */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Кому подходит</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {suitableFor.map((item, idx) => (
-                <li key={idx} className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-
-        {/* Not Suitable For */}
-        {notSuitableFor.length > 0 && (
+        {/* Management Details */}
+        {(project.managementCompany || project.managementFee || project.investorShare) && (
           <Card>
             <CardHeader>
-              <CardTitle>Не подходит</CardTitle>
+              <CardTitle>Управление и экономика</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2">
-                {notSuitableFor.map((item, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <span className="text-destructive mr-2">✗</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-4">
+                {project.managementCompany && (
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Управляющая компания</p>
+                    <p className="font-semibold">{project.managementCompany}</p>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-2 gap-4">
+                  {project.managementFee && (
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-1">Комиссия УК</p>
+                      <p className="text-lg font-bold font-mono tabular-nums text-red-600 dark:text-red-400">
+                        {formatNumber(project.managementFee * 100, 0)}%
+                      </p>
+                    </div>
+                  )}
+                  {project.investorShare && (
+                    <div>
+                      <p className="text-xs text-muted-foreground mb-1">Доля инвестора</p>
+                      <p className="text-lg font-bold font-mono tabular-nums text-green-600 dark:text-green-400">
+                        {formatNumber(project.investorShare * 100, 0)}%
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {project.operatingExpenses && (
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Операционные расходы</p>
+                    <p className="text-base font-semibold font-mono tabular-nums">
+                      ~{formatNumber(project.operatingExpenses * 100, 0)}% от выручки
+                    </p>
+                  </div>
+                )}
+              </div>
             </CardContent>
           </Card>
         )}
+
+        {/* Performance Metrics */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Ключевые показатели</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">ROI годовой</p>
+                  <p className="text-lg font-bold font-mono tabular-nums text-primary">
+                    {formatNumber((project.noiYear / project.price) * 100, 1)}%
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Окупаемость</p>
+                  <p className="text-lg font-bold font-mono tabular-nums text-amber-600 dark:text-amber-400">
+                    {formatNumber(project.paybackYears, 1)} лет
+                  </p>
+                </div>
+              </div>
+
+              {project.currentYield2025 && (
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Доходность 2025</p>
+                  <p className="text-lg font-bold font-mono tabular-nums">
+                    {formatCurrency(project.currentYield2025)} ₽/м²/мес
+                  </p>
+                  {project.historicalYield2024 && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      2024: {formatCurrency(project.historicalYield2024)} ₽/м²/мес
+                      {project.currentYield2025 > project.historicalYield2024 ? (
+                        <span className="text-green-600 dark:text-green-400 ml-1">
+                          ↑ {formatNumber(((project.currentYield2025 - project.historicalYield2024) / project.historicalYield2024) * 100, 1)}%
+                        </span>
+                      ) : (
+                        <span className="text-red-600 dark:text-red-400 ml-1">
+                          ↓ {formatNumber(((project.historicalYield2024 - project.currentYield2025) / project.historicalYield2024) * 100, 1)}%
+                        </span>
+                      )}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <div className="pt-2 border-t border-border/50">
+                <p className="text-xs text-muted-foreground mb-2">Месячный доход с апартамента</p>
+                <p className="text-xl font-bold font-mono tabular-nums">
+                  ~{formatCurrency(Math.round((project.revPerM2Month * project.area)))}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  при площади {project.area} м²
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Why Invest */}

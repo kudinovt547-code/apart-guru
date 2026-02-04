@@ -94,6 +94,15 @@ export const ProjectSchema = z.object({
   areaMax: z.number().optional(),
   priceMax: z.number().optional(),
   occupancyWeekend: z.number().optional(),
+
+  // Management and economics fields
+  managementCompany: z.string().optional(),
+  managementFee: z.number().optional(),
+  investorShare: z.number().optional(),
+  operatingExpenses: z.number().optional(),
+  currentYield2025: z.number().optional(),
+  historicalYield2024: z.number().optional(),
+  address: z.string().optional(),
 });
 
 export type Project = z.infer<typeof ProjectSchema>;

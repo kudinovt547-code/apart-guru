@@ -300,49 +300,89 @@ export default function ProjectsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {/* Price per m² */}
-                    <div className="flex justify-between items-center pb-3 border-b border-border/50">
-                      <span className="text-sm text-muted-foreground">Цена за м²</span>
-                      <span className="font-mono text-sm font-semibold tabular-nums">
-                        {formatCurrency(apt.price_m2)}
-                      </span>
-                    </div>
-
-                    {/* ADR Range */}
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">ADR</span>
-                      <span className="font-mono text-sm tabular-nums">
-                        {formatCurrency(apt.adr_low)} - {formatCurrency(apt.adr_high)}
-                      </span>
-                    </div>
-
-                    {/* Occupancy */}
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Загрузка</span>
-                      <span className="font-mono text-sm tabular-nums">
-                        {Math.round(apt.occ_avg * 100)}%
-                      </span>
-                    </div>
-
-                    {/* Revenue per m² */}
-                    <div className="flex justify-between items-center pt-3 border-t border-border/50">
-                      <span className="text-sm font-medium">Доходность</span>
-                      <div className="flex items-center gap-1">
-                        <TrendingUp className="h-4 w-4 text-primary" />
-                        <span className="font-mono text-base font-bold text-primary tabular-nums">
-                          {formatNumber(apt.revPerM2Month, 0)} ₽/м²
-                        </span>
+                    {/* Key Metrics Grid */}
+                    <div className="grid grid-cols-2 gap-3 pb-3 border-b border-border/50">
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Цена</p>
+                        <p className="font-mono text-sm font-semibold tabular-nums">
+                          {formatCurrency(filteredProjects.find(p => p.slug === apt.id)?.price || 0)}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">За м²</p>
+                        <p className="font-mono text-sm font-semibold tabular-nums">
+                          {formatCurrency(apt.price_m2)}
+                        </p>
                       </div>
                     </div>
 
-                    {/* Location & Model */}
-                    <div className="flex gap-2 pt-3">
-                      <span className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">
-                        {apt.loc_class === "Prime" ? "Топ-локация" : apt.loc_class === "Center" ? "Центр" : "Район"}
-                      </span>
-                      <span className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">
-                        {apt.model === "Short" ? "Посуточно" : apt.model === "Long" ? "Долгосрок" : "Гибрид"}
-                      </span>
+                    {/* Revenue & Payback - Most Important */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">Доходность</span>
+                        <div className="flex items-center gap-1">
+                          <TrendingUp className="h-4 w-4 text-primary" />
+                          <span className="font-mono text-base font-bold text-primary tabular-nums">
+                            {formatNumber(apt.revPerM2Month, 0)} ₽/м²
+                          </span>
+                        </div>
+                      </div>
+
+                      {(() => {
+                        const project = filteredProjects.find(p => p.slug === apt.id);
+                        return project ? (
+                          <>
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-muted-foreground">Окупаемость</span>
+                              <span className="font-mono text-sm font-bold tabular-nums text-amber-600 dark:text-amber-400">
+                                {formatNumber(project.paybackYears, 1)} лет
+                              </span>
+                            </div>
+
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm text-muted-foreground">NOI/год</span>
+                              <span className="font-mono text-sm tabular-nums">
+                                {formatCurrency(project.noiYear)}
+                              </span>
+                            </div>
+                          </>
+                        ) : null;
+                      })()}
+                    </div>
+
+                    {/* Management & Economics */}
+                    <div className="pt-3 border-t border-border/50 space-y-2">
+                      {(() => {
+                        const project = filteredProjects.find(p => p.slug === apt.id);
+                        if (!project) return null;
+
+                        return (
+                          <>
+                            {project.managementCompany && (
+                              <div className="flex justify-between items-center">
+                                <span className="text-xs text-muted-foreground">УК</span>
+                                <span className="text-xs font-medium truncate max-w-[140px]" title={project.managementCompany}>
+                                  {project.managementCompany}
+                                </span>
+                              </div>
+                            )}
+                            {project.investorShare && (
+                              <div className="flex justify-between items-center">
+                                <span className="text-xs text-muted-foreground">Доля инвестора</span>
+                                <span className="text-xs font-medium text-green-600 dark:text-green-400">
+                                  {formatNumber(project.investorShare * 100, 0)}%
+                                </span>
+                              </div>
+                            )}
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs text-muted-foreground">Загрузка</span>
+                              <span className="text-xs font-medium">
+                                {Math.round(apt.occ_avg * 100)}%
+                              </span>
+                            </div>
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
                 </CardContent>
