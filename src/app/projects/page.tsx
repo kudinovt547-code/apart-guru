@@ -315,14 +315,47 @@ export default function ProjectsPage() {
             const project = filteredProjects.find(p => p.slug === apt.id);
             if (!project) return null;
 
+            // Calculate ROI for color coding
+            const roi = (project.noiYear / project.price) * 100;
+            const roiGrade = roi >= 15 ? "excellent" : roi >= 10 ? "good" : roi >= 5 ? "fair" : "poor";
+
+            // Determine gradient and colors based on ROI
+            const getGradientClass = () => {
+              if (roi >= 15) return "from-green-500/10 via-background to-background";
+              if (roi >= 10) return "from-blue-500/10 via-background to-background";
+              if (roi >= 5) return "from-yellow-500/10 via-background to-background";
+              return "from-orange-500/10 via-background to-background";
+            };
+
+            const getROIColor = () => {
+              if (roi >= 15) return "text-green-600 dark:text-green-400";
+              if (roi >= 10) return "text-blue-600 dark:text-blue-400";
+              if (roi >= 5) return "text-yellow-600 dark:text-yellow-400";
+              return "text-orange-600 dark:text-orange-400";
+            };
+
+            const getROIBadgeClass = () => {
+              if (roi >= 15) return "bg-green-500/20 text-green-700 dark:text-green-300 border-green-500/30";
+              if (roi >= 10) return "bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-500/30";
+              if (roi >= 5) return "bg-yellow-500/20 text-yellow-700 dark:text-yellow-300 border-yellow-500/30";
+              return "bg-orange-500/20 text-orange-700 dark:text-orange-300 border-orange-500/30";
+            };
+
             return (
               <AnimatedCard key={apt.id} delay={0.3 + idx * 0.05}>
                 <Link href={`/projects/${apt.id}`}>
-                  <Card className="h-full hover:border-primary/50 transition-all hover:shadow-lg cursor-pointer group">
-                    <CardHeader className="pb-3">
-                      {/* Header with status badges */}
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex gap-2">
+                  <Card className={`h-full bg-gradient-to-br ${getGradientClass()} hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer group overflow-hidden relative elevation-2 hover:elevation-4`}>
+                    {/* Decorative corner accent */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full opacity-50" />
+
+                    <CardHeader className="pb-3 relative z-10">
+                      {/* Header with ROI badge and status */}
+                      <div className="flex items-start justify-between mb-3 gap-2">
+                        <div className="flex flex-wrap gap-2">
+                          {/* ROI Grade Badge - More Prominent */}
+                          <span className={`text-sm px-3 py-1.5 rounded-full font-bold border ${getROIBadgeClass()}`}>
+                            ROI {formatNumber(roi, 1)}%
+                          </span>
                           <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                             project.status === "active"
                               ? "bg-green-500/20 text-green-600 dark:text-green-400"
@@ -330,116 +363,132 @@ export default function ProjectsPage() {
                               ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
                               : "bg-muted text-muted-foreground"
                           }`}>
-                            {project.status === "active" ? "Действует" : "Строится"}
-                          </span>
-                          <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                            project.riskLevel === "low"
-                              ? "bg-green-500/20 text-green-600 dark:text-green-400"
-                              : project.riskLevel === "medium"
-                              ? "bg-yellow-500/20 text-yellow-600 dark:text-yellow-400"
-                              : "bg-red-500/20 text-red-600 dark:text-red-400"
-                          }`}>
-                            {project.riskLevel === "low" ? "🟢 Низкий риск" : project.riskLevel === "medium" ? "🟡 Средний" : "🔴 Высокий"}
+                            {project.status === "active" ? "✓ Работает" : "🏗 Строится"}
                           </span>
                         </div>
                       </div>
 
-                      {/* Title */}
-                      <CardTitle className="text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                      {/* Title - Larger and bolder */}
+                      <CardTitle className="text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
                         {apt.name}
                       </CardTitle>
 
-                      {/* Location */}
+                      {/* Location with enhanced styling */}
                       <div className="space-y-1">
-                        <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                        <div className="flex items-start gap-2 text-sm">
+                          <MapPin className="h-4 w-4 flex-shrink-0 mt-1 text-primary" />
                           <div>
-                            <p className="font-medium text-foreground">{apt.city}</p>
+                            <p className="font-semibold text-foreground">{apt.city}</p>
                             {project.address && (
-                              <p className="text-xs line-clamp-1">{project.address}</p>
+                              <p className="text-xs text-muted-foreground line-clamp-1">{project.address}</p>
                             )}
                           </div>
                         </div>
                       </div>
-
-                      {/* Summary snippet */}
-                      {project.summary && (
-                        <p className="text-xs text-muted-foreground mt-2 line-clamp-2 leading-relaxed">
-                          {project.summary}
-                        </p>
-                      )}
                     </CardHeader>
 
-                    <CardContent>
-                      <div className="space-y-3">
-                        {/* Key Financial Metrics */}
-                        <div className="bg-primary/5 rounded-lg p-3 space-y-2">
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs text-muted-foreground">Доходность</span>
-                            <div className="flex items-center gap-1">
-                              <TrendingUp className="h-3 w-3 text-primary" />
-                              <span className="font-mono text-sm font-bold text-primary tabular-nums">
-                                {formatNumber(apt.revPerM2Month, 0)} ₽/м²
-                              </span>
+                    <CardContent className="relative z-10">
+                      <div className="space-y-4">
+                        {/* Hero Metrics - Large prominent numbers */}
+                        <div className="glass rounded-xl p-4 border border-primary/20">
+                          <div className="grid grid-cols-2 gap-4">
+                            {/* Monthly Revenue - Large and prominent */}
+                            <div className="text-center">
+                              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Доход/м²</p>
+                              <div className="flex items-baseline justify-center gap-1">
+                                <TrendingUp className="h-4 w-4 text-primary mb-1" />
+                                <p className={`font-mono text-2xl font-bold tabular-nums ${getROIColor()}`}>
+                                  {formatNumber(apt.revPerM2Month, 0)}
+                                </p>
+                              </div>
+                              <p className="text-xs text-muted-foreground mt-0.5">₽/мес</p>
+                            </div>
+
+                            {/* Payback Period - Large and prominent */}
+                            <div className="text-center">
+                              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Окупаемость</p>
+                              <p className="font-mono text-2xl font-bold tabular-nums text-amber-600 dark:text-amber-400">
+                                {formatNumber(project.paybackYears, 1)}
+                              </p>
+                              <p className="text-xs text-muted-foreground mt-0.5">лет</p>
                             </div>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs text-muted-foreground">Окупаемость</span>
-                            <span className="font-mono text-sm font-bold tabular-nums text-amber-600 dark:text-amber-400">
-                              {formatNumber(project.paybackYears, 1)} лет
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs text-muted-foreground">Доход/год</span>
-                            <span className="font-mono text-sm font-semibold tabular-nums">
+
+                          {/* Annual NOI */}
+                          <div className="mt-4 pt-4 border-t border-border/50 text-center">
+                            <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Годовой доход (NOI)</p>
+                            <p className="font-mono text-lg font-bold tabular-nums text-foreground">
                               {formatCurrency(project.noiYear)}
-                            </span>
+                            </p>
                           </div>
                         </div>
 
-                        {/* Price & Area */}
-                        <div className="grid grid-cols-2 gap-2">
-                          <div className="bg-muted/50 rounded p-2">
-                            <p className="text-xs text-muted-foreground mb-1">Цена</p>
-                            <p className="font-mono text-xs font-semibold tabular-nums">
+                        {/* Investment Details */}
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="bg-muted/30 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                            <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">Инвестиция</p>
+                            <p className="font-mono text-sm font-bold tabular-nums text-foreground">
                               {formatCurrency(project.price)}
                             </p>
                           </div>
-                          <div className="bg-muted/50 rounded p-2">
-                            <p className="text-xs text-muted-foreground mb-1">Площадь</p>
-                            <p className="font-mono text-xs font-semibold tabular-nums">
+                          <div className="bg-muted/30 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                            <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">Площадь</p>
+                            <p className="font-mono text-sm font-bold tabular-nums text-foreground">
                               {project.area} м²
                             </p>
                           </div>
                         </div>
 
-                        {/* Management & Operations */}
-                        <div className="space-y-1.5 text-xs">
-                          {project.managementCompany && (
-                            <div className="flex justify-between items-start gap-2">
-                              <span className="text-muted-foreground">Управление:</span>
-                              <span className="font-medium text-right">{project.managementCompany}</span>
-                            </div>
-                          )}
-                          <div className="flex justify-between items-center pt-1 border-t border-border/50">
-                            <span className="text-muted-foreground">Загрузка</span>
-                            <span className="font-medium">
+                        {/* Operational Metrics */}
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between items-center p-2 rounded-lg hover:bg-muted/20 transition-colors">
+                            <span className="text-muted-foreground flex items-center gap-2">
+                              <BarChart3 className="h-3.5 w-3.5" />
+                              Загрузка
+                            </span>
+                            <span className="font-semibold font-mono tabular-nums">
                               {project.occupancy}%
                             </span>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-muted-foreground">ADR (средний чек)</span>
-                            <span className="font-medium font-mono tabular-nums">
+                          <div className="flex justify-between items-center p-2 rounded-lg hover:bg-muted/20 transition-colors">
+                            <span className="text-muted-foreground flex items-center gap-2">
+                              <TrendingUp className="h-3.5 w-3.5" />
+                              ADR (средний чек)
+                            </span>
+                            <span className="font-semibold font-mono tabular-nums">
                               {formatCurrency(project.adr)}
                             </span>
                           </div>
+                          {project.managementCompany && (
+                            <div className="flex justify-between items-start gap-2 p-2 rounded-lg hover:bg-muted/20 transition-colors">
+                              <span className="text-muted-foreground flex items-center gap-2">
+                                <Building2 className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
+                                Управление
+                              </span>
+                              <span className="font-medium text-right text-xs">
+                                {project.managementCompany}
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        {/* View Details CTA */}
-                        <div className="pt-2 mt-2 border-t border-border/50">
-                          <p className="text-xs text-center text-primary group-hover:text-primary/80 transition-colors font-medium">
-                            Подробнее →
-                          </p>
+                        {/* Risk Level Badge */}
+                        <div className="pt-3 border-t border-border/50">
+                          <div className="flex items-center justify-between">
+                            <span className={`text-xs px-3 py-1.5 rounded-full font-medium border ${
+                              project.riskLevel === "low"
+                                ? "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30"
+                                : project.riskLevel === "medium"
+                                ? "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/30"
+                                : "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30"
+                            }`}>
+                              {project.riskLevel === "low" ? "✓ Низкий риск" : project.riskLevel === "medium" ? "⚠ Средний риск" : "⚡ Высокий риск"}
+                            </span>
+                            <span className="text-sm text-primary group-hover:text-primary/80 transition-colors font-semibold flex items-center gap-1">
+                              Подробнее
+                              <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </CardContent>
