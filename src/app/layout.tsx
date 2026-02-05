@@ -96,7 +96,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <ThemeProvider defaultTheme="dark" storageKey="apart-guru-theme">
+        <ThemeProvider defaultTheme="light" storageKey="apart-guru-theme">
           <BuildingsBackground />
           <Header />
           <main className="flex-1">{children}</main>
