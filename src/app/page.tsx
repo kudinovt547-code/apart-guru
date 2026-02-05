@@ -12,6 +12,7 @@ import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { OrganizationSchema, WebsiteSchema } from "@/components/seo/JsonLd";
+import { InlineLeadForm } from "@/components/lead/InlineLeadForm";
 import {
   calculateMarketRevPerM2,
   calculateAverageOccupancy,
@@ -35,49 +36,57 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-accent/30 to-background py-20 overflow-hidden">
-        <div className="container mx-auto px-4 text-center max-w-4xl">
-          <FadeIn delay={0.1}>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Подбор апартаментов с реальной доходностью
-            </h1>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Сравниваем 2–5 объектов по фактическим данным, показываем реальную доходность, операционные расходы и риски. Сопровождаем сделку и помогаем контролировать выплаты первые 6 месяцев.
-            </p>
-          </FadeIn>
+      {/* Hero Section - NEW */}
+      <section className="bg-gradient-to-b from-primary/10 via-background to-background py-16 md:py-24 overflow-hidden">
+        <div className="container mx-auto px-4 max-w-5xl">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <FadeIn delay={0.1}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Персональный подбор апартамента<br />под вашу цель и математику
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Я собираю shortlist 3–5 вариантов, считаю доходность по сценариям, отмечаю риски договора и УК, и веду до сделки.
+              </p>
+            </FadeIn>
+          </div>
+
+          {/* Inline Lead Form */}
           <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" className="text-base px-8 rounded-full">
-                    Подобрать 2–5 объектов
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </motion.div>
-              </Link>
-              <Link href="/projects">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" variant="outline" className="text-base px-8 rounded-full">
-                    Открыть каталог
-                  </Button>
-                </motion.div>
-              </Link>
+            <InlineLeadForm />
+          </FadeIn>
+
+          {/* Trust indicators */}
+          <FadeIn delay={0.4}>
+            <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <span>Без комиссий за подбор</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <span>Проверка договоров и УК</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <span>Контроль выплат 6 мес</span>
+              </div>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Market Statistics */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <FadeIn>
-            <h2 className="text-3xl font-semibold text-center mb-12">
-              Статистика рынка
-            </h2>
-          </FadeIn>
+      {/* Market Statistics - Only show if data exists */}
+      {apartmentsCount > 0 && marketRevPerM2 > 0 && (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <FadeIn>
+              <h2 className="text-3xl font-semibold text-center mb-12">
+                Статистика рынка
+              </h2>
+            </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             <AnimatedCard delay={0.1}>
               <Card>
@@ -223,6 +232,7 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
+      )}
 
       {/* Additional Market Metrics */}
       <section className="py-16 bg-muted/30">
