@@ -592,4 +592,28 @@
   .dark .number-luxury {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
+
+  /* ============================================ */
+  /* THEMED LOGO - Changes color based on theme */
+  /* ============================================ */
+
+  /* Light theme: Deep navy blue to match primary color */
+  .logo-themed {
+    filter: brightness(0) saturate(100%) invert(14%) sepia(18%) saturate(1840%) hue-rotate(186deg) brightness(95%) contrast(92%);
+  }
+
+  /* Dark theme: Bright cyan/gold glow */
+  .dark .logo-themed {
+    filter: brightness(0) saturate(100%) invert(61%) sepia(89%) saturate(2664%) hue-rotate(158deg) brightness(101%) contrast(101%);
+    drop-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
+  }
+
+  /* Alternative: Gold version for dark theme */
+  /* Uncomment if you prefer gold instead of cyan */
+  /*
+  .dark .logo-themed {
+    filter: brightness(0) saturate(100%) invert(77%) sepia(45%) saturate(553%) hue-rotate(358deg) brightness(98%) contrast(88%);
+    drop-shadow: 0 0 10px rgba(230, 192, 104, 0.4);
+  }
+  */
 }
