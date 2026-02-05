@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Building2, MapPin, TrendingUp, Database, BarChart3, CheckCircle2, Star } from "lucide-react";
+import { Building2, MapPin, TrendingUp, Database, BarChart3, CheckCircle2, Star, Sparkles, Users, Home, Award, Calendar } from "lucide-react";
+import Image from "next/image";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { getProjects } from "@/data/stats";
@@ -315,187 +316,299 @@ export default function ProjectsPage() {
             const project = filteredProjects.find(p => p.slug === apt.id);
             if (!project) return null;
 
-            // Calculate ROI for color coding
             const roi = (project.noiYear / project.price) * 100;
-            const roiGrade = roi >= 15 ? "excellent" : roi >= 10 ? "good" : roi >= 5 ? "fair" : "poor";
+            const isInvestment = project.status === "planning" || project.status === "construction";
+            const isOperational = project.status === "active";
 
-            // Determine gradient and colors based on ROI
-            const getGradientClass = () => {
-              if (roi >= 15) return "from-green-500/10 via-background to-background";
-              if (roi >= 10) return "from-blue-500/10 via-background to-background";
-              if (roi >= 5) return "from-yellow-500/10 via-background to-background";
-              return "from-orange-500/10 via-background to-background";
-            };
+            // Investment Project Card - Selling dream & potential
+            if (isInvestment) {
+              return (
+                <AnimatedCard key={apt.id} delay={0.3 + idx * 0.05}>
+                  <Link href={`/projects/${apt.id}`}>
+                    <Card className="h-full overflow-hidden cursor-pointer group border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 bg-gradient-to-br from-primary/5 via-background to-background">
+                      {/* Large Hero Image */}
+                      {project.image && (
+                        <div className="relative h-56 w-full overflow-hidden bg-muted">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          {/* Gradient overlay for text readability */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent" />
 
-            const getROIColor = () => {
-              if (roi >= 15) return "text-green-600 dark:text-green-400";
-              if (roi >= 10) return "text-blue-600 dark:text-blue-400";
-              if (roi >= 5) return "text-yellow-600 dark:text-yellow-400";
-              return "text-orange-600 dark:text-orange-400";
-            };
+                          {/* Status Badge on Image */}
+                          <div className="absolute top-4 left-4 flex gap-2">
+                            <span className="bg-primary/90 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full text-xs font-bold border border-primary">
+                              {project.status === "construction" ? "🏗 Строится" : "📋 Планируется"}
+                            </span>
+                            {project.completionDate && (
+                              <span className="bg-background/90 backdrop-blur-sm text-foreground px-3 py-1.5 rounded-full text-xs font-medium border border-border">
+                                <Calendar className="inline h-3 w-3 mr-1" />
+                                {project.completionDate}
+                              </span>
+                            )}
+                          </div>
 
-            const getROIBadgeClass = () => {
-              if (roi >= 15) return "bg-green-500/20 text-green-700 dark:text-green-300 border-green-500/30";
-              if (roi >= 10) return "bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-500/30";
-              if (roi >= 5) return "bg-yellow-500/20 text-yellow-700 dark:text-yellow-300 border-yellow-500/30";
-              return "bg-orange-500/20 text-orange-700 dark:text-orange-300 border-orange-500/30";
-            };
-
-            return (
-              <AnimatedCard key={apt.id} delay={0.3 + idx * 0.05}>
-                <Link href={`/projects/${apt.id}`}>
-                  <Card className={`h-full bg-gradient-to-br ${getGradientClass()} hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer group overflow-hidden relative elevation-2 hover:elevation-4`}>
-                    {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-bl-full opacity-50" />
-
-                    <CardHeader className="pb-3 relative z-10">
-                      {/* Header with ROI badge and status */}
-                      <div className="flex items-start justify-between mb-3 gap-2">
-                        <div className="flex flex-wrap gap-2">
-                          {/* ROI Grade Badge - More Prominent */}
-                          <span className={`text-sm px-3 py-1.5 rounded-full font-bold border ${getROIBadgeClass()}`}>
-                            ROI {formatNumber(roi, 1)}%
-                          </span>
-                          <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-                            project.status === "active"
-                              ? "bg-green-500/20 text-green-600 dark:text-green-400"
-                              : project.status === "construction"
-                              ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
-                              : "bg-muted text-muted-foreground"
-                          }`}>
-                            {project.status === "active" ? "✓ Работает" : "🏗 Строится"}
-                          </span>
+                          {/* ROI Badge */}
+                          <div className="absolute top-4 right-4">
+                            <div className="bg-amber-500/95 backdrop-blur-sm text-white px-4 py-2 rounded-full font-bold border-2 border-amber-400">
+                              <span className="text-lg">{formatNumber(roi, 1)}%</span>
+                              <span className="text-xs ml-1">ROI</span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
-                      {/* Title - Larger and bolder */}
-                      <CardTitle className="text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
-                        {apt.name}
-                      </CardTitle>
+                      <CardHeader className="pb-3">
+                        {/* Title */}
+                        <CardTitle className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-tight">
+                          {apt.name}
+                        </CardTitle>
 
-                      {/* Location with enhanced styling */}
-                      <div className="space-y-1">
-                        <div className="flex items-start gap-2 text-sm">
+                        {/* Location */}
+                        <div className="flex items-start gap-2 text-sm mb-3">
                           <MapPin className="h-4 w-4 flex-shrink-0 mt-1 text-primary" />
                           <div>
                             <p className="font-semibold text-foreground">{apt.city}</p>
                             {project.address && (
-                              <p className="text-xs text-muted-foreground line-clamp-1">{project.address}</p>
+                              <p className="text-xs text-muted-foreground">{project.address}</p>
                             )}
                           </div>
                         </div>
-                      </div>
-                    </CardHeader>
 
-                    <CardContent className="relative z-10">
-                      <div className="space-y-4">
-                        {/* Hero Metrics - Large prominent numbers */}
-                        <div className="glass rounded-xl p-4 border border-primary/20">
-                          <div className="grid grid-cols-2 gap-4">
-                            {/* Monthly Revenue - Large and prominent */}
-                            <div className="text-center">
-                              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Доход/м²</p>
-                              <div className="flex items-baseline justify-center gap-1">
-                                <TrendingUp className="h-4 w-4 text-primary mb-1" />
-                                <p className={`font-mono text-2xl font-bold tabular-nums ${getROIColor()}`}>
-                                  {formatNumber(apt.revPerM2Month, 0)}
-                                </p>
-                              </div>
-                              <p className="text-xs text-muted-foreground mt-0.5">₽/мес</p>
+                        {/* Description - Selling the dream */}
+                        {project.description && (
+                          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                            {project.description}
+                          </p>
+                        )}
+                      </CardHeader>
+
+                      <CardContent>
+                        <div className="space-y-4">
+                          {/* Investment Highlights */}
+                          {project.why && project.why.length > 0 && (
+                            <div className="bg-gradient-to-br from-green-500/10 to-primary/10 rounded-xl p-4 border border-green-500/20">
+                              <h4 className="text-sm font-semibold mb-2 flex items-center gap-2 text-green-700 dark:text-green-300">
+                                <Sparkles className="h-4 w-4" />
+                                Преимущества
+                              </h4>
+                              <ul className="space-y-1.5 text-xs">
+                                {project.why.slice(0, 3).map((item, i) => (
+                                  <li key={i} className="flex gap-2">
+                                    <CheckCircle2 className="h-3.5 w-3.5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                                    <span className="text-foreground">{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
                             </div>
+                          )}
 
-                            {/* Payback Period - Large and prominent */}
-                            <div className="text-center">
-                              <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Окупаемость</p>
-                              <p className="font-mono text-2xl font-bold tabular-nums text-amber-600 dark:text-amber-400">
-                                {formatNumber(project.paybackYears, 1)}
+                          {/* Financial Metrics */}
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center bg-muted/50 rounded-lg p-3">
+                              <p className="text-xs text-muted-foreground mb-1">Инвестиция</p>
+                              <p className="font-mono text-sm font-bold tabular-nums">
+                                {formatCurrency(project.price)}
                               </p>
-                              <p className="text-xs text-muted-foreground mt-0.5">лет</p>
+                            </div>
+                            <div className="text-center bg-muted/50 rounded-lg p-3">
+                              <p className="text-xs text-muted-foreground mb-1">Доход/год</p>
+                              <p className="font-mono text-sm font-bold tabular-nums text-green-600 dark:text-green-400">
+                                {formatCurrency(project.noiYear)}
+                              </p>
                             </div>
                           </div>
 
-                          {/* Annual NOI */}
-                          <div className="mt-4 pt-4 border-t border-border/50 text-center">
-                            <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">Годовой доход (NOI)</p>
-                            <p className="font-mono text-lg font-bold tabular-nums text-foreground">
-                              {formatCurrency(project.noiYear)}
+                          {/* Developer Info */}
+                          {project.developer && (
+                            <div className="flex items-center justify-between p-3 bg-primary/5 rounded-lg border border-primary/20">
+                              <span className="text-xs text-muted-foreground flex items-center gap-2">
+                                <Award className="h-4 w-4" />
+                                Застройщик
+                              </span>
+                              <span className="text-sm font-semibold">{project.developer}</span>
+                            </div>
+                          )}
+
+                          {/* CTA */}
+                          <div className="pt-2 mt-2 border-t border-border">
+                            <p className="text-sm text-center text-primary group-hover:text-primary/80 transition-colors font-bold flex items-center justify-center gap-2">
+                              <Sparkles className="h-4 w-4" />
+                              Узнать подробности
+                              <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </p>
                           </div>
                         </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </AnimatedCard>
+              );
+            }
 
-                        {/* Investment Details */}
-                        <div className="grid grid-cols-2 gap-3">
-                          <div className="bg-muted/30 backdrop-blur-sm rounded-lg p-3 border border-border/50">
-                            <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">Инвестиция</p>
-                            <p className="font-mono text-sm font-bold tabular-nums text-foreground">
-                              {formatCurrency(project.price)}
-                            </p>
-                          </div>
-                          <div className="bg-muted/30 backdrop-blur-sm rounded-lg p-3 border border-border/50">
-                            <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">Площадь</p>
-                            <p className="font-mono text-sm font-bold tabular-nums text-foreground">
-                              {project.area} м²
-                            </p>
-                          </div>
-                        </div>
+            // Operational Project Card - Real facts & data
+            if (isOperational) {
+              return (
+                <AnimatedCard key={apt.id} delay={0.3 + idx * 0.05}>
+                  <Link href={`/projects/${apt.id}`}>
+                    <Card className="h-full overflow-hidden cursor-pointer group hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-br from-blue-500/5 via-background to-background">
+                      {/* Large Hero Image */}
+                      {project.image && (
+                        <div className="relative h-48 w-full overflow-hidden bg-muted">
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent" />
 
-                        {/* Operational Metrics */}
-                        <div className="space-y-2 text-sm">
-                          <div className="flex justify-between items-center p-2 rounded-lg hover:bg-muted/20 transition-colors">
-                            <span className="text-muted-foreground flex items-center gap-2">
-                              <BarChart3 className="h-3.5 w-3.5" />
-                              Загрузка
-                            </span>
-                            <span className="font-semibold font-mono tabular-nums">
-                              {project.occupancy}%
+                          {/* Status Badge */}
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-green-500/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold border border-green-400">
+                              ✓ Работает
                             </span>
                           </div>
-                          <div className="flex justify-between items-center p-2 rounded-lg hover:bg-muted/20 transition-colors">
-                            <span className="text-muted-foreground flex items-center gap-2">
-                              <TrendingUp className="h-3.5 w-3.5" />
-                              ADR (средний чек)
-                            </span>
-                            <span className="font-semibold font-mono tabular-nums">
-                              {formatCurrency(project.adr)}
-                            </span>
-                          </div>
-                          {project.managementCompany && (
-                            <div className="flex justify-between items-start gap-2 p-2 rounded-lg hover:bg-muted/20 transition-colors">
-                              <span className="text-muted-foreground flex items-center gap-2">
-                                <Building2 className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
-                                Управление
-                              </span>
-                              <span className="font-medium text-right text-xs">
-                                {project.managementCompany}
-                              </span>
+
+                          {/* Rating if available */}
+                          {project.rating && (
+                            <div className="absolute top-4 right-4">
+                              <div className="bg-background/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border flex items-center gap-1">
+                                <Star className="h-3.5 w-3.5 text-yellow-500 fill-yellow-500" />
+                                <span className="font-bold text-sm">{project.rating}</span>
+                              </div>
                             </div>
                           )}
                         </div>
+                      )}
 
-                        {/* Risk Level Badge */}
-                        <div className="pt-3 border-t border-border/50">
-                          <div className="flex items-center justify-between">
-                            <span className={`text-xs px-3 py-1.5 rounded-full font-medium border ${
-                              project.riskLevel === "low"
-                                ? "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30"
-                                : project.riskLevel === "medium"
-                                ? "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/30"
-                                : "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30"
-                            }`}>
-                              {project.riskLevel === "low" ? "✓ Низкий риск" : project.riskLevel === "medium" ? "⚠ Средний риск" : "⚡ Высокий риск"}
-                            </span>
-                            <span className="text-sm text-primary group-hover:text-primary/80 transition-colors font-semibold flex items-center gap-1">
-                              Подробнее
-                              <span className="group-hover:translate-x-1 transition-transform">→</span>
-                            </span>
+                      <CardHeader className="pb-3">
+                        {/* Title */}
+                        <CardTitle className="text-lg font-bold mb-2 group-hover:text-primary transition-colors leading-tight">
+                          {apt.name}
+                        </CardTitle>
+
+                        {/* Location */}
+                        <div className="flex items-start gap-2 text-sm mb-2">
+                          <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" />
+                          <div>
+                            <p className="font-semibold text-foreground">{apt.city}</p>
+                            {project.address && (
+                              <p className="text-xs text-muted-foreground">{project.address}</p>
+                            )}
                           </div>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </AnimatedCard>
-            );
+
+                        {/* Summary */}
+                        {project.summary && (
+                          <p className="text-xs text-muted-foreground line-clamp-2">
+                            {project.summary}
+                          </p>
+                        )}
+                      </CardHeader>
+
+                      <CardContent>
+                        <div className="space-y-3">
+                          {/* Real Performance Metrics */}
+                          <div className="bg-gradient-to-br from-blue-500/10 to-green-500/10 rounded-xl p-4 border border-blue-500/20">
+                            <h4 className="text-xs uppercase tracking-wide text-muted-foreground mb-3 font-semibold">Реальные показатели</h4>
+                            <div className="grid grid-cols-3 gap-3">
+                              <div className="text-center">
+                                <div className="flex items-center justify-center gap-1 mb-1">
+                                  <TrendingUp className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                                </div>
+                                <p className="font-mono text-lg font-bold tabular-nums text-blue-600 dark:text-blue-400">
+                                  {formatNumber(apt.revPerM2Month, 0)}
+                                </p>
+                                <p className="text-[10px] text-muted-foreground">₽/м²·мес</p>
+                              </div>
+                              <div className="text-center">
+                                <div className="flex items-center justify-center gap-1 mb-1">
+                                  <BarChart3 className="h-3 w-3 text-green-600 dark:text-green-400" />
+                                </div>
+                                <p className="font-mono text-lg font-bold tabular-nums text-green-600 dark:text-green-400">
+                                  {project.occupancy}%
+                                </p>
+                                <p className="text-[10px] text-muted-foreground">Загрузка</p>
+                              </div>
+                              <div className="text-center">
+                                <div className="flex items-center justify-center gap-1 mb-1">
+                                  <Home className="h-3 w-3 text-amber-600 dark:text-amber-400" />
+                                </div>
+                                <p className="font-mono text-lg font-bold tabular-nums text-amber-600 dark:text-amber-400">
+                                  {formatNumber(project.paybackYears, 1)}
+                                </p>
+                                <p className="text-[10px] text-muted-foreground">лет</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Financial Details */}
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="bg-muted/30 rounded-lg p-2">
+                              <p className="text-muted-foreground mb-1">Доход/год</p>
+                              <p className="font-mono font-semibold tabular-nums">
+                                {formatCurrency(project.noiYear)}
+                              </p>
+                            </div>
+                            <div className="bg-muted/30 rounded-lg p-2">
+                              <p className="text-muted-foreground mb-1">ADR</p>
+                              <p className="font-mono font-semibold tabular-nums">
+                                {formatCurrency(project.adr)}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Operations Info */}
+                          <div className="space-y-1.5 text-xs">
+                            {project.operatingSince && (
+                              <div className="flex justify-between items-center p-2 bg-muted/20 rounded">
+                                <span className="text-muted-foreground flex items-center gap-2">
+                                  <Calendar className="h-3 w-3" />
+                                  Работает с
+                                </span>
+                                <span className="font-medium">{project.operatingSince}</span>
+                              </div>
+                            )}
+                            {project.managementCompany && (
+                              <div className="flex justify-between items-center p-2 bg-muted/20 rounded">
+                                <span className="text-muted-foreground flex items-center gap-2">
+                                  <Building2 className="h-3 w-3" />
+                                  УК
+                                </span>
+                                <span className="font-medium text-right">{project.managementCompany}</span>
+                              </div>
+                            )}
+                            {project.totalUnits && (
+                              <div className="flex justify-between items-center p-2 bg-muted/20 rounded">
+                                <span className="text-muted-foreground flex items-center gap-2">
+                                  <Users className="h-3 w-3" />
+                                  Номеров
+                                </span>
+                                <span className="font-medium">{project.totalUnits}</span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* CTA */}
+                          <div className="pt-2 mt-2 border-t border-border">
+                            <p className="text-xs text-center text-primary group-hover:text-primary/80 transition-colors font-semibold flex items-center justify-center gap-1">
+                              Полный анализ проекта
+                              <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </AnimatedCard>
+              );
+            }
+
+            return null;
           })}
         </div>
 
