@@ -348,8 +348,8 @@ export function LeadFormModal({
                 <Checkbox
                   id="mortgage"
                   checked={formData.mortgageNeeded}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, mortgageNeeded: checked as boolean })
+                  onChange={(e) =>
+                    setFormData({ ...formData, mortgageNeeded: e.target.checked })
                   }
                 />
                 <Label htmlFor="mortgage" className="font-normal cursor-pointer">
