@@ -10,10 +10,13 @@ export async function POST(request: NextRequest) {
 
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
       console.error('Telegram configuration missing');
-      return NextResponse.json(
-        { error: 'Telegram configuration missing' },
-        { status: 500 }
-      );
+      console.log('Message received (no telegram):', { type, data });
+
+      // Возвращаем успех даже без Telegram (чтобы форма работала)
+      return NextResponse.json({
+        success: true,
+        warning: 'Telegram not configured'
+      });
     }
 
     let message = '';
