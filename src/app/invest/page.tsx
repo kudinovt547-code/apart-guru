@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,6 +22,13 @@ import { formatCurrency, formatNumber } from "@/lib/utils";
 import { useCompareStore } from "@/store/useCompareStore";
 
 export default function InvestPage() {
+  const router = useRouter();
+
+  // Redirect to /services
+  useEffect(() => {
+    router.replace("/services");
+  }, [router]);
+
   const { addProject, projects: compareProjects } = useCompareStore();
   const [formData, setFormData] = useState({
     budget: "",

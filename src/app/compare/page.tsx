@@ -35,11 +35,14 @@ export default function ComparePage() {
         />
         <div className="max-w-2xl mx-auto text-center space-y-4">
           <h1 className="text-4xl font-bold">Сравнение проектов</h1>
-          <p className="text-muted-foreground">
-            Добавьте проекты в сравнение, чтобы увидеть детальный анализ
+          <p className="text-muted-foreground text-lg">
+            Выберите 2–5 объектов в базе → сравните здесь
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Я помогу выбрать лучший вариант на основе вашей цели и расчётов
           </p>
           <Link href="/projects">
-            <Button size="lg">Перейти к каталогу</Button>
+            <Button size="lg">Перейти к базе проектов</Button>
           </Link>
         </div>
       </div>
@@ -100,16 +103,21 @@ export default function ComparePage() {
           { label: "Сравнение" },
         ]}
       />
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-4xl font-bold">Сравнение проектов</h1>
           <p className="text-muted-foreground">
             Сравниваете {projects.length} из 5 проектов
           </p>
         </div>
-        <Button variant="outline" onClick={clearAll}>
-          Очистить всё
-        </Button>
+        <div className="flex gap-3">
+          <Button variant="outline" onClick={clearAll}>
+            Очистить всё
+          </Button>
+          <Button onClick={() => setShowReportModal(true)}>
+            Получить рекомендацию
+          </Button>
+        </div>
       </div>
 
       {/* Comparison Table */}

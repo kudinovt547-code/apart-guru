@@ -107,10 +107,13 @@ export default function ProjectsPage() {
         <FadeIn>
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              База данных апартаментов
+              База для анализа и сравнения
             </h1>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-muted-foreground mb-2">
               {allProjects.length} объектов с реальными показателями доходности
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Используйте эту базу для самостоятельного анализа или запросите персональный разбор
             </p>
           </div>
         </FadeIn>
@@ -122,18 +125,17 @@ export default function ProjectsPage() {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
                   <Database className="h-6 w-6 text-primary" />
-                  Самая полная база апарт-отелей в России
+                  База апарт-отелей для вашего анализа
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p className="leading-relaxed">
-                    <strong className="text-foreground">Apart Guru</strong> собирает и верифицирует данные по всем значимым
-                    апарт-отелям от Москвы до Сочи, от Санкт-Петербурга до Казани. В нашей базе {allProjects.length} объектов
-                    с реальными показателями загрузки, доходности и отзывами гостей. Мы не полагаемся на маркетинг застройщиков —
-                    все цифры проверены и актуализируются ежемесячно.
+                    Я собираю и верифицирую данные по апарт-отелям от Москвы до Сочи, от Санкт-Петербурга до Казани.
+                    В базе {allProjects.length} объектов с реальными показателями загрузки, доходности и отзывами гостей.
+                    Не полагаюсь на маркетинг застройщиков — все цифры проверяю и актуализирую ежемесячно.
                   </p>
                   <p className="leading-relaxed">
-                    <strong className="text-foreground">Что отличает нашу базу:</strong> мы показываем не только обещания
-                    застройщика, но и <strong className="text-foreground">фактические результаты</strong> работающих объектов.
+                    <strong className="text-foreground">Что в базе:</strong> не только обещания застройщика,
+                    но и <strong className="text-foreground">фактические результаты</strong> работающих объектов.
                     ADR (средний чек), загрузка, сезонность, рейтинги на Яндекс Путешествиях и Ostrovok — всё в одном месте.
                   </p>
                 </div>
