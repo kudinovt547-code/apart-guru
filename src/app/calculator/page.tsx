@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Select } from "@/components/ui/select";
+import { NativeSelect as Select } from "@/components/ui/native-select";
 import { formatCurrency, formatNumber, formatPercent } from "@/lib/utils";
 import { Calculator, Save, AlertCircle, Download, Send, TrendingUp, TrendingDown, CheckCircle } from "lucide-react";
 
