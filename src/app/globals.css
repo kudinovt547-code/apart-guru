@@ -5,53 +5,53 @@
 @layer base {
   /* ============================================ */
   /* LIGHT THEME - PRIMARY (Default) */
-  /* Luxury Real Estate Premium Design */
+  /* Premium Gold & Warm Luxury Design */
   /* ============================================ */
   :root {
-    /* Base colors - Warm elegant whites */
-    --background: 30 20% 99%;           /* Warm off-white #FDFCFB */
-    --foreground: 225 15% 15%;          /* Rich charcoal #1F2937 */
-    --card: 0 0% 100%;                  /* Pure white cards */
-    --card-foreground: 225 15% 15%;     /* Dark text on cards */
-    --popover: 0 0% 100%;               /* White popover */
-    --popover-foreground: 225 15% 15%;  /* Dark text */
+    /* Base colors - Warm creamy whites */
+    --background: 40 30% 98%;           /* Warm cream #FDFAF5 */
+    --foreground: 30 15% 20%;           /* Warm dark brown #2D2520 */
+    --card: 40 25% 99%;                 /* Slight warm white cards #FFFCF8 */
+    --card-foreground: 30 15% 20%;      /* Dark text on cards */
+    --popover: 40 25% 99%;              /* Warm white popover */
+    --popover-foreground: 30 15% 20%;   /* Dark text */
 
-    /* Primary: Deep Navy Blue - Trust & Stability */
-    --primary: 220 40% 25%;             /* #253B5C - Deep navy */
-    --primary-foreground: 0 0% 100%;    /* White text on primary */
+    /* Primary: Warm Dark Brown - Sophistication */
+    --primary: 30 30% 25%;              /* #473829 - Rich warm brown */
+    --primary-foreground: 40 25% 99%;   /* Warm white text */
 
-    /* Secondary: Soft warm gray */
-    --secondary: 30 15% 95%;            /* #F5F3F0 - Warm gray bg */
-    --secondary-foreground: 225 15% 15%; /* Dark text */
+    /* Secondary: Soft warm beige */
+    --secondary: 40 20% 94%;            /* #F5F0E8 - Warm beige bg */
+    --secondary-foreground: 30 15% 20%; /* Dark text */
 
-    /* Accent: Rich Gold - Luxury & Prestige */
-    --accent: 40 85% 55%;               /* #D4A650 - Rich gold */
-    --accent-foreground: 225 15% 15%;   /* Dark text on gold */
+    /* Accent: Logo Gold - Premium & Prestige */
+    --accent: 38 77% 48%;               /* #D6921E - Exact logo gold! */
+    --accent-foreground: 0 0% 100%;     /* White text on gold */
 
     /* Semantic colors */
     --success: 142 71% 45%;             /* #10B981 - Growth green */
     --success-foreground: 0 0% 100%;
 
-    --info: 210 100% 50%;               /* #0080FF - Bright info blue */
+    --info: 210 100% 50%;               /* #0080FF - Info blue */
     --info-foreground: 0 0% 100%;
 
     --warning: 38 95% 50%;              /* #F59E0B - Warning amber */
-    --warning-foreground: 225 15% 15%;
+    --warning-foreground: 30 15% 20%;
 
     --destructive: 0 75% 55%;           /* #E53E3E - Error red */
     --destructive-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted: 30 15% 95%;                /* Warm muted bg #F5F3F0 */
-    --muted-foreground: 220 10% 50%;    /* Medium gray text #7C8492 */
+    --muted: 40 20% 94%;                /* Warm muted bg #F5F0E8 */
+    --muted-foreground: 30 10% 45%;     /* Warm gray text #6B6159 */
 
     /* Borders & inputs */
-    --border: 30 12% 90%;               /* #E8E5E0 - Warm borders */
-    --input: 30 12% 88%;                /* Warm input borders */
-    --ring: 40 85% 55%;                 /* Gold for focus rings */
+    --border: 40 18% 88%;               /* #E8E0D4 - Warm borders */
+    --input: 40 18% 88%;                /* Warm input borders */
+    --ring: 38 77% 48%;                 /* Logo gold for focus */
 
     /* Border radius */
-    --radius: 0.875rem;                 /* 14px - Elegant rounded corners */
+    --radius: 0.75rem;                  /* 12px - Soft rounded corners */
 
     /* Fonts */
     --font-geist-sans: ui-sans-serif, system-ui, sans-serif;
@@ -77,49 +77,49 @@
 
   /* ============================================ */
   /* DARK THEME - SECONDARY */
-  /* Luxury Dark Real Estate Design */
+  /* Warm Dark Luxury Design with Gold */
   /* ============================================ */
   :root.dark {
-    --background: 225 20% 8%;           /* Rich deep charcoal #0D1117 */
-    --foreground: 210 20% 95%;          /* Soft white #F0F2F5 */
-    --card: 225 18% 12%;                /* Elevated card bg #181C24 */
-    --card-foreground: 210 20% 95%;     /* Card text */
-    --popover: 225 18% 12%;             /* Popover bg */
-    --popover-foreground: 210 20% 95%;  /* Popover text */
+    --background: 30 15% 10%;           /* Warm deep brown #1A1612 */
+    --foreground: 40 20% 95%;           /* Warm off-white #F5F0E8 */
+    --card: 30 18% 14%;                 /* Warm elevated card #261F19 */
+    --card-foreground: 40 20% 95%;      /* Card text */
+    --popover: 30 18% 14%;              /* Popover bg */
+    --popover-foreground: 40 20% 95%;   /* Popover text */
 
-    /* Primary: Bright Cyan Blue - Modern & Premium */
-    --primary: 195 100% 55%;            /* #00B4D8 - Bright cyan */
-    --primary-foreground: 225 20% 8%;   /* Dark text on primary */
+    /* Primary: Bright Gold - Premium & Warm */
+    --primary: 42 90% 60%;              /* #F4C430 - Bright gold */
+    --primary-foreground: 30 15% 10%;   /* Dark text on gold */
 
-    /* Secondary: Elevated surface */
-    --secondary: 225 16% 16%;           /* #1F2531 - Subtle elevation */
-    --secondary-foreground: 210 20% 95%;
+    /* Secondary: Subtle warm elevation */
+    --secondary: 30 16% 18%;            /* #2E261E - Warm elevation */
+    --secondary-foreground: 40 20% 95%;
 
-    /* Accent: Champagne Gold - Luxury */
-    --accent: 45 80% 65%;               /* #E6C068 - Champagne gold */
-    --accent-foreground: 225 20% 8%;    /* Dark text on gold */
+    /* Accent: Logo Gold Bright - Matches logo */
+    --accent: 38 85% 55%;               /* #E8A52E - Bright logo gold */
+    --accent-foreground: 30 15% 10%;    /* Dark text on gold */
 
     /* Semantic colors */
-    --success: 142 71% 50%;             /* #10D97F - Brighter green */
-    --success-foreground: 225 20% 8%;
+    --success: 142 71% 50%;             /* #10D97F - Green */
+    --success-foreground: 30 15% 10%;
 
-    --info: 195 100% 55%;               /* #00B4D8 - Cyan info */
-    --info-foreground: 225 20% 8%;
+    --info: 210 100% 60%;               /* #3399FF - Blue info */
+    --info-foreground: 0 0% 100%;
 
     --warning: 40 95% 60%;              /* #FDB44B - Bright amber */
-    --warning-foreground: 225 20% 8%;
+    --warning-foreground: 30 15% 10%;
 
-    --destructive: 0 75% 60%;           /* #F56565 - Bright red */
+    --destructive: 0 75% 60%;           /* #F56565 - Red */
     --destructive-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted: 225 16% 16%;               /* Muted bg #1F2531 */
-    --muted-foreground: 220 10% 60%;    /* Muted text #8B94A8 */
+    --muted: 30 16% 18%;                /* Warm muted bg #2E261E */
+    --muted-foreground: 40 15% 60%;     /* Warm muted text #9B8E7E */
 
     /* Borders & inputs */
-    --border: 225 14% 20%;              /* #262C3A - Subtle borders */
-    --input: 225 14% 20%;               /* Input borders */
-    --ring: 195 100% 55%;               /* Cyan for focus rings */
+    --border: 30 14% 22%;               /* #3A2F24 - Warm borders */
+    --input: 30 14% 22%;                /* Input borders */
+    --ring: 42 90% 60%;                 /* Gold for focus */
   }
 }
 
@@ -277,15 +277,15 @@
   }
 
   /* ============================================ */
-  /* GRADIENT BACKGROUNDS */
+  /* GRADIENT BACKGROUNDS - Warm Gold Luxury */
   /* ============================================ */
   /* Light theme gradients */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(220, 40%, 25%) 0%, hsl(220, 40%, 35%) 100%);
+    background: linear-gradient(135deg, hsl(30, 30%, 25%) 0%, hsl(30, 30%, 35%) 100%);
   }
 
   .gradient-accent {
-    background: linear-gradient(135deg, hsl(40, 85%, 55%) 0%, hsl(40, 85%, 65%) 100%);
+    background: linear-gradient(135deg, hsl(38, 77%, 48%) 0%, hsl(42, 85%, 55%) 100%);
   }
 
   .gradient-success {
@@ -294,100 +294,100 @@
 
   /* Light theme luxury overlay */
   .gradient-light-overlay {
-    background: linear-gradient(135deg, rgba(253, 252, 251, 0.95) 0%, rgba(245, 243, 240, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(253, 250, 245, 0.95) 0%, rgba(245, 240, 232, 0.85) 100%);
   }
 
-  /* Dark theme gradients */
+  /* Dark theme gradients - Warm gold */
   .dark .gradient-primary {
-    background: linear-gradient(135deg, hsl(195, 100%, 55%) 0%, hsl(195, 100%, 65%) 100%);
+    background: linear-gradient(135deg, hsl(42, 90%, 60%) 0%, hsl(45, 85%, 65%) 100%);
   }
 
   .dark .gradient-accent {
-    background: linear-gradient(135deg, hsl(45, 80%, 65%) 0%, hsl(45, 80%, 75%) 100%);
+    background: linear-gradient(135deg, hsl(38, 85%, 55%) 0%, hsl(42, 90%, 65%) 100%);
   }
 
   .dark .gradient-success {
     background: linear-gradient(135deg, hsl(142, 71%, 50%) 0%, hsl(142, 71%, 60%) 100%);
   }
 
-  /* Dark theme luxury overlay */
+  /* Dark theme luxury overlay - Warm */
   .dark .gradient-dark-overlay {
-    background: linear-gradient(135deg, rgba(24, 28, 36, 0.95) 0%, rgba(13, 17, 23, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(38, 31, 25, 0.95) 0%, rgba(26, 22, 18, 0.9) 100%);
   }
 
   /* ============================================ */
-  /* GLOW EFFECTS - Luxury Premium */
+  /* GLOW EFFECTS - Warm Gold Luxury */
   /* ============================================ */
-  /* Light theme glows - sophisticated */
+  /* Light theme glows - warm sophisticated */
   .glow-primary {
-    box-shadow: 0 0 25px rgba(37, 59, 92, 0.15), 0 0 50px rgba(37, 59, 92, 0.08);
+    box-shadow: 0 0 25px rgba(71, 56, 41, 0.15), 0 0 50px rgba(71, 56, 41, 0.08);
   }
 
   .glow-accent {
-    box-shadow: 0 0 30px rgba(212, 166, 80, 0.3), 0 0 60px rgba(212, 166, 80, 0.15);
+    box-shadow: 0 0 30px rgba(214, 146, 30, 0.35), 0 0 60px rgba(214, 146, 30, 0.18);
   }
 
   .glow-luxury {
-    box-shadow: 0 0 40px rgba(212, 166, 80, 0.4), 0 0 80px rgba(212, 166, 80, 0.2),
+    box-shadow: 0 0 40px rgba(214, 146, 30, 0.5), 0 0 80px rgba(214, 146, 30, 0.25),
                 0 8px 32px rgba(0, 0, 0, 0.12);
   }
 
-  /* Dark theme glows - vibrant premium */
+  /* Dark theme glows - vibrant gold */
   .dark .glow-primary {
-    box-shadow: 0 0 30px rgba(0, 180, 216, 0.6), 0 0 60px rgba(0, 180, 216, 0.4);
+    box-shadow: 0 0 30px rgba(244, 196, 48, 0.6), 0 0 60px rgba(244, 196, 48, 0.4);
   }
 
   .dark .glow-accent {
-    box-shadow: 0 0 35px rgba(230, 192, 104, 0.6), 0 0 70px rgba(230, 192, 104, 0.3);
+    box-shadow: 0 0 35px rgba(232, 165, 46, 0.65), 0 0 70px rgba(232, 165, 46, 0.35);
   }
 
   .dark .glow-luxury {
-    box-shadow: 0 0 50px rgba(230, 192, 104, 0.7), 0 0 100px rgba(230, 192, 104, 0.4),
+    box-shadow: 0 0 50px rgba(232, 165, 46, 0.8), 0 0 100px rgba(232, 165, 46, 0.45),
                 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
   /* ============================================ */
-  /* TEXT GRADIENTS - Premium Luxury */
+  /* TEXT GRADIENTS - Warm Gold Premium */
   /* ============================================ */
   /* Light theme text gradients */
   .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(220, 40%, 25%) 0%, hsl(210, 100%, 50%) 100%);
+    background: linear-gradient(135deg, hsl(30, 30%, 25%) 0%, hsl(38, 77%, 48%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-accent {
-    background: linear-gradient(135deg, hsl(40, 85%, 45%) 0%, hsl(40, 85%, 65%) 100%);
+    background: linear-gradient(135deg, hsl(38, 77%, 40%) 0%, hsl(42, 90%, 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-luxury {
-    background: linear-gradient(135deg, hsl(40, 85%, 45%) 0%, hsl(40, 85%, 65%) 50%, hsl(40, 85%, 55%) 100%);
+    background: linear-gradient(135deg, hsl(38, 77%, 40%) 0%, hsl(42, 90%, 60%) 50%, hsl(38, 85%, 50%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Dark theme text gradients */
+  /* Dark theme text gradients - Bright gold */
   .dark .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(195, 100%, 55%) 0%, hsl(195, 100%, 75%) 100%);
+    background: linear-gradient(135deg, hsl(42, 90%, 55%) 0%, hsl(45, 95%, 70%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .dark .text-gradient-accent {
-    background: linear-gradient(135deg, hsl(45, 80%, 55%) 0%, hsl(45, 80%, 75%) 100%);
+    background: linear-gradient(135deg, hsl(38, 85%, 50%) 0%, hsl(42, 95%, 65%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .dark .text-gradient-luxury {
-    background: linear-gradient(135deg, hsl(45, 80%, 60%) 0%, hsl(45, 80%, 80%) 50%, hsl(45, 80%, 70%) 100%);
+    background: linear-gradient(135deg, hsl(38, 85%, 55%) 0%, hsl(42, 95%, 70%) 50%, hsl(40, 90%, 60%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -461,24 +461,24 @@
   /* PREMIUM LUXURY EFFECTS */
   /* ============================================ */
 
-  /* Metallic shine effect */
+  /* Metallic shine effect - Logo gold colors */
   .metallic-gold {
     background: linear-gradient(135deg,
-      hsl(40, 85%, 45%) 0%,
-      hsl(40, 85%, 65%) 25%,
-      hsl(40, 85%, 75%) 50%,
-      hsl(40, 85%, 65%) 75%,
-      hsl(40, 85%, 45%) 100%);
+      hsl(38, 77%, 40%) 0%,
+      hsl(38, 77%, 55%) 25%,
+      hsl(42, 85%, 65%) 50%,
+      hsl(38, 77%, 55%) 75%,
+      hsl(38, 77%, 40%) 100%);
     background-size: 200% 200%;
   }
 
   .dark .metallic-gold {
     background: linear-gradient(135deg,
-      hsl(45, 80%, 50%) 0%,
-      hsl(45, 80%, 70%) 25%,
-      hsl(45, 80%, 80%) 50%,
-      hsl(45, 80%, 70%) 75%,
-      hsl(45, 80%, 50%) 100%);
+      hsl(38, 85%, 50%) 0%,
+      hsl(42, 90%, 65%) 25%,
+      hsl(42, 95%, 75%) 50%,
+      hsl(42, 90%, 65%) 75%,
+      hsl(38, 85%, 50%) 100%);
     background-size: 200% 200%;
   }
 
@@ -592,28 +592,4 @@
   .dark .number-luxury {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
-
-  /* ============================================ */
-  /* THEMED LOGO - Changes color based on theme */
-  /* ============================================ */
-
-  /* Light theme: Deep navy blue to match primary color */
-  .logo-themed {
-    filter: brightness(0) saturate(100%) invert(14%) sepia(18%) saturate(1840%) hue-rotate(186deg) brightness(95%) contrast(92%);
-  }
-
-  /* Dark theme: Bright cyan/gold glow */
-  .dark .logo-themed {
-    filter: brightness(0) saturate(100%) invert(61%) sepia(89%) saturate(2664%) hue-rotate(158deg) brightness(101%) contrast(101%);
-    drop-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
-  }
-
-  /* Alternative: Gold version for dark theme */
-  /* Uncomment if you prefer gold instead of cyan */
-  /*
-  .dark .logo-themed {
-    filter: brightness(0) saturate(100%) invert(77%) sepia(45%) saturate(553%) hue-rotate(358deg) brightness(98%) contrast(88%);
-    drop-shadow: 0 0 10px rgba(230, 192, 104, 0.4);
-  }
-  */
 }

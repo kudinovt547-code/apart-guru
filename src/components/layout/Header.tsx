@@ -28,10 +28,10 @@ export default function Header() {
             className="relative w-28 h-28 flex-shrink-0"
           >
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               alt="Apart Guru"
               fill
-              className="object-contain logo-themed transition-all duration-300"
+              className="object-contain"
               quality={95}
               priority
             />
