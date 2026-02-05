@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -331,7 +332,7 @@ export default function CalculatorPage() {
   // ============================================
   // РАСЧЕТ СЦЕНАРИЕВ
   // ============================================
-  const calculateScenario = (
+  const calculateScenario = useCallback((
     adr: number,
     occupancy: number
   ): NOIResult => {
@@ -407,7 +408,7 @@ export default function CalculatorPage() {
       adr: adrScaled, // Возвращаем масштабированный ADR
       occupancy,
     };
-  };
+  }, [inputs.area, inputs.budget, inputs.city, compSet.avgUkFee]);
 
   // Три сценария (более реалистичный разброс):
   // Пессимист: adr_low, occupancy * 0.90 (низкий сезон, -10% загрузка)
@@ -416,7 +417,7 @@ export default function CalculatorPage() {
       compSet.avgAdrLow,
       compSet.avgOccupancy * 0.90
     );
-  }, [compSet, inputs.area, inputs.budget]);
+  }, [compSet, calculateScenario]);
 
   // Реалист: среднее между High и Low, occupancy средняя
   const realisticResult = useMemo(() => {
@@ -425,7 +426,7 @@ export default function CalculatorPage() {
       avgAdr,
       compSet.avgOccupancy
     );
-  }, [compSet, inputs.area, inputs.budget]);
+  }, [compSet, calculateScenario]);
 
   // Оптимист: adr_high * 0.95, occupancy * 1.05 (высокий сезон, +5% загрузка)
   const optimisticResult = useMemo(() => {
@@ -433,7 +434,7 @@ export default function CalculatorPage() {
       compSet.avgAdrHigh * 0.95,
       Math.min(1, compSet.avgOccupancy * 1.05)
     );
-  }, [compSet, inputs.area, inputs.budget]);
+  }, [compSet, calculateScenario]);
 
   const handleInputChange = (field: keyof CalculatorInputs, value: string | number) => {
     setInputs((prev) => ({ ...prev, [field]: value }));
@@ -1041,10 +1042,10 @@ export default function CalculatorPage() {
             </div>
             <div className="flex gap-3 justify-center pt-4">
               <Button asChild variant="outline">
-                <a href="/projects">Смотреть проекты</a>
+                <Link href="/projects">Смотреть проекты</Link>
               </Button>
               <Button asChild>
-                <a href="/invest">Готовые решения</a>
+                <Link href="/invest">Готовые решения</Link>
               </Button>
             </div>
           </CardContent>
