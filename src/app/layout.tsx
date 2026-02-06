@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import CompareBar from "@/components/layout/CompareBar";
 import { BuildingsBackground } from "@/components/ui/buildings-background";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -103,6 +104,7 @@ export default function RootLayout({
           <Footer />
           <CompareBar />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
