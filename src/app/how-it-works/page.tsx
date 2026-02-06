@@ -18,37 +18,37 @@ const steps = [
   {
     number: 2,
     title: "Формирование shortlist 3–5 вариантов",
-    description: "Я отбираю объекты, которые соответствуют вашим критериям по бюджету, городу, формату и потенциалу. Не больше 5 — чтобы не потеряться в выборе.",
+    description: "Мы отбираем объекты, которые соответствуют вашим критериям по бюджету, городу, формату и потенциалу. Не больше 5 — чтобы не потеряться в выборе.",
     icon: <Scale className="h-6 w-6" />,
   },
   {
     number: 3,
     title: "Финмодель по 3 сценариям",
-    description: "Для каждого объекта считаю доходность в пессимистичном, базовом и оптимистичном сценариях. Учитываю ADR, загрузку, сезонность, расходы УК.",
+    description: "Для каждого объекта считаем доходность в пессимистичном, базовом и оптимистичном сценариях. Учитываем ADR, загрузку, сезонность, расходы УК.",
     icon: <Calculator className="h-6 w-6" />,
   },
   {
     number: 4,
     title: "Проверка УК и договора",
-    description: "Анализирую условия договора: схему выплат, комиссии УК, штрафы, обязательства сторон. Ищу красные флаги и невыгодные условия.",
+    description: "Анализируем условия договора: схему выплат, комиссии УК, штрафы, обязательства сторон. Ищем красные флаги и невыгодные условия.",
     icon: <Shield className="h-6 w-6" />,
   },
   {
     number: 5,
     title: "Сравнение и выбор",
-    description: "Сравниваю все варианты по единой таблице метрик. Даю рекомендацию: какой объект выбрать и почему, какие вопросы задать застройщику/УК.",
+    description: "Сравниваем все варианты по единой таблице метрик. Даём рекомендацию: какой объект выбрать и почему, какие вопросы задать застройщику/УК.",
     icon: <TrendingUp className="h-6 w-6" />,
   },
   {
     number: 6,
     title: "Переговоры, условия, документы",
-    description: "Помогаю с переговорами по цене и условиям. Проверяю итоговый договор перед подписанием. Сопровождаю до закрытия сделки.",
+    description: "Помогаем с переговорами по цене и условиям. Проверяем итоговый договор перед подписанием. Сопровождаем до закрытия сделки.",
     icon: <Handshake className="h-6 w-6" />,
   },
   {
     number: 7,
     title: "Сделка + контроль",
-    description: "После покупки контролирую первые 6 месяцев: проверяю отчёты УК, соответствие выплат ожиданиям, помогаю решать возникающие вопросы.",
+    description: "После покупки контролируем первые 6 месяцев: проверяем отчёты УК, соответствие выплат ожиданиям, помогаем решать возникающие вопросы.",
     icon: <CheckCircle2 className="h-6 w-6" />,
   },
 ];
@@ -111,7 +111,7 @@ export default function HowItWorksPage() {
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <FadeIn delay={0.1}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Как я работаю
+              Как мы работаем
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
@@ -127,7 +127,7 @@ export default function HowItWorksPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Мой процесс работы
+              Наш процесс работы
             </h2>
           </FadeIn>
 
@@ -170,7 +170,7 @@ export default function HowItWorksPage() {
         <div className="container mx-auto px-4">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-              Что именно я проверяю
+              Что именно мы проверяем
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
               Полный чек-лист анализа объекта по 4 ключевым категориям
@@ -212,11 +212,11 @@ export default function HowItWorksPage() {
               <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-background">
                 <CardContent className="pt-8 pb-8 px-8">
                   <h2 className="text-2xl font-bold mb-4 text-center">
-                    Как я зарабатываю
+                    Как мы зарабатываем
                   </h2>
                   <div className="space-y-4 text-muted-foreground">
                     <p className="leading-relaxed">
-                      Моя мотивация — подобрать вариант, который <strong className="text-foreground">реально сходится по цифрам и рискам</strong>. Я не зарабатываю на откатах от застройщиков или УК — это противоречит моей задаче защищать ваши интересы.
+                      Наша мотивация — подобрать вариант, который <strong className="text-foreground">реально сходится по цифрам и рискам</strong>. Мы не зарабатываем на откатах от застройщиков или УК — это противоречит нашей задаче защищать ваши интересы.
                     </p>
                     <p className="leading-relaxed">
                       <strong className="text-foreground">В зависимости от кейса</strong> это может быть:
@@ -236,7 +236,7 @@ export default function HowItWorksPage() {
                       </li>
                     </ul>
                     <p className="leading-relaxed pt-4 border-t border-border">
-                      <strong className="text-foreground">Главное:</strong> я заинтересован в том, чтобы вы получили объект с реальной доходностью, а не красивой презентацией. Мой доход зависит от качества моей работы, а не от того, какой объект вы купите.
+                      <strong className="text-foreground">Главное:</strong> мы заинтересованы в том, чтобы вы получили объект с реальной доходностью, а не красивой презентацией. Наш доход зависит от качества нашей работы, а не от того, какой объект вы купите.
                     </p>
                   </div>
                 </CardContent>
@@ -254,7 +254,7 @@ export default function HowItWorksPage() {
               Готовы начать работу?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Заполните анкету, и я пришлю shortlist подходящих вариантов
+              Заполните анкету, и мы пришлём shortlist подходящих вариантов
             </p>
             <Button size="lg" onClick={() => setLeadFormOpen(true)} className="text-base">
               Получить shortlist

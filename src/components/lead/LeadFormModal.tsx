@@ -160,7 +160,7 @@ export function LeadFormModal({
               Заявка принята!
             </DialogTitle>
             <DialogDescription className="text-base">
-              Я напишу в Telegram и пришлю shortlist в течение 24 часов.
+              Мы напишем в Telegram и пришлём shortlist в течение 24 часов.
             </DialogDescription>
           </div>
         ) : (
@@ -171,7 +171,7 @@ export function LeadFormModal({
                 Получить shortlist
               </DialogTitle>
               <DialogDescription>
-                Заполните анкету — я подберу 3–5 вариантов под вашу цель и математику
+                Заполните анкету — мы подберём 3–5 вариантов под вашу цель и математику
               </DialogDescription>
             </DialogHeader>
 

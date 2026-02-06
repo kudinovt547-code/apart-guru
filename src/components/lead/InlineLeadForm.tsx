@@ -72,7 +72,7 @@ export function InlineLeadForm() {
         <CheckCircle2 className="h-12 w-12 text-green-500 mx-auto mb-4" />
         <h3 className="text-xl font-bold mb-2">Заявка принята!</h3>
         <p className="text-muted-foreground">
-          Я напишу в Telegram и пришлю shortlist в течение 24 часов.
+          Мы напишем в Telegram и пришлём shortlist в течение 24 часов.
         </p>
       </div>
     );

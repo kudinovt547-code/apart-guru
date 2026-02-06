@@ -48,7 +48,7 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Я собираю shortlist 3–5 вариантов, считаю доходность по сценариям, отмечаю риски договора и УК, и веду до сделки.
+                Мы собираем shortlist 3–5 вариантов, считаем доходность по сценариям, отмечаем риски договора и УК, и ведём до сделки.
               </p>
             </FadeIn>
           </div>

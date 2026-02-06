@@ -92,7 +92,7 @@ export default function InvestPage() {
           <FadeIn delay={0.1}>
             <Card className="max-w-3xl mx-auto border-primary/30">
               <CardHeader>
-                <CardTitle className="text-center">Получить 5 вариантов под мой бюджет</CardTitle>
+                <CardTitle className="text-center">Получить 5 вариантов под ваш бюджет</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -309,7 +309,7 @@ export default function InvestPage() {
         <FadeIn delay={0.5}>
           <Card className="max-w-4xl mx-auto mb-12 border-primary/30 bg-primary/5">
             <CardHeader>
-              <CardTitle className="text-center">Как я зарабатываю и почему вам выгодно</CardTitle>
+              <CardTitle className="text-center">Как мы зарабатываем и почему вам выгодно</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-6">
@@ -326,9 +326,9 @@ export default function InvestPage() {
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-semibold mb-1">Моя ценность — отбор</p>
+                      <p className="font-semibold mb-1">Наша ценность — отбор</p>
                       <p className="text-sm text-muted-foreground">
-                        Я проверяю реальную доходность, репутацию УК, договоры. Вы не тратите месяцы на анализ.
+                        Мы проверяем реальную доходность, репутацию УК, договоры. Вы не тратите месяцы на анализ.
                       </p>
                     </div>
                   </div>
@@ -364,10 +364,10 @@ export default function InvestPage() {
             <h2 className="text-3xl font-bold text-center mb-8">Как это работает</h2>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { icon: Home, title: "Подбираю 2-5 вариантов", desc: "Под ваш бюджет, город, цели" },
-                { icon: Calculator, title: "Считаю доходность", desc: "3 сценария + все расходы" },
-                { icon: FileCheck, title: "Проверяю УК и договор", desc: "Репутация, отзывы, юридическая чистота" },
-                { icon: ShieldCheck, title: "Сопровождаю сделку", desc: "От выбора до получения ключей + 6 мес" },
+                { icon: Home, title: "Подбираем 2-5 вариантов", desc: "Под ваш бюджет, город, цели" },
+                { icon: Calculator, title: "Считаем доходность", desc: "3 сценария + все расходы" },
+                { icon: FileCheck, title: "Проверяем УК и договор", desc: "Репутация, отзывы, юридическая чистота" },
+                { icon: ShieldCheck, title: "Сопровождаем сделку", desc: "От выбора до получения ключей + 6 мес" },
               ].map((step, idx) => (
                 <Card key={idx} className="text-center">
                   <CardContent className="pt-6">

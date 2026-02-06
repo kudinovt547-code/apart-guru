@@ -341,7 +341,7 @@ export default function CasesPage() {
               Нужен разбор вашего объекта?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Я проанализирую ваш вариант по такой же методологии и дам чёткое заключение
+              Мы проанализируем ваш вариант по такой же методологии и дадим чёткое заключение
             </p>
             <Button size="lg" onClick={() => setLeadFormOpen(true)} className="text-base">
               Заказать разбор
