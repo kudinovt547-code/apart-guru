@@ -7,6 +7,7 @@ import CompareBar from "@/components/layout/CompareBar";
 import { BuildingsBackground } from "@/components/ui/buildings-background";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import { YandexMetrika } from "@/components/YandexMetrika";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -105,6 +106,7 @@ export default function RootLayout({
           <CompareBar />
         </ThemeProvider>
         <Analytics />
+        <YandexMetrika />
       </body>
     </html>
   );
