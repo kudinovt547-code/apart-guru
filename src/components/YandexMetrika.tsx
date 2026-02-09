@@ -10,6 +10,8 @@ export function YandexMetrika() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
+            window.dataLayer = window.dataLayer || [];
+
             (function(m,e,t,r,i,k,a){
               m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
               m[i].l=1*new Date();
@@ -22,7 +24,7 @@ export function YandexMetrika() {
               trackLinks:true,
               accurateTrackBounce:true,
               webvisor:true,
-              ecommerce:"dataLayer"
+              ecommerce:true
             });
           `,
         }}
