@@ -18,20 +18,18 @@ export function YandexMetrika() {
             })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106739833', 'ym');
 
             ym(106739833, 'init', {
-              ssr:true,
-              webvisor:true,
               clickmap:true,
-              ecommerce:"dataLayer",
-              referrer: document.referrer,
-              url: location.href,
+              trackLinks:true,
               accurateTrackBounce:true,
-              trackLinks:true
+              webvisor:true,
+              ecommerce:"dataLayer"
             });
           `,
         }}
       />
       <noscript>
         <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://mc.yandex.ru/watch/106739833"
             style={{ position: "absolute", left: "-9999px" }}
