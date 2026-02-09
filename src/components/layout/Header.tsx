@@ -58,7 +58,7 @@ export default function Header() {
             href="/how-it-works"
             className="transition-colors hover:text-primary text-foreground/70"
           >
-            Как я работаю
+            Как мы работаем
           </Link>
           <Link
             href="/cases"
@@ -124,7 +124,7 @@ export default function Header() {
                 className="transition-colors hover:text-primary text-foreground/70 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Как я работаю
+                Как мы работаем
               </Link>
               <Link
                 href="/cases"
