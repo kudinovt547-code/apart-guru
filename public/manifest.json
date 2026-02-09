@@ -1,0 +1,26 @@
+{
+  "name": "Apart Guru - Инвестиции в апарт-отели",
+  "short_name": "Apart Guru",
+  "description": "Аналитическая платформа для инвестиций в апарт-отели и доходную недвижимость России",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020817",
+  "theme_color": "#16a34a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["business", "finance", "real estate"],
+  "lang": "ru",
+  "dir": "ltr"
+}

@@ -11,7 +11,7 @@ import { TrendingUp, Shield, Calculator, ArrowRight, Building2, Percent, Clock, 
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { OrganizationSchema, WebsiteSchema } from "@/components/seo/JsonLd";
+import { OrganizationSchema, WebsiteSchema, FAQSchema } from "@/components/seo/JsonLd";
 import { InlineLeadForm } from "@/components/lead/InlineLeadForm";
 import {
   calculateMarketRevPerM2,
@@ -702,6 +702,7 @@ export default function HomePage() {
       {/* SEO Structured Data */}
       <OrganizationSchema url="https://apart-guru.vercel.app" />
       <WebsiteSchema url="https://apart-guru.vercel.app" />
+      <FAQSchema />
     </div>
   );
 }
