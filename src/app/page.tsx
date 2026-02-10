@@ -700,8 +700,8 @@ export default function HomePage() {
       </section>
 
       {/* SEO Structured Data */}
-      <OrganizationSchema url="https://apart-guru.vercel.app" />
-      <WebsiteSchema url="https://apart-guru.vercel.app" />
+      <OrganizationSchema url="https://apart.guru" />
+      <WebsiteSchema url="https://apart.guru" />
       <FAQSchema />
     </div>
   );

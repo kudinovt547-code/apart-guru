@@ -463,13 +463,13 @@ export default function ProjectDetailPage({
       {/* SEO Structured Data */}
       <RealEstateListingSchema
         project={project}
-        url="https://apart-guru.vercel.app"
+        url="https://apart.guru"
       />
       <BreadcrumbSchema
         items={[
-          { name: "Главная", url: "https://apart-guru.vercel.app" },
-          { name: "Проекты", url: "https://apart-guru.vercel.app/projects" },
-          { name: project.title, url: `https://apart-guru.vercel.app/projects/${project.slug}` }
+          { name: "Главная", url: "https://apart.guru" },
+          { name: "Проекты", url: "https://apart.guru/projects" },
+          { name: project.title, url: `https://apart.guru/projects/${project.slug}` }
         ]}
       />
     </div>

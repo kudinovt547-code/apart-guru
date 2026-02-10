@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://apart-guru.vercel.app'),
+  metadataBase: new URL('https://apart.guru'),
   alternates: {
     canonical: '/',
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    url: 'https://apart-guru.vercel.app',
+    url: 'https://apart.guru',
     siteName: 'Apart Guru',
     title: 'Apart Guru - Инвестиции в апарт-отели и доходную недвижимость',
     description: 'Аналитическая платформа для инвестиций в апарт-отели России. Сравнивайте 50+ проектов, калькулятор доходности, проверенные объекты.',

@@ -19,6 +19,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/_next/'],
       },
     ],
-    sitemap: 'https://apart-guru.vercel.app/sitemap.xml',
+    sitemap: 'https://apart.guru/sitemap.xml',
   }
 }

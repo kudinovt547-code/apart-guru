@@ -632,8 +632,8 @@ export default function ProjectsPage() {
       {/* SEO Structured Data */}
       <BreadcrumbSchema
         items={[
-          { name: "Главная", url: "https://apart-guru.vercel.app" },
-          { name: "Проекты", url: "https://apart-guru.vercel.app/projects" }
+          { name: "Главная", url: "https://apart.guru" },
+          { name: "Проекты", url: "https://apart.guru/projects" }
         ]}
       />
     </div>

@@ -3,7 +3,7 @@ import { getProjects } from '@/data/stats'
 import { investmentProjects } from '@/data/investment-projects'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://apart-guru.vercel.app'
+  const baseUrl = 'https://apart.guru'
   const currentDate = new Date()
 
   // Статические страницы
