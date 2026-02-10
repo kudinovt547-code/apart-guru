@@ -43,3 +43,4 @@ next-env.d.ts
 # НО stats.generated.json НУЖЕН для деплоя - не игнорируем!
 # /data/content/stats.generated.json - закомментировано
 # /src/data/stats.generated.json - закомментировано
+.env
