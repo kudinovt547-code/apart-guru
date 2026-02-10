@@ -82,9 +82,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Добавьте сюда коды верификации когда получите
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
+    google: 'ec7c971900c2c0f0',
+    other: {
+      'verification': 'dc199bc73cc303bd',
+    },
   },
 };
 

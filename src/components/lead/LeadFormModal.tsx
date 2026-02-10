@@ -145,7 +145,10 @@ export function LeadFormModal({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto my-0">
+      <DialogContent
+        className="max-w-2xl max-h-[85vh] overflow-y-auto my-0"
+        onClose={() => onOpenChange(false)}
+      >
         {success ? (
           // Success Screen
           <div className="py-12 text-center">
