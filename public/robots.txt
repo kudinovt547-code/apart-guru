@@ -1,10 +1,10 @@
-# apart-guru.vercel.app robots.txt
+# apart.guru robots.txt
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://apart-guru.vercel.app/sitemap.xml
+Sitemap: https://apart.guru/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 0
