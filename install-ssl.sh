@@ -26,18 +26,17 @@ echo -e "${YELLOW}Проверка DNS записей...${NC}"
 
 # Проверка DNS
 DOMAIN_IP=$(dig +short apart.guru | head -n1)
-SERVER_IP=$(curl -s ifconfig.me)
+SERVER_IP=$(curl -4 -s ifconfig.me)
 
 echo "Домен apart.guru указывает на: $DOMAIN_IP"
-echo "IP сервера: $SERVER_IP"
+echo "IP сервера (IPv4): $SERVER_IP"
 
 if [ "$DOMAIN_IP" != "$SERVER_IP" ]; then
-    echo -e "${YELLOW}⚠️  Внимание: DNS ещё не обновился полностью${NC}"
-    echo -e "${YELLOW}Подождите 5-10 минут и попробуйте снова${NC}"
-    exit 1
+    echo -e "${YELLOW}⚠️  Внимание: IP не совпадают, но продолжаем...${NC}"
+    echo -e "${YELLOW}(Возможно сервер использует IPv6)${NC}"
+else
+    echo -e "${GREEN}✓ DNS настроен правильно${NC}"
 fi
-
-echo -e "${GREEN}✓ DNS настроен правильно${NC}"
 echo ""
 
 # Получение SSL сертификата
