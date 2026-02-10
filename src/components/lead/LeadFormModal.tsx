@@ -15,7 +15,6 @@ export interface LeadFormData {
   contact: string;           // Telegram @username или телефон
   city: string;              // СПб / Москва / другое
   budget: number;            // Бюджет
-  downPayment: number;       // Первоначальный взнос
   goal: string;              // макс доход / рост цены / гибрид
   horizon: string;           // 1-3 / 3-5 / 5+ лет
 
@@ -47,7 +46,6 @@ export function LeadFormModal({
     contact: "",
     city: "",
     budget: 0,
-    downPayment: 0,
     goal: "",
     horizon: "",
     risk: "средний",
@@ -76,9 +74,6 @@ export function LeadFormModal({
       }
       if (!formData.budget || formData.budget <= 0) {
         throw new Error("Укажите бюджет");
-      }
-      if (!formData.downPayment || formData.downPayment < 0) {
-        throw new Error("Укажите первоначальный взнос");
       }
       if (!formData.goal) {
         throw new Error("Выберите цель");
@@ -121,7 +116,6 @@ export function LeadFormModal({
           contact: "",
           city: "",
           budget: 0,
-          downPayment: 0,
           goal: "",
           horizon: "",
           risk: "средний",
@@ -225,24 +219,6 @@ export function LeadFormModal({
                   placeholder="Например: 5000000"
                   value={formData.budget || ""}
                   onChange={(e) => setFormData({ ...formData, budget: parseInt(e.target.value) || 0 })}
-                  className="mt-2"
-                  min={0}
-                  step={100000}
-                  required
-                />
-              </div>
-
-              {/* Первоначальный взнос */}
-              <div>
-                <Label htmlFor="downPayment" className="text-base font-semibold">
-                  Первоначальный взнос, ₽ <span className="text-destructive">*</span>
-                </Label>
-                <Input
-                  id="downPayment"
-                  type="number"
-                  placeholder="Например: 1500000"
-                  value={formData.downPayment || ""}
-                  onChange={(e) => setFormData({ ...formData, downPayment: parseInt(e.target.value) || 0 })}
                   className="mt-2"
                   min={0}
                   step={100000}

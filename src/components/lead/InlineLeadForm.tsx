@@ -14,7 +14,6 @@ export function InlineLeadForm() {
     contact: "",
     city: "",
     budget: 0,
-    downPayment: 0,
     goal: "",
     horizon: "",
     sourcePage: "homepage-hero",
@@ -34,7 +33,6 @@ export function InlineLeadForm() {
       if (!formData.contact?.trim()) throw new Error("Укажите Telegram или телефон");
       if (!formData.city) throw new Error("Выберите город");
       if (!formData.budget || formData.budget <= 0) throw new Error("Укажите бюджет");
-      if (!formData.downPayment || formData.downPayment < 0) throw new Error("Укажите взнос");
       if (!formData.goal) throw new Error("Выберите цель");
       if (!formData.horizon) throw new Error("Выберите горизонт");
 
@@ -111,22 +109,6 @@ export function InlineLeadForm() {
             placeholder="5 000 000"
             value={formData.budget || ""}
             onChange={(e) => setFormData({ ...formData, budget: parseInt(e.target.value) || 0 })}
-            min={0}
-            step={100000}
-          />
-        </div>
-
-        {/* Первоначальный взнос */}
-        <div>
-          <Label htmlFor="downPayment" className="text-sm font-semibold mb-2 block">
-            Первоначальный взнос, ₽ <span className="text-destructive">*</span>
-          </Label>
-          <Input
-            id="downPayment"
-            type="number"
-            placeholder="1 500 000"
-            value={formData.downPayment || ""}
-            onChange={(e) => setFormData({ ...formData, downPayment: parseInt(e.target.value) || 0 })}
             min={0}
             step={100000}
           />

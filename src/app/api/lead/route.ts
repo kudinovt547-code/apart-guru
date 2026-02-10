@@ -7,7 +7,6 @@ interface LeadData {
   contact: string;
   city: string;
   budget: number;
-  downPayment: number;
   goal: string;
   horizon: string;
   risk?: string;
@@ -45,7 +44,6 @@ export async function POST(request: NextRequest) {
 👤 *Контакт:* ${data.contact}
 🏙️ *Город:* ${data.city}
 💰 *Бюджет:* ${formatCurrency(data.budget)}
-💵 *Первоначальный взнос:* ${formatCurrency(data.downPayment)}
 
 🎯 *Цель:* ${data.goal}
 ⏱️ *Горизонт:* ${data.horizon}`;
