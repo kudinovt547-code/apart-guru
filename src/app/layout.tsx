@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     description: 'Аналитическая платформа для инвестиций в апарт-отели России. Сравнивайте 50+ проектов, калькулятор доходности, проверенные объекты.',
     images: [
       {
-        url: '/logo.png',
-        width: 512,
-        height: 512,
-        alt: 'Apart Guru - Биржа доходной недвижимости',
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Apart Guru - Инвестиции в апарт-отели России',
       },
     ],
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Apart Guru - Инвестиции в апарт-отели',
     description: 'Сравнивайте доходность 50+ апарт-отелей России. Калькулятор NOI, готовые инвестрешения.',
-    images: ['/logo.png'],
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
