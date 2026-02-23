@@ -1,0 +1,106 @@
+{
+  "name": "Apart Guru — Авто-Новости",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 6 }]
+        }
+      },
+      "id": "node-schedule",
+      "name": "Каждые 6 часов",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ============================================================\n// 1. Получаем RSS из трёх источников\n// 2. Парсим XML, фильтруем по ключевым словам (апарты/инвестиции)\n// 3. Дедуплицируем и возвращаем до 5 статей для обработки\n// ============================================================\n\nconst feeds = [\n  { url: 'https://realty.ria.ru/export/rss2/archive/index.xml', source: 'РИА Недвижимость' },\n  { url: 'https://rssexport.rbc.ru/realty/news/30/full.rss',   source: 'РБК Недвижимость' },\n  { url: 'https://hotelinsider.ru/?format=feed&type=rss',        source: 'Hotel Insider' },\n];\n\nconst KEYWORDS = ['апартамент', 'апарт', 'инвестиц', 'доходност', 'посуточн', 'управляющ', 'окупаемост', 'noi', 'апарты'];\n\nfunction extractTag(xml, tag) {\n  const re = new RegExp(`<${tag}[^>]*>(?:<!\\\\[CDATA\\\\[)?([\\\\s\\\\S]*?)(?:\\\\]\\\\]>)?<\\\\/${tag}>`, 'i');\n  return (xml.match(re)?.[1] || '').trim();\n}\n\nfunction parseItems(xml, source) {\n  const items = [];\n  const re = /<item>([\\s\\S]*?)<\\/item>/gi;\n  let m;\n  while ((m = re.exec(xml)) !== null) {\n    const block = m[1];\n    const title = extractTag(block, 'title');\n    const desc  = extractTag(block, 'description').replace(/<[^>]+>/g, '').slice(0, 800);\n    const link  = extractTag(block, 'link') || extractTag(block, 'guid');\n    if (!title || !link) continue;\n    const text = (title + ' ' + desc).toLowerCase();\n    if (!KEYWORDS.some(k => text.includes(k))) continue;\n    items.push({ title, description: desc, link, source });\n  }\n  return items;\n}\n\nconst all = [];\nfor (const feed of feeds) {\n  try {\n    const res = await fetch(feed.url, { signal: AbortSignal.timeout(8000) });\n    const xml = await res.text();\n    all.push(...parseItems(xml, feed.source));\n  } catch (e) { console.log('Feed error:', feed.source, e.message); }\n}\n\n// Дедупликация по ссылке\nconst seen = new Set();\nconst unique = all.filter(i => {\n  if (seen.has(i.link)) return false;\n  seen.add(i.link);\n  return true;\n});\n\nconsole.log(`Найдено ${unique.length} релевантных статей`);\n\n// Максимум 5 за один прогон (не спамим)\nreturn unique.slice(0, 5).map(i => ({ json: i }));"
+      },
+      "id": "node-fetch-rss",
+      "name": "Получить новости (RSS)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key",          "value": "={{ $vars.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version",  "value": "2023-06-01" },
+            { "name": "content-type",       "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"model\": \"claude-opus-4-6\",\n  \"max_tokens\": 2000,\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Ты редактор Apart Guru — экспертного медиа об инвестициях в апартаменты в России.\\n\\nСтиль Apart Guru:\\n- Аналитически, живо, без канцелярита\\n- Фокус: что это значит для инвестора в апарты?\\n- Конкретные цифры, короткие абзацы\\n- Тон: уверенный эксперт объясняет коллеге\\n\\nИСТОЧНИК: {{ $json.source }}\\nЗАГОЛОВОК ОРИГИНАЛА: {{ $json.title }}\\nТЕКСТ ОРИГИНАЛА: {{ $json.description }}\\n\\nПерепиши в стиле Apart Guru. Верни ТОЛЬКО валидный JSON без markdown:\\n{\\n  \\\"title\\\": \\\"заголовок до 80 символов\\\",\\n  \\\"excerpt\\\": \\\"лид 2-3 предложения — суть для инвестора\\\",\\n  \\\"content\\\": \\\"полный текст 4-6 абзацев разделённых \\\\\\\\n\\\\\\\\n\\\",\\n  \\\"category\\\": \\\"одно из: Рынок | Анализ | Инвестиции | Ипотека | Законы | Регионы | Проекты\\\"\\n}\"\n  }]\n}"
+      },
+      "id": "node-claude-rewrite",
+      "name": "Claude: переписать в стиле Apart Guru",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Парсим JSON из ответа Claude\nconst response = $input.first().json;\nconst rawText = response.content?.[0]?.text || '';\n\n// Убираем markdown если Claude его добавил\nconst clean = rawText\n  .replace(/```json\\n?/g, '')\n  .replace(/```\\n?/g, '')\n  .trim();\n\ntry {\n  const parsed = JSON.parse(clean);\n  // Проверяем обязательные поля\n  if (!parsed.title || !parsed.content) {\n    throw new Error('Missing title or content');\n  }\n  console.log('Готова статья:', parsed.title);\n  return [{ json: parsed }];\n} catch (e) {\n  // Пробуем вытащить JSON из текста\n  const match = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (match) {\n    try {\n      return [{ json: JSON.parse(match[0]) }];\n    } catch {}\n  }\n  console.error('Не удалось распарсить ответ Claude:', rawText.slice(0, 200));\n  return []; // Пропускаем эту статью\n}"
+      },
+      "id": "node-parse-claude",
+      "name": "Парсить ответ Claude",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://apart.guru/api/admin/publish",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type",    "value": "application/json" },
+            { "name": "x-admin-secret", "value": "={{ $vars.APART_GURU_SECRET }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json) }}"
+      },
+      "id": "node-publish",
+      "name": "Опубликовать на сайте",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [940, 300]
+    }
+  ],
+  "connections": {
+    "Каждые 6 часов": {
+      "main": [[{ "node": "Получить новости (RSS)", "type": "main", "index": 0 }]]
+    },
+    "Получить новости (RSS)": {
+      "main": [[{ "node": "Claude: переписать в стиле Apart Guru", "type": "main", "index": 0 }]]
+    },
+    "Claude: переписать в стиле Apart Guru": {
+      "main": [[{ "node": "Парсить ответ Claude", "type": "main", "index": 0 }]]
+    },
+    "Парсить ответ Claude": {
+      "main": [[{ "node": "Опубликовать на сайте", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
