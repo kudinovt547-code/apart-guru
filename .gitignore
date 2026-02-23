@@ -44,3 +44,5 @@ next-env.d.ts
 # /data/content/stats.generated.json - закомментировано
 # /src/data/stats.generated.json - закомментировано
 .env
+n8n/projects-enricher-v2.json
+n8n/news-automation-v2.json
