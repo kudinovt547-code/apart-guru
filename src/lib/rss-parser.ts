@@ -18,20 +18,20 @@ export const RSS_FEEDS: FeedConfig[] = [
     name: "РИА Недвижимость",
   },
   {
-    url: "https://lenta.ru/rss/articles/nedvizhimost/",
-    name: "Lenta.ru",
+    url: "https://rssexport.rbc.ru/realty/news/30/full.rss",
+    name: "РБК Недвижимость",
   },
   {
     url: "https://www.bn.ru/rss/news.xml",
     name: "BN.ru",
   },
   {
-    url: "https://www.novostroev.ru/rss/",
-    name: "Новостроев",
+    url: "https://hotelinsider.ru/?format=feed&type=rss",
+    name: "Hotel Insider",
   },
   {
-    url: "https://www.cian.ru/stati_rss/",
-    name: "ЦИАН",
+    url: "https://www.novostroev.ru/rss/",
+    name: "Новостроев",
   },
 ];
 

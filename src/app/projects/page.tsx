@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,14 +14,24 @@ import { formatCurrency, formatNumber } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { SearchBar } from "@/components/projects/SearchBar";
 import { AdvancedFilters, FilterState, defaultFilters, applyFilters } from "@/components/projects/AdvancedFilters";
+import { ExtraProject } from "@/app/api/admin/add-project/route";
 
 export default function ProjectsPage() {
   const [selectedCity, setSelectedCity] = useState<string>("Все города");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
+  const [extraProjects, setExtraProjects] = useState<ExtraProject[]>([]);
 
   // Get all projects
   const allProjects = getProjects();
+
+  // Load extra projects added via admin
+  useEffect(() => {
+    fetch("/api/projects/extra")
+      .then((r) => r.json())
+      .then((data: ExtraProject[]) => setExtraProjects(Array.isArray(data) ? data : []))
+      .catch(() => {});
+  }, []);
 
   // Get unique cities
   const cities = useMemo(() => {
@@ -628,6 +638,47 @@ export default function ProjectsPage() {
           </FadeIn>
         )}
       </div>
+
+      {/* Extra Projects (added via admin) */}
+      {extraProjects.length > 0 && (
+        <div className="container mx-auto px-4 pb-12">
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+            <Building2 className="h-6 w-6 text-primary" />
+            Расширенная база
+            <span className="text-sm font-normal text-muted-foreground ml-2">
+              {extraProjects.length} объект{extraProjects.length > 4 ? "ов" : extraProjects.length > 1 ? "а" : ""}
+            </span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {extraProjects.map((ep) => (
+              <Link key={ep.slug} href={`/projects/extra/${ep.slug}`}>
+                <Card className="h-full cursor-pointer hover:border-primary/40 transition-colors hover:-translate-y-1 duration-200">
+                  <CardContent className="p-5 space-y-3">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <MapPin className="h-3 w-3" />
+                      {ep.city}, {ep.country}
+                      <span className="ml-auto px-1.5 py-0.5 rounded bg-muted text-xs">
+                        {ep.status === "active" ? "Активный" : ep.status === "construction" ? "Строится" : "Планируется"}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold leading-snug">{ep.title}</h3>
+                    {ep.developer && (
+                      <p className="text-xs text-muted-foreground">{ep.developer}</p>
+                    )}
+                    <p className="text-sm text-muted-foreground line-clamp-2">{ep.summary}</p>
+                    {!!ep.price && (
+                      <p className="text-sm font-mono font-bold">
+                        от {new Intl.NumberFormat("ru-RU", { style: "currency", currency: "RUB", maximumFractionDigits: 0 }).format(ep.price)}
+                      </p>
+                    )}
+                    <p className="text-xs text-primary font-medium">Подробнее →</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* SEO Structured Data */}
       <BreadcrumbSchema

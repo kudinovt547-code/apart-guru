@@ -14,6 +14,7 @@ import { useCompareStore } from "@/store/useCompareStore";
 import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink } from "lucide-react";
 import ConstructionForecast from "@/components/projects/ConstructionForecast";
 import ProjectMentions from "@/components/projects/ProjectMentions";
+import ProjectResearch from "@/components/projects/ProjectResearch";
 import { RealEstateListingSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -429,6 +430,9 @@ export default function ProjectDetailPage({
             </div>
           </AccordionItem>
       </div>
+
+      {/* Research Notes (manually added via admin) */}
+      <ProjectResearch slug={project.slug} />
 
       {/* Telegram Mentions */}
       <ProjectMentions slug={project.slug} />
