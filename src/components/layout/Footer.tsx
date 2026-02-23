@@ -15,11 +15,25 @@ export default function Footer() {
                 initial={{ opacity: 0, rotate: -180, scale: 0 }}
                 whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut", type: "spring", stiffness: 150 }}
-                whileHover={{ scale: 1.2, rotate: 360, transition: { duration: 0.6 } }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  type: "spring",
+                  stiffness: 150
+                }}
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 360,
+                  transition: { duration: 0.6 }
+                }}
                 className="relative w-14 h-14"
               >
-                <Image src="/logo.png" alt="Apart Guru" fill className="object-contain" />
+                <Image
+                  src="/logo.png"
+                  alt="Apart Guru"
+                  fill
+                  className="object-contain"
+                />
               </motion.div>
               <motion.h3
                 initial={{ opacity: 0, x: -20 }}
@@ -37,14 +51,43 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3">Навигация</h4>
+            <h4 className="font-semibold mb-3">Платформа</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/services"   className="hover:text-primary transition-colors">Услуги</Link></li>
-              <li><Link href="/projects"   className="hover:text-primary transition-colors">База данных</Link></li>
-              <li><Link href="/news"       className="hover:text-primary transition-colors">Новости рынка</Link></li>
-              <li><Link href="/calculator" className="hover:text-primary transition-colors">Калькулятор доходности</Link></li>
-              <li><Link href="/compare"    className="hover:text-primary transition-colors">Сравнение проектов</Link></li>
-              <li><Link href="/contact"    className="hover:text-primary transition-colors">Контакты</Link></li>
+              <li>
+                <Link href="/projects" className="hover:text-primary transition-colors">
+                  База данных
+                </Link>
+              </li>
+              <li>
+                <Link href="/invest" className="hover:text-primary transition-colors">
+                  Инвестировать
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="hover:text-primary transition-colors">
+                  Услуги
+                </Link>
+              </li>
+              <li>
+                <Link href="/community" className="hover:text-primary transition-colors">
+                  Сообщество
+                </Link>
+              </li>
+              <li>
+                <Link href="/news" className="hover:text-primary transition-colors">
+                  Новости рынка
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculator" className="hover:text-primary transition-colors">
+                  Калькулятор доходности
+                </Link>
+              </li>
+              <li>
+                <Link href="/compare" className="hover:text-primary transition-colors">
+                  Сравнение
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -52,20 +95,9 @@ export default function Footer() {
             <h4 className="font-semibold mb-3">Контакты</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="mailto:kudinovt549@gmail.com" className="hover:text-primary transition-colors">
-                  kudinovt549@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+79817389197" className="hover:text-primary transition-colors">
-                  +7 981 738-91-97
-                </a>
-              </li>
-              <li>
-                <a href="https://t.me/apartgurusupp" target="_blank" rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors">
-                  Telegram: @apartgurusupp
-                </a>
+                <Link href="/contact" className="hover:text-primary transition-colors">
+                  Получить подбор
+                </Link>
               </li>
               <li>
                 <Link href="/legal" className="hover:text-primary transition-colors">
