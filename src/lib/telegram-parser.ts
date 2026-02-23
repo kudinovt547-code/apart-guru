@@ -10,18 +10,15 @@ export interface TelegramChannel {
   name: string;
 }
 
-// Public Telegram channels about Russian apartment investment
+// Public Telegram channels about Russian apartment investment.
+// Only channels with public web-preview (t.me/s/username returns 200) work here.
+// Add your own channels below — verified working as of 2026-02:
 export const TELEGRAM_CHANNELS: TelegramChannel[] = [
-  { username: "apartmenty_investicii", name: "Апартаменты Инвестиции" },
-  { username: "invest_realty_ru", name: "Инвестиции в недвижимость" },
-  { username: "spb_nedvizhimost", name: "СПб Недвижимость" },
-  { username: "realty_analytics", name: "Аналитика рынка" },
-  { username: "appart_investors", name: "Апарт Инвесторы" },
+  { username: "spb_nedvizhimost", name: "СПБ. Инструкция по недвижимости" },
+  { username: "realty_analytics", name: "Недвижимая Аналитика" },
   { username: "nedvigimost_invest", name: "Недвижимость | Инвестиции" },
-  { username: "spb_apart", name: "Апарты СПб" },
-  { username: "realty_russia_news", name: "Недвижимость России" },
-  { username: "rentalnews", name: "Аренда Новости" },
-  { username: "hotelsinvest", name: "Отели для инвестиций" },
+  { username: "spb_apart", name: "Апартаменты у Невского. СПб" },
+  // TODO: добавьте реальные каналы которые вы читаете (username из ссылки t.me/...)
 ];
 
 function decodeHtmlEntities(text: string): string {
