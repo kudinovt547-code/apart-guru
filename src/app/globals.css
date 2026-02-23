@@ -4,122 +4,54 @@
 
 @layer base {
   /* ============================================ */
-  /* LIGHT THEME - PRIMARY (Default) */
-  /* Premium Gold & Warm Luxury Design */
+  /* LIGHT THEME — Изумрудно-пастельная палитра  */
   /* ============================================ */
   :root {
-    /* Base colors - Warm creamy whites */
-    --background: 40 30% 98%;           /* Warm cream #FDFAF5 */
-    --foreground: 30 15% 20%;           /* Warm dark brown #2D2520 */
-    --card: 40 25% 99%;                 /* Slight warm white cards #FFFCF8 */
-    --card-foreground: 30 15% 20%;      /* Dark text on cards */
-    --popover: 40 25% 99%;              /* Warm white popover */
-    --popover-foreground: 30 15% 20%;   /* Dark text */
+    /* Base */
+    --background: 60 20% 98%;              /* #FAFAF8 тёплый белый */
+    --foreground: 0 0% 11%;               /* #1C1C1C почти чёрный */
+    --card: 0 0% 100%;                    /* #FFFFFF чистый белый */
+    --card-foreground: 0 0% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 11%;
 
-    /* Primary: Warm Dark Brown - Sophistication */
-    --primary: 30 30% 25%;              /* #473829 - Rich warm brown */
-    --primary-foreground: 40 25% 99%;   /* Warm white text */
+    /* Primary: изумрудный */
+    --primary: 153 41% 29%;               /* #2D6A4F изумрудный */
+    --primary-foreground: 0 0% 100%;      /* белый на изумруд */
 
-    /* Secondary: Soft warm beige */
-    --secondary: 40 20% 94%;            /* #F5F0E8 - Warm beige bg */
-    --secondary-foreground: 30 15% 20%; /* Dark text */
+    /* Secondary: светло-зелёный пастельный */
+    --secondary: 138 21% 93%;             /* #F0F4F1 */
+    --secondary-foreground: 153 41% 20%;
 
-    /* Accent: Logo Gold - Premium & Prestige */
-    --accent: 38 77% 48%;               /* #D6921E - Exact logo gold! */
-    --accent-foreground: 0 0% 100%;     /* White text on gold */
+    /* Accent: изумруд */
+    --accent: 153 41% 29%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Semantic colors */
-    --success: 142 71% 45%;             /* #10B981 - Growth green */
+    /* Semantic */
+    --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
-
-    --info: 210 100% 50%;               /* #0080FF - Info blue */
+    --info: 210 100% 50%;
     --info-foreground: 0 0% 100%;
-
-    --warning: 38 95% 50%;              /* #F59E0B - Warning amber */
-    --warning-foreground: 30 15% 20%;
-
-    --destructive: 0 75% 55%;           /* #E53E3E - Error red */
+    --warning: 38 95% 50%;
+    --warning-foreground: 0 0% 11%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted: 40 20% 94%;                /* Warm muted bg #F5F0E8 */
-    --muted-foreground: 30 10% 45%;     /* Warm gray text #6B6159 */
+    --muted: 60 10% 95%;                  /* #F5F5F0 бежевые карточки */
+    --muted-foreground: 140 8% 55%;       /* #8C9A8E серо-зелёный */
 
     /* Borders & inputs */
-    --border: 40 18% 88%;               /* #E8E0D4 - Warm borders */
-    --input: 40 18% 88%;                /* Warm input borders */
-    --ring: 38 77% 48%;                 /* Logo gold for focus */
+    --border: 138 14% 90%;               /* #E8EDE9 */
+    --input: 138 14% 90%;
+    --ring: 153 41% 29%;                  /* изумруд для focus */
 
     /* Border radius */
-    --radius: 0.75rem;                  /* 12px - Soft rounded corners */
+    --radius: 0.75rem;
 
     /* Fonts */
     --font-geist-sans: ui-sans-serif, system-ui, sans-serif;
     --font-geist-mono: ui-monospace, monospace;
-
-    /* Typography scale */
-    --text-xs: 0.75rem;      /* 12px */
-    --text-sm: 0.875rem;     /* 14px */
-    --text-base: 1rem;       /* 16px */
-    --text-lg: 1.125rem;     /* 18px */
-    --text-xl: 1.25rem;      /* 20px */
-    --text-2xl: 1.5rem;      /* 24px */
-    --text-3xl: 1.875rem;    /* 30px */
-    --text-4xl: 2.25rem;     /* 36px */
-    --text-5xl: 3rem;        /* 48px */
-    --text-6xl: 3.75rem;     /* 60px */
-
-    /* Line heights */
-    --leading-tight: 1.25;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.75;
-  }
-
-  /* ============================================ */
-  /* DARK THEME - SECONDARY */
-  /* Warm Dark Luxury Design with Gold */
-  /* ============================================ */
-  :root.dark {
-    --background: 30 15% 10%;           /* Warm deep brown #1A1612 */
-    --foreground: 40 20% 95%;           /* Warm off-white #F5F0E8 */
-    --card: 30 18% 14%;                 /* Warm elevated card #261F19 */
-    --card-foreground: 40 20% 95%;      /* Card text */
-    --popover: 30 18% 14%;              /* Popover bg */
-    --popover-foreground: 40 20% 95%;   /* Popover text */
-
-    /* Primary: Bright Gold - Premium & Warm */
-    --primary: 42 90% 60%;              /* #F4C430 - Bright gold */
-    --primary-foreground: 30 15% 10%;   /* Dark text on gold */
-
-    /* Secondary: Subtle warm elevation */
-    --secondary: 30 16% 18%;            /* #2E261E - Warm elevation */
-    --secondary-foreground: 40 20% 95%;
-
-    /* Accent: Logo Gold Bright - Matches logo */
-    --accent: 38 85% 55%;               /* #E8A52E - Bright logo gold */
-    --accent-foreground: 30 15% 10%;    /* Dark text on gold */
-
-    /* Semantic colors */
-    --success: 142 71% 50%;             /* #10D97F - Green */
-    --success-foreground: 30 15% 10%;
-
-    --info: 210 100% 60%;               /* #3399FF - Blue info */
-    --info-foreground: 0 0% 100%;
-
-    --warning: 40 95% 60%;              /* #FDB44B - Bright amber */
-    --warning-foreground: 30 15% 10%;
-
-    --destructive: 0 75% 60%;           /* #F56565 - Red */
-    --destructive-foreground: 0 0% 100%;
-
-    /* Muted */
-    --muted: 30 16% 18%;                /* Warm muted bg #2E261E */
-    --muted-foreground: 40 15% 60%;     /* Warm muted text #9B8E7E */
-
-    /* Borders & inputs */
-    --border: 30 14% 22%;               /* #3A2F24 - Warm borders */
-    --input: 30 14% 22%;                /* Input borders */
-    --ring: 42 90% 60%;                 /* Gold for focus */
   }
 }
 
@@ -133,38 +65,18 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Typography system */
-  h1 {
-    @apply text-5xl md:text-6xl font-bold leading-tight tracking-tight;
-  }
+  h1 { @apply text-5xl md:text-6xl font-bold leading-tight tracking-tight; }
+  h2 { @apply text-4xl md:text-5xl font-bold leading-tight; }
+  h3 { @apply text-3xl md:text-4xl font-semibold leading-normal; }
+  h4 { @apply text-2xl md:text-3xl font-semibold leading-normal; }
+  h5 { @apply text-xl md:text-2xl font-medium leading-normal; }
+  h6 { @apply text-lg md:text-xl font-medium leading-normal; }
 
-  h2 {
-    @apply text-4xl md:text-5xl font-bold leading-tight;
-  }
-
-  h3 {
-    @apply text-3xl md:text-4xl font-semibold leading-normal;
-  }
-
-  h4 {
-    @apply text-2xl md:text-3xl font-semibold leading-normal;
-  }
-
-  h5 {
-    @apply text-xl md:text-2xl font-medium leading-normal;
-  }
-
-  h6 {
-    @apply text-lg md:text-xl font-medium leading-normal;
-  }
-
-  /* Tabular numbers for data display */
   .tabular-nums {
     font-feature-settings: "tnum";
     font-variant-numeric: tabular-nums;
   }
 
-  /* Metric number styling */
   .metric-number {
     @apply font-mono text-4xl md:text-5xl font-bold tabular-nums;
     letter-spacing: -0.02em;
@@ -173,272 +85,120 @@
 
 @layer utilities {
   /* ============================================ */
-  /* ELEVATION SYSTEM - Light theme optimized */
+  /* ELEVATION SYSTEM */
   /* ============================================ */
-  .elevation-0 {
-    box-shadow: none;
-  }
+  .elevation-0 { box-shadow: none; }
+  .elevation-1 { box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); }
+  .elevation-2 { box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06); }
+  .elevation-3 { box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.05); }
+  .elevation-4 { box-shadow: 0 15px 25px rgba(0,0,0,0.12), 0 5px 10px rgba(0,0,0,0.06); }
+  .elevation-5 { box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.08); }
 
-  .elevation-1 {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  }
-
-  .elevation-2 {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
-  }
-
-  .elevation-3 {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
-  }
-
-  .elevation-4 {
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.06);
-  }
-
-  .elevation-5 {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.08);
-  }
-
-  /* Dark theme shadows - stronger */
-  .dark .elevation-1 {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.24);
-  }
-
-  .dark .elevation-2 {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .dark .elevation-3 {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
-  }
-
-  .dark .elevation-4 {
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.45), 0 5px 10px rgba(0, 0, 0, 0.35);
-  }
-
-  .dark .elevation-5 {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Hover elevation */
   .elevation-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
   .elevation-hover:hover {
     transform: translateY(-4px);
-  }
-
-  /* Light theme hover */
-  .elevation-hover:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
-  }
-
-  /* Dark theme hover */
-  .dark .elevation-hover:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08);
   }
 
   /* ============================================ */
-  /* GLASSMORPHISM EFFECTS */
+  /* GLASSMORPHISM */
   /* ============================================ */
   .glass {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-  }
-
-  /* Light theme glass */
-  .glass {
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  /* Dark theme glass */
-  .dark .glass {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0.05);
   }
 
   .glass-strong {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-  }
-
-  /* Light theme glass strong */
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  /* Dark theme glass strong */
-  .dark .glass-strong {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,0,0,0.08);
   }
 
   /* ============================================ */
-  /* GRADIENT BACKGROUNDS - Warm Gold Luxury */
+  /* GRADIENTS — Emerald */
   /* ============================================ */
-  /* Light theme gradients */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(30, 30%, 25%) 0%, hsl(30, 30%, 35%) 100%);
+    background: linear-gradient(135deg, hsl(153,41%,29%) 0%, hsl(153,41%,38%) 100%);
   }
-
   .gradient-accent {
-    background: linear-gradient(135deg, hsl(38, 77%, 48%) 0%, hsl(42, 85%, 55%) 100%);
+    background: linear-gradient(135deg, hsl(153,41%,29%) 0%, hsl(153,50%,42%) 100%);
   }
-
   .gradient-success {
-    background: linear-gradient(135deg, hsl(142, 71%, 45%) 0%, hsl(142, 71%, 55%) 100%);
+    background: linear-gradient(135deg, hsl(142,71%,45%) 0%, hsl(142,71%,55%) 100%);
   }
-
-  /* Light theme luxury overlay */
   .gradient-light-overlay {
-    background: linear-gradient(135deg, rgba(253, 250, 245, 0.95) 0%, rgba(245, 240, 232, 0.85) 100%);
-  }
-
-  /* Dark theme gradients - Warm gold */
-  .dark .gradient-primary {
-    background: linear-gradient(135deg, hsl(42, 90%, 60%) 0%, hsl(45, 85%, 65%) 100%);
-  }
-
-  .dark .gradient-accent {
-    background: linear-gradient(135deg, hsl(38, 85%, 55%) 0%, hsl(42, 90%, 65%) 100%);
-  }
-
-  .dark .gradient-success {
-    background: linear-gradient(135deg, hsl(142, 71%, 50%) 0%, hsl(142, 71%, 60%) 100%);
-  }
-
-  /* Dark theme luxury overlay - Warm */
-  .dark .gradient-dark-overlay {
-    background: linear-gradient(135deg, rgba(38, 31, 25, 0.95) 0%, rgba(26, 22, 18, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(250,250,248,0.95) 0%, rgba(240,244,241,0.85) 100%);
   }
 
   /* ============================================ */
-  /* GLOW EFFECTS - Warm Gold Luxury */
+  /* GLOW EFFECTS — Emerald */
   /* ============================================ */
-  /* Light theme glows - warm sophisticated */
   .glow-primary {
-    box-shadow: 0 0 25px rgba(71, 56, 41, 0.15), 0 0 50px rgba(71, 56, 41, 0.08);
+    box-shadow: 0 0 25px rgba(45,106,79,0.15), 0 0 50px rgba(45,106,79,0.08);
   }
-
   .glow-accent {
-    box-shadow: 0 0 30px rgba(214, 146, 30, 0.35), 0 0 60px rgba(214, 146, 30, 0.18);
+    box-shadow: 0 0 30px rgba(45,106,79,0.30), 0 0 60px rgba(45,106,79,0.15);
   }
-
   .glow-luxury {
-    box-shadow: 0 0 40px rgba(214, 146, 30, 0.5), 0 0 80px rgba(214, 146, 30, 0.25),
-                0 8px 32px rgba(0, 0, 0, 0.12);
-  }
-
-  /* Dark theme glows - vibrant gold */
-  .dark .glow-primary {
-    box-shadow: 0 0 30px rgba(244, 196, 48, 0.6), 0 0 60px rgba(244, 196, 48, 0.4);
-  }
-
-  .dark .glow-accent {
-    box-shadow: 0 0 35px rgba(232, 165, 46, 0.65), 0 0 70px rgba(232, 165, 46, 0.35);
-  }
-
-  .dark .glow-luxury {
-    box-shadow: 0 0 50px rgba(232, 165, 46, 0.8), 0 0 100px rgba(232, 165, 46, 0.45),
-                0 8px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 40px rgba(45,106,79,0.40), 0 0 80px rgba(45,106,79,0.20),
+                0 8px 32px rgba(0,0,0,0.10);
   }
 
   /* ============================================ */
-  /* TEXT GRADIENTS - Warm Gold Premium */
+  /* TEXT GRADIENTS — Emerald */
   /* ============================================ */
-  /* Light theme text gradients */
   .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(30, 30%, 25%) 0%, hsl(38, 77%, 48%) 100%);
+    background: linear-gradient(135deg, hsl(153,41%,25%) 0%, hsl(153,50%,42%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .text-gradient-accent {
-    background: linear-gradient(135deg, hsl(38, 77%, 40%) 0%, hsl(42, 90%, 55%) 100%);
+    background: linear-gradient(135deg, hsl(153,41%,29%) 0%, hsl(153,55%,45%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
   .text-gradient-luxury {
-    background: linear-gradient(135deg, hsl(38, 77%, 40%) 0%, hsl(42, 90%, 60%) 50%, hsl(38, 85%, 50%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Dark theme text gradients - Bright gold */
-  .dark .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(42, 90%, 55%) 0%, hsl(45, 95%, 70%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .dark .text-gradient-accent {
-    background: linear-gradient(135deg, hsl(38, 85%, 50%) 0%, hsl(42, 95%, 65%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .dark .text-gradient-luxury {
-    background: linear-gradient(135deg, hsl(38, 85%, 55%) 0%, hsl(42, 95%, 70%) 50%, hsl(40, 90%, 60%) 100%);
+    background: linear-gradient(135deg, hsl(153,41%,25%) 0%, hsl(153,55%,45%) 50%, hsl(153,45%,35%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   /* ============================================ */
-  /* ANIMATIONS - Accessibility */
+  /* ANIMATIONS */
   /* ============================================ */
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
-
-    .elevation-hover:hover {
-      transform: none;
-    }
+    .elevation-hover:hover { transform: none; }
   }
 
-  /* Smooth scrolling */
   @media (prefers-reduced-motion: no-preference) {
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
   }
 
   /* ============================================ */
   /* CUSTOM SCROLLBAR */
   /* ============================================ */
-  ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-  }
-
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--muted));
     border-radius: 6px;
     border: 2px solid hsl(var(--background));
   }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground));
-  }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
 
   /* ============================================ */
   /* SELECTION & FOCUS */
@@ -448,56 +208,18 @@
     color: hsl(var(--foreground));
   }
 
-  .dark ::selection {
-    background: hsl(var(--primary) / 0.3);
-  }
-
   :focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
   }
 
   /* ============================================ */
-  /* PREMIUM LUXURY EFFECTS */
+  /* PREMIUM EFFECTS */
   /* ============================================ */
-
-  /* Metallic shine effect - Logo gold colors */
-  .metallic-gold {
-    background: linear-gradient(135deg,
-      hsl(38, 77%, 40%) 0%,
-      hsl(38, 77%, 55%) 25%,
-      hsl(42, 85%, 65%) 50%,
-      hsl(38, 77%, 55%) 75%,
-      hsl(38, 77%, 40%) 100%);
-    background-size: 200% 200%;
-  }
-
-  .dark .metallic-gold {
-    background: linear-gradient(135deg,
-      hsl(38, 85%, 50%) 0%,
-      hsl(42, 90%, 65%) 25%,
-      hsl(42, 95%, 75%) 50%,
-      hsl(42, 90%, 65%) 75%,
-      hsl(38, 85%, 50%) 100%);
-    background-size: 200% 200%;
-  }
-
-  /* Shimmer animation for luxury elements */
-  @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-
-  .shimmer {
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  /* Premium card hover effect */
   .card-premium {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
   }
-
   .card-premium::before {
     content: '';
     position: absolute;
@@ -511,85 +233,36 @@
     opacity: 0;
     transition: opacity 0.4s ease;
   }
+  .card-premium:hover::before { opacity: 0.3; }
 
-  .card-premium:hover::before {
-    opacity: 0.3;
-  }
-
-  .dark .card-premium:hover::before {
-    opacity: 0.5;
-  }
-
-  /* Luxury border gradient */
-  .border-gradient-gold {
-    border: 2px solid transparent;
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-  }
-
-  .border-gradient-gold {
-    background-image: linear-gradient(hsl(var(--background)), hsl(var(--background))),
-                      linear-gradient(135deg, hsl(40, 85%, 45%), hsl(40, 85%, 65%));
-  }
-
-  .dark .border-gradient-gold {
-    background-image: linear-gradient(hsl(var(--background)), hsl(var(--background))),
-                      linear-gradient(135deg, hsl(45, 80%, 55%), hsl(45, 80%, 75%));
-  }
-
-  /* Frosted glass effect for premium cards */
   .frosted-glass {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255,255,255,0.85);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255,255,255,0.3);
   }
 
-  .dark .frosted-glass {
-    background: rgba(24, 28, 36, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  /* Luxury button styles */
   .btn-luxury {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
   }
-
   .btn-luxury::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
   }
+  .btn-luxury:hover::before { width: 300px; height: 300px; }
 
-  .btn-luxury:hover::before {
-    width: 300px;
-    height: 300px;
-  }
-
-  .dark .btn-luxury::before {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Premium number display */
   .number-luxury {
     @apply font-mono tabular-nums;
     letter-spacing: -0.03em;
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-
-  .dark .number-luxury {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 }
