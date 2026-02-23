@@ -1,149 +1,145 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import { ExternalLink, Newspaper, RefreshCw } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import fs from "fs/promises";
 import path from "path";
+import Link from "next/link";
+import { BookOpen, TrendingUp, Scale, Building2, Banknote, MapPin } from "lucide-react";
 
-export const revalidate = 3600; // revalidate hourly at most
+export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Новости рынка апартаментов",
+  title: "Новости рынка апартаментов | Apart Guru",
   description:
-    "Актуальные новости рынка апартаментов и доходной недвижимости России",
+    "Экспертный анализ и ключевые события рынка апартаментов и доходной недвижимости от команды Apart Guru",
 };
 
-type Article = {
+interface EditorialArticle {
+  id: string;
+  slug: string;
   title: string;
-  description?: string;
-  url: string;
-  source: string;
+  excerpt: string;
+  content: string;
+  category: string;
   publishedAt: string;
+}
+
+const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  Рынок: TrendingUp,
+  Анализ: BookOpen,
+  Проекты: Building2,
+  Законы: Scale,
+  Инвестиции: Banknote,
+  Ипотека: Banknote,
+  Регионы: MapPin,
 };
 
-async function getArticles(): Promise<Article[]> {
+async function getArticles(): Promise<EditorialArticle[]> {
   try {
     const data = await fs.readFile(
-      path.join(process.cwd(), "src/data/news.json"),
+      path.join(process.cwd(), "src/data/editorial-news.json"),
       "utf-8"
     );
-    return JSON.parse(data) as Article[];
+    return JSON.parse(data);
   } catch {
     return [];
   }
 }
 
 function formatDate(iso: string) {
-  try {
-    return new Date(iso).toLocaleDateString("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  } catch {
-    return iso;
-  }
+  return new Date(iso).toLocaleDateString("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 }
 
 export default async function NewsPage() {
   const articles = await getArticles();
-  const lastUpdated =
-    articles.length > 0 ? articles[0].publishedAt : null;
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero */}
       <section className="py-16 md:py-20 bg-gradient-to-b from-primary/10 via-background to-background">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="flex items-center gap-3 mb-4">
-            <Newspaper className="h-8 w-8 text-primary" />
-            <h1 className="text-4xl md:text-5xl font-bold">Новости рынка</h1>
-          </div>
-          <p className="text-lg text-muted-foreground">
-            Актуальные события рынка апартаментов и доходной недвижимости
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Новости и разборы
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            Ключевые события рынка апартаментов. Экспертный взгляд команды
+            Apart Guru — без воды, с цифрами и выводами.
           </p>
-          {lastUpdated && (
-            <p className="mt-3 text-sm text-muted-foreground flex items-center gap-1.5">
-              <RefreshCw className="h-3.5 w-3.5" />
-              Обновлено: {formatDate(lastUpdated)}
-              {" · "}
-              {articles.length} материалов
-            </p>
-          )}
         </div>
       </section>
 
+      {/* Articles */}
       <section className="py-12">
         <div className="container mx-auto px-4 max-w-4xl">
           {articles.length === 0 ? (
             <div className="text-center py-24">
-              <Newspaper className="h-16 w-16 text-muted-foreground/40 mx-auto mb-6" />
+              <BookOpen className="h-16 w-16 text-muted-foreground/30 mx-auto mb-6" />
               <h2 className="text-2xl font-semibold mb-3 text-muted-foreground">
-                Скоро здесь появятся актуальные новости рынка
+                Материалы готовятся
               </h2>
               <p className="text-muted-foreground">
-                Мы регулярно обновляем раздел свежими материалами
+                Скоро здесь появятся аналитика и разборы рынка
               </p>
             </div>
           ) : (
-            <div className="space-y-6">
-              {articles.map((article, idx) => (
-                <Card key={idx} className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2 text-sm text-muted-foreground">
-                          <span className="font-medium text-primary">
-                            {article.source}
-                          </span>
-                          <span>·</span>
-                          <time dateTime={article.publishedAt}>
-                            {formatDate(article.publishedAt)}
-                          </time>
-                        </div>
-                        <h2 className="text-xl font-semibold mb-2 leading-snug">
-                          {article.url ? (
-                            <a
-                              href={article.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-primary transition-colors"
-                            >
-                              {article.title}
-                            </a>
-                          ) : (
-                            article.title
-                          )}
-                        </h2>
-                        {article.description && (
-                          <p className="text-muted-foreground leading-relaxed">
-                            {article.description}
-                          </p>
-                        )}
-                      </div>
-                      {article.url && (
-                        <a
-                          href={article.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-shrink-0 text-muted-foreground hover:text-primary transition-colors mt-1"
-                          aria-label="Открыть источник"
-                        >
-                          <ExternalLink className="h-5 w-5" />
-                        </a>
-                      )}
+            <div className="space-y-8">
+              {articles.map((article) => {
+                const Icon =
+                  CATEGORY_ICONS[article.category] ?? TrendingUp;
+                return (
+                  <article
+                    key={article.id}
+                    className="border border-border rounded-xl p-6 hover:border-primary/40 transition-colors bg-card"
+                  >
+                    <div className="flex items-center gap-3 mb-3 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1.5 text-primary font-medium">
+                        <Icon className="h-3.5 w-3.5" />
+                        {article.category}
+                      </span>
+                      <span>·</span>
+                      <time dateTime={article.publishedAt}>
+                        {formatDate(article.publishedAt)}
+                      </time>
+                      <span>·</span>
+                      <span>Apart Guru</span>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+
+                    <h2 className="text-xl md:text-2xl font-bold mb-3 leading-snug">
+                      <Link
+                        href={`/news/${article.slug}`}
+                        className="hover:text-primary transition-colors"
+                      >
+                        {article.title}
+                      </Link>
+                    </h2>
+
+                    <p className="text-muted-foreground leading-relaxed line-clamp-3">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="mt-4">
+                      <Link
+                        href={`/news/${article.slug}`}
+                        className="text-sm text-primary font-medium hover:underline underline-offset-4"
+                      >
+                        Читать материал →
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           )}
         </div>
       </section>
 
+      {/* CTA */}
       <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <p className="text-muted-foreground mb-4">
-            Хотите подобрать объект с реальной доходностью?
+            Хотите подобрать апартаменты с реальной доходностью?
           </p>
           <Link
             href="/contact"
