@@ -21,8 +21,6 @@ services:
 
   research-cron:
     image: alpine:3.19
-    environment:
-      - RESEARCH_SECRET=${NEXT_PUBLIC_N8N_SECRET}
     volumes:
       - ./scripts/research-cron.sh:/research-cron.sh:ro
     command: sh /research-cron.sh

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import fs from "fs/promises";
 import path from "path";
@@ -12,12 +12,9 @@ import {
 const NEWS_FILE = path.join(process.cwd(), "src/data/news.json");
 const MAX_ARTICLES = 60;
 
-export async function GET(req: NextRequest) {
-  const secret = req.headers.get("x-n8n-secret");
-  if (secret !== process.env.NEXT_PUBLIC_N8N_SECRET) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
+// No auth needed — this endpoint only reads from predefined RSS feeds
+// and writes to a local file. External n8n endpoints remain protected.
+export async function GET() {
   // Fetch all RSS feeds in parallel
   const results = await Promise.allSettled(
     RSS_FEEDS.map((feed) => fetchFeed(feed))
