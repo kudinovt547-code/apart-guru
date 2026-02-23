@@ -1,0 +1,123 @@
+{
+  "name": "Apart Guru — Авто-Проекты (Tavily)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 9 * * *" }]
+        }
+      },
+      "id": "node-schedule",
+      "name": "Каждый день в 9:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const projects = [\n  { slug: 'start-parnas-spb',      title: 'START Парнас',        city: 'Санкт-Петербург' },\n  { slug: 'vertical-spb',          title: 'Vertical',            city: 'Санкт-Петербург' },\n  { slug: 'yes-apart-hotel-spb',   title: 'YE\\'S Апарт-Отель',  city: 'Санкт-Петербург' },\n  { slug: 'apart-hotel-sokol',     title: 'Апарт-отель Сокол',   city: 'Москва' },\n  { slug: 'sochi-apart-residence', title: 'Sochi Apart Residence', city: 'Сочи' },\n  // { slug: 'moy-proekt', title: 'Мой Проект', city: 'Город' },\n];\nreturn projects.map(p => ({ json: p }));"
+      },
+      "id": "node-project-list",
+      "name": "Список проектов",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"api_key\": \"{{ $vars.TAVILY_API_KEY }}\",\n  \"query\": \"{{ $json.title }} {{ $json.city }} апарт-отель инвестиции доходность ADR загрузка цена застройщик управляющая компания\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 6,\n  \"include_domains\": [\"hotelinsider.ru\", \"cian.ru\", \"avito.ru\", \"bn.ru\", \"realty.rbc.ru\"]\n}"
+      },
+      "id": "node-tavily",
+      "name": "Поиск (Tavily)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const searchResults = $input.first().json;\nconst projectInfo   = $('Список проектов').item.json;\n\nconst results = searchResults.results || [];\nconst text = results\n  .map(r => `[${r.url}]\\n${r.title}\\n${r.content || r.snippet || ''}`)\n  .join('\\n\\n---\\n\\n');\n\nconsole.log(`${projectInfo.title}: ${results.length} результатов Tavily`);\nreturn [{ json: { slug: projectInfo.slug, title: projectInfo.title, city: projectInfo.city, searchText: text } }];"
+      },
+      "id": "node-prepare",
+      "name": "Подготовить данные",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key",         "value": "={{ $vars.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type",      "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"model\": \"claude-opus-4-6\",\n  \"max_tokens\": 2500,\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Ты аналитик рынка апартаментов России. Извлеки реальные данные об апарт-проекте из поисковой выдачи.\\n\\nПРОЕКТ: {{ $json.title }}, {{ $json.city }}\\n\\nДАННЫЕ:\\n{{ $json.searchText }}\\n\\nВерни ТОЛЬКО JSON без markdown. Null если данных нет — не придумывай:\\n{\\\"developer\\\":null,\\\"managementCompany\\\":null,\\\"price\\\":null,\\\"priceMax\\\":null,\\\"pricePerM2\\\":null,\\\"area\\\":null,\\\"adr\\\":null,\\\"occupancy\\\":null,\\\"roiYear\\\":null,\\\"noiYear\\\":null,\\\"paybackYears\\\":null,\\\"managementFee\\\":null,\\\"investorShare\\\":null,\\\"completionDate\\\":null,\\\"totalUnits\\\":null,\\\"format\\\":\\\"apart-hotel\\\",\\\"status\\\":\\\"active\\\",\\\"summary\\\":\\\"...\\\",\\\"description\\\":\\\"...\\\",\\\"why\\\":[],\\\"risks\\\":[],\\\"address\\\":null}\"\n  }]\n}"
+      },
+      "id": "node-claude",
+      "name": "Claude: извлечь данные",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [940, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response    = $input.first().json;\nconst projectInfo = $('Список проектов').item.json;\nconst rawText     = response.content?.[0]?.text || '';\nconst clean = rawText.replace(/```json\\n?/g,'').replace(/```\\n?/g,'').trim();\nlet extracted;\ntry { extracted = JSON.parse(clean); }\ncatch { const m = rawText.match(/\\{[\\s\\S]*\\}/); if (!m) return []; try { extracted = JSON.parse(m[0]); } catch { return []; } }\nconst payload = { slug: projectInfo.slug, title: projectInfo.title, city: projectInfo.city, country: 'Россия', dataSource: 'n8n-ai' };\nfor (const [k, v] of Object.entries(extracted)) { if (v !== null && v !== undefined && v !== '') payload[k] = v; }\nconsole.log(`[${projectInfo.title}] готово: ${Object.keys(payload).length} полей`);\nreturn [{ json: payload }];"
+      },
+      "id": "node-parse",
+      "name": "Собрать payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1180, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "https://apart.guru/api/admin/add-project",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type",    "value": "application/json" },
+            { "name": "x-admin-secret", "value": "={{ $vars.APART_GURU_SECRET }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json) }}"
+      },
+      "id": "node-update",
+      "name": "Обновить на сайте",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1420, 300]
+    }
+  ],
+  "connections": {
+    "Каждый день в 9:00":        { "main": [[{ "node": "Список проектов",       "type": "main", "index": 0 }]] },
+    "Список проектов":           { "main": [[{ "node": "Поиск (Tavily)",         "type": "main", "index": 0 }]] },
+    "Поиск (Tavily)":            { "main": [[{ "node": "Подготовить данные",     "type": "main", "index": 0 }]] },
+    "Подготовить данные":        { "main": [[{ "node": "Claude: извлечь данные", "type": "main", "index": 0 }]] },
+    "Claude: извлечь данные":    { "main": [[{ "node": "Собрать payload",        "type": "main", "index": 0 }]] },
+    "Собрать payload":           { "main": [[{ "node": "Обновить на сайте",      "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

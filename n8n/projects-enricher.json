@@ -15,7 +15,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// ============================================================\n// Список апарт-проектов для исследования\n// Добавляйте сюда новые проекты — n8n найдёт по ним данные\n// slug должен совпадать с тем что будет на сайте\n// ============================================================\n\nconst projects = [\n  // Санкт-Петербург\n  { slug: 'start-parnas-spb',       title: 'START Парнас',       city: 'Санкт-Петербург' },\n  { slug: 'vertical-spb',           title: 'Vertical',           city: 'Санкт-Петербург' },\n  { slug: 'ye-s-apart-hotel-spb',   title: 'YE'S Апарт-Отель',  city: 'Санкт-Петербург' },\n  // Москва\n  { slug: 'apart-hotel-sokol',      title: 'Апарт-отель Сокол',  city: 'Москва' },\n  { slug: 'plaza-spa-hotels',       title: 'Plaza Spa Hotels',   city: 'Москва' },\n  // Сочи\n  { slug: 'sochi-apart-residence',  title: 'Sochi Apart Residence', city: 'Сочи' },\n  // Казань\n  { slug: 'kazan-apart-city',       title: 'Kazan Apart City',   city: 'Казань' },\n  // Добавьте свои проекты:\n  // { slug: 'moy-proekt',           title: 'Мой Проект',         city: 'Город' },\n];\n\nconsole.log(`Запускаем исследование ${projects.length} проектов`);\nreturn projects.map(p => ({ json: p }));"
+        "jsCode": "// ============================================================\n// Список апарт-проектов для исследования\n// Добавляйте новые — n8n найдёт данные автоматически\n// ============================================================\n\nconst projects = [\n  { slug: 'start-parnas-spb',      title: 'START Парнас',        city: 'Санкт-Петербург' },\n  { slug: 'vertical-spb',          title: 'Vertical',            city: 'Санкт-Петербург' },\n  { slug: 'yes-apart-hotel-spb',   title: 'YE\\'S Апарт-Отель',  city: 'Санкт-Петербург' },\n  { slug: 'apart-hotel-sokol',     title: 'Апарт-отель Сокол',   city: 'Москва' },\n  { slug: 'sochi-apart-residence', title: 'Sochi Apart Residence', city: 'Сочи' },\n  // Добавляйте свои:\n  // { slug: 'moy-proekt', title: 'Мой Проект', city: 'Город' },\n];\n\nconsole.log(`Запускаем исследование ${projects.length} проектов`);\nreturn projects.map(p => ({ json: p }));"
       },
       "id": "node-project-list",
       "name": "Список проектов",
@@ -25,35 +25,13 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://google.serper.dev/search",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            { "name": "X-API-KEY",     "value": "={{ $vars.SERPER_API_KEY }}" },
-            { "name": "Content-Type",  "value": "application/json" }
-          ]
-        },
-        "sendBody": true,
-        "contentType": "raw",
-        "rawContentType": "application/json",
-        "body": "={\n  \"q\": \"{{ $json.title }} {{ $json.city }} апарт-отель инвестиции доходность ADR загрузка цена застройщик управляющая компания\",\n  \"gl\": \"ru\",\n  \"hl\": \"ru\",\n  \"num\": 8\n}"
+        "jsCode": "// ============================================================\n// Сбор данных БЕЗ поискового API\n// Скрапим напрямую: hotelinsider.ru + ostrovok.ru + прямой сайт\n// ============================================================\n\nconst { title, city, slug } = $input.first().json;\n\nasync function fetchText(url) {\n  try {\n    const res = await fetch(url, {\n      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },\n      signal: AbortSignal.timeout(8000),\n      redirect: 'follow',\n    });\n    if (!res.ok) return '';\n    const html = await res.text();\n    // Убираем HTML теги, оставляем текст\n    return html\n      .replace(/<script[\\s\\S]*?<\\/script>/gi, '')\n      .replace(/<style[\\s\\S]*?<\\/style>/gi, '')\n      .replace(/<[^>]+>/g, ' ')\n      .replace(/\\s+/g, ' ')\n      .trim()\n      .slice(0, 3000);\n  } catch { return ''; }\n}\n\nconst query = encodeURIComponent(`${title} ${city}`);\n\n// Источники для скрапинга\nconst sources = [\n  // Hotel Insider — специализированный ресурс по отельному рынку РФ\n  `https://hotelinsider.ru/?s=${query}`,\n  // Ostrovok — цены и загрузка\n  `https://ostrovok.ru/hotel/russia/${city.toLowerCase().replace(/ /g, '_')}/search/?q=${query}`,\n  // Авито — объявления о продаже апартаментов\n  `https://www.avito.ru/rossiya/nedvizhimost?q=${query}`,\n];\n\nconst texts = await Promise.all(sources.map(url => fetchText(url)));\nconst combined = texts\n  .map((t, i) => t ? `[Источник ${i+1}]\\n${t}` : '')\n  .filter(Boolean)\n  .join('\\n\\n---\\n\\n');\n\nconsole.log(`${title}: собрано ${combined.length} символов из ${texts.filter(Boolean).length} источников`);\n\nreturn [{ json: { slug, title, city, searchText: combined || `Апарт-проект ${title} в городе ${city}` } }];"
       },
-      "id": "node-serper",
-      "name": "Поиск данных (Serper)",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [460, 300]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Берём результаты поиска и оригинальные данные проекта\nconst searchResults = $input.first().json;\nconst projectInfo   = $('Список проектов').item.json;\n\n// Собираем текст из поисковой выдачи\nconst organic = searchResults.organic || [];\nconst snippets = organic\n  .slice(0, 6)\n  .map(r => `[${r.link}]\\n${r.title}\\n${r.snippet || ''}`)\n  .join('\\n\\n');\n\n// Также берём данные из блока «знания» (Knowledge Graph) если есть\nconst kg = searchResults.knowledgeGraph;\nconst kgText = kg ? `\\n\\nКраткая справка: ${JSON.stringify(kg)}` : '';\n\nconsole.log(`Проект: ${projectInfo.title} — найдено ${organic.length} результатов`);\n\nreturn [{\n  json: {\n    slug:       projectInfo.slug,\n    title:      projectInfo.title,\n    city:       projectInfo.city,\n    searchText: snippets + kgText,\n  }\n}];"
-      },
-      "id": "node-prepare",
-      "name": "Подготовить данные для Claude",
+      "id": "node-scrape-direct",
+      "name": "Собрать данные (прямой скрапинг)",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [700, 300]
+      "position": [460, 300]
     },
     {
       "parameters": {
@@ -62,31 +40,31 @@
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
-            { "name": "x-api-key",          "value": "={{ $vars.ANTHROPIC_API_KEY }}" },
-            { "name": "anthropic-version",  "value": "2023-06-01" },
-            { "name": "content-type",       "value": "application/json" }
+            { "name": "x-api-key",         "value": "={{ $vars.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type",      "value": "application/json" }
           ]
         },
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "application/json",
-        "body": "={\n  \"model\": \"claude-opus-4-6\",\n  \"max_tokens\": 2500,\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Ты аналитик рынка апартаментов. На основе текстов из поисковой выдачи извлеки реальные данные об апарт-проекте.\\n\\nПРОЕКТ: {{ $json.title }}, {{ $json.city }}\\n\\nДАННЫЕ ИЗ ИНТЕРНЕТА:\\n{{ $json.searchText }}\\n\\nИзвлеки данные и верни ТОЛЬКО валидный JSON без markdown. Если данных нет — ставь null, НЕ придумывай:\\n{\\n  \\\"developer\\\": \\\"застройщик или null\\\",\\n  \\\"managementCompany\\\": \\\"УК или null\\\",\\n  \\\"price\\\": минимальная цена ₽ или null,\\n  \\\"priceMax\\\": максимальная цена ₽ или null,\\n  \\\"pricePerM2\\\": цена за м² или null,\\n  \\\"area\\\": минимальная площадь м² или null,\\n  \\\"adr\\\": средний чек ₽/ночь или null,\\n  \\\"occupancy\\\": загрузка % (число 0-100) или null,\\n  \\\"roiYear\\\": ROI % годовых или null,\\n  \\\"noiYear\\\": NOI ₽/год или null,\\n  \\\"paybackYears\\\": окупаемость лет или null,\\n  \\\"managementFee\\\": комиссия УК decimal (0.30=30%) или null,\\n  \\\"investorShare\\\": доля инвестора decimal или null,\\n  \\\"completionDate\\\": \\\"срок сдачи напр Q3 2026 или null\\\",\\n  \\\"totalUnits\\\": кол-во апартаментов или null,\\n  \\\"summary\\\": \\\"описание проекта 2-3 предложения для инвестора\\\",\\n  \\\"description\\\": \\\"подробное описание локации, концепции, особенностей\\\",\\n  \\\"why\\\": [\\\"преимущество 1\\\", \\\"преимущество 2\\\", \\\"преимущество 3\\\"],\\n  \\\"risks\\\": [\\\"риск 1\\\", \\\"риск 2\\\"],\\n  \\\"address\\\": \\\"адрес если найден или null\\\"\\n}\"\n  }]\n}"
+        "body": "={\n  \"model\": \"claude-opus-4-6\",\n  \"max_tokens\": 2500,\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Ты аналитик рынка апартаментов России. На основе текстов из открытых источников извлеки реальные данные об апарт-проекте.\\n\\nПРОЕКТ: {{ $json.title }}, {{ $json.city }}\\n\\nДАННЫЕ ИЗ ИСТОЧНИКОВ:\\n{{ $json.searchText }}\\n\\nЕсли конкретных данных нет — основывайся на типичных показателях для апарт-отелей в {{ $json.city }} и обязательно укажи в summary что данные ориентировочные.\\n\\nВерни ТОЛЬКО валидный JSON без markdown:\\n{\\n  \\\"developer\\\": \\\"застройщик или null\\\",\\n  \\\"managementCompany\\\": \\\"УК или null\\\",\\n  \\\"price\\\": минимальная цена ₽ или null,\\n  \\\"priceMax\\\": максимальная цена ₽ или null,\\n  \\\"pricePerM2\\\": цена за м² или null,\\n  \\\"area\\\": минимальная площадь м² или null,\\n  \\\"adr\\\": средний чек ₽/ночь или null,\\n  \\\"occupancy\\\": загрузка % (число 0-100) или null,\\n  \\\"roiYear\\\": ROI % годовых или null,\\n  \\\"noiYear\\\": NOI ₽/год или null,\\n  \\\"paybackYears\\\": окупаемость лет или null,\\n  \\\"managementFee\\\": комиссия УК decimal (0.30=30%) или null,\\n  \\\"investorShare\\\": доля инвестора decimal или null,\\n  \\\"completionDate\\\": \\\"срок сдачи или null\\\",\\n  \\\"totalUnits\\\": кол-во апартаментов или null,\\n  \\\"format\\\": \\\"apart-hotel\\\",\\n  \\\"status\\\": \\\"active или construction или planning\\\",\\n  \\\"summary\\\": \\\"2-3 предложения о проекте для инвестора\\\",\\n  \\\"description\\\": \\\"подробное описание: локация, концепция, особенности\\\",\\n  \\\"why\\\": [\\\"преимущество 1\\\", \\\"преимущество 2\\\", \\\"преимущество 3\\\"],\\n  \\\"risks\\\": [\\\"риск 1\\\", \\\"риск 2\\\"],\\n  \\\"address\\\": \\\"адрес или null\\\"\\n}\"\n  }]\n}"
       },
       "id": "node-claude-extract",
       "name": "Claude: извлечь данные о проекте",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [940, 300]
+      "position": [700, 300]
     },
     {
       "parameters": {
-        "jsCode": "// Парсим JSON от Claude и добавляем мета-данные проекта\nconst response    = $input.first().json;\nconst projectInfo = $('Список проектов').item.json;\nconst rawText     = response.content?.[0]?.text || '';\n\nconst clean = rawText\n  .replace(/```json\\n?/g, '')\n  .replace(/```\\n?/g, '')\n  .trim();\n\nlet extracted;\ntry {\n  extracted = JSON.parse(clean);\n} catch {\n  const match = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!match) {\n    console.error(`Не удалось распарсить данные для ${projectInfo.title}`);\n    return [];\n  }\n  try { extracted = JSON.parse(match[0]); }\n  catch { return []; }\n}\n\n// Убираем null значения чтобы не затирать существующие данные при upsert\nconst payload = { slug: projectInfo.slug, title: projectInfo.title, city: projectInfo.city, country: 'Россия', format: 'apart-hotel', status: 'active', dataSource: 'n8n-ai' };\nfor (const [key, value] of Object.entries(extracted)) {\n  if (value !== null && value !== undefined) {\n    payload[key] = value;\n  }\n}\n\nconsole.log(`Данные готовы для ${projectInfo.title}:`, Object.keys(payload).filter(k => payload[k] !== null).join(', '));\nreturn [{ json: payload }];"
+        "jsCode": "const response    = $input.first().json;\nconst projectInfo = $('Список проектов').item.json;\nconst rawText     = response.content?.[0]?.text || '';\n\nconst clean = rawText.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n\nlet extracted;\ntry {\n  extracted = JSON.parse(clean);\n} catch {\n  const match = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!match) {\n    console.error(`Не удалось распарсить данные для ${projectInfo.title}`);\n    return [];\n  }\n  try { extracted = JSON.parse(match[0]); }\n  catch { return []; }\n}\n\n// Строим payload — только непустые поля\nconst payload = {\n  slug:       projectInfo.slug,\n  title:      projectInfo.title,\n  city:       projectInfo.city,\n  country:    'Россия',\n  dataSource: 'n8n-ai',\n};\n\nfor (const [key, value] of Object.entries(extracted)) {\n  if (value !== null && value !== undefined && value !== '') {\n    payload[key] = value;\n  }\n}\n\nconsole.log(`Готово [${projectInfo.title}]: ${Object.keys(payload).length} полей`);\nreturn [{ json: payload }];"
       },
       "id": "node-parse-project",
-      "name": "Собрать payload проекта",
+      "name": "Собрать payload",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1180, 300]
+      "position": [940, 300]
     },
     {
       "parameters": {
@@ -105,10 +83,10 @@
         "body": "={{ JSON.stringify($json) }}"
       },
       "id": "node-update-site",
-      "name": "Обновить проект на сайте",
+      "name": "Обновить на сайте",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1420, 300]
+      "position": [1180, 300]
     }
   ],
   "connections": {
@@ -116,19 +94,16 @@
       "main": [[{ "node": "Список проектов", "type": "main", "index": 0 }]]
     },
     "Список проектов": {
-      "main": [[{ "node": "Поиск данных (Serper)", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Собрать данные (прямой скрапинг)", "type": "main", "index": 0 }]]
     },
-    "Поиск данных (Serper)": {
-      "main": [[{ "node": "Подготовить данные для Claude", "type": "main", "index": 0 }]]
-    },
-    "Подготовить данные для Claude": {
+    "Собрать данные (прямой скрапинг)": {
       "main": [[{ "node": "Claude: извлечь данные о проекте", "type": "main", "index": 0 }]]
     },
     "Claude: извлечь данные о проекте": {
-      "main": [[{ "node": "Собрать payload проекта", "type": "main", "index": 0 }]]
+      "main": [[{ "node": "Собрать payload", "type": "main", "index": 0 }]]
     },
-    "Собрать payload проекта": {
-      "main": [[{ "node": "Обновить проект на сайте", "type": "main", "index": 0 }]]
+    "Собрать payload": {
+      "main": [[{ "node": "Обновить на сайте", "type": "main", "index": 0 }]]
     }
   },
   "settings": {
