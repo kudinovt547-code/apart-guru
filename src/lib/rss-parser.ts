@@ -35,30 +35,30 @@ export const RSS_FEEDS: FeedConfig[] = [
   },
 ];
 
-// Keywords for relevance filtering (Russian stems to match word forms)
+// Keywords for relevance filtering — focus on apartments & investments only
+// (no загородка, вторичка, ИЖС, дачи)
 const KEYWORDS = [
   "апартамент",
   "апарт-отел",
   "апарт отел",
-  "аренд",
-  "недвижимост",
+  "апарты",
+  "апарт-",
   "инвестиц",
   "доходност",
-  "новостройк",
-  "ипотека",
-  "ипотек",
   "посуточн",
-  "гостиниц",
-  "отель",
-  "управляющ",
   "краткосрочн",
   "noi",
   "окупаемост",
+  "управляющ",
+  "арендный бизнес",
+  "доходная недвижимост",
+  "рентабельност",
+  "гостиниц",
+  "отель",
+  "сервисн",
   "застройщик",
-  "апарты",
-  "жилой комплекс",
-  "купить квартир",
-  "вторичн",
+  "новостройк",
+  "ипотек",
 ];
 
 export function isRelevant(article: Article): boolean {

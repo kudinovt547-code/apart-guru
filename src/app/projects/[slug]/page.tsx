@@ -13,6 +13,7 @@ import { formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
 import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink } from "lucide-react";
 import ConstructionForecast from "@/components/projects/ConstructionForecast";
+import ProjectMentions from "@/components/projects/ProjectMentions";
 import { RealEstateListingSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
@@ -428,6 +429,9 @@ export default function ProjectDetailPage({
             </div>
           </AccordionItem>
       </div>
+
+      {/* Telegram Mentions */}
+      <ProjectMentions slug={project.slug} />
 
       {/* CTA Buttons */}
       <Card className="p-6">
