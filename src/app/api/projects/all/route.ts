@@ -1,14 +1,14 @@
 import { NextResponse } from "next/server";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/stats";
 import fs from "fs/promises";
 import path from "path";
 
 const EXTRA_FILE = path.join(process.cwd(), "src/data/projects-extra.json");
 
-// Публичный эндпоинт — все проекты (статические + extra)
+// Публичный эндпоинт — все проекты (stats.generated.json + extra)
 // Используется n8n для получения полного списка проектов для обновления
 export async function GET() {
-  const base = projects.map((p) => ({
+  const base = getProjects().map((p) => ({
     slug: p.slug,
     title: p.title,
     city: p.city,
