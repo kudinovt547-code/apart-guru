@@ -74,6 +74,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/news" className="hover:text-primary transition-colors">
+                  Новости рынка
+                </Link>
+              </li>
+              <li>
                 <Link href="/calculator" className="hover:text-primary transition-colors">
                   Калькулятор доходности
                 </Link>

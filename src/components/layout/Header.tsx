@@ -78,6 +78,12 @@ export default function Header() {
           >
             База
           </Link>
+          <Link
+            href="/news"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Новости
+          </Link>
           <ThemeToggle />
           <Button size="sm" onClick={() => setLeadFormOpen(true)}>
             Получить shortlist
@@ -146,6 +152,13 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 База
+              </Link>
+              <Link
+                href="/news"
+                className="transition-colors hover:text-primary text-foreground/70 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Новости
               </Link>
               <Button
                 size="sm"
