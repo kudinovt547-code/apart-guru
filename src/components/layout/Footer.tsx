@@ -68,11 +68,7 @@ export default function Footer() {
                   Услуги
                 </Link>
               </li>
-              <li>
-                <Link href="/community" className="hover:text-primary transition-colors">
-                  Сообщество
-                </Link>
-              </li>
+              {/* community removed */}
               <li>
                 <Link href="/news" className="hover:text-primary transition-colors">
                   Новости рынка
@@ -81,6 +77,11 @@ export default function Footer() {
               <li>
                 <Link href="/calculator" className="hover:text-primary transition-colors">
                   Калькулятор доходности
+                </Link>
+              </li>
+              <li>
+                <Link href="/encyclopedia" className="hover:text-primary transition-colors">
+                  Энциклопедия апартаментов
                 </Link>
               </li>
               <li>

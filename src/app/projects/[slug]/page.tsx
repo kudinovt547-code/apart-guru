@@ -11,7 +11,7 @@ import { AccordionItem } from "@/components/ui/accordion";
 import { formatCurrency, formatNumber, formatPercent, formatDate } from "@/lib/utils";
 import { formatLabels, statusLabels } from "@/types/project";
 import { useCompareStore } from "@/store/useCompareStore";
-import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink } from "lucide-react";
+import { ArrowLeft, GitCompare, Calculator, Send, ExternalLink, MapPin, Building2, TrendingUp, Calendar, Star, Newspaper } from "lucide-react";
 import ConstructionForecast from "@/components/projects/ConstructionForecast";
 import ProjectMentions from "@/components/projects/ProjectMentions";
 import ProjectResearch from "@/components/projects/ProjectResearch";
@@ -24,7 +24,6 @@ export default function ProjectDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  // Декодируем URL-encoded slug (например %D0%BB%D0%B8%D0%B3%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9-29 → лиговский-29)
   const decodedSlug = decodeURIComponent(slug);
   const project = getProjectBySlug(decodedSlug);
 
@@ -34,6 +33,9 @@ export default function ProjectDetailPage({
 
   const { addProject, removeProject, isInCompare } = useCompareStore();
   const inCompare = isInCompare(project.slug);
+
+  const monthlyIncome = Math.round(project.revPerM2Month * project.area);
+  const roiPercent = formatNumber((project.noiYear / project.price) * 100, 1);
 
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
@@ -46,7 +48,6 @@ export default function ProjectDetailPage({
         ]}
       />
 
-      {/* Back Button */}
       <Link href="/projects">
         <Button variant="ghost">
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -54,230 +55,222 @@ export default function ProjectDetailPage({
         </Button>
       </Link>
 
-      {/* Header */}
+      {/* Hero Header */}
       <div className="space-y-4">
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between flex-wrap gap-4">
           <div>
             <h1 className="text-4xl font-bold mb-2">{project.title}</h1>
-            <p className="text-lg text-muted-foreground">
-              {project.city}, {project.country}
-            </p>
+            <div className="flex items-center gap-2 text-lg text-muted-foreground">
+              <MapPin className="h-5 w-5" />
+              <span>{project.city}, {project.country}</span>
+            </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <Badge variant="outline">{formatLabels[project.format]}</Badge>
-            <Badge variant="outline">{statusLabels[project.status]}</Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="text-sm">{formatLabels[project.format]}</Badge>
+            <Badge variant="outline" className="text-sm bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400 border-green-200">{statusLabels[project.status]}</Badge>
+            {project.class && (
+              <Badge variant="outline" className="text-sm capitalize">{project.class}</Badge>
+            )}
           </div>
         </div>
-        <p className="text-muted-foreground">{project.summary}</p>
-        <p className="text-xs text-muted-foreground">
-          Обновлено: {formatDate(project.updatedAt)}
-        </p>
       </div>
 
-      {/* KPI Cards - Different layouts for construction vs active */}
-      {project.status === "construction" ? (
-        /* Construction Project - Limited KPIs + Link */
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">Стоимость</p>
-            <p className="text-2xl font-bold font-mono tabular-nums">
-              {formatCurrency(project.price)}
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              {project.area} м²
-            </p>
-          </Card>
-
-          {project.pricePerM2 && (
-            <Card className="p-6">
-              <p className="text-sm text-muted-foreground mb-2">Цена за м²</p>
-              <p className="text-2xl font-bold font-mono tabular-nums">
-                {formatCurrency(project.pricePerM2)}
-              </p>
-            </Card>
-          )}
-
-          {project.completionDate && (
-            <Card className="p-6">
-              <p className="text-sm text-muted-foreground mb-2">Срок сдачи</p>
-              <p className="text-lg font-semibold">
-                {project.completionDate}
-              </p>
-            </Card>
-          )}
-
-          {project.developer && (
-            <Card className="p-6">
-              <p className="text-sm text-muted-foreground mb-2">Застройщик</p>
-              <p className="text-lg font-semibold">
-                {project.developer}
-              </p>
-            </Card>
-          )}
-
-          {project.link && (
-            <Card className="p-6 md:col-span-2">
-              <p className="text-sm text-muted-foreground mb-2">Ссылка на объект</p>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline flex items-center gap-1 text-sm"
-              >
-                Посмотреть на сайте застройщика
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </Card>
-          )}
-        </div>
-      ) : (
-        /* Active Project - Full KPIs */
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">Доходность</p>
+      {/* Key Metrics Strip */}
+      {project.status !== "construction" && (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <Card className="p-5 bg-primary/5 border-primary/20">
+            <p className="text-xs text-muted-foreground mb-1">Доход в месяц</p>
             <p className="text-2xl font-bold font-mono tabular-nums text-primary">
-              {formatCurrency(project.revPerM2Month)}
+              ~{formatCurrency(monthlyIncome)}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">/м²/мес</p>
+            <p className="text-xs text-muted-foreground">с апартамента</p>
           </Card>
 
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">NOI в год</p>
-            <p className="text-2xl font-bold font-mono tabular-nums">
-              {formatCurrency(project.noiYear)}
+          <Card className="p-5">
+            <p className="text-xs text-muted-foreground mb-1">Доходность</p>
+            <p className="text-2xl font-bold font-mono tabular-nums text-primary">
+              {roiPercent}%
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              {formatNumber((project.noiYear / project.price) * 100, 1)}% годовых
-            </p>
+            <p className="text-xs text-muted-foreground">годовых</p>
           </Card>
 
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">Окупаемость</p>
-            <p className="text-2xl font-bold font-mono tabular-nums">
-              {formatNumber(project.paybackYears, 1)}
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">лет</p>
-          </Card>
-
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">Стоимость</p>
-            <p className="text-2xl font-bold font-mono tabular-nums">
-              {formatCurrency(project.price)}
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              {project.area} м² • {formatCurrency(project.price / project.area)}/м²
-            </p>
-          </Card>
-
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">Загрузка</p>
+          <Card className="p-5">
+            <p className="text-xs text-muted-foreground mb-1">Загрузка</p>
             <p className="text-2xl font-bold font-mono tabular-nums">
               {formatPercent(project.occupancy)}
             </p>
           </Card>
 
-          <Card className="p-6">
-            <p className="text-sm text-muted-foreground mb-2">ADR</p>
+          <Card className="p-5">
+            <p className="text-xs text-muted-foreground mb-1">ADR (чек/ночь)</p>
             <p className="text-2xl font-bold font-mono tabular-nums">
               {formatCurrency(project.adr)}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">средний чек</p>
+          </Card>
+
+          <Card className="p-5">
+            <p className="text-xs text-muted-foreground mb-1">Окупаемость</p>
+            <p className="text-2xl font-bold font-mono tabular-nums">
+              {formatNumber(project.paybackYears, 1)} лет
+            </p>
           </Card>
         </div>
       )}
 
-      {/* Construction Forecast Calculator - Only for construction projects */}
+      {/* Construction KPIs */}
       {project.status === "construction" && (
-        <ConstructionForecast project={project} />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Card className="p-5">
+            <p className="text-xs text-muted-foreground mb-1">Стоимость</p>
+            <p className="text-2xl font-bold font-mono tabular-nums">{formatCurrency(project.price)}</p>
+            <p className="text-xs text-muted-foreground">{project.area} м²</p>
+          </Card>
+          {project.pricePerM2 && (
+            <Card className="p-5">
+              <p className="text-xs text-muted-foreground mb-1">Цена за м²</p>
+              <p className="text-2xl font-bold font-mono tabular-nums">{formatCurrency(project.pricePerM2)}</p>
+            </Card>
+          )}
+          {project.completionDate && (
+            <Card className="p-5">
+              <p className="text-xs text-muted-foreground mb-1">Срок сдачи</p>
+              <p className="text-lg font-semibold">{project.completionDate}</p>
+            </Card>
+          )}
+          {project.developer && (
+            <Card className="p-5">
+              <p className="text-xs text-muted-foreground mb-1">Застройщик</p>
+              <p className="text-lg font-semibold">{project.developer}</p>
+            </Card>
+          )}
+        </div>
       )}
 
-      {/* Management & Economics - Two Column Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Management Details */}
-        {(project.managementCompany || project.managementFee || project.investorShare) && (
-          <Card>
-            <CardHeader>
-              <CardTitle>Управление и экономика</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {project.managementCompany && (
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Управляющая компания</p>
-                    <p className="font-semibold">{project.managementCompany}</p>
-                  </div>
-                )}
+      {project.status === "construction" && <ConstructionForecast project={project} />}
 
-                <div className="grid grid-cols-2 gap-4">
-                  {project.managementFee && (
-                    <div>
-                      <p className="text-xs text-muted-foreground mb-1">Комиссия УК</p>
-                      <p className="text-lg font-bold font-mono tabular-nums text-red-600 dark:text-red-400">
-                        {formatNumber(project.managementFee * 100, 0)}%
-                      </p>
-                    </div>
-                  )}
-                  {project.investorShare && (
-                    <div>
-                      <p className="text-xs text-muted-foreground mb-1">Доля инвестора</p>
-                      <p className="text-lg font-bold font-mono tabular-nums text-green-600 dark:text-green-400">
-                        {formatNumber(project.investorShare * 100, 0)}%
-                      </p>
-                    </div>
-                  )}
-                </div>
+      {/* Dossier — About the Project */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Building2 className="h-5 w-5 text-primary" />
+            Досье объекта
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Description */}
+          {project.description ? (
+            <p className="text-base leading-relaxed">{project.description}</p>
+          ) : (
+            <p className="text-base leading-relaxed">{project.summary}</p>
+          )}
 
-                {project.operatingExpenses && (
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Операционные расходы</p>
-                    <p className="text-base font-semibold font-mono tabular-nums">
-                      ~{formatNumber(project.operatingExpenses * 100, 0)}% от выручки
-                    </p>
-                  </div>
-                )}
+          {/* Info Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t">
+            {project.address && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Адрес</p>
+                <p className="text-sm font-medium">{project.address}</p>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            )}
+            {project.managementCompany && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Управляющая компания</p>
+                <p className="text-sm font-medium">{project.managementCompany}</p>
+              </div>
+            )}
+            {project.developer && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Застройщик</p>
+                <p className="text-sm font-medium">{project.developer}</p>
+              </div>
+            )}
+            {project.operatingSince && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Работает с</p>
+                <p className="text-sm font-medium">{project.operatingSince}</p>
+              </div>
+            )}
+            {project.totalUnits && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Номерной фонд</p>
+                <p className="text-sm font-medium">{project.totalUnits} юнитов</p>
+              </div>
+            )}
+            {project.managementFee && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Комиссия УК</p>
+                <p className="text-sm font-medium">{formatNumber(project.managementFee * 100, 0)}%</p>
+              </div>
+            )}
+            {project.investorShare && (
+              <div>
+                <p className="text-xs text-muted-foreground mb-1">Доля инвестора</p>
+                <p className="text-sm font-medium text-green-600 dark:text-green-400">{formatNumber(project.investorShare * 100, 0)}%</p>
+              </div>
+            )}
+            <div>
+              <p className="text-xs text-muted-foreground mb-1">Стоимость</p>
+              <p className="text-sm font-medium">{formatCurrency(project.price)} ({project.area} м²)</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-        {/* Performance Metrics */}
+      {/* Investment Value & Economics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Why Invest */}
         <Card>
           <CardHeader>
-            <CardTitle>Ключевые показатели</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-green-600" />
+              Инвестиционная привлекательность
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {project.why.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-green-500 mt-0.5">✓</span>
+                  <span className="text-sm">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+
+        {/* Financial Summary */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Star className="h-5 w-5 text-amber-500" />
+              Финансовые показатели
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">ROI годовой</p>
-                  <p className="text-lg font-bold font-mono tabular-nums text-primary">
-                    {formatNumber((project.noiYear / project.price) * 100, 1)}%
-                  </p>
+                  <p className="text-xs text-muted-foreground mb-1">NOI в год</p>
+                  <p className="text-lg font-bold font-mono tabular-nums">{formatCurrency(project.noiYear)}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">Окупаемость</p>
-                  <p className="text-lg font-bold font-mono tabular-nums text-amber-600 dark:text-amber-400">
-                    {formatNumber(project.paybackYears, 1)} лет
-                  </p>
+                  <p className="text-xs text-muted-foreground mb-1">Доходность ₽/м²/мес</p>
+                  <p className="text-lg font-bold font-mono tabular-nums text-primary">{formatCurrency(project.revPerM2Month)}</p>
                 </div>
               </div>
 
               {project.currentYield2025 && (
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">Доходность 2025</p>
+                <div className="pt-3 border-t">
+                  <p className="text-xs text-muted-foreground mb-1">Доходность 2025</p>
                   <p className="text-lg font-bold font-mono tabular-nums">
                     {formatCurrency(project.currentYield2025)} ₽/м²/мес
                   </p>
                   {project.historicalYield2024 && (
                     <p className="text-xs text-muted-foreground mt-1">
                       2024: {formatCurrency(project.historicalYield2024)} ₽/м²/мес
-                      {project.currentYield2025 > project.historicalYield2024 ? (
+                      {project.currentYield2025 > project.historicalYield2024 && (
                         <span className="text-green-600 dark:text-green-400 ml-1">
                           ↑ {formatNumber(((project.currentYield2025 - project.historicalYield2024) / project.historicalYield2024) * 100, 1)}%
-                        </span>
-                      ) : (
-                        <span className="text-red-600 dark:text-red-400 ml-1">
-                          ↓ {formatNumber(((project.historicalYield2024 - project.currentYield2025) / project.historicalYield2024) * 100, 1)}%
                         </span>
                       )}
                     </p>
@@ -285,10 +278,10 @@ export default function ProjectDetailPage({
                 </div>
               )}
 
-              <div className="pt-2 border-t border-border/50">
-                <p className="text-xs text-muted-foreground mb-2">Месячный доход с апартамента</p>
-                <p className="text-xl font-bold font-mono tabular-nums">
-                  ~{formatCurrency(Math.round((project.revPerM2Month * project.area)))}
+              <div className="pt-3 border-t bg-primary/5 -mx-6 -mb-6 px-6 py-4 rounded-b-xl">
+                <p className="text-xs text-muted-foreground mb-1">Ориентировочный месячный доход</p>
+                <p className="text-2xl font-bold font-mono tabular-nums text-primary">
+                  ~{formatCurrency(monthlyIncome)} ₽
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
                   при площади {project.area} м²
@@ -299,146 +292,49 @@ export default function ProjectDetailPage({
         </Card>
       </div>
 
-      {/* Why Invest */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Факторы доходности</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {project.why.map((item, idx) => (
-              <li key={idx} className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-
-      {/* Risks */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Риски</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {project.risks.map((item, idx) => (
-              <li key={idx} className="flex items-start">
-                <span className="text-yellow-500 mr-2">!</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
-
-      {/* Methodology & Due Diligence Accordions */}
-      <div className="space-y-4">
-          <AccordionItem title="Как мы считали доходность" defaultOpen={false}>
-            <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-semibold mb-2">Формула расчёта NOI</h4>
-                <p className="text-muted-foreground">
-                  NOI (Net Operating Income) = Годовая выручка − Операционные расходы
-                </p>
-                <ul className="mt-2 space-y-1 text-muted-foreground ml-4">
-                  <li>• Годовая выручка = ADR × Занятость (дней) × 365</li>
-                  <li>• Операционные расходы: комиссии, налоги, обслуживание, резервы</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Откуда данные</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• ADR (средний чек) — данные из систем бронирования</li>
-                  <li>• Загрузка — статистика операторов за последние 12 месяцев</li>
-                  <li>• Расходы — реальные затраты управляющих компаний</li>
-                  <li>• Сезонность — помесячная загрузка за прошлый год</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Что учитывается в расходах</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Комиссия УК: 15-25% от выручки</li>
-                  <li>• Коммунальные платежи: ~5-8% от выручки</li>
-                  <li>• Налог на имущество: 0.1-0.5% от кадастра</li>
-                  <li>• Резерв на ремонт: 3-5% от выручки</li>
-                  <li>• Маркетинг и OTA комиссии: ~10-15%</li>
-                </ul>
-              </div>
-
-              <div className="pt-2 border-t">
-                <p className="text-xs text-muted-foreground">
-                  Все расчёты основаны на актуальных данных управляющих компаний и систем бронирования.
-                  Итоговая доходность может отличаться в зависимости от условий конкретного договора.
-                </p>
-              </div>
-            </div>
-          </AccordionItem>
-
-          <AccordionItem title="Что проверить перед покупкой" defaultOpen={false}>
-            <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-semibold mb-2">Юридическая чистота</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Выписка из ЕГРН — проверить отсутствие обременений</li>
-                  <li>• Проверка застройщика — финансовое состояние, репутация</li>
-                  <li>• Документы БТИ — соответствие планировки</li>
-                  <li>• История сделок — отсутствие споров и претензий</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Управляющая компания</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Опыт работы на рынке — минимум 3 года</li>
-                  <li>• Реальная статистика загрузки по объектам</li>
-                  <li>• Условия договора — прозрачность отчётности</li>
-                  <li>• Отзывы собственников — проверить на независимых площадках</li>
-                  <li>• Система бронирования — интеграция с Booking, Airbnb</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Локация и инфраструктура</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Близость к центру, достопримечательностям</li>
-                  <li>• Транспортная доступность — до аэропорта, вокзала</li>
-                  <li>• Окружение — рестораны, магазины, парки</li>
-                  <li>• Конкуренция — плотность похожих объектов в районе</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-semibold mb-2">Финансовые риски</h4>
-                <ul className="space-y-1 text-muted-foreground">
-                  <li>• Сезонность — как меняется загрузка по месяцам</li>
-                  <li>• Минимальная загрузка — расчёт при пессимистичном сценарии</li>
-                  <li>• Резервный фонд — запас на 3-6 месяцев расходов</li>
-                  <li>• Налоговая нагрузка — учёт всех обязательств</li>
-                </ul>
-              </div>
-
-              <div className="pt-2 border-t">
-                <p className="text-xs text-muted-foreground">
-                  Рекомендуем запросить полный Due Diligence отчёт перед принятием решения о покупке.
-                  Мы поможем проверить все аспекты и минимизировать риски.
-                </p>
-              </div>
-            </div>
-          </AccordionItem>
-      </div>
-
-      {/* Research Notes (manually added via admin) */}
+      {/* Research Notes */}
       <ProjectResearch slug={project.slug} />
 
       {/* Telegram Mentions */}
       <ProjectMentions slug={project.slug} />
 
+      {/* Methodology */}
+      <div className="space-y-4">
+        <AccordionItem title="Методология расчёта" defaultOpen={false}>
+          <div className="space-y-4 text-sm">
+            <div>
+              <h4 className="font-semibold mb-2">Формула расчёта NOI</h4>
+              <p className="text-muted-foreground">
+                NOI (Net Operating Income) = Годовая выручка − Операционные расходы
+              </p>
+              <ul className="mt-2 space-y-1 text-muted-foreground ml-4">
+                <li>• Годовая выручка = ADR × Занятость (дней) × 365</li>
+                <li>• Операционные расходы: комиссии, налоги, обслуживание, резервы</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-2">Источники данных</h4>
+              <ul className="space-y-1 text-muted-foreground">
+                <li>• ADR — данные из систем бронирования и отчётов УК</li>
+                <li>• Загрузка — статистика операторов за последние 12 месяцев</li>
+                <li>• Расходы — реальные затраты управляющих компаний</li>
+              </ul>
+            </div>
+            <div className="pt-2 border-t">
+              <p className="text-xs text-muted-foreground">
+                Все расчёты основаны на актуальных данных. Итоговая доходность может отличаться в зависимости от условий конкретного договора.
+              </p>
+            </div>
+          </div>
+        </AccordionItem>
+      </div>
+
       {/* CTA Buttons */}
-      <Card className="p-6">
+      <Card className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+        <div className="text-center mb-4">
+          <h3 className="text-lg font-semibold">Заинтересовал объект?</h3>
+          <p className="text-sm text-muted-foreground">Получите персональный расчёт доходности и помощь в проверке</p>
+        </div>
         <div className="flex flex-col md:flex-row gap-4">
           <Button
             size="lg"
@@ -455,7 +351,7 @@ export default function ProjectDetailPage({
           <Link href="/calculator" className="flex-1">
             <Button size="lg" variant="outline" className="w-full">
               <Calculator className="h-5 w-5 mr-2" />
-              Рассчитать в калькуляторе
+              Калькулятор
             </Button>
           </Link>
 
@@ -468,11 +364,8 @@ export default function ProjectDetailPage({
         </div>
       </Card>
 
-      {/* SEO Structured Data */}
-      <RealEstateListingSchema
-        project={project}
-        url="https://apart.guru"
-      />
+      {/* SEO */}
+      <RealEstateListingSchema project={project} url="https://apart.guru" />
       <BreadcrumbSchema
         items={[
           { name: "Главная", url: "https://apart.guru" },
@@ -480,6 +373,10 @@ export default function ProjectDetailPage({
           { name: project.title, url: `https://apart.guru/projects/${project.slug}` }
         ]}
       />
+
+      <p className="text-xs text-muted-foreground text-center">
+        Обновлено: {formatDate(project.updatedAt)}
+      </p>
     </div>
   );
 }

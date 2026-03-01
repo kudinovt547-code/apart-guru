@@ -19,8 +19,8 @@ export function OrganizationSchema({ url }: OrganizationSchemaProps) {
       "availableLanguage": ["Russian"]
     },
     "sameAs": [
-      "https://t.me/apartgurus",
-      "https://t.me/apartdotpro"
+      "https://t.me/apartdotpro",
+      "https://t.me/Timofeykudinov"
     ]
   };
 

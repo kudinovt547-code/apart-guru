@@ -37,7 +37,7 @@ export default function CommunityPage() {
         <div className="grid gap-6 mb-12">
           {/* Telegram Group for Investors */}
           <FadeIn delay={0.1}>
-            <Link href="https://t.me/apartgurus" target="_blank">
+            <Link href="https://t.me/apartdotpro" target="_blank">
               <Card className="hover:border-primary/50 transition-all cursor-pointer group hover:shadow-lg">
                 <CardHeader>
                   <div className="flex items-center gap-4">

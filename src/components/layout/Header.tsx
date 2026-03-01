@@ -73,6 +73,12 @@ export default function Header() {
             Калькулятор
           </Link>
           <Link
+            href="/encyclopedia"
+            className="transition-colors hover:text-primary text-foreground/70"
+          >
+            Энциклопедия
+          </Link>
+          <Link
             href="/projects"
             className="transition-colors hover:text-primary text-foreground/70"
           >
@@ -145,6 +151,13 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Калькулятор
+              </Link>
+              <Link
+                href="/encyclopedia"
+                className="transition-colors hover:text-primary text-foreground/70 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Энциклопедия
               </Link>
               <Link
                 href="/projects"

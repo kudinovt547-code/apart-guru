@@ -192,7 +192,7 @@ export default function LegalPage() {
           </p>
           <ul className="mt-4 space-y-2">
             <li>Email: legal@apartguru.ru</li>
-            <li>Telegram: @apartguru_support</li>
+            <li>Telegram: @Timofeykudinov</li>
           </ul>
 
           <p className="mt-6 text-xs">

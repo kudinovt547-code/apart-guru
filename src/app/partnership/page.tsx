@@ -311,8 +311,8 @@ export default function PartnershipPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-muted-foreground" />
-                    <a href="https://t.me/apartgurus" target="_blank" className="text-primary hover:underline">
-                      Telegram: @apartgurus
+                    <a href="https://t.me/Timofeykudinov" target="_blank" className="text-primary hover:underline">
+                      Telegram: @Timofeykudinov
                     </a>
                   </div>
                 </div>
