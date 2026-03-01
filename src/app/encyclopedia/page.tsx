@@ -39,7 +39,7 @@ const sections: Section[] = [
     content: (
       <div className="space-y-4">
         <p className="text-muted-foreground">
-          <strong className="text-foreground">Апартаменты</strong> — это помещения в многоквартирном доме, которые имеют юридический статус <strong className="text-foreground">нежилого помещения</strong>.
+          <strong className="text-foreground">Апартаменты под инвестиции</strong> — это нежилые коммерческие помещения, приобретаемые для получения дохода от сдачи в аренду (посуточно/длительно) или перепродажи. В отличие от квартир, они обычно дешевле, находятся в престижных локациях и часто управляются профессиональными компаниями, обеспечивая более высокую доходность.
         </p>
         
         <div className="bg-primary/10 p-4 rounded-lg">
