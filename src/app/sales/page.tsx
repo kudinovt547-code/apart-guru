@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Building2, MapPin, TrendingUp, Star, CheckCircle2, Sparkles, Calendar, Award, DollarSign, ArrowRight } from "lucide-react";
+import { Building2, MapPin, TrendingUp, Star, CheckCircle2, Sparkles, Calendar, DollarSign, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { LeadFormModal } from "@/components/lead/LeadFormModal";
@@ -51,8 +51,8 @@ export default function SalesPage() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8">
-              Инвестиционные объекты от партнёра Inreit. Готовые апарт-отели с прозрачной отчётностью 
-              и новые проекты в строительстве.
+              Проверенные апарт-отели и доходная недвижимость с подтверждённой доходностью. 
+              Каждый объект — с детальной аналитикой и реальными показателями.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
@@ -78,42 +78,33 @@ export default function SalesPage() {
         </div>
       </section>
 
-      {/* Partner Info */}
+      {/* Info Block */}
       <section className="py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <FadeIn>
-            <Card className="max-w-4xl mx-auto border-primary/30 bg-gradient-to-br from-primary/5 to-background">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <Award className="h-8 w-8 text-primary" />
-                  <h2 className="text-2xl font-bold">Партнёр: Inreit</h2>
-                </div>
-                <div className="space-y-4 text-muted-foreground">
-                  <p className="leading-relaxed">
-                    Inreit — управляющая компания с прозрачной отчётностью и проверенной репутацией. 
-                    Все объекты в каталоге сопровождаются детальной финансовой отчётностью и имеют 
-                    подтверждённые показатели доходности.
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-4 mt-6">
-                    <div className="text-center p-4 bg-background/50 rounded-lg border border-border/50">
-                      <CheckCircle2 className="h-6 w-6 text-green-600 dark:text-green-400 mx-auto mb-2" />
-                      <div className="font-semibold text-foreground">Прозрачность</div>
-                      <div className="text-sm">Ежемесячная отчётность</div>
-                    </div>
-                    <div className="text-center p-4 bg-background/50 rounded-lg border border-border/50">
-                      <TrendingUp className="h-6 w-6 text-blue-600 dark:text-blue-400 mx-auto mb-2" />
-                      <div className="font-semibold text-foreground">Доходность</div>
-                      <div className="text-sm">Реальные показатели</div>
-                    </div>
-                    <div className="text-center p-4 bg-background/50 rounded-lg border border-border/50">
-                      <Building2 className="h-6 w-6 text-amber-600 dark:text-amber-400 mx-auto mb-2" />
-                      <div className="font-semibold text-foreground">Качество</div>
-                      <div className="text-sm">Проверенные объекты</div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <Card className="border-border/50 bg-background/50">
+                <CardContent className="p-6 text-center">
+                  <CheckCircle2 className="h-8 w-8 text-green-600 dark:text-green-400 mx-auto mb-3" />
+                  <div className="font-semibold text-foreground mb-1">Проверенные данные</div>
+                  <div className="text-sm text-muted-foreground">Реальные показатели доходности и загрузки</div>
+                </CardContent>
+              </Card>
+              <Card className="border-border/50 bg-background/50">
+                <CardContent className="p-6 text-center">
+                  <TrendingUp className="h-8 w-8 text-blue-600 dark:text-blue-400 mx-auto mb-3" />
+                  <div className="font-semibold text-foreground mb-1">Аналитика</div>
+                  <div className="text-sm text-muted-foreground">Детальный разбор каждого объекта</div>
+                </CardContent>
+              </Card>
+              <Card className="border-border/50 bg-background/50">
+                <CardContent className="p-6 text-center">
+                  <Building2 className="h-8 w-8 text-amber-600 dark:text-amber-400 mx-auto mb-3" />
+                  <div className="font-semibold text-foreground mb-1">Качество</div>
+                  <div className="text-sm text-muted-foreground">Только объекты с прозрачной отчётностью</div>
+                </CardContent>
+              </Card>
+            </div>
           </FadeIn>
         </div>
       </section>
