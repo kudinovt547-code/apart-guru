@@ -1750,7 +1750,7 @@ const sections: Section[] = [
             
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <h5 className="font-medium mb-2">💰 Финансы</h5>
+                <h5 className="font-medium mb-2">Финансы</h5>
                 <ul className="text-sm space-y-1">
                   <li>□ ADR и его динамика по сезонам</li>
                   <li>□ Историческая загрузка (3+ года)</li>
@@ -1760,7 +1760,7 @@ const sections: Section[] = [
                   <li>□ Реальная окупаемость (не менее 12 лет)</li>
                 </ul>
                 
-                <h5 className="font-medium mb-2 mt-4">🏢 УК и договор</h5>
+                <h5 className="font-medium mb-2 mt-4">УК и договор</h5>
                 <ul className="text-sm space-y-1">
                   <li>□ Опыт работы УК (5+ лет)</li>
                   <li>□ Прозрачная отчётность</li>
@@ -1780,7 +1780,7 @@ const sections: Section[] = [
                   <li>□ Перспективы развития района</li>
                 </ul>
                 
-                <h5 className="font-medium mb-2 mt-4">⚖️ Юридическое</h5>
+                <h5 className="font-medium mb-2 mt-4">Юридическое</h5>
                 <ul className="text-sm space-y-1">
                   <li>□ Разрешение на гостиничную деятельность</li>
                   <li>□ Право собственности без обременений</li>
@@ -1794,7 +1794,7 @@ const sections: Section[] = [
         </div>
         
         <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-lg">
-          <h4 className="font-semibold mb-3 text-center">🎯 Нужна помощь с выбором?</h4>
+          <h4 className="font-semibold mb-3 text-center">Нужна помощь с выбором?</h4>
           <p className="text-center text-muted-foreground mb-4">
             Проанализируем конкретные объекты по всем параметрам и дадим честное заключение
           </p>
