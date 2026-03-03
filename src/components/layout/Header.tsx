@@ -61,12 +61,6 @@ export default function Header() {
             Как мы работаем
           </Link>
           <Link
-            href="/cases"
-            className="transition-colors hover:text-primary text-foreground/70"
-          >
-            Разборы
-          </Link>
-          <Link
             href="/calculator"
             className="transition-colors hover:text-primary text-foreground/70"
           >
@@ -143,13 +137,6 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Как мы работаем
-              </Link>
-              <Link
-                href="/cases"
-                className="transition-colors hover:text-primary text-foreground/70 py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Разборы
               </Link>
               <Link
                 href="/calculator"
