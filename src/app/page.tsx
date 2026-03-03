@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import Image from "next/image";
-import { TrendingUp, Shield, Calculator, ArrowRight, Building2, Percent, Clock, CheckCircle2 } from "lucide-react";
+import { TrendingUp, Shield, Calculator, ArrowRight, Building2, Percent, Clock, CheckCircle2, Calendar, ExternalLink } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
@@ -24,6 +24,18 @@ import {
   getRevenueDistribution
 } from "@/utils/apartmentStats";
 
+interface NewsItem {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  publishedAt: string;
+  sourceUrl?: string;
+  sourceTitle?: string;
+}
+
 export default function HomePage() {
   const marketRevPerM2 = calculateMarketRevPerM2();
   const avgOccupancy = calculateAverageOccupancy();
@@ -33,6 +45,26 @@ export default function HomePage() {
   const citiesStats = useMemo(() => getCitiesStats(), []);
   const marketMetrics = useMemo(() => getMarketMetrics(), []);
   const revenueDistribution = useMemo(() => getRevenueDistribution(), []);
+  
+  const [latestNews, setLatestNews] = useState<NewsItem | null>(null);
+  const [newsLoading, setNewsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLatestNews = async () => {
+      try {
+        const response = await fetch('/api/latest-news');
+        const data = await response.json();
+        setLatestNews(data.news);
+      } catch (error) {
+        console.error('Ошибка загрузки новостей:', error);
+        setLatestNews(null);
+      } finally {
+        setNewsLoading(false);
+      }
+    };
+
+    fetchLatestNews();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -83,9 +115,12 @@ export default function HomePage() {
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <FadeIn>
-              <h2 className="text-3xl font-semibold text-center mb-12">
+              <h2 className="text-3xl font-semibold text-center mb-2">
                 Статистика рынка
               </h2>
+              <p className="text-sm text-muted-foreground text-center mb-12">
+                Данные обновлены: {new Date().toLocaleDateString('ru-RU')}
+              </p>
             </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             <AnimatedCard delay={0.1}>
@@ -698,6 +733,82 @@ export default function HomePage() {
           </FadeIn>
         </div>
       </section>
+
+      {/* Latest News Section */}
+      {!newsLoading && latestNews && (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <FadeIn>
+              <h2 className="text-3xl font-semibold text-center mb-12">
+                Актуальное
+              </h2>
+            </FadeIn>
+            
+            <AnimatedCard delay={0.1}>
+              <Card className="max-w-3xl mx-auto">
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    {/* Category and Date */}
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
+                        {latestNews.category}
+                      </span>
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        <time dateTime={latestNews.publishedAt}>
+                          {new Date(latestNews.publishedAt).toLocaleDateString('ru-RU', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </time>
+                      </div>
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl font-semibold leading-tight">
+                      {latestNews.title}
+                    </h3>
+                    
+                    {/* Excerpt */}
+                    <p className="text-muted-foreground leading-relaxed">
+                      {latestNews.excerpt}
+                    </p>
+                    
+                    {/* Action buttons */}
+                    <div className="flex flex-wrap gap-3 pt-2">
+                      <Link href={`/news/${latestNews.slug}`}>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Button>
+                            Читать статью
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </motion.div>
+                      </Link>
+                      
+                      {latestNews.sourceUrl && (
+                        <a 
+                          href={latestNews.sourceUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex"
+                        >
+                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button variant="outline">
+                              {latestNews.sourceTitle || 'Источник'}
+                              <ExternalLink className="ml-2 h-4 w-4" />
+                            </Button>
+                          </motion.div>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedCard>
+          </div>
+        </section>
+      )}
 
       {/* SEO Structured Data */}
       <OrganizationSchema url="https://apart.guru" />
