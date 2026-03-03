@@ -1002,7 +1002,7 @@ export const projects: Project[] = [
   },
   {
     slug: "inreit-suvorovsky-65-spb",
-    title: "Inreit Суворовский 65",
+    title: "PORT Суворовский 65",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,
@@ -1016,10 +1016,10 @@ export const projects: Project[] = [
     occupancy: 84,
     adr: 7100,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Суворовский 65 открывает новые возможности для инвестиций в быстроразвивающемся районе Санкт-Петербурга с отличной транспортной доступностью и растущей деловой активностью.",
+    summary: "PORT Суворовский 65 открывает новые возможности для инвестиций в быстроразвивающемся районе Санкт-Петербурга с отличной транспортной доступностью и растущей деловой активностью.",
     why: [
       "Перспективный район с активным развитием инфраструктуры и бизнеса",
-      "Автоматизированная платформа Inreit для эффективного управления активами",
+      "Современная платформа управления для эффективного управления активами",
       "Высокий потенциал роста стоимости благодаря развитию локации"
     ],
     risks: [
@@ -1030,17 +1030,16 @@ export const projects: Project[] = [
     roi: 17.98,
     operatingSince: "2021",
     class: "комфорт+",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-suvorovsky-65-spb.svg",
     images: ["/images/projects/inreit-suvorovsky-65-spb-1.svg", "/images/projects/inreit-suvorovsky-65-spb-2.svg"]
   },
   {
     slug: "inreit-ligovsky-29-spb",
-    title: "Inreit Лиговский 29",
+    title: "PORT Лиговский 29",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,
@@ -1054,10 +1053,10 @@ export const projects: Project[] = [
     occupancy: 81,
     adr: 6520,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Лиговский 29 расположен на одном из ключевых транспортных артерий Санкт-Петербурга, обеспечивая отличную доступность как для туристов, так и для бизнес-гостей города.",
+    summary: "PORT Лиговский 29 расположен на одном из ключевых транспортных артерий Санкт-Петербурга, обеспечивая отличную доступность как для туристов, так и для бизнес-гостей города.",
     why: [
       "Стратегическая локация на транспортном узле с высокой проходимостью",
-      "ИИ-алгоритмы Inreit для динамического ценообразования и оптимизации доходов",
+      "Современные алгоритмы для динамического ценообразования и оптимизации доходов",
       "Универсальная привлекательность для различных сегментов гостей"
     ],
     risks: [
@@ -1068,17 +1067,16 @@ export const projects: Project[] = [
     roi: 12.97,
     operatingSince: "2021",
     class: "комфорт",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-ligovsky-29-spb.svg",
     images: ["/images/projects/inreit-ligovsky-29-spb-1.svg", "/images/projects/inreit-ligovsky-29-spb-2.svg"]
   },
   {
     slug: "inreit-grivtsova-4-spb",
-    title: "Inreit Гривцова 4",
+    title: "PORT Гривцова 4",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,

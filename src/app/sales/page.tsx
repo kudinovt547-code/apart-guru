@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Building2, MapPin, TrendingUp, Star, CheckCircle2, Sparkles, Calendar, DollarSign, ArrowRight } from "lucide-react";
+import { Building2, MapPin, TrendingUp, Star, CheckCircle2, Sparkles, Calendar, RussianRuble, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/fade-in";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { LeadFormModal } from "@/components/lead/LeadFormModal";
@@ -228,7 +228,7 @@ export default function SalesPage() {
                         <div className="grid grid-cols-2 gap-3">
                           <div className="text-center">
                             <div className="flex items-center justify-center gap-1 mb-1">
-                              <DollarSign className="h-3 w-3 text-primary" />
+                              <RussianRuble className="h-3 w-3 text-primary" />
                             </div>
                             <p className="font-mono text-sm font-bold tabular-nums text-primary">
                               от {formatCurrency(project.priceFrom)}
