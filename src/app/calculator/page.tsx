@@ -1110,7 +1110,7 @@ export default function CalculatorPage() {
           </div>
 
           <div className="space-y-2 text-sm">
-            <p className="font-semibold">⚠️ Важные факты:</p>
+            <p className="font-semibold">Важные факты:</p>
             <ul className="space-y-1 text-xs text-muted-foreground list-disc list-inside">
               <li>
                 <strong>Коммунальные платежи</strong> в апартаментах в 2-3 раза выше, чем в жилых квартирах

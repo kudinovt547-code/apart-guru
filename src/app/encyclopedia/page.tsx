@@ -1722,7 +1722,7 @@ const sections: Section[] = [
         </div>
         
         <div className="bg-muted/50 p-4 rounded-lg border-l-4 border-red-500">
-          <h4 className="font-semibold mb-2">🚩 Красные флаги:</h4>
+          <h4 className="font-semibold mb-2">Красные флаги:</h4>
           <ul className="text-sm text-muted-foreground space-y-1">
             <li>• Обещания доходности выше 15% годовых</li>
             <li>• Отсутствие прозрачной отчётности УК</li>
@@ -1771,7 +1771,7 @@ const sections: Section[] = [
               </div>
               
               <div>
-                <h5 className="font-medium mb-2">📍 Локация</h5>
+                <h5 className="font-medium mb-2">Локация</h5>
                 <ul className="text-sm space-y-1">
                   <li>□ Транспортная доступность</li>
                   <li>□ Туристическая привлекательность</li>

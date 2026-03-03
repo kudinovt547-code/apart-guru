@@ -353,7 +353,7 @@ export default function ProjectsPage() {
                           {/* Status Badge on Image */}
                           <div className="absolute top-4 left-4 flex gap-2">
                             <span className="bg-primary/90 backdrop-blur-sm text-primary-foreground px-3 py-1.5 rounded-full text-xs font-bold border border-primary">
-                              {project.status === "construction" ? "🏗 Строится" : "📋 Планируется"}
+                              {project.status === "construction" ? "Строится" : "Планируется"}
                             </span>
                             {project.completionDate && (
                               <span className="bg-background/90 backdrop-blur-sm text-foreground px-3 py-1.5 rounded-full text-xs font-medium border border-border">
