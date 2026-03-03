@@ -506,7 +506,6 @@ export const projects: Project[] = [
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru/baza",
     image: "/images/projects/ekoport-otradnoe-db.svg",
     images: ["/images/projects/ekoport-otradnoe-db-1.svg", "/images/projects/ekoport-otradnoe-db-2.svg"]
   },
@@ -1090,11 +1089,11 @@ export const projects: Project[] = [
     occupancy: 83,
     adr: 7150,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Гривцова 4 сочетает инновационные технологии управления недвижимостью с перспективным расположением в развивающемся районе Санкт-Петербурга.",
+    summary: "PORT Гривцова 4 сочетает современные технологии управления недвижимостью с перспективным расположением в развивающемся районе Санкт-Петербурга.",
     why: [
-      "Передовые цифровые технологии управления с predictive analytics",
+      "Современные цифровые технологии управления с аналитикой",
       "Растущий район с высоким потенциалом увеличения стоимости активов",
-      "Полная автоматизация процессов управления и прозрачная отчетность"
+      "Автоматизация процессов управления и прозрачная отчетность"
     ],
     risks: [
       "Конкуренция"
@@ -1104,17 +1103,16 @@ export const projects: Project[] = [
     roi: 15.85,
     operatingSince: "2021",
     class: "комфорт+",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-grivtsova-4-spb.svg",
     images: ["/images/projects/inreit-grivtsova-4-spb-1.svg", "/images/projects/inreit-grivtsova-4-spb-2.svg"]
   },
   {
     slug: "inreit-nevskogo-9-spb",
-    title: "Inreit Александра Невского 9",
+    title: "PORT Александра Невского 9",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,
@@ -1128,11 +1126,11 @@ export const projects: Project[] = [
     occupancy: 79,
     adr: 6250,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Александра Невского 9 занимает выгодную позицию в районе с развитой транспортной инфраструктурой и близостью к ключевым достопримечательностям Санкт-Петербурга.",
+    summary: "PORT Александра Невского 9 занимает выгодную позицию в районе с развитой транспортной инфраструктурой и близостью к ключевым достопримечательностям Санкт-Петербурга.",
     why: [
-      "Комплексная цифровая экосистема для управления гостиничной недвижимостью",
+      "Современная цифровая система для управления гостиничной недвижимостью",
       "Удобная локация с развитой транспортной доступностью",
-      "Трансформация традиционной недвижимости в высокотехнологичный актив"
+      "Качественная недвижимость с современными технологиями управления"
     ],
     risks: [
       "Удаленность от главных достопримечательностей"
@@ -1142,11 +1140,10 @@ export const projects: Project[] = [
     roi: 11.91,
     operatingSince: "2021",
     class: "комфорт",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-nevskogo-9-spb.svg",
     images: ["/images/projects/inreit-nevskogo-9-spb-1.svg", "/images/projects/inreit-nevskogo-9-spb-2.svg"]
   },
@@ -1521,7 +1518,7 @@ export const projects: Project[] = [
   // Additional Inreit Hotels with exact data from Excel
   {
     slug: "inreit-sadovaya-28-spb",
-    title: "Inreit Садовая 28",
+    title: "PORT Садовая 28",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,
@@ -1535,10 +1532,10 @@ export const projects: Project[] = [
     occupancy: 89,
     adr: 3556,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Садовая 28 — премиальный апарт-отель в самом сердце Санкт-Петербурга на знаменитой Садовой улице.",
+    summary: "PORT Садовая 28 — премиальный апарт-отель в самом сердце Санкт-Петербурга на знаменитой Садовой улице.",
     why: [
       "Расположение в историческом центре Петербурга на одной из главных туристических артерий",
-      "Управление опытным оператором Inreit с проверенной бизнес-моделью",
+      "Управление опытным оператором PORT с проверенной бизнес-моделью",
       "Высокий поток туристов и деловых гостей круглый год благодаря центральной локации"
     ],
     risks: [
@@ -1550,18 +1547,17 @@ export const projects: Project[] = [
     roi: 17.58,
     operatingSince: "2021",
     class: "3 звезды",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-sadovaya-28-spb.svg",
     images: ["/images/projects/inreit-sadovaya-28-spb-1.svg", "/images/projects/inreit-sadovaya-28-spb-2.svg"]
   },
   {
     slug: "inreit-blokhina-petrogradka-spb",
-    title: "Inreit Блохина (Петроградка)",
+    title: "PORT Блохина (Петроградка)",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,
@@ -1575,10 +1571,10 @@ export const projects: Project[] = [
     occupancy: 87,
     adr: 2952,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Блохина на Петроградской стороне представляет уникальную инвестиционную возможность в одном из самых престижных районов Санкт-Петербурга.",
+    summary: "PORT Блохина на Петроградской стороне представляет уникальную инвестиционную возможность в одном из самых престижных районов Санкт-Петербурга.",
     why: [
       "Престижная локация на Петроградской стороне с богатой историей и культурными достопримечательностями",
-      "Проверенная управляющая компания Inreit с успешным опытом в сфере апарт-отелей",
+      "Проверенная управляющая компания PORT с успешным опытом в сфере апарт-отелей",
       "Стабильный спрос от туристов премиум-сегмента и деловых путешественников"
     ],
     risks: [
@@ -1590,18 +1586,17 @@ export const projects: Project[] = [
     roi: 12.78,
     operatingSince: "2021",
     class: "3 звезды",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-blokhina-petrogradka-spb.svg",
     images: ["/images/projects/inreit-blokhina-petrogradka-spb-1.svg", "/images/projects/inreit-blokhina-petrogradka-spb-2.svg"]
   },
   {
     slug: "inreit-blokhina-neva-spb",
-    title: "Inreit Блохина (Нева)",
+    title: "PORT Блохина (Нева)",
     country: "Россия",
     city: "Санкт-Петербург",
     format: PropertyFormat.HOTEL,
@@ -1615,10 +1610,10 @@ export const projects: Project[] = [
     occupancy: 87,
     adr: 3219,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Блохина с видами на Неву — эксклюзивный апарт-отель в одной из самых живописных локаций Санкт-Петербурга.",
+    summary: "PORT Блохина с видами на Неву — эксклюзивный апарт-отель в одной из самых живописных локаций Санкт-Петербурга.",
     why: [
       "Уникальные виды на Неву повышают привлекательность и стоимость размещения",
-      "Опытное управление Inreit с фокусом на максимизацию доходности",
+      "Опытное управление PORT с фокусом на максимизацию доходности",
       "Премиальное позиционирование обеспечивает высокие тарифы и загрузку"
     ],
     risks: [
@@ -1630,18 +1625,17 @@ export const projects: Project[] = [
     roi: 12.66,
     operatingSince: "2021",
     class: "комфорт",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru",
     image: "/images/projects/inreit-blokhina-neva-spb.svg",
     images: ["/images/projects/inreit-blokhina-neva-spb-1.svg", "/images/projects/inreit-blokhina-neva-spb-2.svg"]
   },
   {
     slug: "inreit-moscow",
-    title: "Inreit Москва",
+    title: "PORT Москва",
     country: "Россия",
     city: "Москва",
     format: PropertyFormat.HOTEL,
@@ -1655,10 +1649,10 @@ export const projects: Project[] = [
     occupancy: 89,
     adr: 5205,
     riskLevel: RiskLevel.LOW,
-    summary: "Inreit Москва — флагманский проект одного из ведущих операторов апарт-отелей в столице России.",
+    summary: "PORT Москва — качественный проект апарт-отеля в столице России.",
     why: [
       "Расположение в Москве — крупнейшем рынке краткосрочной аренды в России",
-      "Управление от Inreit — признанного лидера индустрии апарт-отелей",
+      "Управление от PORT — опытного оператора апарт-отелей",
       "Стабильный деловой и туристический трафик обеспечивает высокую загрузку"
     ],
     risks: [
@@ -1670,12 +1664,11 @@ export const projects: Project[] = [
     roi: 10.23,
     operatingSince: "2022",
     class: "комфорт+",
-    management: "Inreit",
+    management: "PORT",
     contacts: {
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
-    },
-    url: "https://inreit.ru"
+    }
   },
 
   // === Проекты из Telegram-аналитики (добавлено 2026-02-24) ===

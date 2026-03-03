@@ -489,8 +489,7 @@ export const operationalProjects: Project[] = [
     management: "PORT Property Management",
     contacts: {
       phone: "+7 (800) 101-05-48"
-    },
-    url: "https://inreit.ru/baza"
+    }
   },
   {
     slug: "nice-loft-life-moscow",

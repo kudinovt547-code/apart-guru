@@ -68,7 +68,7 @@ const APARTMENTS_DB = [
   { id: 120, city_code: 1, city: "Санкт-Петербург", name: "M97", class: "Comfort", price_m2: 260000, adr_low: 3200, adr_high: 5500, occ_avg: 0.83, uk_fee: 0.20, model: "Hybrid", loc_class: "Center" },
   { id: 121, city_code: 1, city: "Санкт-Петербург", name: "Next", class: "Business", price_m2: 310000, adr_low: 4000, adr_high: 7500, occ_avg: 0.80, uk_fee: 0.20, model: "Hybrid", loc_class: "Center" },
   { id: 122, city_code: 1, city: "Санкт-Петербург", name: "Lotos Tower", class: "Business", price_m2: 380000, adr_low: 5000, adr_high: 9000, occ_avg: 0.75, uk_fee: 0.25, model: "Short", loc_class: "Hub" },
-  // Сеть Port Comfort (СПб) - девелопер Inreit, 3-4 звезды, почти все Prime локации в центре
+  // Сеть Port Comfort (СПб) - качественные объекты, 3-4 звезды, почти все Prime локации в центре
   // Формат: инвест-отели (покупка для инвестиций). УК: 20-25%. TripAdvisor: 4-4.6 звёзд
   // Port Comfort on Ligovskiy: 4★, 126 номеров, рейтинг 4.6 (181 отзыв), от 6210₽/сутки
   // ✅ Плюсы: центр, чистота, персонал. ⚠️ Минусы: изношенная мебель, нет кондиционеров в некоторых номерах

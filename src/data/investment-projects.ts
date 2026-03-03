@@ -71,7 +71,7 @@ export const investmentProjects: Project[] = [
     adr: 5120,
     riskLevel: RiskLevel.MEDIUM,
     summary: "4* бизнес-класс | Bleisure-отель | 165 номеров | Рост +23% в год",
-    description: "Первый в Санкт-Петербурге апарт-отель в формате Bleisure — уникальное сочетание бизнес-инфраструктуры и комфорта для отдыха. Расположен в историческом центре города в 400 метрах от Невского проспекта. Объект от проверенного девелопера Inreit с подтвержденным ростом стоимости апартаментов +23% годовых. В отеле будут конференц-залы, коворкинг, ресторан и подземный паркинг на 60 мест. Работает под управлением сети PORT Comfort.",
+    description: "Первый в Санкт-Петербурге апарт-отель в формате Bleisure — уникальное сочетание бизнес-инфраструктуры и комфорта для отдыха. Расположен в историческом центре города в 400 метрах от Невского проспекта. Качественный объект с подтвержденным ростом стоимости апартаментов +23% годовых. В отеле будут конференц-залы, коворкинг, ресторан и подземный паркинг на 60 мест. Работает под управлением сети PORT Comfort.",
     why: [
       "4 звезды бизнес-класса",
       "Bleisure-отель (бизнес + отдых)",
@@ -90,12 +90,11 @@ export const investmentProjects: Project[] = [
     totalUnits: 165,
     completionDate: "II квартал 2026",
     class: "4* бизнес",
-    developer: "Inreit",
+    developer: "PORT Property Development",
     contacts: {
       phone: "+7 (800) 101-05-48",
       whatsapp: "+7 911 716-41-74"
     },
-    url: "https://inreit.ru/hers39",
     image: "/images/projects/inreit-hersonskaya-39-front.jpg",
     images: ["/images/projects/inreit-hersonskaya-39-front.jpg"]
   },
@@ -135,11 +134,10 @@ export const investmentProjects: Project[] = [
     completionDate: "Q3 2026",
     operatingSince: "декабрь 2024",
     management: "PORT Property Management",
-    developer: "Inreit",
+    developer: "PORT Property Development",
     contacts: {
       phone: "+7 (800) 101-05-48"
     },
-    url: "https://inreit.ru/baza",
     image: "/images/projects/ekoport-otradnoe.webp",
     images: ["/images/projects/ekoport-otradnoe-1.webp", "/images/projects/ekoport-otradnoe-2.webp"]
   },
