@@ -58,11 +58,13 @@ export default function Footer() {
                   База данных
                 </Link>
               </li>
+              {/* Каталог инвестиций — скрыт временно
               <li>
                 <Link href="/sales" className="hover:text-primary transition-colors">
                   Каталог инвестиций
                 </Link>
               </li>
+              */}
               <li>
                 <Link href="/invest" className="hover:text-primary transition-colors">
                   Инвестировать

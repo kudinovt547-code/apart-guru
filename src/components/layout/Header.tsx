@@ -78,12 +78,14 @@ export default function Header() {
           >
             База
           </Link>
+          {/* Каталог инвестиций — скрыт временно
           <Link
             href="/sales"
             className="transition-colors hover:text-primary text-foreground/70"
           >
             Каталог инвестиций
           </Link>
+          */}
           <Link
             href="/news"
             className="transition-colors hover:text-primary text-foreground/70"
@@ -159,6 +161,7 @@ export default function Header() {
               >
                 База
               </Link>
+              {/* Каталог инвестиций — скрыт временно
               <Link
                 href="/sales"
                 className="transition-colors hover:text-primary text-foreground/70 py-2"
@@ -166,6 +169,7 @@ export default function Header() {
               >
                 Каталог инвестиций
               </Link>
+              */}
               <Link
                 href="/news"
                 className="transition-colors hover:text-primary text-foreground/70 py-2"

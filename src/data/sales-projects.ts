@@ -13,6 +13,7 @@ export interface SalesProject {
   description?: string;
   features?: string[];
   image?: string;
+  website?: string;
 }
 
 export const salesProjects: SalesProject[] = [
@@ -117,7 +118,8 @@ export const salesProjects: SalesProject[] = [
       "Пассивный доход до 10%",
       "Полная отделка и меблировка"
     ],
-    image: "/projects/well-apart.jpg"
+    image: "/projects/well-apart.jpg",
+    website: "https://well-apart.ru/"
   },
 
   // RBI
