@@ -4,6 +4,7 @@ import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, TrendingUp } from "lucide-react";
+import MarkdownContent from "@/components/MarkdownContent";
 
 interface EditorialArticle {
   id: string;
@@ -96,13 +97,7 @@ export default async function ArticlePage({
         </header>
 
         {/* Content */}
-        <div className="prose prose-invert max-w-none">
-          {article.content.split("\n\n").map((para, i) => (
-            <p key={i} className="mb-5 leading-relaxed text-foreground/90">
-              {para}
-            </p>
-          ))}
-        </div>
+        <MarkdownContent content={article.content} />
 
         {/* Footer */}
         <div className="mt-12 pt-8 border-t border-border">
