@@ -15,6 +15,7 @@ export default function ContactPage() {
     budget: "",
     city: "",
     riskProfile: "",
+    shortlist: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -46,6 +47,7 @@ export default function ContactPage() {
             budget: "",
             city: "",
             riskProfile: "",
+            shortlist: "",
             message: "",
           });
         }, 3000);
@@ -166,6 +168,23 @@ export default function ContactPage() {
                     <option value={RiskLevel.HIGH}>
                       Агрессивный (готов к рискам ради высокой доходности)
                     </option>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="shortlist">Шорт-лист — интересующий объект</Label>
+                  <Select
+                    id="shortlist"
+                    value={formData.shortlist}
+                    onChange={(e) =>
+                      setFormData({ ...formData, shortlist: e.target.value })
+                    }
+                  >
+                    <option value="">Выберите объект</option>
+                    <option value="petrovskiy">Петровский Арт Лофт 4★ — Петроградский район, СПб</option>
+                    <option value="ligovskiy">Port Comfort на Лиговском 4★ — Центральный район, СПб</option>
+                    <option value="otradnoe">ЭкоПорт Отрадное — загородный, Ленобласть</option>
+                    <option value="other">Другой объект / не определился</option>
                   </Select>
                 </div>
 
